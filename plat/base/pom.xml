@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="   http://maven.apache.org/POM/4.0.0   http://maven.apache.org/maven-v4_0_0.xsd">
+	
+	<modelVersion>4.0.0</modelVersion>  
+   <parent>
+		<groupId>com.lvxh.plugin.plat</groupId>
+		<artifactId>plat</artifactId>
+		<version>V100R001C03-SNAPSHOT</version>
+	</parent>
+	<packaging>pom</packaging>      
+    <artifactId>base</artifactId>
+	<name>base</name>
+    <distributionManagement>
+		<snapshotRepository>
+            <id>snapshots</id>
+            <name>huaiye Snapshot</name>
+            <url>http://192.168.1.18:8081/nexus/content/repositories/snapshots/</url>
+            <uniqueVersion>true</uniqueVersion>
+        </snapshotRepository>
+        
+		<repository>
+			<id>releases</id>
+			<url>http://192.168.1.18:8081/nexus/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
+  <modules>
+    <module>baseService</module>
+    <module>baseServiceImpl</module>
+    <module>baseController</module>
+  </modules>
+</project>

@@ -1,0 +1,15 @@
+<sitemesh>
+  <mapping decorator="/decorator/index.jsp"/>
+  
+  <!-- 对不同的路径，启用不同的装饰器 -->
+  <!--  <mapping path="/ecsmeeting/*.action" decorator="/decorator/system_watch.jsp"/> -->
+    <mapping path="/main/init.action" exclue="true" />
+    <mapping path="/main/csInit.action" exclue="true" />
+	<mapping path="/main/login.action" exclue="true" />
+	<mapping path="/main/logout.action" exclue="true" />
+	<mapping path="/main/upFormReq.action" exclue="true" />
+	<mapping path="/main/upFormFile.action" exclue="true" />
+	<mapping path="/main/sie.action" exclue="true" />
+	<mapping path="/platmeeting/opreate.action" exclue="true" />
+	<mapping path="/platnote/index.action" exclue="true" />
+</sitemesh>

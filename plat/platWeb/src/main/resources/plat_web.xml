@@ -1,0 +1,65 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+	
+	<dubbo:reference interface="com.huaiye.plugin.plat.platattr.service.PlatAttrService" id="platAttrService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platbutton.service.PlatButtonService" id="platButtonService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platconfig.service.PlatConfigService" id="platConfigService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platcontact.service.PlatContactService" id="platContactService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platcontactgroup.service.PlatContactGroupService" id="platContactGroupService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platdep.service.PlatDepService" id="platDepService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platdict.service.PlatDictService" id="platDictService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platefence.service.PlatEfenceService" id="platEfenceService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platent.service.PlatEntService" id="platEntService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platfield.service.PlatFieldService" id="platFieldService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platfiles.service.PlatFilesService" id="platFilesService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platinterfacedoc.service.PlatInterfaceDocService" id="platInterfaceDocService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platjob.service.PlatJobService" id="platJobService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmenu.service.PlatMenuService" id="platMenuService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmodel.service.PlatModelService" id="platModelService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmodelpro.service.PlatModelProService" id="platModelProService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platoptlog.service.PlatOptLogService" id="platOptLogService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platposition.service.PlatPositionService" id="platPositionService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platpositionhis.service.PlatPositionHisService" id="platPositionHisService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platproduct.service.PlatProductService" id="platProductService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platrole.service.PlatRoleService" id="platRoleService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platrolemenu.service.PlatRoleMenuService" id="platRoleMenuService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platroom.service.PlatRoomService" id="platRoomService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platroomgroup.service.PlatRoomGroupService" id="platRoomGroupService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platroomnode.service.PlatRoomNodeService" id="platRoomNodeService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platschedulejob.service.PlatScheduleJobService" id="platScheduleJobService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platsms.service.PlatSmsService" id="platSmsService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platsoft.service.PlatSoftService" id="platSoftService" check="false" />
+
+	<dubbo:reference interface="com.huaiye.plugin.plat.platsoftversion.service.PlatSoftVersionService" id="platSoftVersionService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platuser.service.PlatUserService" id="platUserService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platuserrole.service.PlatUserRoleService" id="platUserRoleService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platuserrolemenu.service.PlatUserRoleMenuService" id="platUserRoleMenuService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platuserrolemb.service.PlatUserRoleMbService" id="platUserRoleMbService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platuserlist.service.PlatUserListService" id="platUserListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmodelbyproduct.service.PlatModelByProductService" id="platModelByProductService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platentlist.service.PlatEntListService" id="platEntListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platloglist.service.PlatLogListService" id="platLogListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platcommuserlist.service.PlatCommUserListService" id="platCommUserListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platdeplist.service.PlatDepListService" id="platDepListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platfieldlist.service.PlatFieldListService" id="platFieldListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platbuttonlist.service.PlatButtonListService" id="platButtonListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmenulist.service.PlatMenuListService" id="platMenuListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platrolelist.service.PlatRoleListService" id="platRoleListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platsmslist.service.PlatSmsListService" id="platSmsListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platproductlist.service.PlatProductListService" id="platProductListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platroomgrouplist.service.PlatRoomGroupListService" id="platRoomGroupListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platroomlist.service.PlatRoomListService" id="platRoomListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platsoftlist.service.PlatSoftListService" id="platSoftListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platsoftversionlist.service.PlatSoftVersionListService" id="platSoftVersionListService" check="false" />
+    <dubbo:reference interface="com.huaiye.plugin.plat.platnoreadsms.service.PlatNoReadSmsService" id="platNoReadSmsService" check="false" />
+    <dubbo:reference interface="com.huaiye.plugin.plat.platgroupuser.service.PlatGroupUserService" id="platGroupUserService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmeeting.service.PlatMeetingService" id="platMeetingService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmeetinguser.service.PlatMeetingUserService" id="platMeetingUserService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platnote.service.PlatNoteService" id="platNoteService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmeetinglist.service.PlatMeetingListService" id="platMeetingListService" check="false" />
+	<dubbo:reference interface="com.huaiye.plugin.plat.platmeetinguserlist.service.PlatMeetingUserListService" id="platMeetingUserListService" check="false" />
+</beans>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionHolder">
+		<result column="ID" property="id" />
+		<result column="SOFT_CODE" property="softCode" />
+		<result column="VERSION" property="version" />
+		<result column="MANDATORY" property="mandatory" />
+		<result column="PRE_VERSION" property="preVersion" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="ACTIVE" property="active" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="FILE_PATH" property="filePath" />
+		<result column="FILE_PATH_TYPE" property="filePathType" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`SOFT_CODE`,`VERSION`,`MANDATORY`,`PRE_VERSION`,`DESCRIPTION`,`ACTIVE`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`FILE_PATH`,`FILE_PATH_TYPE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="softCode != null and softCode != ''">
+				and `SOFT_CODE` = #{softCode}
+			</if>
+			<if test="version != null and version != ''">
+				and `VERSION` = #{version}
+			</if>
+			<if test="mandatory != null ">
+				and `MANDATORY` = #{mandatory}
+			</if>
+			<if test="preVersion != null and preVersion != ''">
+				and `PRE_VERSION` = #{preVersion}
+			</if>
+			<if test="description != null and description != ''">
+				and `DESCRIPTION` = #{description}
+			</if>
+			<if test="active != null and active != ''">
+				and `ACTIVE` = #{active}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="filePath != null and filePath != ''">
+				and `FILE_PATH` = #{filePath}
+			</if>
+			<if test="filePathType != null and filePathType != ''">
+				and `FILE_PATH_TYPE` = #{filePathType}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionHolder">
+		insert into plat_soft_version( <include refid="Base_Colnum_List" /> )values( #{id},#{softCode},#{version},#{mandatory},#{preVersion},#{description},#{active},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{filePath},#{filePathType} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_soft_version(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.softCode},#{log.version},#{log.mandatory},#{log.preVersion},#{log.description},#{log.active},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.filePath},#{log.filePathType} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionHolder">
+		update plat_soft_version set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="softCode != null">
+				`SOFT_CODE` = #{softCode},
+			</if>
+			<if test="version != null">
+				`VERSION` = #{version},
+			</if>
+			<if test="mandatory != null">
+				`MANDATORY` = #{mandatory},
+			</if>
+			<if test="preVersion != null">
+				`PRE_VERSION` = #{preVersion},
+			</if>
+			<if test="description != null">
+				`DESCRIPTION` = #{description},
+			</if>
+			<if test="active != null">
+				`ACTIVE` = #{active},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="filePath != null">
+				`FILE_PATH` = #{filePath},
+			</if>
+			<if test="filePathType != null">
+				`FILE_PATH_TYPE` = #{filePathType},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionHolder">
+		delete from plat_soft_version <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionHolder">
+		select <include refid="Base_Colnum_List" /> from plat_soft_version <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionHolder">
+		select count(1) from (SELECT 1 FROM plat_soft_version <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsoftversion.holder.PlatSoftVersionHolder">
+		select <include refid="Base_Colnum_List" /> from plat_soft_version <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

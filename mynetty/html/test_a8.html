@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>webSocket</title>
+   <script src='jquery.js'></script>
+   <script src='json2.js'></script> 
+   <script src='websocket.js'></script> 
+   <script type="text/javascript">
+   
+    </script>
+        
+    </head>
+    <body>
+   
+<div style="width: 600px;height: 400px;">
+    <p>服务器输出:</p>
+    <div style="border: 1px solid #CCC;height: 300px;overflow: scroll" id="server-msg-container">
+
+    </div>
+    <p>
+        <textarea id="inp-msg" style="height: 50px;width: 500px"></textarea><input type="button" value="发送"
+                                                                                   id="send"><br/>
+        选择图片： <input type="file" id="send-pic"><button id="sssd">send</button>
+    </p>
+</div>
+
+<script type="application/javascript">
+   
+	try{
+	    var opt = {
+		    url:"ws://192.168.2.132:8089/ws",
+		    loginName:"10108",
+		    log:true,
+		    loginSuccess:function(nettyWs){
+			    nettyWs.sendMsg("{\"msgType\":\"nettyForwardService\",\"src\":\"10107\",\"content\":5555}");
+		    }
+	    };
+	    var nettyWs = new NETTY_WS(opt);
+	   
+	}catch(e){
+	    window.console && window.console.error(e);
+	}
+
+   
+    // 发送文字消息
+    document.getElementById("send").addEventListener("click", function () {
+        ws.send(document.getElementById("inp-msg").value);
+    }, false);
+
+    // 发送图片
+    $('#sssd').bind('click', function () {  
+    	//alert(11);
+        var files = document.getElementById("send-pic").files;
+        if (files && files.length) {
+            var file = files[0];
+            var fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
+            fileReader.onload = function (e) {
+	        	console.log(e);
+                // 获取到文件对象
+                var result = e.target.result;
+                // 发送数据到服务器端
+                nettyWs.sendMsgEx(result)
+            }
+        }
+    });
+      </script>
+    </body>
+</html>

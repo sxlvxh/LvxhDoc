@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserHolder">
+		<result column="ID" property="id" />
+		<result column="GROUP_CODE" property="groupCode" />
+		<result column="FRIEND_MARK" property="friendMark" />
+		<result column="FRIEND_USER_CODE" property="friendUserCode" />
+		<result column="IS_ADMIN" property="isAdmin" />
+		<result column="USER_CODE" property="userCode" />
+		<result column="IMG_URL" property="imgUrl" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="USER_SERVICE_TYPE" property="userServiceType" />
+		<result column="USER_TYPE" property="userType" />
+		<result column="DOMAIN_CODE" property="domainCode" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`GROUP_CODE`,`FRIEND_MARK`,`FRIEND_USER_CODE`,`IS_ADMIN`,`USER_CODE`,`IMG_URL`,`ENT_CODE`,`USER_SERVICE_TYPE`,`USER_TYPE`,`DOMAIN_CODE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				and t.`GROUP_CODE` = #{groupCode}
+			</if>
+			<if test="friendMark != null and friendMark != ''">
+				and t.`FRIEND_MARK` = #{friendMark}
+			</if>
+			<if test="friendUserCode != null and friendUserCode != ''">
+				and t.`FRIEND_USER_CODE` = #{friendUserCode}
+			</if>
+			<if test="isAdmin != null and isAdmin != ''">
+				and t.`IS_ADMIN` = #{isAdmin}
+			</if>
+			<if test="userCode != null and userCode != ''">
+				and t.`USER_CODE` = #{userCode}
+			</if>
+			<if test="imgUrl != null and imgUrl != ''">
+				and t.`IMG_URL` = #{imgUrl}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and t.`ENT_CODE` = #{entCode}
+			</if>
+			<if test="userServiceType != null and userServiceType != ''">
+				and t.`USER_SERVICE_TYPE` = #{userServiceType}
+			</if>
+			<if test="userType != null ">
+				and t.`USER_TYPE` = #{userType}
+			</if>
+			<if test="domainCode != null and domainCode != ''">
+				and t.`DOMAIN_CODE` = #{domainCode}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserHolder">
+		insert into plat_group_user( <include refid="Base_Colnum_List" /> )values( #{id},#{groupCode},#{friendMark},#{friendUserCode},#{isAdmin},#{userCode},#{imgUrl},#{entCode},#{userServiceType},#{userType},#{domainCode} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserHolder">
+		update plat_group_user set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				`GROUP_CODE` = #{groupCode},
+			</if>
+			<if test="friendMark != null and friendMark != ''">
+				`FRIEND_MARK` = #{friendMark},
+			</if>
+			<if test="friendUserCode != null and friendUserCode != ''">
+				`FRIEND_USER_CODE` = #{friendUserCode},
+			</if>
+			<if test="isAdmin != null and isAdmin != ''">
+				`IS_ADMIN` = #{isAdmin},
+			</if>
+			<if test="userCode != null and userCode != ''">
+				`USER_CODE` = #{userCode},
+			</if>
+			<if test="imgUrl != null and imgUrl != ''">
+				`IMG_URL` = #{imgUrl},
+			</if>
+			<if test="entCode != null and entCode != ''">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="userServiceType != null and userServiceType != ''">
+				`USER_SERVICE_TYPE` = #{userServiceType},
+			</if>
+			<if test="userType != null ">
+				`USER_TYPE` = #{userType},
+			</if>
+			<if test="domainCode != null and domainCode != ''">
+				`DOMAIN_CODE` = #{domainCode},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserHolder">
+		delete from plat_group_user <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.ID,
+  A.GROUP_CODE,
+  A.FRIEND_MARK,
+  A.FRIEND_USER_CODE,
+  A.IS_ADMIN,
+  B.USER_CODE,
+  B.IMG_URL,
+  B.ENT_CODE,
+  B.USER_SERVICE_TYPE,
+  B.USER_TYPE,
+  '' AS DOMAIN_CODE
+FROM PLAT_CONTACT A
+  LEFT JOIN PLAT_USER B
+    ON A.FRIEND_USER_CODE = B.USER_CODE
+    WHERE A.GROUP_CODE = #{groupCode}]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.ID,
+  A.GROUP_CODE,
+  A.FRIEND_MARK,
+  A.FRIEND_USER_CODE,
+  A.IS_ADMIN,
+  B.USER_CODE,
+  B.IMG_URL,
+  B.ENT_CODE,
+  B.USER_SERVICE_TYPE,
+  B.USER_TYPE,
+  '' AS DOMAIN_CODE
+FROM PLAT_CONTACT A
+  LEFT JOIN PLAT_USER B
+    ON A.FRIEND_USER_CODE = B.USER_CODE
+    WHERE A.GROUP_CODE = #{groupCode}]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platgroupuser.holder.PlatGroupUserHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.ID,
+  A.GROUP_CODE,
+  A.FRIEND_MARK,
+  A.FRIEND_USER_CODE,
+  A.IS_ADMIN,
+  B.USER_CODE,
+  B.IMG_URL,
+  B.ENT_CODE,
+  B.USER_SERVICE_TYPE,
+  B.USER_TYPE,
+  '' AS DOMAIN_CODE
+FROM PLAT_CONTACT A
+  LEFT JOIN PLAT_USER B
+    ON A.FRIEND_USER_CODE = B.USER_CODE
+    WHERE A.GROUP_CODE = #{groupCode}]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web socket 文件上传</title>
+</head>
+<body>
+ <div>
+   <input type="file" id="file"/>
+   <button id="up-btn" onclick="up();">上传</button>
+   <button id="up-btn" onclick="up1();">上传1</button>
+   <button id="up-btn" onclick="pause();">暂停</button>
+   <button id="up-btn" onclick="reUp();">继续</button>
+   <button id="up-btn" onclick="cancle();">取消上传</button>
+   <div style="border:1px solid #DDD;width:300px; height:10px">
+     <div id="proc" style="background-color:green;height:10px;width:0%"></div>
+   </div>
+ </div>
+ <script>
+var proc = document.getElementById("proc");
+
+function LxhUpfile(opts){
+	this.file = opts.file;
+	this.code = opts.code;
+	this.url = opts.url;
+	this.size = this.file.size;
+	this.name = this.file.name;
+	this.step = 1024*1024*opts.step;
+	this.start = 0;
+	this.end = this.step;
+	this.status = true;
+	this.success = opts.success;
+	this.closeStatus = 0;
+}
+LxhUpfile.prototype.up= function() {
+	var _this = this;
+	_this.ws = new WebSocket(_this.url);
+	_this.ws.onopen = function (ev) {
+	      if (_this.file) {
+	    	  _this.ws.send(JSON.stringify({name:_this.name,code:_this.code,size:_this.size,type:"file",fileType:_this.file.type,userCode:"lvxh"}))
+	      }
+	  };
+	  _this.ws.onmessage = function (ev) {
+		  if(typeof(ev.data) == "string")
+		  {
+			  var json = JSON.parse(ev.data);
+			  if(json.res === 1)
+			  {
+			    	_this.startX();
+			  }else if(json.res === 3)
+			  {
+				  if(json.sizeX >= _this.size)
+					  {
+					      _this.ws.close();
+					      _this.closeStatus = 1;
+					      json.ratio = 100;
+					      json.result = 1;
+					      json.desc="文件已经存在";
+					      _this.success(json);
+					  }
+				  else
+					  {
+					    _this.start = json.sizeX;
+			            _this.end = json.sizeX + _this.step; 
+			            _this.startX();
+					  }
+			  }else
+			  {
+				  _this.closeStatus = 1;
+				  _this.ws.close();
+				  json.result = 0;
+				  json.desc="上传成功";
+				  _this.success(json);
+			  }
+			  proc.style.width=json.ratio+"%";
+			  
+		  }
+	  };
+	  _this.ws.onerror = function () {
+		  var json = {"result":2,"desc":"上传失败"}
+		  _this.success(json);
+	  };
+	  _this.ws.onclose = function () {
+		 
+	  };
+}
+LxhUpfile.prototype.startX = function() {
+	var _this = this;
+	if(_this.status === true)
+	{
+		var blob = _this.file.slice(_this.start, _this.end);
+	    var fileReader = new FileReader();
+	    fileReader.readAsArrayBuffer(blob);
+	    fileReader.onload = function (e) {
+	        var result = e.target.result;
+	        _this.ws.send(result);
+	        _this.start = _this.end;
+	        _this.end = _this.end + _this.step; 	
+	    }
+	}
+}
+LxhUpfile.prototype.pause = function(status) {
+	var _this = this;
+	_this.status = status;
+}
+LxhUpfile.prototype.cancle = function() {
+	var _this = this;
+	_this.status = false;
+	_this.ws.close();
+}
+var  lxhUpfile;
+function up1(){
+	 var f = document.getElementById("file");
+	 var files = f.files;
+	 if (files && files.length) {
+		var opts = {
+			file : files[0],
+			code : uuid(),
+			url : "ws://192.168.2.132:9898/upload",
+			step:1,
+			success:function(msg){
+				console.log(msg);
+			}
+		};
+		lxhUpfile = new LxhUpfile(opts);
+		lxhUpfile.up();
+	 }
+	
+}
+function pause(){	 
+		lxhUpfile.pause(false);	
+}
+
+function reUp(){	 
+	lxhUpfile.pause(true);
+	lxhUpfile.startX();
+}
+function cancle(){
+	lxhUpfile.cancle();	
+}
+
+ function up(){
+	  var f = document.getElementById("file");
+	  var ws = new WebSocket("ws://127.0.0.1:9898/upload");
+      var files = f.files;
+      console.log(files);
+      var file = files[0];
+      var size = file.size;
+      var name = file.name;
+      var code = uuid();
+   	  var step = 1024*1024*1;
+   	  var size = file.size;
+   	  var start = 0;
+   	  var end = step;
+    	//  sendMsg(ws,file,size,tep,0);
+      ws.onopen = function (ev) {
+	      if (files && files.length) {
+	      	  ws.send(JSON.stringify({name:name,code:code,size:size,type:"file",fileType:file.type,userCode:"lvxh"}))
+	      	  
+	      	 // sendMsg(ws,file,size,tep,0)
+	      }
+	  };
+	  ws.onmessage = function (ev) {
+		  if(typeof(ev.data) == "string")
+		  {
+			  
+			  console.error(ev.data);
+			  var json = JSON.parse(ev.data);
+			  if(json.res === 1)
+			  {
+				    //var t = i/(size/tep)*100;
+			    	var blob = file.slice(start, end);
+			        var fileReader = new FileReader();
+			        fileReader.readAsArrayBuffer(blob);
+			        fileReader.onload = function (e) {
+			            var result = e.target.result;
+			            // 发送数据到服务器端
+			            ws.send(result);
+			            start = end;
+			            end = end + step; 	
+			        }
+			  }else
+			  {
+			    ws.close();
+			  }
+			  proc.style.width=json.ratio+"%";
+			  
+		  }
+	  };
+	  ws.onerror = function () {
+	     
+	  };
+	  ws.onclose = function () {
+	      
+	  };
+  }
+  function sendMsg(ws,file,size,tep,i)
+  {
+	  
+       var t = i/(size/tep)*100;
+  	    var tp = (i+1)*tep;
+    	 var blob = file.slice(i*tep, tp);
+        var fileReader = new FileReader();
+        fileReader.readAsArrayBuffer(blob);
+        fileReader.onload = function (e) {
+        	  // console.log(t);
+        	  if(t<98)
+        		  {
+        	        proc.style.width= t+"%";
+        		  }
+        	  
+        	  // proc.innerHTML=t+"%";
+            // 获取到文件对象
+            var result = e.target.result;
+            // 发送数据到服务器端
+            ws.send(result)
+            if(tp > size)
+          	  {
+          	  
+          	  }else{
+          		 /*  {setTimeout(function(){ */
+	            		   sendMsg(ws,file,size,tep,i+1)
+          		/*   },100); */
+          		  }
+        }
+  }
+  function uuid(){
+		var s = [];
+		var hexDigits = "0123456789abcdef";
+		for (var i = 0; i < 36; i++) {
+			s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+		}
+		s[14] = "4"; 
+		s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); 
+															
+		s[8] = s[13] = s[18] = s[23] = "";
+
+		var uuid = s.join("");
+		return uuid;
+	};
+ </script>
+</body>
+</html>

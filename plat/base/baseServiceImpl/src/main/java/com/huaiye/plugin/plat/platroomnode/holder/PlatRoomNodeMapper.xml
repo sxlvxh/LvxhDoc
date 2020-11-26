@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeHolder">
+		<result column="ID" property="id" />
+		<result column="ROOM_NODE_NAME" property="roomNodeName" />
+		<result column="ROOM_CODE" property="roomCode" />
+		<result column="ROOM_NODE_TYPE" property="roomNodeType" />
+		<result column="DOMAIN_CODE" property="domainCode" />
+		<result column="DOMAIN_NAME" property="domainName" />
+		<result column="DEV_CODE" property="devCode" />
+		<result column="DEV_NAME" property="devName" />
+		<result column="VIDEO_CHANNEL_CODE" property="videoChannelCode" />
+		<result column="VIDEO_CHANNEL_NAME" property="videoChannelName" />
+		<result column="VIDEO_STREAM_CODE" property="videoStreamCode" />
+		<result column="VIDEO_STREAM_NAME" property="videoStreamName" />
+		<result column="VIDEO_STREAM_TYPE" property="videoStreamType" />
+		<result column="VOICE_FLAG" property="voiceFlag" />
+		<result column="SYNTHESIS_FLAG" property="synthesisFlag" />
+		<result column="TRANS_PROTOCOL" property="transProtocol" />
+		<result column="STREAM_VICE_FLAG" property="streamViceFlag" />
+		<result column="RTSP_URL" property="rtspUrl" />
+		<result column="LNG" property="lng" />
+		<result column="LAT" property="lat" />
+		<result column="ROOM_NODE_CODE" property="roomNodeCode" />
+		<result column="EXT_PARAMS" property="extParams" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="DEP_CODE" property="depCode" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`ROOM_NODE_NAME`,`ROOM_CODE`,`ROOM_NODE_TYPE`,`DOMAIN_CODE`,`DOMAIN_NAME`,`DEV_CODE`,`DEV_NAME`,`VIDEO_CHANNEL_CODE`,`VIDEO_CHANNEL_NAME`,`VIDEO_STREAM_CODE`,`VIDEO_STREAM_NAME`,`VIDEO_STREAM_TYPE`,`VOICE_FLAG`,`SYNTHESIS_FLAG`,`TRANS_PROTOCOL`,`STREAM_VICE_FLAG`,`RTSP_URL`,`LNG`,`LAT`,`ROOM_NODE_CODE`,`EXT_PARAMS`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ENT_CODE`,`DEP_CODE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="roomNodeName != null and roomNodeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `ROOM_NODE_NAME` = #{roomNodeName}
+					</when>
+					<otherwise>
+				and `ROOM_NODE_NAME` like concat("%", #{roomNodeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="roomCode != null and roomCode != ''">
+				and `ROOM_CODE` = #{roomCode}
+			</if>
+			<if test="roomNodeType != null and roomNodeType != ''">
+				and `ROOM_NODE_TYPE` = #{roomNodeType}
+			</if>
+			<if test="domainCode != null and domainCode != ''">
+				and `DOMAIN_CODE` = #{domainCode}
+			</if>
+			<if test="domainName != null and domainName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `DOMAIN_NAME` = #{domainName}
+					</when>
+					<otherwise>
+				and `DOMAIN_NAME` like concat("%", #{domainName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="devCode != null and devCode != ''">
+				and `DEV_CODE` = #{devCode}
+			</if>
+			<if test="devName != null and devName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `DEV_NAME` = #{devName}
+					</when>
+					<otherwise>
+				and `DEV_NAME` like concat("%", #{devName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="videoChannelCode != null and videoChannelCode != ''">
+				and `VIDEO_CHANNEL_CODE` = #{videoChannelCode}
+			</if>
+			<if test="videoChannelName != null and videoChannelName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `VIDEO_CHANNEL_NAME` = #{videoChannelName}
+					</when>
+					<otherwise>
+				and `VIDEO_CHANNEL_NAME` like concat("%", #{videoChannelName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="videoStreamCode != null and videoStreamCode != ''">
+				and `VIDEO_STREAM_CODE` = #{videoStreamCode}
+			</if>
+			<if test="videoStreamName != null and videoStreamName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `VIDEO_STREAM_NAME` = #{videoStreamName}
+					</when>
+					<otherwise>
+				and `VIDEO_STREAM_NAME` like concat("%", #{videoStreamName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="videoStreamType != null ">
+				and `VIDEO_STREAM_TYPE` = #{videoStreamType}
+			</if>
+			<if test="voiceFlag != null ">
+				and `VOICE_FLAG` = #{voiceFlag}
+			</if>
+			<if test="synthesisFlag != null ">
+				and `SYNTHESIS_FLAG` = #{synthesisFlag}
+			</if>
+			<if test="transProtocol != null ">
+				and `TRANS_PROTOCOL` = #{transProtocol}
+			</if>
+			<if test="streamViceFlag != null ">
+				and `STREAM_VICE_FLAG` = #{streamViceFlag}
+			</if>
+			<if test="rtspUrl != null and rtspUrl != ''">
+				and `RTSP_URL` = #{rtspUrl}
+			</if>
+			<if test="lng != null and lng != ''">
+				and `LNG` = #{lng}
+			</if>
+			<if test="lat != null and lat != ''">
+				and `LAT` = #{lat}
+			</if>
+			<if test="roomNodeCode != null and roomNodeCode != ''">
+				and `ROOM_NODE_CODE` = #{roomNodeCode}
+			</if>
+			<if test="extParams != null and extParams != ''">
+				and `EXT_PARAMS` = #{extParams}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and `ENT_CODE` = #{entCode}
+			</if>
+			<if test="depCode != null and depCode != ''">
+				and `DEP_CODE` = #{depCode}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeHolder">
+		insert into plat_room_node( <include refid="Base_Colnum_List" /> )values( #{id},#{roomNodeName},#{roomCode},#{roomNodeType},#{domainCode},#{domainName},#{devCode},#{devName},#{videoChannelCode},#{videoChannelName},#{videoStreamCode},#{videoStreamName},#{videoStreamType},#{voiceFlag},#{synthesisFlag},#{transProtocol},#{streamViceFlag},#{rtspUrl},#{lng},#{lat},#{roomNodeCode},#{extParams},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{entCode},#{depCode} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_room_node(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.roomNodeName},#{log.roomCode},#{log.roomNodeType},#{log.domainCode},#{log.domainName},#{log.devCode},#{log.devName},#{log.videoChannelCode},#{log.videoChannelName},#{log.videoStreamCode},#{log.videoStreamName},#{log.videoStreamType},#{log.voiceFlag},#{log.synthesisFlag},#{log.transProtocol},#{log.streamViceFlag},#{log.rtspUrl},#{log.lng},#{log.lat},#{log.roomNodeCode},#{log.extParams},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.entCode},#{log.depCode} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeHolder">
+		update plat_room_node set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="roomNodeName != null">
+				`ROOM_NODE_NAME` = #{roomNodeName},
+			</if>
+			<if test="roomCode != null">
+				`ROOM_CODE` = #{roomCode},
+			</if>
+			<if test="roomNodeType != null">
+				`ROOM_NODE_TYPE` = #{roomNodeType},
+			</if>
+			<if test="domainCode != null">
+				`DOMAIN_CODE` = #{domainCode},
+			</if>
+			<if test="domainName != null">
+				`DOMAIN_NAME` = #{domainName},
+			</if>
+			<if test="devCode != null">
+				`DEV_CODE` = #{devCode},
+			</if>
+			<if test="devName != null">
+				`DEV_NAME` = #{devName},
+			</if>
+			<if test="videoChannelCode != null">
+				`VIDEO_CHANNEL_CODE` = #{videoChannelCode},
+			</if>
+			<if test="videoChannelName != null">
+				`VIDEO_CHANNEL_NAME` = #{videoChannelName},
+			</if>
+			<if test="videoStreamCode != null">
+				`VIDEO_STREAM_CODE` = #{videoStreamCode},
+			</if>
+			<if test="videoStreamName != null">
+				`VIDEO_STREAM_NAME` = #{videoStreamName},
+			</if>
+			<if test="videoStreamType != null">
+				`VIDEO_STREAM_TYPE` = #{videoStreamType},
+			</if>
+			<if test="voiceFlag != null">
+				`VOICE_FLAG` = #{voiceFlag},
+			</if>
+			<if test="synthesisFlag != null">
+				`SYNTHESIS_FLAG` = #{synthesisFlag},
+			</if>
+			<if test="transProtocol != null">
+				`TRANS_PROTOCOL` = #{transProtocol},
+			</if>
+			<if test="streamViceFlag != null">
+				`STREAM_VICE_FLAG` = #{streamViceFlag},
+			</if>
+			<if test="rtspUrl != null">
+				`RTSP_URL` = #{rtspUrl},
+			</if>
+			<if test="lng != null">
+				`LNG` = #{lng},
+			</if>
+			<if test="lat != null">
+				`LAT` = #{lat},
+			</if>
+			<if test="roomNodeCode != null">
+				`ROOM_NODE_CODE` = #{roomNodeCode},
+			</if>
+			<if test="extParams != null">
+				`EXT_PARAMS` = #{extParams},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="entCode != null">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="depCode != null">
+				`DEP_CODE` = #{depCode},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeHolder">
+		delete from plat_room_node <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeHolder">
+		select <include refid="Base_Colnum_List" /> from plat_room_node <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeHolder">
+		select count(1) from (SELECT 1 FROM plat_room_node <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platroomnode.holder.PlatRoomNodeHolder">
+		select <include refid="Base_Colnum_List" /> from plat_room_node <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

@@ -1,0 +1,3 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context crossContext="true" debug="5" displayName= "fileServer" docBase= "D:/platform-workspace/files" path= "/fileServer" reloadable="false" workDir= "D:/tomcat/file/conf/Catalina/localhost/files" >
+</Context>

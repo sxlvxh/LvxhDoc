@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platjob.holder.PlatJobMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platjob.holder.PlatJobHolder">
+		<result column="ID" property="id" />
+		<result column="JOB_NAME" property="jobName" />
+		<result column="JOB_CODE" property="jobCode" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ENT_CODE" property="entCode" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`JOB_NAME`,`JOB_CODE`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ENT_CODE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="jobName != null and jobName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `JOB_NAME` = #{jobName}
+					</when>
+					<otherwise>
+				and `JOB_NAME` like concat("%", #{jobName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="jobCode != null and jobCode != ''">
+				and `JOB_CODE` = #{jobCode}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and `ENT_CODE` = #{entCode}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platjob.holder.PlatJobHolder">
+		insert into plat_job( <include refid="Base_Colnum_List" /> )values( #{id},#{jobName},#{jobCode},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{entCode} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_job(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.jobName},#{log.jobCode},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.entCode} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platjob.holder.PlatJobHolder">
+		update plat_job set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="jobName != null">
+				`JOB_NAME` = #{jobName},
+			</if>
+			<if test="jobCode != null">
+				`JOB_CODE` = #{jobCode},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="entCode != null">
+				`ENT_CODE` = #{entCode},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platjob.holder.PlatJobHolder">
+		delete from plat_job <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platjob.holder.PlatJobHolder">
+		select <include refid="Base_Colnum_List" /> from plat_job <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platjob.holder.PlatJobHolder">
+		select count(1) from (SELECT 1 FROM plat_job <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platjob.holder.PlatJobHolder">
+		select <include refid="Base_Colnum_List" /> from plat_job <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

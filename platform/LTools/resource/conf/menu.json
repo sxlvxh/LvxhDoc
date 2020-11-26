@@ -1,0 +1,32 @@
+{
+	"list": [{
+			"name": "代码生成",
+			"imgUrl": "/resource/images/Web_Coding_16px.png",
+			"click": "coderGrenderService"
+		},  {
+			"name": "系统设置",
+			"imgUrl": "/resource/images/settings.png",
+			"click": "sysSettingService"
+		},  {
+			"name": "Netty测试",
+			"imgUrl": "/resource/images/tcp_16px.png",
+			"click": "nettyService"
+		},  {
+			"name": "金沙田数据",
+			"imgUrl": "/resource/images/menu_16px.png",
+			"click": "jstService"
+		},  {
+			"name": "License工具",
+			"imgUrl": "/resource/images/license_key.png",
+			"click": "licenseService"
+		},  {
+			"name": "菜单数据导出",
+			"imgUrl": "/resource/images/data_export.png",
+			"click": "exportMenuDataService"
+		},  {
+			"name": "SIE测试",
+			"imgUrl": "/resource/images/tcp_16px.png",
+			"click": "sieService"
+		}
+	]
+}

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platuser.holder.PlatUserMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platuser.holder.PlatUserHolder">
+		<result column="ID" property="id" />
+		<result column="NAME" property="name" />
+		<result column="LOGIN_NAME" property="loginName" />
+		<result column="PASSWORD" property="password" />
+		<result column="ADDRESS" property="address" />
+		<result column="MOBILE_PHONE" property="mobilePhone" />
+		<result column="EMAIL" property="email" />
+		<result column="SEX" property="sex" />
+		<result column="LOGIN_ERROR_TIMES" property="loginErrorTimes" />
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="JOB_CODE" property="jobCode" />
+		<result column="ISCHARGE" property="ischarge" />
+		<result column="EXT_NUMBER" property="extNumber" />
+		<result column="JOB_NO" property="jobNo" />
+		<result column="AGE" property="age" />
+		<result column="BIRTHDAY" property="birthday" />
+		<result column="IMG_URL" property="imgUrl" />
+		<result column="ID_NUMBER" property="idNumber" />
+		<result column="ID_TYPE" property="idType" />
+		<result column="TELEPHONE" property="telephone" />
+		<result column="IS_PASSWORD_EMPTY" property="isPasswordEmpty" />
+		<result column="USER_TYPE" property="userType" />
+		<result column="USER_SERVICE_TYPE" property="userServiceType" />
+		<result column="USER_DEP_CODE" property="userDepCode" />
+		<result column="REMARK" property="remark" />
+		<result column="USER_CODE" property="userCode" />
+		<result column="USER_PARAMS" property="userParams" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`NAME`,`LOGIN_NAME`,`PASSWORD`,`ADDRESS`,`MOBILE_PHONE`,`EMAIL`,`SEX`,`LOGIN_ERROR_TIMES`,`LAST_LOGIN_TIME`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ENT_CODE`,`JOB_CODE`,`ISCHARGE`,`EXT_NUMBER`,`JOB_NO`,`AGE`,`BIRTHDAY`,`IMG_URL`,`ID_NUMBER`,`ID_TYPE`,`TELEPHONE`,`IS_PASSWORD_EMPTY`,`USER_TYPE`,`USER_SERVICE_TYPE`,`USER_DEP_CODE`,`REMARK`,`USER_CODE`,`USER_PARAMS`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `NAME` = #{name}
+					</when>
+					<otherwise>
+				and `NAME` like concat("%", #{name}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="loginName != null and loginName != ''">
+				and `LOGIN_NAME` = #{loginName}
+			</if>
+			<if test="password != null and password != ''">
+				and `PASSWORD` = #{password}
+			</if>
+			<if test="address != null and address != ''">
+				and `ADDRESS` = #{address}
+			</if>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				and `MOBILE_PHONE` = #{mobilePhone}
+			</if>
+			<if test="email != null and email != ''">
+				and `EMAIL` = #{email}
+			</if>
+			<if test="sex != null ">
+				and `SEX` = #{sex}
+			</if>
+			<if test="loginErrorTimes != null ">
+				and `LOGIN_ERROR_TIMES` = #{loginErrorTimes}
+			</if>
+			<if test="lastLoginTime != null and lastLoginTime != ''">
+				and `LAST_LOGIN_TIME` = #{lastLoginTime}
+			</if>
+			<if test="lastLoginTimeL != null and lastLoginTimeL != ''">
+				and `LAST_LOGIN_TIME` &gt;= #{lastLoginTimeL}
+			</if>
+			<if test="lastLoginTimeR != null and lastLoginTimeR != ''">
+				and `LAST_LOGIN_TIME` &lt;= #{lastLoginTimeR}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and `ENT_CODE` = #{entCode}
+			</if>
+			<if test="jobCode != null and jobCode != ''">
+				and `JOB_CODE` = #{jobCode}
+			</if>
+			<if test="ischarge != null ">
+				and `ISCHARGE` = #{ischarge}
+			</if>
+			<if test="extNumber != null ">
+				and `EXT_NUMBER` = #{extNumber}
+			</if>
+			<if test="jobNo != null and jobNo != ''">
+				and `JOB_NO` = #{jobNo}
+			</if>
+			<if test="age != null ">
+				and `AGE` = #{age}
+			</if>
+			<if test="birthday != null and birthday != ''">
+				and `BIRTHDAY` = #{birthday}
+			</if>
+			<if test="birthdayL != null and birthdayL != ''">
+				and `BIRTHDAY` &gt;= #{birthdayL}
+			</if>
+			<if test="birthdayR != null and birthdayR != ''">
+				and `BIRTHDAY` &lt;= #{birthdayR}
+			</if>
+			<if test="imgUrl != null and imgUrl != ''">
+				and `IMG_URL` = #{imgUrl}
+			</if>
+			<if test="idNumber != null and idNumber != ''">
+				and `ID_NUMBER` = #{idNumber}
+			</if>
+			<if test="idType != null ">
+				and `ID_TYPE` = #{idType}
+			</if>
+			<if test="telephone != null and telephone != ''">
+				and `TELEPHONE` = #{telephone}
+			</if>
+			<if test="isPasswordEmpty != null ">
+				and `IS_PASSWORD_EMPTY` = #{isPasswordEmpty}
+			</if>
+			<if test="userType != null ">
+				and `USER_TYPE` = #{userType}
+			</if>
+			<if test="userServiceType != null and userServiceType != ''">
+				and `USER_SERVICE_TYPE` = #{userServiceType}
+			</if>
+			<if test="userDepCode != null and userDepCode != ''">
+				and `USER_DEP_CODE` = #{userDepCode}
+			</if>
+			<if test="remark != null and remark != ''">
+				and `REMARK` = #{remark}
+			</if>
+			<if test="userCode != null and userCode != ''">
+				and `USER_CODE` = #{userCode}
+			</if>
+			<if test="userParams != null and userParams != ''">
+				and `USER_PARAMS` = #{userParams}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platuser.holder.PlatUserHolder">
+		insert into plat_user( <include refid="Base_Colnum_List" /> )values( #{id},#{name},#{loginName},#{password},#{address},#{mobilePhone},#{email},#{sex},#{loginErrorTimes},#{lastLoginTime},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{entCode},#{jobCode},#{ischarge},#{extNumber},#{jobNo},#{age},#{birthday},#{imgUrl},#{idNumber},#{idType},#{telephone},#{isPasswordEmpty},#{userType},#{userServiceType},#{userDepCode},#{remark},#{userCode},#{userParams} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_user(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.name},#{log.loginName},#{log.password},#{log.address},#{log.mobilePhone},#{log.email},#{log.sex},#{log.loginErrorTimes},#{log.lastLoginTime},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.entCode},#{log.jobCode},#{log.ischarge},#{log.extNumber},#{log.jobNo},#{log.age},#{log.birthday},#{log.imgUrl},#{log.idNumber},#{log.idType},#{log.telephone},#{log.isPasswordEmpty},#{log.userType},#{log.userServiceType},#{log.userDepCode},#{log.remark},#{log.userCode},#{log.userParams} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platuser.holder.PlatUserHolder">
+		update plat_user set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="name != null">
+				`NAME` = #{name},
+			</if>
+			<if test="loginName != null">
+				`LOGIN_NAME` = #{loginName},
+			</if>
+		     <if test="password != null and password != ''">
+				`PASSWORD` = #{password},
+			</if>
+			<if test="address != null">
+				`ADDRESS` = #{address},
+			</if>
+			<if test="mobilePhone != null">
+				`MOBILE_PHONE` = #{mobilePhone},
+			</if>
+			<if test="email != null">
+				`EMAIL` = #{email},
+			</if>
+			<if test="sex != null">
+				`SEX` = #{sex},
+			</if>
+			<if test="loginErrorTimes != null">
+				`LOGIN_ERROR_TIMES` = #{loginErrorTimes},
+			</if>
+			<if test="lastLoginTime != null">
+				`LAST_LOGIN_TIME` = #{lastLoginTime},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="entCode != null">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="jobCode != null">
+				`JOB_CODE` = #{jobCode},
+			</if>
+			<if test="ischarge != null">
+				`ISCHARGE` = #{ischarge},
+			</if>
+			<if test="extNumber != null">
+				`EXT_NUMBER` = #{extNumber},
+			</if>
+			<if test="jobNo != null">
+				`JOB_NO` = #{jobNo},
+			</if>
+			<if test="age != null">
+				`AGE` = #{age},
+			</if>
+			<if test="birthday != null">
+				`BIRTHDAY` = #{birthday},
+			</if>
+			<if test="imgUrl != null">
+				`IMG_URL` = #{imgUrl},
+			</if>
+			<if test="idNumber != null">
+				`ID_NUMBER` = #{idNumber},
+			</if>
+			<if test="idType != null">
+				`ID_TYPE` = #{idType},
+			</if>
+			<if test="telephone != null">
+				`TELEPHONE` = #{telephone},
+			</if>
+			<if test="isPasswordEmpty != null">
+				`IS_PASSWORD_EMPTY` = #{isPasswordEmpty},
+			</if>
+			<if test="userType != null">
+				`USER_TYPE` = #{userType},
+			</if>
+			<if test="userServiceType != null">
+				`USER_SERVICE_TYPE` = #{userServiceType},
+			</if>
+			<if test="userDepCode != null">
+				`USER_DEP_CODE` = #{userDepCode},
+			</if>
+			<if test="remark != null">
+				`REMARK` = #{remark},
+			</if>
+			<if test="userCode != null">
+				`USER_CODE` = #{userCode},
+			</if>
+			<if test="userParams != null">
+				`USER_PARAMS` = #{userParams},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platuser.holder.PlatUserHolder">
+		delete from plat_user <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platuser.holder.PlatUserHolder">
+		select <include refid="Base_Colnum_List" /> from plat_user <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platuser.holder.PlatUserHolder">
+		select count(1) from (SELECT 1 FROM plat_user <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platuser.holder.PlatUserHolder">
+		select <include refid="Base_Colnum_List" /> from plat_user <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

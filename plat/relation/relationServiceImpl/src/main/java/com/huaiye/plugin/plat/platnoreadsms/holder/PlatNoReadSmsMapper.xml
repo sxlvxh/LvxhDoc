@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsHolder">
+		<result column="SRC" property="src" />
+		<result column="TARGET" property="target" />
+		<result column="SMS_TYPE" property="smsType" />
+		<result column="GROUP_CODE" property="groupCode" />
+		<result column="NO_READ_COUNT" property="noReadCount" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`SRC`,`TARGET`,`SMS_TYPE`,`GROUP_CODE`,`NO_READ_COUNT`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="src != null and src != ''">
+				and t.`SRC` = #{src}
+			</if>
+			<if test="target != null and target != ''">
+				and t.`TARGET` = #{target}
+			</if>
+			<if test="smsType != null and smsType != ''">
+				and t.`SMS_TYPE` = #{smsType}
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				and t.`GROUP_CODE` = #{groupCode}
+			</if>
+			<if test="noReadCount != null ">
+				and t.`NO_READ_COUNT` = #{noReadCount}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsHolder">
+		insert into plat_no_read_sms( <include refid="Base_Colnum_List" /> )values( #{src},#{target},#{smsType},#{groupCode},#{noReadCount} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsHolder">
+		update plat_no_read_sms set
+		<trim suffixOverrides=",">
+			<if test="src != null and src != ''">
+				`SRC` = #{src},
+			</if>
+			<if test="target != null and target != ''">
+				`TARGET` = #{target},
+			</if>
+			<if test="smsType != null and smsType != ''">
+				`SMS_TYPE` = #{smsType},
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				`GROUP_CODE` = #{groupCode},
+			</if>
+			<if test="noReadCount != null ">
+				`NO_READ_COUNT` = #{noReadCount},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsHolder">
+		delete from plat_no_read_sms <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.SRC,
+  A.TARGET,
+  A.SMS_TYPE,
+  A.GROUP_CODE,
+  COUNT(*) AS NO_READ_COUNT
+FROM PLAT_SMS A
+WHERE A.STATUS = 1 AND A.SMS_TYPE = #{smsType}
+    AND A.TARGET = #{target}
+GROUP BY A.GROUP_CODE,A.TARGET,A.SRC]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.SRC,
+  A.TARGET,
+  A.SMS_TYPE,
+  A.GROUP_CODE,
+  COUNT(*) AS NO_READ_COUNT
+FROM PLAT_SMS A
+WHERE A.STATUS = 1 AND A.SMS_TYPE = #{smsType}
+    AND A.TARGET = #{target}
+GROUP BY A.GROUP_CODE,A.TARGET,A.SRC]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platnoreadsms.holder.PlatNoReadSmsHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.SRC,
+  A.TARGET,
+  A.SMS_TYPE,
+  A.GROUP_CODE,
+  COUNT(*) AS NO_READ_COUNT
+FROM PLAT_SMS A
+WHERE A.STATUS = 1 AND A.SMS_TYPE = #{smsType}
+    AND A.TARGET = #{target}
+GROUP BY A.GROUP_CODE,A.TARGET,A.SRC]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

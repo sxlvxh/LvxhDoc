@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platfiles.holder.PlatFilesMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platfiles.holder.PlatFilesHolder">
+		<result column="ID" property="id" />
+		<result column="FILE_CODE" property="fileCode" />
+		<result column="FILE_NAME" property="fileName" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="FILE_URL" property="fileUrl" />
+		<result column="FILE_TYPE" property="fileType" />
+		<result column="USER_CODE" property="userCode" />
+		<result column="UP_USER_CODE" property="upUserCode" />
+		<result column="ONE_TYPE" property="oneType" />
+		<result column="FILE_SIZE" property="fileSize" />
+		<result column="PRIORITY" property="priority" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="FILE_PARAMS" property="fileParams" />
+		<result column="FILE_CONVERTER_STATUS" property="fileConverterStatus" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`FILE_CODE`,`FILE_NAME`,`DESCRIPTION`,`FILE_URL`,`FILE_TYPE`,`USER_CODE`,`UP_USER_CODE`,`ONE_TYPE`,`FILE_SIZE`,`PRIORITY`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`FILE_PARAMS`,`FILE_CONVERTER_STATUS`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="fileCode != null and fileCode != ''">
+				and `FILE_CODE` = #{fileCode}
+			</if>
+			<if test="fileName != null and fileName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `FILE_NAME` = #{fileName}
+					</when>
+					<otherwise>
+				and `FILE_NAME` like concat("%", #{fileName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="description != null and description != ''">
+				and `DESCRIPTION` = #{description}
+			</if>
+			<if test="fileUrl != null and fileUrl != ''">
+				and `FILE_URL` = #{fileUrl}
+			</if>
+			<if test="fileType != null and fileType != ''">
+				and `FILE_TYPE` = #{fileType}
+			</if>
+			<if test="userCode != null and userCode != ''">
+				and `USER_CODE` = #{userCode}
+			</if>
+			<if test="upUserCode != null and upUserCode != ''">
+				and `UP_USER_CODE` = #{upUserCode}
+			</if>
+			<if test="oneType != null and oneType != ''">
+				and `ONE_TYPE` = #{oneType}
+			</if>
+			<if test="fileSize != null ">
+				and `FILE_SIZE` = #{fileSize}
+			</if>
+			<if test="priority != null ">
+				and `PRIORITY` = #{priority}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="fileParams != null and fileParams != ''">
+				and `FILE_PARAMS` = #{fileParams}
+			</if>
+			<if test="fileConverterStatus != null ">
+				and `FILE_CONVERTER_STATUS` = #{fileConverterStatus}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platfiles.holder.PlatFilesHolder">
+		insert into plat_files( <include refid="Base_Colnum_List" /> )values( #{id},#{fileCode},#{fileName},#{description},#{fileUrl},#{fileType},#{userCode},#{upUserCode},#{oneType},#{fileSize},#{priority},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{fileParams},#{fileConverterStatus} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_files(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.fileCode},#{log.fileName},#{log.description},#{log.fileUrl},#{log.fileType},#{log.userCode},#{log.upUserCode},#{log.oneType},#{log.fileSize},#{log.priority},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.fileParams},#{log.fileConverterStatus} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platfiles.holder.PlatFilesHolder">
+		update plat_files set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="fileCode != null">
+				`FILE_CODE` = #{fileCode},
+			</if>
+			<if test="fileName != null">
+				`FILE_NAME` = #{fileName},
+			</if>
+			<if test="description != null">
+				`DESCRIPTION` = #{description},
+			</if>
+			<if test="fileUrl != null">
+				`FILE_URL` = #{fileUrl},
+			</if>
+			<if test="fileType != null">
+				`FILE_TYPE` = #{fileType},
+			</if>
+			<if test="userCode != null">
+				`USER_CODE` = #{userCode},
+			</if>
+			<if test="upUserCode != null">
+				`UP_USER_CODE` = #{upUserCode},
+			</if>
+			<if test="oneType != null">
+				`ONE_TYPE` = #{oneType},
+			</if>
+			<if test="fileSize != null">
+				`FILE_SIZE` = #{fileSize},
+			</if>
+			<if test="priority != null">
+				`PRIORITY` = #{priority},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="fileParams != null">
+				`FILE_PARAMS` = #{fileParams},
+			</if>
+			<if test="fileConverterStatus != null">
+				`FILE_CONVERTER_STATUS` = #{fileConverterStatus},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platfiles.holder.PlatFilesHolder">
+		delete from plat_files <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platfiles.holder.PlatFilesHolder">
+		select <include refid="Base_Colnum_List" /> from plat_files <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platfiles.holder.PlatFilesHolder">
+		select count(1) from (SELECT 1 FROM plat_files <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platfiles.holder.PlatFilesHolder">
+		select <include refid="Base_Colnum_List" /> from plat_files <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

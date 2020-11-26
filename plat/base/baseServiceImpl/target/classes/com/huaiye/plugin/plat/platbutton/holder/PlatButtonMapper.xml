@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platbutton.holder.PlatButtonMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platbutton.holder.PlatButtonHolder">
+		<result column="ID" property="id" />
+		<result column="MENU_CODE" property="menuCode" />
+		<result column="BUTTON_TYPE" property="buttonType" />
+		<result column="BUTTON_NAME" property="buttonName" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="BUTTON_PARAMS" property="buttonParams" />
+		<result column="ENABLE" property="enable" />
+		<result column="PRIORITY" property="priority" />
+		<result column="DISPLAY" property="display" />
+		<result column="ENABLE_DIALOG" property="enableDialog" />
+		<result column="BUTTON_CODE" property="buttonCode" />
+		<result column="PARENT_CODE" property="parentCode" />
+		<result column="BUTTON_LEVEL" property="buttonLevel" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`MENU_CODE`,`BUTTON_TYPE`,`BUTTON_NAME`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`BUTTON_PARAMS`,`ENABLE`,`PRIORITY`,`DISPLAY`,`ENABLE_DIALOG`,`BUTTON_CODE`,`PARENT_CODE`,`BUTTON_LEVEL`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="menuCode != null and menuCode != ''">
+				and `MENU_CODE` = #{menuCode}
+			</if>
+			<if test="buttonType != null and buttonType != ''">
+				and `BUTTON_TYPE` = #{buttonType}
+			</if>
+			<if test="buttonName != null and buttonName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `BUTTON_NAME` = #{buttonName}
+					</when>
+					<otherwise>
+				and `BUTTON_NAME` like concat("%", #{buttonName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="buttonParams != null and buttonParams != ''">
+				and `BUTTON_PARAMS` = #{buttonParams}
+			</if>
+			<if test="enable != null and enable != ''">
+				and `ENABLE` = #{enable}
+			</if>
+			<if test="priority != null and priority != ''">
+				and `PRIORITY` = #{priority}
+			</if>
+			<if test="display != null and display != ''">
+				and `DISPLAY` = #{display}
+			</if>
+			<if test="enableDialog != null and enableDialog != ''">
+				and `ENABLE_DIALOG` = #{enableDialog}
+			</if>
+			<if test="buttonCode != null and buttonCode != ''">
+				and `BUTTON_CODE` = #{buttonCode}
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				and `PARENT_CODE` = #{parentCode}
+			</if>
+			<if test="buttonLevel != null ">
+				and `BUTTON_LEVEL` = #{buttonLevel}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platbutton.holder.PlatButtonHolder">
+		insert into plat_button( <include refid="Base_Colnum_List" /> )values( #{id},#{menuCode},#{buttonType},#{buttonName},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{buttonParams},#{enable},#{priority},#{display},#{enableDialog},#{buttonCode},#{parentCode},#{buttonLevel} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_button(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.menuCode},#{log.buttonType},#{log.buttonName},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.buttonParams},#{log.enable},#{log.priority},#{log.display},#{log.enableDialog},#{log.buttonCode},#{log.parentCode},#{log.buttonLevel} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platbutton.holder.PlatButtonHolder">
+		update plat_button set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="menuCode != null">
+				`MENU_CODE` = #{menuCode},
+			</if>
+			<if test="buttonType != null">
+				`BUTTON_TYPE` = #{buttonType},
+			</if>
+			<if test="buttonName != null">
+				`BUTTON_NAME` = #{buttonName},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="buttonParams != null">
+				`BUTTON_PARAMS` = #{buttonParams},
+			</if>
+			<if test="enable != null">
+				`ENABLE` = #{enable},
+			</if>
+			<if test="priority != null">
+				`PRIORITY` = #{priority},
+			</if>
+			<if test="display != null">
+				`DISPLAY` = #{display},
+			</if>
+			<if test="enableDialog != null">
+				`ENABLE_DIALOG` = #{enableDialog},
+			</if>
+			<if test="buttonCode != null">
+				`BUTTON_CODE` = #{buttonCode},
+			</if>
+			<if test="parentCode != null">
+				`PARENT_CODE` = #{parentCode},
+			</if>
+			<if test="buttonLevel != null">
+				`BUTTON_LEVEL` = #{buttonLevel},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platbutton.holder.PlatButtonHolder">
+		delete from plat_button <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platbutton.holder.PlatButtonHolder">
+		select <include refid="Base_Colnum_List" /> from plat_button <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platbutton.holder.PlatButtonHolder">
+		select count(1) from (SELECT 1 FROM plat_button <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platbutton.holder.PlatButtonHolder">
+		select <include refid="Base_Colnum_List" /> from plat_button <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupHolder">
+		<result column="ID" property="id" />
+		<result column="USER_CODE" property="userCode" />
+		<result column="GROUP_NAME" property="groupName" />
+		<result column="GROUP_ICON" property="groupIcon" />
+		<result column="GROUP_TYPE" property="groupType" />
+		<result column="GROUP_CODE" property="groupCode" />
+		<result column="TOP_TIME" property="topTime" />
+		<result column="MSG_TIME" property="msgTime" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="GROUP_MARK" property="groupMark" />
+		<result column="GROUP_ADMIN" property="groupAdmin" />
+		<result column="ISDEL" property="isdel" />
+		<result column="GROUP_PARAMS" property="groupParams" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`USER_CODE`,`GROUP_NAME`,`GROUP_ICON`,`GROUP_TYPE`,`GROUP_CODE`,`TOP_TIME`,`MSG_TIME`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`GROUP_MARK`,`GROUP_ADMIN`,`ISDEL`,`GROUP_PARAMS`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="userCode != null and userCode != ''">
+				and `USER_CODE` = #{userCode}
+			</if>
+			<if test="groupName != null and groupName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `GROUP_NAME` = #{groupName}
+					</when>
+					<otherwise>
+				and `GROUP_NAME` like concat("%", #{groupName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="groupIcon != null and groupIcon != ''">
+				and `GROUP_ICON` = #{groupIcon}
+			</if>
+			<if test="groupType != null ">
+				and `GROUP_TYPE` = #{groupType}
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				and `GROUP_CODE` = #{groupCode}
+			</if>
+			<if test="topTime != null and topTime != ''">
+				and `TOP_TIME` = #{topTime}
+			</if>
+			<if test="topTimeL != null and topTimeL != ''">
+				and `TOP_TIME` &gt;= #{topTimeL}
+			</if>
+			<if test="topTimeR != null and topTimeR != ''">
+				and `TOP_TIME` &lt;= #{topTimeR}
+			</if>
+			<if test="msgTime != null and msgTime != ''">
+				and `MSG_TIME` = #{msgTime}
+			</if>
+			<if test="msgTimeL != null and msgTimeL != ''">
+				and `MSG_TIME` &gt;= #{msgTimeL}
+			</if>
+			<if test="msgTimeR != null and msgTimeR != ''">
+				and `MSG_TIME` &lt;= #{msgTimeR}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="groupMark != null and groupMark != ''">
+				and `GROUP_MARK` = #{groupMark}
+			</if>
+			<if test="groupAdmin != null and groupAdmin != ''">
+				and `GROUP_ADMIN` = #{groupAdmin}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="groupParams != null and groupParams != ''">
+				and `GROUP_PARAMS` = #{groupParams}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupHolder">
+		insert into plat_contact_group( <include refid="Base_Colnum_List" /> )values( #{id},#{userCode},#{groupName},#{groupIcon},#{groupType},#{groupCode},#{topTime},#{msgTime},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{groupMark},#{groupAdmin},#{isdel},#{groupParams} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_contact_group(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.userCode},#{log.groupName},#{log.groupIcon},#{log.groupType},#{log.groupCode},#{log.topTime},#{log.msgTime},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.groupMark},#{log.groupAdmin},#{log.isdel},#{log.groupParams} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupHolder">
+		update plat_contact_group set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="userCode != null">
+				`USER_CODE` = #{userCode},
+			</if>
+			<if test="groupName != null">
+				`GROUP_NAME` = #{groupName},
+			</if>
+			<if test="groupIcon != null">
+				`GROUP_ICON` = #{groupIcon},
+			</if>
+			<if test="groupType != null">
+				`GROUP_TYPE` = #{groupType},
+			</if>
+			<if test="groupCode != null">
+				`GROUP_CODE` = #{groupCode},
+			</if>
+			<if test="topTime != null">
+				`TOP_TIME` = #{topTime},
+			</if>
+			<if test="msgTime != null">
+				`MSG_TIME` = #{msgTime},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="groupMark != null">
+				`GROUP_MARK` = #{groupMark},
+			</if>
+			<if test="groupAdmin != null">
+				`GROUP_ADMIN` = #{groupAdmin},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="groupParams != null">
+				`GROUP_PARAMS` = #{groupParams},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupHolder">
+		delete from plat_contact_group <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupHolder">
+		select <include refid="Base_Colnum_List" /> from plat_contact_group <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupHolder">
+		select count(1) from (SELECT 1 FROM plat_contact_group <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platcontactgroup.holder.PlatContactGroupHolder">
+		select <include refid="Base_Colnum_List" /> from plat_contact_group <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

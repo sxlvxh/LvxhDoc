@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platsms.holder.PlatSmsMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		<result column="ID" property="id" />
+		<result column="SRC" property="src" />
+		<result column="TARGET" property="target" />
+		<result column="CONTENT" property="content" />
+		<result column="STATUS" property="status" />
+		<result column="SMS_TYPE" property="smsType" />
+		<result column="CONTENT_TYPE" property="contentType" />
+		<result column="SEND_TYPE" property="sendType" />
+		<result column="GROUP_CODE" property="groupCode" />
+		<result column="UID" property="uid" />
+		<result column="SOURCE_MSG" property="sourceMsg" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ISDEL" property="isdel" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`SRC`,`TARGET`,`CONTENT`,`STATUS`,`SMS_TYPE`,`CONTENT_TYPE`,`SEND_TYPE`,`GROUP_CODE`,`UID`,`SOURCE_MSG`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ISDEL`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="src != null and src != ''">
+				and `SRC` = #{src}
+			</if>
+			<if test="target != null and target != ''">
+				and `TARGET` = #{target}
+			</if>
+			<if test="content != null and content != ''">
+				and `CONTENT` = #{content}
+			</if>
+			<if test="status != null ">
+				and `STATUS` = #{status}
+			</if>
+			<if test="smsType != null and smsType != ''">
+				and `SMS_TYPE` = #{smsType}
+			</if>
+			<if test="contentType != null ">
+				and `CONTENT_TYPE` = #{contentType}
+			</if>
+			<if test="sendType != null ">
+				and `SEND_TYPE` = #{sendType}
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				and `GROUP_CODE` = #{groupCode}
+			</if>
+			<if test="uid != null and uid != ''">
+				and `UID` = #{uid}
+			</if>
+			<if test="sourceMsg != null and sourceMsg != ''">
+				and `SOURCE_MSG` = #{sourceMsg}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		insert into plat_sms( <include refid="Base_Colnum_List" /> )values( #{id},#{src},#{target},#{content},#{status},#{smsType},#{contentType},#{sendType},#{groupCode},#{uid},#{sourceMsg},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{isdel} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_sms(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.src},#{log.target},#{log.content},#{log.status},#{log.smsType},#{log.contentType},#{log.sendType},#{log.groupCode},#{log.uid},#{log.sourceMsg},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.isdel} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		update plat_sms set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="src != null">
+				`SRC` = #{src},
+			</if>
+			<if test="target != null">
+				`TARGET` = #{target},
+			</if>
+			<if test="content != null">
+				`CONTENT` = #{content},
+			</if>
+			<if test="status != null">
+				`STATUS` = #{status},
+			</if>
+			<if test="smsType != null">
+				`SMS_TYPE` = #{smsType},
+			</if>
+			<if test="contentType != null">
+				`CONTENT_TYPE` = #{contentType},
+			</if>
+			<if test="sendType != null">
+				`SEND_TYPE` = #{sendType},
+			</if>
+			<if test="groupCode != null">
+				`GROUP_CODE` = #{groupCode},
+			</if>
+			<if test="uid != null">
+				`UID` = #{uid},
+			</if>
+			<if test="sourceMsg != null">
+				`SOURCE_MSG` = #{sourceMsg},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+    <update id="updateStatus" parameterType="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		update plat_sms set STATUS = 0	where  SMS_TYPE = #{smsType} 
+		<if test="src != null and src != ''">
+				and SRC = #{src}
+			</if>
+			<if test="target != null and target != ''">
+				and TARGET = #{target}
+			</if>
+		<if test="groupCode != null and groupCode != ''">
+				and GROUP_CODE = #{groupCode}
+		</if>
+		<if test="groupCode == null or groupCode == ''">
+				and GROUP_CODE is null
+		</if>
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		delete from plat_sms <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		select <include refid="Base_Colnum_List" /> from plat_sms <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		select count(1) from (SELECT 1 FROM plat_sms <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsms.holder.PlatSmsHolder">
+		select <include refid="Base_Colnum_List" /> from plat_sms <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

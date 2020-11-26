@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platattr.holder.PlatAttrMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platattr.holder.PlatAttrHolder">
+		<result column="ID" property="id" />
+		<result column="CLASS_NAME" property="className" />
+		<result column="ATTR_NAME" property="attrName" />
+		<result column="ATTR_LABEL" property="attrLabel" />
+		<result column="ATTR_TYPE" property="attrType" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="CLASS_DESC" property="classDesc" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`CLASS_NAME`,`ATTR_NAME`,`ATTR_LABEL`,`ATTR_TYPE`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`CLASS_DESC`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="className != null and className != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `CLASS_NAME` = #{className}
+					</when>
+					<otherwise>
+				and `CLASS_NAME` like concat("%", #{className}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="attrName != null and attrName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `ATTR_NAME` = #{attrName}
+					</when>
+					<otherwise>
+				and `ATTR_NAME` like concat("%", #{attrName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="attrLabel != null and attrLabel != ''">
+				and `ATTR_LABEL` = #{attrLabel}
+			</if>
+			<if test="attrType != null and attrType != ''">
+				and `ATTR_TYPE` = #{attrType}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="classDesc != null and classDesc != ''">
+				and `CLASS_DESC` = #{classDesc}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platattr.holder.PlatAttrHolder">
+		insert into plat_attr( <include refid="Base_Colnum_List" /> )values( #{id},#{className},#{attrName},#{attrLabel},#{attrType},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{classDesc} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_attr(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.className},#{log.attrName},#{log.attrLabel},#{log.attrType},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.classDesc} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platattr.holder.PlatAttrHolder">
+		update plat_attr set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="className != null">
+				`CLASS_NAME` = #{className},
+			</if>
+			<if test="attrName != null">
+				`ATTR_NAME` = #{attrName},
+			</if>
+			<if test="attrLabel != null">
+				`ATTR_LABEL` = #{attrLabel},
+			</if>
+			<if test="attrType != null">
+				`ATTR_TYPE` = #{attrType},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="classDesc != null">
+				`CLASS_DESC` = #{classDesc},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platattr.holder.PlatAttrHolder">
+		delete from plat_attr <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platattr.holder.PlatAttrHolder">
+		select <include refid="Base_Colnum_List" /> from plat_attr <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platattr.holder.PlatAttrHolder">
+		select count(1) from (SELECT 1 FROM plat_attr <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platattr.holder.PlatAttrHolder">
+		select <include refid="Base_Colnum_List" /> from plat_attr <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

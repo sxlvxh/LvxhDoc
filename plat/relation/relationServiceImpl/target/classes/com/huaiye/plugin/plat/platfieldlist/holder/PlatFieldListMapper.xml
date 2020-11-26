@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListHolder">
+		<result column="ID" property="id" />
+		<result column="MENU_CODE" property="menuCode" />
+		<result column="FIELD_NAME" property="fieldName" />
+		<result column="FIELD_TYPE" property="fieldType" />
+		<result column="FIELD_STYLE" property="fieldStyle" />
+		<result column="FIELD_LABEL" property="fieldLabel" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="BUTTON_CODE" property="buttonCode" />
+		<result column="FIELD_PARAMS" property="fieldParams" />
+		<result column="FIELD_CODE" property="fieldCode" />
+		<result column="PRIORITY" property="priority" />
+		<result column="ENABLE" property="enable" />
+		<result column="DISPLAY" property="display" />
+		<result column="MENU_NAME" property="menuName" />
+		<result column="FIELD_TYPE_NAME" property="fieldTypeName" />
+		<result column="BUTTON_NAME" property="buttonName" />
+		<result column="DISPLAY_NAME" property="displayName" />
+		<result column="ENABLE_NAME" property="enableName" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`MENU_CODE`,`FIELD_NAME`,`FIELD_TYPE`,`FIELD_STYLE`,`FIELD_LABEL`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`BUTTON_CODE`,`FIELD_PARAMS`,`FIELD_CODE`,`PRIORITY`,`ENABLE`,`DISPLAY`,`MENU_NAME`,`FIELD_TYPE_NAME`,`BUTTON_NAME`,`DISPLAY_NAME`,`ENABLE_NAME`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="menuCode != null and menuCode != ''">
+				and t.`MENU_CODE` = #{menuCode}
+			</if>
+			<if test="fieldName != null and fieldName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`FIELD_NAME` = #{fieldName}
+					</when>
+					<otherwise>
+				and t.`FIELD_NAME` like concat("%", #{fieldName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="fieldType != null and fieldType != ''">
+				and t.`FIELD_TYPE` = #{fieldType}
+			</if>
+			<if test="fieldStyle != null and fieldStyle != ''">
+				and t.`FIELD_STYLE` = #{fieldStyle}
+			</if>
+			<if test="fieldLabel != null and fieldLabel != ''">
+				and t.`FIELD_LABEL` = #{fieldLabel}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="buttonCode != null and buttonCode != ''">
+				and t.`BUTTON_CODE` = #{buttonCode}
+			</if>
+			<if test="fieldParams != null and fieldParams != ''">
+				and t.`FIELD_PARAMS` = #{fieldParams}
+			</if>
+			<if test="fieldCode != null and fieldCode != ''">
+				and t.`FIELD_CODE` = #{fieldCode}
+			</if>
+			<if test="priority != null and priority != ''">
+				and t.`PRIORITY` = #{priority}
+			</if>
+			<if test="enable != null and enable != ''">
+				and t.`ENABLE` = #{enable}
+			</if>
+			<if test="display != null and display != ''">
+				and t.`DISPLAY` = #{display}
+			</if>
+			<if test="menuName != null and menuName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`MENU_NAME` = #{menuName}
+					</when>
+					<otherwise>
+				and t.`MENU_NAME` like concat("%", #{menuName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="fieldTypeName != null and fieldTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`FIELD_TYPE_NAME` = #{fieldTypeName}
+					</when>
+					<otherwise>
+				and t.`FIELD_TYPE_NAME` like concat("%", #{fieldTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="buttonName != null and buttonName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`BUTTON_NAME` = #{buttonName}
+					</when>
+					<otherwise>
+				and t.`BUTTON_NAME` like concat("%", #{buttonName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="displayName != null and displayName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`DISPLAY_NAME` = #{displayName}
+					</when>
+					<otherwise>
+				and t.`DISPLAY_NAME` like concat("%", #{displayName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="enableName != null and enableName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ENABLE_NAME` = #{enableName}
+					</when>
+					<otherwise>
+				and t.`ENABLE_NAME` like concat("%", #{enableName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListHolder">
+		insert into plat_field_list( <include refid="Base_Colnum_List" /> )values( #{id},#{menuCode},#{fieldName},#{fieldType},#{fieldStyle},#{fieldLabel},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{buttonCode},#{fieldParams},#{fieldCode},#{priority},#{enable},#{display},#{menuName},#{fieldTypeName},#{buttonName},#{displayName},#{enableName} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListHolder">
+		update plat_field_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="menuCode != null and menuCode != ''">
+				`MENU_CODE` = #{menuCode},
+			</if>
+			<if test="fieldName != null and fieldName != ''">
+				`FIELD_NAME` = #{fieldName},
+			</if>
+			<if test="fieldType != null and fieldType != ''">
+				`FIELD_TYPE` = #{fieldType},
+			</if>
+			<if test="fieldStyle != null and fieldStyle != ''">
+				`FIELD_STYLE` = #{fieldStyle},
+			</if>
+			<if test="fieldLabel != null and fieldLabel != ''">
+				`FIELD_LABEL` = #{fieldLabel},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="buttonCode != null and buttonCode != ''">
+				`BUTTON_CODE` = #{buttonCode},
+			</if>
+			<if test="fieldParams != null and fieldParams != ''">
+				`FIELD_PARAMS` = #{fieldParams},
+			</if>
+			<if test="fieldCode != null and fieldCode != ''">
+				`FIELD_CODE` = #{fieldCode},
+			</if>
+			<if test="priority != null and priority != ''">
+				`PRIORITY` = #{priority},
+			</if>
+			<if test="enable != null and enable != ''">
+				`ENABLE` = #{enable},
+			</if>
+			<if test="display != null and display != ''">
+				`DISPLAY` = #{display},
+			</if>
+			<if test="menuName != null and menuName != ''">
+				`MENU_NAME` = #{menuName},
+			</if>
+			<if test="fieldTypeName != null and fieldTypeName != ''">
+				`FIELD_TYPE_NAME` = #{fieldTypeName},
+			</if>
+			<if test="buttonName != null and buttonName != ''">
+				`BUTTON_NAME` = #{buttonName},
+			</if>
+			<if test="displayName != null and displayName != ''">
+				`DISPLAY_NAME` = #{displayName},
+			</if>
+			<if test="enableName != null and enableName != ''">
+				`ENABLE_NAME` = #{enableName},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListHolder">
+		delete from plat_field_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.NAME        AS MENU_NAME,
+  C.DATA_NAME   AS FIELD_TYPE_NAME,
+  D.BUTTON_NAME,
+  E.DATA_NAME   AS DISPLAY_NAME,
+  F.DATA_NAME   AS ENABLE_NAME
+FROM plat_field A
+  LEFT JOIN PLAT_MENU B
+    ON A.MENU_CODE = B.MENU_CODE
+  LEFT JOIN PLAT_DICT C
+    ON A.FIELD_TYPE = C.DATA_ID
+      AND C.GROUP_ID = 'FIELD_TYPE'
+  LEFT JOIN PLAT_BUTTON D
+    ON D.BUTTON_CODE = A.BUTTON_CODE
+  LEFT JOIN PLAT_DICT E
+    ON A.DISPLAY = E.DATA_ID
+      AND E.GROUP_ID = 'YES_OR_NO'
+  LEFT JOIN PLAT_DICT F
+    ON A.ENABLE = F.DATA_ID
+      AND F.GROUP_ID = 'YES_OR_NO'
+      ]]>
+    <if test="menuCode != null and menuCode != ''">
+	   WHERE A.MENU_CODE = #{menuCode}
+	</if>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  B.NAME        AS MENU_NAME,
+  C.DATA_NAME   AS FIELD_TYPE_NAME,
+  D.BUTTON_NAME,
+  E.DATA_NAME   AS DISPLAY_NAME,
+  F.DATA_NAME   AS ENABLE_NAME
+FROM plat_field A
+  LEFT JOIN PLAT_MENU B
+    ON A.MENU_CODE = B.MENU_CODE
+  LEFT JOIN PLAT_DICT C
+    ON A.FIELD_TYPE = C.DATA_ID
+      AND C.GROUP_ID = 'FIELD_TYPE'
+  LEFT JOIN PLAT_BUTTON D
+    ON D.BUTTON_CODE = A.BUTTON_CODE
+  LEFT JOIN PLAT_DICT E
+    ON A.DISPLAY = E.DATA_ID
+      AND E.GROUP_ID = 'YES_OR_NO'
+  LEFT JOIN PLAT_DICT F
+    ON A.ENABLE = F.DATA_ID
+      AND F.GROUP_ID = 'YES_OR_NO']]>
+    <if test="menuCode != null and menuCode != ''">
+	   WHERE A.MENU_CODE = #{menuCode}
+	</if>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platfieldlist.holder.PlatFieldListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.NAME        AS MENU_NAME,
+  C.DATA_NAME   AS FIELD_TYPE_NAME,
+  D.BUTTON_NAME,
+  E.DATA_NAME   AS DISPLAY_NAME,
+  F.DATA_NAME   AS ENABLE_NAME
+FROM plat_field A
+  LEFT JOIN PLAT_MENU B
+    ON A.MENU_CODE = B.MENU_CODE
+  LEFT JOIN PLAT_DICT C
+    ON A.FIELD_TYPE = C.DATA_ID
+      AND C.GROUP_ID = 'FIELD_TYPE'
+  LEFT JOIN PLAT_BUTTON D
+    ON D.BUTTON_CODE = A.BUTTON_CODE
+  LEFT JOIN PLAT_DICT E
+    ON A.DISPLAY = E.DATA_ID
+      AND E.GROUP_ID = 'YES_OR_NO'
+  LEFT JOIN PLAT_DICT F
+    ON A.ENABLE = F.DATA_ID
+      AND F.GROUP_ID = 'YES_OR_NO']]>
+    <if test="menuCode != null and menuCode != ''">
+	   WHERE A.MENU_CODE = #{menuCode}
+	</if>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

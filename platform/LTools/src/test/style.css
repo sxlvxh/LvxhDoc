@@ -1,0 +1,24 @@
+#root {
+    -fx-border-width:2;-fx-border-color:#000;
+}
+
+#top {
+    -fx-background-color: #4A5459;
+}
+
+#winClose {
+    -fx-cursor:hand;
+}
+
+#winClose{
+    -fx-background-image:url("/resources/winClose_0.png");
+    -fx-background-repeat:no-repeat;
+}
+
+#winClose:hover {
+    -fx-background-image:url("/resources/winClose_1.png");
+}
+
+#winClose:pressed {
+    -fx-background-image:url("/resources/winClose_2.png");
+}

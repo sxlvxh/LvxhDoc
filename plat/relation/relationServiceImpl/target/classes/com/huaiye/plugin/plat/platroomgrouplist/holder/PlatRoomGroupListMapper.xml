@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListHolder">
+		<result column="ID" property="id" />
+		<result column="GROUP_NAME" property="groupName" />
+		<result column="GROUP_TYPE" property="groupType" />
+		<result column="PRIORITY" property="priority" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="GROUP_CODE" property="groupCode" />
+		<result column="ENT_NAME" property="entName" />
+		<result column="ROOM_GROUP_TYPY_NAME" property="roomGroupTypyName" />
+		<result column="ACTIVE_ENT_CODE" property="activeEntCode" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`GROUP_NAME`,`GROUP_TYPE`,`PRIORITY`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ENT_CODE`,`GROUP_CODE`,`ENT_NAME`,`ROOM_GROUP_TYPY_NAME`,`ACTIVE_ENT_CODE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="groupName != null and groupName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`GROUP_NAME` = #{groupName}
+					</when>
+					<otherwise>
+				and t.`GROUP_NAME` like concat("%", #{groupName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="groupType != null ">
+				and t.`GROUP_TYPE` = #{groupType}
+			</if>
+			<if test="priority != null ">
+				and t.`PRIORITY` = #{priority}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and t.`ENT_CODE` = #{entCode}
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				and t.`GROUP_CODE` = #{groupCode}
+			</if>
+			<if test="entName != null and entName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ENT_NAME` = #{entName}
+					</when>
+					<otherwise>
+				and t.`ENT_NAME` like concat("%", #{entName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="roomGroupTypyName != null and roomGroupTypyName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ROOM_GROUP_TYPY_NAME` = #{roomGroupTypyName}
+					</when>
+					<otherwise>
+				and t.`ROOM_GROUP_TYPY_NAME` like concat("%", #{roomGroupTypyName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListHolder">
+		insert into plat_room_group_list( <include refid="Base_Colnum_List" /> )values( #{id},#{groupName},#{groupType},#{priority},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{entCode},#{groupCode},#{entName},#{roomGroupTypyName},#{activeEntCode} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListHolder">
+		update plat_room_group_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="groupName != null and groupName != ''">
+				`GROUP_NAME` = #{groupName},
+			</if>
+			<if test="groupType != null ">
+				`GROUP_TYPE` = #{groupType},
+			</if>
+			<if test="priority != null ">
+				`PRIORITY` = #{priority},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="entCode != null and entCode != ''">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				`GROUP_CODE` = #{groupCode},
+			</if>
+			<if test="entName != null and entName != ''">
+				`ENT_NAME` = #{entName},
+			</if>
+			<if test="roomGroupTypyName != null and roomGroupTypyName != ''">
+				`ROOM_GROUP_TYPY_NAME` = #{roomGroupTypyName},
+			</if>
+			<if test="activeEntCode != null and activeEntCode != ''">
+				`ACTIVE_ENT_CODE` = #{activeEntCode},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListHolder">
+		delete from plat_room_group_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.ENT_NAME,
+  C.DATA_NAME AS ROOM_GROUP_TYPY_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM PLAT_ROOM_GROUP A
+  JOIN PLAT_ENT B
+    ON A.ENT_CODE = B.ENT_CODE
+  LEFT JOIN PLAT_DICT C
+    ON C.GROUP_ID = 'ROOM_GROUP_TYPE'
+      AND C.DATA_ID = A.GROUP_TYPE ]]>
+      <if test="activeEntCode != null and activeEntCode != ''">
+			WHERE FIND_IN_SET(A.ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	   </if>			
+      ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  B.ENT_NAME,
+  C.DATA_NAME AS ROOM_GROUP_TYPY_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM PLAT_ROOM_GROUP A
+  JOIN PLAT_ENT B
+    ON A.ENT_CODE = B.ENT_CODE
+  LEFT JOIN PLAT_DICT C
+    ON C.GROUP_ID = 'ROOM_GROUP_TYPE'
+      AND C.DATA_ID = A.GROUP_TYPE ]]>
+      <if test="activeEntCode != null and activeEntCode != ''">
+			WHERE FIND_IN_SET(A.ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	   </if>			
+      ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platroomgrouplist.holder.PlatRoomGroupListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.ENT_NAME,
+  C.DATA_NAME AS ROOM_GROUP_TYPY_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM PLAT_ROOM_GROUP A
+  JOIN PLAT_ENT B
+    ON A.ENT_CODE = B.ENT_CODE
+  LEFT JOIN PLAT_DICT C
+    ON C.GROUP_ID = 'ROOM_GROUP_TYPE'
+      AND C.DATA_ID = A.GROUP_TYPE ]]>
+      <if test="activeEntCode != null and activeEntCode != ''">
+			WHERE FIND_IN_SET(A.ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	   </if>			
+      ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

@@ -1,0 +1,70 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd ">
+        
+	<bean id="platUserRoleMbService" class="com.huaiye.plugin.plat.platuserrolemb.serviceimpl.PlatUserRoleMbServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platuserrolemb.service.PlatUserRoleMbService" ref="platUserRoleMbService"></dubbo:service>
+
+	<bean id="platUserListService" class="com.huaiye.plugin.plat.platuserlist.serviceimpl.PlatUserListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platuserlist.service.PlatUserListService" ref="platUserListService"></dubbo:service>
+
+	<bean id="platModelByProductService" class="com.huaiye.plugin.plat.platmodelbyproduct.serviceimpl.PlatModelByProductServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platmodelbyproduct.service.PlatModelByProductService" ref="platModelByProductService"></dubbo:service>
+
+	<bean id="platEntListService" class="com.huaiye.plugin.plat.platentlist.serviceimpl.PlatEntListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platentlist.service.PlatEntListService" ref="platEntListService"></dubbo:service>
+
+	<bean id="platLogListService" class="com.huaiye.plugin.plat.platloglist.serviceimpl.PlatLogListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platloglist.service.PlatLogListService" ref="platLogListService"></dubbo:service>
+
+	<bean id="platCommUserListService" class="com.huaiye.plugin.plat.platcommuserlist.serviceimpl.PlatCommUserListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platcommuserlist.service.PlatCommUserListService" ref="platCommUserListService"></dubbo:service>
+
+	<bean id="platDepListService" class="com.huaiye.plugin.plat.platdeplist.serviceimpl.PlatDepListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platdeplist.service.PlatDepListService" ref="platDepListService"></dubbo:service>
+
+	<bean id="platFieldListService" class="com.huaiye.plugin.plat.platfieldlist.serviceimpl.PlatFieldListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platfieldlist.service.PlatFieldListService" ref="platFieldListService"></dubbo:service>
+
+	<bean id="platButtonListService" class="com.huaiye.plugin.plat.platbuttonlist.serviceimpl.PlatButtonListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platbuttonlist.service.PlatButtonListService" ref="platButtonListService"></dubbo:service>
+
+	<bean id="platMenuListService" class="com.huaiye.plugin.plat.platmenulist.serviceimpl.PlatMenuListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platmenulist.service.PlatMenuListService" ref="platMenuListService"></dubbo:service>
+
+	<bean id="platRoleListService" class="com.huaiye.plugin.plat.platrolelist.serviceimpl.PlatRoleListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platrolelist.service.PlatRoleListService" ref="platRoleListService"></dubbo:service>
+
+	<bean id="platSmsListService" class="com.huaiye.plugin.plat.platsmslist.serviceimpl.PlatSmsListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platsmslist.service.PlatSmsListService" ref="platSmsListService"></dubbo:service>
+
+	<bean id="platProductListService" class="com.huaiye.plugin.plat.platproductlist.serviceimpl.PlatProductListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platproductlist.service.PlatProductListService" ref="platProductListService"></dubbo:service>
+
+	<bean id="platRoomGroupListService" class="com.huaiye.plugin.plat.platroomgrouplist.serviceimpl.PlatRoomGroupListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platroomgrouplist.service.PlatRoomGroupListService" ref="platRoomGroupListService"></dubbo:service>
+
+	<bean id="platRoomListService" class="com.huaiye.plugin.plat.platroomlist.serviceimpl.PlatRoomListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platroomlist.service.PlatRoomListService" ref="platRoomListService"></dubbo:service>
+	
+	<bean id="platSoftListService" class="com.huaiye.plugin.plat.platsoftlist.serviceimpl.PlatSoftListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platsoftlist.service.PlatSoftListService" ref="platSoftListService"></dubbo:service>
+
+	<bean id="platSoftVersionListService" class="com.huaiye.plugin.plat.platsoftversionlist.serviceimpl.PlatSoftVersionListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platsoftversionlist.service.PlatSoftVersionListService" ref="platSoftVersionListService"></dubbo:service>
+	
+	<bean id="platNoReadSmsService" class="com.huaiye.plugin.plat.platnoreadsms.serviceimpl.PlatNoReadSmsServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platnoreadsms.service.PlatNoReadSmsService" ref="platNoReadSmsService"></dubbo:service>
+	
+	<bean id="platGroupUserService" class="com.huaiye.plugin.plat.platgroupuser.serviceimpl.PlatGroupUserServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platgroupuser.service.PlatGroupUserService" ref="platGroupUserService"></dubbo:service>
+	
+	<bean id="platMeetingListService" class="com.huaiye.plugin.plat.platmeetinglist.serviceimpl.PlatMeetingListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platmeetinglist.service.PlatMeetingListService" ref="platMeetingListService"></dubbo:service>
+	
+	<bean id="platMeetingUserListService" class="com.huaiye.plugin.plat.platmeetinguserlist.serviceimpl.PlatMeetingUserListServiceImpl"></bean>
+	<dubbo:service interface="com.huaiye.plugin.plat.platmeetinguserlist.service.PlatMeetingUserListService" ref="platMeetingUserListService"></dubbo:service>
+</beans>

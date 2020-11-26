@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListHolder">
+		<result column="ID" property="id" />
+		<result column="PRODUCT_NAME" property="productName" />
+		<result column="PRODUCT_TITLE" property="productTitle" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="PRODUCT_CODE" property="productCode" />
+		<result column="PRODUCT_PARAMS" property="productParams" />
+		<result column="MODEL_NAMES" property="modelNames" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`PRODUCT_NAME`,`PRODUCT_TITLE`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`PRODUCT_CODE`,`PRODUCT_PARAMS`,`MODEL_NAMES`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="productName != null and productName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`PRODUCT_NAME` = #{productName}
+					</when>
+					<otherwise>
+				and t.`PRODUCT_NAME` like concat("%", #{productName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="productTitle != null and productTitle != ''">
+				and t.`PRODUCT_TITLE` = #{productTitle}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="productCode != null and productCode != ''">
+				and t.`PRODUCT_CODE` = #{productCode}
+			</if>
+			<if test="productParams != null and productParams != ''">
+				and t.`PRODUCT_PARAMS` = #{productParams}
+			</if>
+			<if test="modelNames != null and modelNames != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`MODEL_NAMES` = #{modelNames}
+					</when>
+					<otherwise>
+				and t.`MODEL_NAMES` like concat("%", #{modelNames}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListHolder">
+		insert into plat_product_list( <include refid="Base_Colnum_List" /> )values( #{id},#{productName},#{productTitle},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{productCode},#{productParams},#{modelNames} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListHolder">
+		update plat_product_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="productName != null and productName != ''">
+				`PRODUCT_NAME` = #{productName},
+			</if>
+			<if test="productTitle != null and productTitle != ''">
+				`PRODUCT_TITLE` = #{productTitle},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="productCode != null and productCode != ''">
+				`PRODUCT_CODE` = #{productCode},
+			</if>
+			<if test="productParams != null and productParams != ''">
+				`PRODUCT_PARAMS` = #{productParams},
+			</if>
+			<if test="modelNames != null and modelNames != ''">
+				`MODEL_NAMES` = #{modelNames},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListHolder">
+		delete from plat_product_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.MODEL_NAMES
+FROM PLAT_PRODUCT A
+  LEFT JOIN (SELECT
+               PLAT_MODEL_PRO.PRODUCT_CODE,
+               GROUP_CONCAT(PLAT_MODEL.MODEL_NAME,'') AS MODEL_NAMES
+             FROM PLAT_MODEL,
+               PLAT_MODEL_PRO
+             WHERE PLAT_MODEL.MODEL_CODE = PLAT_MODEL_PRO.MODEL_CODE
+             GROUP BY PLAT_MODEL_PRO.PRODUCT_CODE) B
+    ON A.PRODUCT_CODE = B.PRODUCT_CODE]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  B.MODEL_NAMES
+FROM PLAT_PRODUCT A
+  LEFT JOIN (SELECT
+               PLAT_MODEL_PRO.PRODUCT_CODE,
+               GROUP_CONCAT(PLAT_MODEL.MODEL_NAME,'') AS MODEL_NAMES
+             FROM PLAT_MODEL,
+               PLAT_MODEL_PRO
+             WHERE PLAT_MODEL.MODEL_CODE = PLAT_MODEL_PRO.MODEL_CODE
+             GROUP BY PLAT_MODEL_PRO.PRODUCT_CODE) B
+    ON A.PRODUCT_CODE = B.PRODUCT_CODE]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platproductlist.holder.PlatProductListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.MODEL_NAMES
+FROM PLAT_PRODUCT A
+  LEFT JOIN (SELECT
+               PLAT_MODEL_PRO.PRODUCT_CODE,
+               GROUP_CONCAT(PLAT_MODEL.MODEL_NAME,'') AS MODEL_NAMES
+             FROM PLAT_MODEL,
+               PLAT_MODEL_PRO
+             WHERE PLAT_MODEL.MODEL_CODE = PLAT_MODEL_PRO.MODEL_CODE
+             GROUP BY PLAT_MODEL_PRO.PRODUCT_CODE) B
+    ON A.PRODUCT_CODE = B.PRODUCT_CODE]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

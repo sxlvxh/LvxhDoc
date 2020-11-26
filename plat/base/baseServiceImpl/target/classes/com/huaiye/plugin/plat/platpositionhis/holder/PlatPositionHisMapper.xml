@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisHolder">
+		<result column="ID" property="id" />
+		<result column="USER_CODE" property="userCode" />
+		<result column="SOURCE_TYPE" property="sourceType" />
+		<result column="LNG" property="lng" />
+		<result column="LAT" property="lat" />
+		<result column="PLACE" property="place" />
+		<result column="FILE_URL" property="fileUrl" />
+		<result column="POS_TYPE" property="posType" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`USER_CODE`,`SOURCE_TYPE`,`LNG`,`LAT`,`PLACE`,`FILE_URL`,`POS_TYPE`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="userCode != null and userCode != ''">
+				and `USER_CODE` = #{userCode}
+			</if>
+			<if test="sourceType != null and sourceType != ''">
+				and `SOURCE_TYPE` = #{sourceType}
+			</if>
+			<if test="lng != null and lng != ''">
+				and `LNG` = #{lng}
+			</if>
+			<if test="lat != null and lat != ''">
+				and `LAT` = #{lat}
+			</if>
+			<if test="place != null and place != ''">
+				and `PLACE` = #{place}
+			</if>
+			<if test="fileUrl != null and fileUrl != ''">
+				and `FILE_URL` = #{fileUrl}
+			</if>
+			<if test="posType != null and posType != ''">
+				and `POS_TYPE` = #{posType}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisHolder">
+		insert into plat_position_his( <include refid="Base_Colnum_List" /> )values( #{id},#{userCode},#{sourceType},#{lng},#{lat},#{place},#{fileUrl},#{posType},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_position_his(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.userCode},#{log.sourceType},#{log.lng},#{log.lat},#{log.place},#{log.fileUrl},#{log.posType},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisHolder">
+		update plat_position_his set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="userCode != null">
+				`USER_CODE` = #{userCode},
+			</if>
+			<if test="sourceType != null">
+				`SOURCE_TYPE` = #{sourceType},
+			</if>
+			<if test="lng != null">
+				`LNG` = #{lng},
+			</if>
+			<if test="lat != null">
+				`LAT` = #{lat},
+			</if>
+			<if test="place != null">
+				`PLACE` = #{place},
+			</if>
+			<if test="fileUrl != null">
+				`FILE_URL` = #{fileUrl},
+			</if>
+			<if test="posType != null">
+				`POS_TYPE` = #{posType},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisHolder">
+		delete from plat_position_his <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisHolder">
+		select <include refid="Base_Colnum_List" /> from plat_position_his <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisHolder">
+		select count(1) from (SELECT 1 FROM plat_position_his <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platpositionhis.holder.PlatPositionHisHolder">
+		select <include refid="Base_Colnum_List" /> from plat_position_his <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

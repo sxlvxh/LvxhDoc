@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>webSocket</title>
+   <script type="text/javascript" src='jquery.js'></script>
+   <script type="text/javascript" src='json2.js'></script> 
+   <script type="text/javascript" src='websocket.js'></script> 
+   <script type="text/javascript" src="vue/dist/vue.js"></script>
+   <script type="text/javascript" src="vue/dist/vue-resource.min.js"></script>
+   </head>
+   <style>
+        .half-page-label{
+		    float:left;
+		}
+        .half-page{
+		    width:50%;
+			float:left;
+		}
+		.main-page{
+		    width:100%;
+			height:35px;
+			line-height:35px;
+		}
+   </style>
+    <body>
+        <div id="sse">
+		    <div class="row">
+			    <div class="main-page">
+					<div class="half-page-label"><label>服务器地址：</label></div>
+					<div class="half-page"><input type="text"  v-model="url"/></div>	
+				</div>
+				 <div class="main-page">
+				    <div class="half-page-label"><label>登录名称：</label></div>
+					<div class="half-page"><input type="text"  v-model="loginName"/></div>
+				</div>
+				<div class="main-page" style="height:100px;">
+				    <div class="half-page-label"><label>发送内容：</label></div>
+					<div class="half-page"><textarea class="main-page" v-model="content" style="height:80px;"></textarea></div>
+				</div>
+				<!--<div class="main-page" style="height:100px;">
+				    <div class="half-page-label"><label>接收内容：</label></div>
+					<div class="half-page"><textarea class="main-page" v-model="receiveContent" style="height:80px;"></textarea></div>
+				</div>-->
+				<div class="main-page">
+				    <div class="half-page-label"><label>接收人：</label></div>
+					<div class="half-page"><input type="text"  v-model="src"/></div>
+				</div>
+				<div class="main-page">
+				    <button @click="loginIn()">登录</button>
+					<button @click="send()">发送</button>
+				</div>
+				<img id="testImg"/>
+			</div>
+        </div>
+        
+        <div style="width: 600px;height: 400px;">
+		    <p>服务器输出:</p>
+		    <div style="border: 1px solid #CCC;height: 300px;overflow: scroll" id="server-msg-container">
+		
+		    </div>
+		    <p>
+		        <textarea id="inp-msg" style="height: 50px;width: 500px"></textarea><input type="button" value="发送"
+		                                                                                   id="send"><br/>
+		        选择图片： <input type="file" id="send-pic">
+		    </p>
+		</div>
+        
+        
+    </body>
+    <script type="text/javascript">
+        $(function(){
+		    var mVm = new Vue({
+			    el: '#sse', 
+				data:{
+				    url:"ws://192.168.3.111:8989/ws",
+					loginName:"123456",
+					content:"",
+					receiveContent:"",
+					msgType:"nettyForwardService",
+					src:"test",
+					nettyWs:"",
+					sendContent:{}
+				},
+				methods:{
+				    loginIn:function(){
+					    var _this = this;
+						try{
+							if(typeof(_this.nettyWs) == "object"){
+								_this.nettyWs.destory();
+							}
+							var opt = {
+								url:_this.url,
+								loginName:_this.loginName,
+								loginSuccess:function(nettyWs){
+								    /*nettyWs.sendMsg(JSON.stringify({
+										msgType : _this.msgType,
+										src : _this.src,
+										content : _this.content
+									}));*/ 
+								},
+								receive:function(msg){
+								   //_this.receiveContent = msg;
+								   var json = JSON2.parse(msg);								 
+								   if(json.msgType == "base64Img")
+								   {
+								      $("#testImg").attr({"src":"data:image/png;base64," + json.content});
+								   }
+								   //alert(json.content);
+								},
+								procClosed:function(){
+								   
+								},
+								procError:function(){
+								  
+								},
+								log:true
+							};
+							_this.nettyWs = new NETTY_WS(opt);   
+						}catch(e){
+							window.console && window.console.error(e);
+						}
+					},
+					send:function(){
+						var _this = this;
+						var setContent = {
+						    msgType : "send",
+							src : _this.loginName,
+							content : _this.content
+						}; 
+						var target = _this.src.split(",");
+						_this.sendContent["target"] = target;
+						_this.sendContent["content"] = JSON.stringify(setContent);
+						console.log("==========",_this.sendContent)
+						_this.nettyWs.sendMsg(_this.sendContent);
+					}
+				}
+			})
+		})
+		
+		 // 发送图片
+    document.querySelector('#send-pic').addEventListener('change', function () {
+        var files = this.files;
+        if (files && files.length) {
+            var file = files[0];
+            var fileReader = new FileReader();
+            fileReader.readAsArrayBuffer(file);
+            fileReader.onload = function (e) {
+                // 获取到文件对象
+                var result = e.target.result;
+                // 发送数据到服务器端
+                ws.send(result)
+            }
+        }
+    }, false);
+        
+    </script>
+</html>

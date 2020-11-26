@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListHolder">
+		<result column="ID" property="id" />
+		<result column="SRC" property="src" />
+		<result column="TARGET" property="target" />
+		<result column="CONTENT" property="content" />
+		<result column="STATUS" property="status" />
+		<result column="SMS_TYPE" property="smsType" />
+		<result column="CONTENT_TYPE" property="contentType" />
+		<result column="SEND_TYPE" property="sendType" />
+		<result column="GROUP_CODE" property="groupCode" />
+		<result column="UID" property="uid" />
+		<result column="SOURCE_MSG" property="sourceMsg" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ISDEL" property="isdel" />
+		<result column="SRC_NAME" property="srcName" />
+		<result column="SRC_IMG_URL" property="srcImgUrl" />
+		<result column="TARGET_NAME" property="targetName" />
+		<result column="TARGET_IMG_URL" property="targetImgUrl" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`SRC`,`TARGET`,`CONTENT`,`STATUS`,`SMS_TYPE`,`CONTENT_TYPE`,`SEND_TYPE`,`GROUP_CODE`,`UID`,`SOURCE_MSG`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ISDEL`,`SRC_NAME`,`SRC_IMG_URL`,`TARGET_NAME`,`TARGET_IMG_URL`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="src != null and src != ''">
+				and t.`SRC` = #{src}
+			</if>
+			<if test="target != null and target != ''">
+				and t.`TARGET` = #{target}
+			</if>
+			<if test="content != null and content != ''">
+				and t.`CONTENT` = #{content}
+			</if>
+			<if test="status != null ">
+				and t.`STATUS` = #{status}
+			</if>
+			<if test="smsType != null and smsType != ''">
+				and t.`SMS_TYPE` = #{smsType}
+			</if>
+			<if test="contentType != null ">
+				and t.`CONTENT_TYPE` = #{contentType}
+			</if>
+			<if test="sendType != null ">
+				and t.`SEND_TYPE` = #{sendType}
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				and t.`GROUP_CODE` = #{groupCode}
+			</if>
+			<if test="uid != null and uid != ''">
+				and t.`UID` = #{uid}
+			</if>
+			<if test="sourceMsg != null and sourceMsg != ''">
+				and t.`SOURCE_MSG` = #{sourceMsg}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="srcName != null and srcName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`SRC_NAME` = #{srcName}
+					</when>
+					<otherwise>
+				and t.`SRC_NAME` like concat("%", #{srcName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="srcImgUrl != null and srcImgUrl != ''">
+				and t.`SRC_IMG_URL` = #{srcImgUrl}
+			</if>
+			<if test="targetName != null and targetName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`TARGET_NAME` = #{targetName}
+					</when>
+					<otherwise>
+				and t.`TARGET_NAME` like concat("%", #{targetName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="targetImgUrl != null and targetImgUrl != ''">
+				and t.`TARGET_IMG_URL` = #{targetImgUrl}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListHolder">
+		insert into plat_sms_list( <include refid="Base_Colnum_List" /> )values( #{id},#{src},#{target},#{content},#{status},#{smsType},#{contentType},#{sendType},#{groupCode},#{uid},#{sourceMsg},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{isdel},#{srcName},#{srcImgUrl},#{targetName},#{targetImgUrl} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListHolder">
+		update plat_sms_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="src != null and src != ''">
+				`SRC` = #{src},
+			</if>
+			<if test="target != null and target != ''">
+				`TARGET` = #{target},
+			</if>
+			<if test="content != null and content != ''">
+				`CONTENT` = #{content},
+			</if>
+			<if test="status != null ">
+				`STATUS` = #{status},
+			</if>
+			<if test="smsType != null and smsType != ''">
+				`SMS_TYPE` = #{smsType},
+			</if>
+			<if test="contentType != null ">
+				`CONTENT_TYPE` = #{contentType},
+			</if>
+			<if test="sendType != null ">
+				`SEND_TYPE` = #{sendType},
+			</if>
+			<if test="groupCode != null and groupCode != ''">
+				`GROUP_CODE` = #{groupCode},
+			</if>
+			<if test="uid != null and uid != ''">
+				`UID` = #{uid},
+			</if>
+			<if test="sourceMsg != null and sourceMsg != ''">
+				`SOURCE_MSG` = #{sourceMsg},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="srcName != null and srcName != ''">
+				`SRC_NAME` = #{srcName},
+			</if>
+			<if test="srcImgUrl != null and srcImgUrl != ''">
+				`SRC_IMG_URL` = #{srcImgUrl},
+			</if>
+			<if test="targetName != null and targetName != ''">
+				`TARGET_NAME` = #{targetName},
+			</if>
+			<if test="targetImgUrl != null and targetImgUrl != ''">
+				`TARGET_IMG_URL` = #{targetImgUrl},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListHolder">
+		delete from plat_sms_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.NAME AS SRC_NAME,
+  B.IMG_URL AS SRC_IMG_URL,
+  C.NAME AS TARGET_NAME,
+  C.IMG_URL AS TARGET_IMG_URL
+FROM PLAT_SMS A
+  LEFT JOIN PLAT_USER B
+    ON A.SRC = B.USER_CODE
+  LEFT JOIN PLAT_USER C
+    ON A.TARGET = C.USER_CODE]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  B.NAME AS SRC_NAME,
+  B.IMG_URL AS SRC_IMG_URL,
+  C.NAME AS TARGET_NAME,
+  C.IMG_URL AS TARGET_IMG_URL
+FROM PLAT_SMS A
+  LEFT JOIN PLAT_USER B
+    ON A.SRC = B.USER_CODE
+  LEFT JOIN PLAT_USER C
+    ON A.TARGET = C.USER_CODE]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsmslist.holder.PlatSmsListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.NAME AS SRC_NAME,
+  B.IMG_URL AS SRC_IMG_URL,
+  C.NAME AS TARGET_NAME,
+  C.IMG_URL AS TARGET_IMG_URL
+FROM PLAT_SMS A
+  LEFT JOIN PLAT_USER B
+    ON A.SRC = B.USER_CODE
+  LEFT JOIN PLAT_USER C
+    ON A.TARGET = C.USER_CODE]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

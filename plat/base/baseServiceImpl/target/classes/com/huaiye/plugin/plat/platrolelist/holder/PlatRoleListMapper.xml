@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListHolder">
+		<result column="ID" property="id" />
+		<result column="ROLE_NAME" property="roleName" />
+		<result column="ROLE_STATE" property="roleState" />
+		<result column="PRIORITY" property="priority" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ROLE_TYPE" property="roleType" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="ENT_NAME" property="entName" />
+		<result column="ROLE_TYPE_NAME" property="roleTypeName" />
+		<result column="ACTIVE_ENT_CODE" property="activeEntCode" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`ROLE_NAME`,`ROLE_STATE`,`PRIORITY`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ROLE_TYPE`,`ENT_CODE`,`ENT_NAME`,`ROLE_TYPE_NAME`,`ACTIVE_ENT_CODE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="roleName != null and roleName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ROLE_NAME` = #{roleName}
+					</when>
+					<otherwise>
+				and t.`ROLE_NAME` like concat("%", #{roleName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="roleState != null and roleState != ''">
+				and t.`ROLE_STATE` = #{roleState}
+			</if>
+			<if test="priority != null ">
+				and t.`PRIORITY` = #{priority}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="roleType != null and roleType != ''">
+				and t.`ROLE_TYPE` = #{roleType}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and t.`ENT_CODE` = #{entCode}
+			</if>
+			<if test="entName != null and entName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ENT_NAME` = #{entName}
+					</when>
+					<otherwise>
+				and t.`ENT_NAME` like concat("%", #{entName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="roleTypeName != null and roleTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ROLE_TYPE_NAME` = #{roleTypeName}
+					</when>
+					<otherwise>
+				and t.`ROLE_TYPE_NAME` like concat("%", #{roleTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListHolder">
+		insert into plat_role_list( <include refid="Base_Colnum_List" /> )values( #{id},#{roleName},#{roleState},#{priority},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{roleType},#{entCode},#{entName},#{roleTypeName},#{activeEntCode} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListHolder">
+		update plat_role_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="roleName != null and roleName != ''">
+				`ROLE_NAME` = #{roleName},
+			</if>
+			<if test="roleState != null and roleState != ''">
+				`ROLE_STATE` = #{roleState},
+			</if>
+			<if test="priority != null ">
+				`PRIORITY` = #{priority},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="roleType != null and roleType != ''">
+				`ROLE_TYPE` = #{roleType},
+			</if>
+			<if test="entCode != null and entCode != ''">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="entName != null and entName != ''">
+				`ENT_NAME` = #{entName},
+			</if>
+			<if test="roleTypeName != null and roleTypeName != ''">
+				`ROLE_TYPE_NAME` = #{roleTypeName},
+			</if>
+			<if test="activeEntCode != null and activeEntCode != ''">
+				`ACTIVE_ENT_CODE` = #{activeEntCode},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListHolder">
+		delete from plat_role_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  C.ENT_NAME,
+  E.DATA_NAME AS ROLE_TYPE_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM PLAT_ROLE A
+  LEFT JOIN PLAT_ENT C
+    ON A.ENT_CODE = C.ENT_CODE
+  LEFT JOIN PLAT_DICT E
+    ON E.DATA_ID = A.ROLE_TYPE
+      AND E.GROUP_ID = 'ROLE_TYPE'
+]]>
+    <if test="activeEntCode != null and activeEntCode != ''">
+				WHERE FIND_IN_SET(a.ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	</if>
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  C.ENT_NAME,
+  E.DATA_NAME AS ROLE_TYPE_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM PLAT_ROLE A
+  LEFT JOIN PLAT_ENT C
+    ON A.ENT_CODE = C.ENT_CODE
+  LEFT JOIN PLAT_DICT E
+    ON E.DATA_ID = A.ROLE_TYPE
+      AND E.GROUP_ID = 'ROLE_TYPE'
+]]>
+    <if test="activeEntCode != null and activeEntCode != ''">
+				WHERE FIND_IN_SET(a.ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	</if>
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platrolelist.holder.PlatRoleListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  C.ENT_NAME,
+  E.DATA_NAME AS ROLE_TYPE_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM PLAT_ROLE A
+  LEFT JOIN PLAT_ENT C
+    ON A.ENT_CODE = C.ENT_CODE
+  LEFT JOIN PLAT_DICT E
+    ON E.DATA_ID = A.ROLE_TYPE
+      AND E.GROUP_ID = 'ROLE_TYPE'
+]]>
+    <if test="activeEntCode != null and activeEntCode != ''">
+				WHERE FIND_IN_SET(a.ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	</if>
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

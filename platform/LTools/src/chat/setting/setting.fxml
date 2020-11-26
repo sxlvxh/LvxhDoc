@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="224.0" prefWidth="353.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="chat.setting.SettingController">
+   <children>
+      <Label layoutX="43.0" layoutY="37.0" text="数据库IP" />
+      <Label layoutX="43.0" layoutY="81.0" text="数据库名称" />
+      <Label layoutX="43.0" layoutY="119.0" text="账号" />
+      <Label layoutX="43.0" layoutY="157.0" text="密码" />
+      <TextField layoutX="118.0" layoutY="33.0" fx:id="dbIP"/>
+      <TextField layoutX="118.0" layoutY="77.0" fx:id="dbName"/>
+      <TextField layoutX="118.0" layoutY="115.0" fx:id="dbUser"/>
+      <PasswordField layoutX="118.0" layoutY="153.0" fx:id="dbPwd"/>
+      <Button fx:id="testBtn" layoutX="118.0" layoutY="187.0" mnemonicParsing="false" text="测试连接" onAction="#testEvent"/>
+      <Button fx:id="saveBtn" layoutX="191.0" layoutY="187.0" mnemonicParsing="false" text="保存" onAction="#saveEvent" />
+   </children>
+</AnchorPane>

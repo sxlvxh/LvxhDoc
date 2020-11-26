@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="477.0" prefWidth="861.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.license.LicenseController">
+   <children>
+      <Label layoutX="43.0" layoutY="37.0" text="LicenseKey" />
+      <Label layoutX="43.0" layoutY="109.0" text="用户数" />
+      <TextField fx:id="licenseKey" layoutX="118.0" layoutY="33.0" prefHeight="23.0" prefWidth="647.0" text="1e84cfb6480577a5487897fe862bf9d2a8936ef42822e6ec0668b311d232daf7"/>
+      <TextField fx:id="userSize" layoutX="118.0" layoutY="105.0" prefHeight="23.0" prefWidth="277.0" text="20000" />
+      <Button fx:id="saveBtn" layoutX="725.0" layoutY="105.0" mnemonicParsing="false" onAction="#saveEvent" text="生成" />
+      <Label layoutX="436.0" layoutY="109.0" text="保存路径" />
+      <TextField fx:id="filePath" layoutX="497.0" layoutY="105.0" text="D:/"/>
+      <Button fx:id="selectFile" layoutX="668.0" layoutY="105.0" mnemonicParsing="false" onAction="#fileChooser" text="选择" />
+      <Label  layoutX="43.0" layoutY="75.0" text="到期时间" />
+      <DatePicker fx:id="endTime" layoutX="118.0" layoutY="71.0" prefHeight="23.0" prefWidth="647.0" />
+   </children>
+</AnchorPane>

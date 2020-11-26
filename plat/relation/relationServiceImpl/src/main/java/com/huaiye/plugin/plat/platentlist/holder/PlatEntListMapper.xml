@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platentlist.holder.PlatEntListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platentlist.holder.PlatEntListHolder">
+		<result column="ID" property="id" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="ENT_NAME" property="entName" />
+		<result column="ENT_TYPE" property="entType" />
+		<result column="PARENT_CODE" property="parentCode" />
+		<result column="PRIORITY" property="priority" />
+		<result column="SHORT_NAME" property="shortName" />
+		<result column="LEVEL" property="level" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ENT_PARAMS" property="entParams" />
+		<result column="PARENT_ENT_NAME" property="parentEntName" />
+		<result column="ENT_TYPE_NAME" property="entTypeName" />
+		<result column="ACTIVE_ENT_CODE" property="activeEntCode" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`ENT_CODE`,`ENT_NAME`,`ENT_TYPE`,`PARENT_CODE`,`PRIORITY`,`SHORT_NAME`,`LEVEL`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ENT_PARAMS`,`PARENT_ENT_NAME`,`ENT_TYPE_NAME`,`ACTIVE_ENT_CODE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and t.`ENT_CODE` = #{entCode}
+			</if>
+			<if test="entName != null and entName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ENT_NAME` = #{entName}
+					</when>
+					<otherwise>
+				and t.`ENT_NAME` like concat("%", #{entName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="entType != null and entType != ''">
+				and t.`ENT_TYPE` = #{entType}
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				and t.`PARENT_CODE` = #{parentCode}
+			</if>
+			<if test="priority != null ">
+				and t.`PRIORITY` = #{priority}
+			</if>
+			<if test="shortName != null and shortName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`SHORT_NAME` = #{shortName}
+					</when>
+					<otherwise>
+				and t.`SHORT_NAME` like concat("%", #{shortName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="level != null ">
+				and t.`LEVEL` = #{level}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="entParams != null and entParams != ''">
+				and t.`ENT_PARAMS` = #{entParams}
+			</if>
+			<if test="parentEntName != null and parentEntName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`PARENT_ENT_NAME` = #{parentEntName}
+					</when>
+					<otherwise>
+				and t.`PARENT_ENT_NAME` like concat("%", #{parentEntName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="entTypeName != null and entTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ENT_TYPE_NAME` = #{entTypeName}
+					</when>
+					<otherwise>
+				and t.`ENT_TYPE_NAME` like concat("%", #{entTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platentlist.holder.PlatEntListHolder">
+		insert into plat_ent_list( <include refid="Base_Colnum_List" /> )values( #{id},#{entCode},#{entName},#{entType},#{parentCode},#{priority},#{shortName},#{level},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{entParams},#{parentEntName},#{entTypeName},#{activeEntCode} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platentlist.holder.PlatEntListHolder">
+		update plat_ent_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="entCode != null and entCode != ''">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="entName != null and entName != ''">
+				`ENT_NAME` = #{entName},
+			</if>
+			<if test="entType != null and entType != ''">
+				`ENT_TYPE` = #{entType},
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				`PARENT_CODE` = #{parentCode},
+			</if>
+			<if test="priority != null ">
+				`PRIORITY` = #{priority},
+			</if>
+			<if test="shortName != null and shortName != ''">
+				`SHORT_NAME` = #{shortName},
+			</if>
+			<if test="level != null ">
+				`LEVEL` = #{level},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="entParams != null and entParams != ''">
+				`ENT_PARAMS` = #{entParams},
+			</if>
+			<if test="parentEntName != null and parentEntName != ''">
+				`PARENT_ENT_NAME` = #{parentEntName},
+			</if>
+			<if test="entTypeName != null and entTypeName != ''">
+				`ENT_TYPE_NAME` = #{entTypeName},
+			</if>
+			<if test="activeEntCode != null and activeEntCode != ''">
+				`ACTIVE_ENT_CODE` = #{activeEntCode},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platentlist.holder.PlatEntListHolder">
+		delete from plat_ent_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platentlist.holder.PlatEntListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.ENT_NAME  AS PARENT_ENT_NAME,
+  C.DATA_NAME AS ENT_TYPE_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM (SELECT * FROM PLAT_ENT WHERE 1=1 
+   ]]>
+    <if test="activeEntCode != null and activeEntCode != ''">
+				and FIND_IN_SET(ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	</if>
+  ) A
+  LEFT JOIN PLAT_ENT B
+    ON A.PARENT_CODE = B.ENT_CODE
+  LEFT JOIN PLAT_DICT C
+    ON C.GROUP_ID = 'ENT_TYPE'
+      AND C.DATA_ID = A.ENT_TYPE
+
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platentlist.holder.PlatEntListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  B.ENT_NAME  AS PARENT_ENT_NAME,
+  C.DATA_NAME AS ENT_TYPE_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM (SELECT * FROM PLAT_ENT WHERE 1=1 
+   ]]>
+    <if test="activeEntCode != null and activeEntCode != ''">
+				and FIND_IN_SET(ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	</if>
+  ) A
+  LEFT JOIN PLAT_ENT B
+    ON A.PARENT_CODE = B.ENT_CODE
+  LEFT JOIN PLAT_DICT C
+    ON C.GROUP_ID = 'ENT_TYPE'
+      AND C.DATA_ID = A.ENT_TYPE
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platentlist.holder.PlatEntListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.ENT_NAME  AS PARENT_ENT_NAME,
+  C.DATA_NAME AS ENT_TYPE_NAME,
+  ''          AS ACTIVE_ENT_CODE
+FROM (SELECT * FROM PLAT_ENT WHERE 1=1 
+   ]]>
+    <if test="activeEntCode != null and activeEntCode != ''">
+				and FIND_IN_SET(ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+	</if>
+  ) A
+  LEFT JOIN PLAT_ENT B
+    ON A.PARENT_CODE = B.ENT_CODE
+  LEFT JOIN PLAT_DICT C
+    ON C.GROUP_ID = 'ENT_TYPE'
+      AND C.DATA_ID = A.ENT_TYPE
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="coderFxml" prefHeight="769.0" prefWidth="947.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.deploy.DeployController">
+	<children>
+		<TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<tabs>
+				<Tab text="服务器配置">
+					<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="614.0" prefWidth="876.0">
+									<children>
+										<Label layoutX="32.0" layoutY="24.0" text="名称" />
+										<TextField fx:id="selectModel" layoutX="89.0" layoutY="20.0" prefWidth="150.0" />
+										<Button fx:id="search" layoutX="260.0" layoutY="20.0" mnemonicParsing="false" onAction="#searchBtnEvent" text="搜索" />
+                  										<TableView fx:id="tableID" layoutX="32.0" layoutY="55.0" prefHeight="531.0" prefWidth="835.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="55.0">
+                  											<columns>
+                  												<TableColumn fx:id="ip" prefWidth="178.0" text="IP地址" />
+                  												<TableColumn fx:id="name" minWidth="0.0" prefWidth="207.0" text="名称" />
+                  												<TableColumn fx:id="user" prefWidth="235.0" text="账号" />
+                  												<TableColumn fx:id="opt" prefWidth="129.0" text="操作" />
+                  											</columns>
+                  										</TableView>
+                                        <Button fx:id="addBtn" layoutX="309.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProjectModel" text="增加" />
+									</children>
+								</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="执行记录">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="614.0" prefWidth="876.0">
+									<children>
+										<Label layoutX="32.0" layoutY="24.0" text="服务器" />
+										<ComboBox fx:id="selectSqlModel" layoutX="89.0" layoutY="20.0" prefHeight="23.0" prefWidth="344.0" />
+                        <TabPane layoutX="26.0" layoutY="53.0" prefHeight="384.0" prefWidth="849.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="用户组">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="351.0" prefWidth="849.0">
+                                       <children>
+                                          <Label layoutX="23.0" layoutY="27.0" text="用户名称" />
+                                          <TextField fx:id="suseUser" layoutX="100.0" layoutY="24.0" />
+                                          <Label layoutX="23.0" layoutY="63.0" text="用户密码" />
+                                          <PasswordField fx:id="suseUserPwd" layoutX="100.0" layoutY="60.0" />
+                                          <Button layoutX="297.0" layoutY="23.0" mnemonicParsing="false" onAction="#useraddEvent" fx:id="useraddID" text="创建" />
+                                          <Button layoutX="297.0" layoutY="59.0" mnemonicParsing="false" onAction="#userdelEvent" text="删除" />
+                                          <TextArea fx:id="suseUserLog" layoutX="100.0" layoutY="101.0" prefHeight="245.0" prefWidth="724.0" />
+                                          <Label layoutX="23.0" layoutY="98.0" text="操作日志" />
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Untitled Tab 2">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                              </content>
+                            </Tab>
+                              <Tab text="Untitled Tab">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+									</children>
+								</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
+</AnchorPane>

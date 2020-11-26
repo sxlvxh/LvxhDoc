@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="182.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.deploy.AddServerController">
+   <children>
+      <Label layoutX="42.0" layoutY="14.0" text="IP地址" />
+      <TextField fx:id="ip" layoutX="135.0" layoutY="14.0" prefHeight="23.0" prefWidth="161.0" />
+      <Label layoutX="42.0" layoutY="44.0" text="名称" />
+      <TextField fx:id="name" layoutX="135.0" layoutY="44.0" />
+      <Label layoutX="42.0" layoutY="74.0" text="账号" />
+      <TextField fx:id="user" layoutX="135.0" layoutY="74.0" />
+      <Label layoutX="42.0" layoutY="104.0" text="密码" />
+      <PasswordField fx:id="pwd" layoutX="135.0" layoutY="104.0" />
+      <Button fx:id="cancelBtn" layoutX="182.0" layoutY="146.0" mnemonicParsing="false" onAction="#cancelProjectModel" text="取消" />
+      <Button fx:id="saveBtn" layoutX="135.0" layoutY="146.0" mnemonicParsing="false" onAction="#saveProjectModel" text="保存" />
+   </children>
+</AnchorPane>

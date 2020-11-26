@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="coderFxml" prefHeight="656.0" prefWidth="884.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.coder.CoderController">
+	<children>
+		<TabPane layoutX="0.0" layoutY="0.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+			<tabs>
+				<Tab text="数据库配置">
+					<content>
+								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="614.0" prefWidth="876.0">
+									<children>
+										<Label layoutX="32.0" layoutY="24.0" text="模块" />
+										<TextField fx:id="selectModel" layoutX="89.0" layoutY="20.0" prefWidth="150.0" />
+										<Button fx:id="search" layoutX="260.0" layoutY="20.0" mnemonicParsing="false" onAction="#searchBtnEvent" text="搜索" />
+										<TableView fx:id="tableID" layoutX="32.0" layoutY="55.0" prefHeight="531.0" prefWidth="835.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="55.0">
+											<columns>
+												<TableColumn fx:id="dbIP" text="数据库IP地址" />
+												<TableColumn fx:id="dbName" text="数据库名称" />
+												<TableColumn fx:id="userName" text="数据库账号" />
+												<!-- <TableColumn fx:id="dbPwd" text="数据库密码" /> -->
+												<TableColumn fx:id="model" prefWidth="85.0" text="功能模块" />
+												<!-- <TableColumn fx:id="prefix" prefWidth="75.0" text="模块前缀" /> -->
+												<TableColumn fx:id="fileFolder" text="代码存放路径" />
+												<TableColumn fx:id="auto" text="作者" />
+												<TableColumn fx:id="version" text="版本" />
+												<TableColumn fx:id="packages" prefWidth="112.0" text="包名" />
+												<TableColumn fx:id="opt" prefWidth="290.0" text="操作" />
+											</columns>
+										</TableView>
+                                        <Button fx:id="addBtn" layoutX="309.0" layoutY="20.0" mnemonicParsing="false" onAction="#addProjectModel" text="增加" />
+									</children>
+								</AnchorPane>
+					</content>
+				</Tab>
+				<Tab text="SQL语句">
+					<content>
+						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="614.0" prefWidth="876.0">
+									<children>
+										<Label layoutX="32.0" layoutY="24.0" text="模块" />
+										<ComboBox fx:id="selectSqlModel" layoutX="89.0" layoutY="20.0" prefWidth="150.0" />
+										<Button fx:id="searchSql" layoutX="260.0" layoutY="20.0" mnemonicParsing="false" onAction="#searchSqlBtnEvent" text="搜索" />
+										<TableView fx:id="tableSqlID" layoutX="32.0" layoutY="55.0" prefHeight="531.0" prefWidth="835.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="17.0" AnchorPane.topAnchor="55.0">
+											<columns>
+												<TableColumn fx:id="sqlDesc" text="描述" />
+												<TableColumn fx:id="className" text="类名称" />
+												<TableColumn fx:id="tableName" text="虚拟表名称" />
+												<!-- <TableColumn fx:id="dbPwd" text="数据库密码" /> -->
+												<TableColumn fx:id="strSql" prefWidth="85.0" text="SQL语句" />
+												<!-- <TableColumn fx:id="prefix" prefWidth="75.0" text="模块前缀" /> -->
+												<TableColumn fx:id="modelSqlId" text="模块" />
+												<TableColumn fx:id="createTime" prefWidth="150.0" text="创建时间" />
+												<TableColumn fx:id="opts" prefWidth="120.0" text="操作" />
+											</columns>
+										</TableView>
+                                        <Button fx:id="addSqlBtn" layoutX="309.0" layoutY="20.0" mnemonicParsing="false" onAction="#addSqlEvent" text="增加" />
+									</children>
+								</AnchorPane>
+					</content>
+				</Tab>
+			</tabs>
+		</TabPane>
+	</children>
+</AnchorPane>

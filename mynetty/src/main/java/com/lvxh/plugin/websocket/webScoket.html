@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web socket 测试</title>
+</head>
+<body>
+
+<div style="width: 600px;height: 400px;">
+    <p>服务器输出:</p>
+    <div style="border: 1px solid #CCC;height: 300px;overflow: scroll" id="server-msg-container">
+
+    </div>
+    <p>
+        <textarea id="inp-msg" style="height: 50px;width: 500px"></textarea><input type="button" value="发送"
+                                                                                   id="send"><br/>
+        选择图片： <input type="file" id="send-pic">
+    </p>
+    
+</div>
+<video id="audio" width="400" height="600" controls autoplay></video>
+  <input onclick="start()" type="button" value="开始" />
+  <input onclick="stop()" type="button" value="结束" />
+<script type="application/javascript">
+          
+    let recorder
+   function start() {
+    var ws = new WebSocket("ws://192.168.2.132:9898/upload");
+     ws.onopen = function (ev) {
+         	 ws.send(JSON.stringify({"name":"temp.mp4","code":"1235"}))
+     };
+     ws.onmessage = function (ev) {
+         
+     };
+     ws.onerror = function () {
+        
+     };
+     ws.onclose = function () {
+         
+     };
+     
+     let videoTarget = document.getElementById('audio');
+     navigator.mediaDevices.getUserMedia({audio: true, video: true})
+       .then((stream) => {
+    	   var options = {
+    			      audioBitsPerSecond : 128000,
+    			      videoBitsPerSecond : 2500000,
+    			      mimeType : 'video/webm;codecs=h264'
+    			    };
+    	   
+    	   if(MediaRecorder.isTypeSupported("video/webm;codecs=h264"))
+    		   {
+    		   
+		         recorder = new MediaRecorder(stream);
+		         videoTarget.srcObject = stream;
+		         recorder.ondataavailable = (event) => {
+		        	 console.log(111);
+		        	 ws.send(event.data);
+		        	 
+		        	   /* let url = URL.createObjectURL(event.data);
+			           let link = document.createElement("a");
+			           link.target = "_blank";
+			           link.href = url;
+			           link.click(); */
+			           
+		         }
+		           /* let url = URL.createObjectURL(event.data);
+		           let link = document.createElement("a");
+		           link.target = "_blank";
+		           link.href = url;
+		           link.click(); */
+		
+		        // }
+		         recorder.start(5000);
+    		   
+    		   }
+    	   
+       });
+   }
+    function stop() {
+        recorder.stop();
+      }
+</script>
+</body>
+</html>

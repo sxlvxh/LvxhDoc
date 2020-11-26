@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+<meta charset="utf-8" />
+<title></title>
+</head>
+<bod>
+<h3>搜索按钮参数</h3>
+<section>
+ <pre>
+ {
+	"url": "../platbutton/grid.action",
+	"sort": {
+		"field": "id",
+		"order": "desc"
+	},
+	"css": "btn btn-success btn-white",
+	"img": "glyphicon glyphicon-search btn-white",
+	"paging": true,
+	"enableCheck": [{
+			"field": "menuCode",
+			"rule": [{
+					"rule": "greater",
+					"value": 5
+				}, {
+					"rule": "less",
+					"value": 10
+				}
+			]
+		}, {
+			"field": "priority",
+			"rule": [{
+					"rule": "greater",
+					"value": 10
+				}, {
+					"rule": "less",
+					"value": 13
+				}
+			]
+		}
+	]
+}
+ </pre>
+ </section>
+ <h3>表头参数</h3>
+<section>
+ <pre>
+ {
+	"allCheck":true,
+	"sort":true,
+	"coustomField":true,
+	"serial":true,
+	"background":"#f1f1f1"
+}
+</pre>
+</section>
+ <h3>SELECT参数</h3>
+<section>
+ <pre>
+{
+	"staticResult": [{
+			"value": "",
+			"label": "全部"
+		}
+	],
+	"dynamicResult": {
+		"url": "../platbutton/list.action",
+		"postDynamicParam": [{
+				"nodeType": "elementNode",
+				"postName": "menuCode",
+				"paramNodeName": "menuCode",
+				"pNodeID": "8b7fc1de-333e-4d52-b69e-8013ded8c928"
+			},{
+				"nodeType": "elementNode",
+				"postName": "buttonLevel",
+				"paramNodeName": "buttonLevel",
+				"pNodeID": "8b7fc1de-333e-4d52-b69e-8013ded8c928"
+			}
+		],
+		"postStaticData": {
+			"sort": {
+				"field": "id asc"
+			}
+		},
+		"resData": {
+			"id": "buttonCode",
+			"value": "buttonName"
+		}
+	},
+	"event": [{
+			"name": "change",
+			"func": "changeSelect",
+			"changeNodes":["parentCode"]
+		}
+	]
+}
+</pre>
+</section>
+ <h3>表头参数</h3>
+<section>
+ <pre>
+
+</body>
+</html>

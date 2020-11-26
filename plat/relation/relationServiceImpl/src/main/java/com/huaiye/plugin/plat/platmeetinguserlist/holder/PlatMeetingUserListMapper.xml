@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListHolder">
+		<result column="ID" property="id" />
+		<result column="MEETING_USER_CODE" property="meetingUserCode" />
+		<result column="MEETING_DOMAIN_CODE" property="meetingDomainCode" />
+		<result column="MEETING_JOIN_DOMAIN_CODE" property="meetingJoinDomainCode" />
+		<result column="MEETING_JOIN_USER_CODE" property="meetingJoinUserCode" />
+		<result column="MEETING_ID" property="meetingId" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="JOIN_USER_NAME" property="joinUserName" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`MEETING_USER_CODE`,`MEETING_DOMAIN_CODE`,`MEETING_JOIN_DOMAIN_CODE`,`MEETING_JOIN_USER_CODE`,`MEETING_ID`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`JOIN_USER_NAME`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="meetingUserCode != null and meetingUserCode != ''">
+				and t.`MEETING_USER_CODE` = #{meetingUserCode}
+			</if>
+			<if test="meetingDomainCode != null and meetingDomainCode != ''">
+				and t.`MEETING_DOMAIN_CODE` = #{meetingDomainCode}
+			</if>
+			<if test="meetingJoinDomainCode != null and meetingJoinDomainCode != ''">
+				and t.`MEETING_JOIN_DOMAIN_CODE` = #{meetingJoinDomainCode}
+			</if>
+			<if test="meetingJoinUserCode != null and meetingJoinUserCode != ''">
+				and t.`MEETING_JOIN_USER_CODE` = #{meetingJoinUserCode}
+			</if>
+			<if test="meetingId != null ">
+				and t.`MEETING_ID` = #{meetingId}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="joinUserName != null and joinUserName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`JOIN_USER_NAME` = #{joinUserName}
+					</when>
+					<otherwise>
+				and t.`JOIN_USER_NAME` like concat("%", #{joinUserName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListHolder">
+		insert into plat_meeting_user_list( <include refid="Base_Colnum_List" /> )values( #{id},#{meetingUserCode},#{meetingDomainCode},#{meetingJoinDomainCode},#{meetingJoinUserCode},#{meetingId},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{joinUserName} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListHolder">
+		update plat_meeting_user_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="meetingUserCode != null and meetingUserCode != ''">
+				`MEETING_USER_CODE` = #{meetingUserCode},
+			</if>
+			<if test="meetingDomainCode != null and meetingDomainCode != ''">
+				`MEETING_DOMAIN_CODE` = #{meetingDomainCode},
+			</if>
+			<if test="meetingJoinDomainCode != null and meetingJoinDomainCode != ''">
+				`MEETING_JOIN_DOMAIN_CODE` = #{meetingJoinDomainCode},
+			</if>
+			<if test="meetingJoinUserCode != null and meetingJoinUserCode != ''">
+				`MEETING_JOIN_USER_CODE` = #{meetingJoinUserCode},
+			</if>
+			<if test="meetingId != null ">
+				`MEETING_ID` = #{meetingId},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="joinUserName != null and joinUserName != ''">
+				`JOIN_USER_NAME` = #{joinUserName},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListHolder">
+		delete from plat_meeting_user_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT 
+  A.*,
+  B.NAME AS JOIN_USER_NAME 
+FROM
+  PLAT_MEETING_USER A 
+  LEFT JOIN PLAT_USER B 
+    ON A.MEETING_JOIN_USER_CODE = B.USER_CODE ]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT 
+  A.*,
+  B.NAME AS JOIN_USER_NAME 
+FROM
+  PLAT_MEETING_USER A 
+  LEFT JOIN PLAT_USER B 
+    ON A.MEETING_JOIN_USER_CODE = B.USER_CODE ]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platmeetinguserlist.holder.PlatMeetingUserListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT 
+  A.*,
+  B.NAME AS JOIN_USER_NAME 
+FROM
+  PLAT_MEETING_USER A 
+  LEFT JOIN PLAT_USER B 
+    ON A.MEETING_JOIN_USER_CODE = B.USER_CODE ]]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

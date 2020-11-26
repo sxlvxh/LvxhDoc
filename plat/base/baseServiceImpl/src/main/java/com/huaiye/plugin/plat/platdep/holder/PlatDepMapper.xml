@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platdep.holder.PlatDepMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platdep.holder.PlatDepHolder">
+		<result column="ID" property="id" />
+		<result column="NAME" property="name" />
+		<result column="PARENT_CODE" property="parentCode" />
+		<result column="DEP_TYPE" property="depType" />
+		<result column="PRIORITY" property="priority" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="USER_CODE" property="userCode" />
+		<result column="LEVEL" property="level" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="DEP_CODE" property="depCode" />
+		<result column="DEP_PARAMS" property="depParams" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`NAME`,`PARENT_CODE`,`DEP_TYPE`,`PRIORITY`,`ENT_CODE`,`USER_CODE`,`LEVEL`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`DEP_CODE`,`DEP_PARAMS`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `NAME` = #{name}
+					</when>
+					<otherwise>
+				and `NAME` like concat("%", #{name}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="parentCode != null and parentCode != ''">
+				and `PARENT_CODE` = #{parentCode}
+			</if>
+			<if test="depType != null ">
+				and `DEP_TYPE` = #{depType}
+			</if>
+			<if test="priority != null ">
+				and `PRIORITY` = #{priority}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and `ENT_CODE` = #{entCode}
+			</if>
+			<if test="userCode != null and userCode != ''">
+				and `USER_CODE` = #{userCode}
+			</if>
+			<if test="level != null ">
+				and `LEVEL` = #{level}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="depCode != null and depCode != ''">
+				and `DEP_CODE` = #{depCode}
+			</if>
+			<if test="depParams != null and depParams != ''">
+				and `DEP_PARAMS` = #{depParams}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platdep.holder.PlatDepHolder">
+		insert into plat_dep( <include refid="Base_Colnum_List" /> )values( #{id},#{name},#{parentCode},#{depType},#{priority},#{entCode},#{userCode},#{level},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{depCode},#{depParams} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_dep(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.name},#{log.parentCode},#{log.depType},#{log.priority},#{log.entCode},#{log.userCode},#{log.level},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime},#{log.depCode},#{log.depParams} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platdep.holder.PlatDepHolder">
+		update plat_dep set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="name != null">
+				`NAME` = #{name},
+			</if>
+			<if test="parentCode != null">
+				`PARENT_CODE` = #{parentCode},
+			</if>
+			<if test="depType != null">
+				`DEP_TYPE` = #{depType},
+			</if>
+			<if test="priority != null">
+				`PRIORITY` = #{priority},
+			</if>
+			<if test="entCode != null">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="userCode != null">
+				`USER_CODE` = #{userCode},
+			</if>
+			<if test="level != null">
+				`LEVEL` = #{level},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="depCode != null">
+				`DEP_CODE` = #{depCode},
+			</if>
+			<if test="depParams != null">
+				`DEP_PARAMS` = #{depParams},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platdep.holder.PlatDepHolder">
+		delete from plat_dep <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platdep.holder.PlatDepHolder">
+		select <include refid="Base_Colnum_List" /> from plat_dep <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platdep.holder.PlatDepHolder">
+		select count(1) from (SELECT 1 FROM plat_dep <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platdep.holder.PlatDepHolder">
+		select <include refid="Base_Colnum_List" /> from plat_dep <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

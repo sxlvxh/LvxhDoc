@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platloglist.holder.PlatLogListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platloglist.holder.PlatLogListHolder">
+		<result column="ID" property="id" />
+		<result column="LOG_TYPE" property="logType" />
+		<result column="LOG_HOLDER" property="logHolder" />
+		<result column="LOG_REQ" property="logReq" />
+		<result column="LOG_RESP" property="logResp" />
+		<result column="REMOTE_ADDR" property="remoteAddr" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="CLASS_DESC" property="classDesc" />
+		<result column="OPT_TYPE" property="optType" />
+		<result column="USER_NAME" property="userName" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`LOG_TYPE`,`LOG_HOLDER`,`LOG_REQ`,`LOG_RESP`,`REMOTE_ADDR`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`CLASS_DESC`,`OPT_TYPE`,`USER_NAME`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="logType != null and logType != ''">
+				and t.`LOG_TYPE` = #{logType}
+			</if>
+			<if test="logHolder != null and logHolder != ''">
+				and t.`LOG_HOLDER` = #{logHolder}
+			</if>
+			<if test="logReq != null and logReq != ''">
+				and t.`LOG_REQ` = #{logReq}
+			</if>
+			<if test="logResp != null and logResp != ''">
+				and t.`LOG_RESP` = #{logResp}
+			</if>
+			<if test="remoteAddr != null and remoteAddr != ''">
+				and t.`REMOTE_ADDR` = #{remoteAddr}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="classDesc != null and classDesc != ''">
+				and t.`CLASS_DESC` = #{classDesc}
+			</if>
+			<if test="optType != null and optType != ''">
+				and t.`OPT_TYPE` = #{optType}
+			</if>
+			<if test="userName != null and userName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`USER_NAME` = #{userName}
+					</when>
+					<otherwise>
+				and t.`USER_NAME` like concat("%", #{userName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platloglist.holder.PlatLogListHolder">
+		insert into plat_log_list( <include refid="Base_Colnum_List" /> )values( #{id},#{logType},#{logHolder},#{logReq},#{logResp},#{remoteAddr},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{classDesc},#{optType},#{userName} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platloglist.holder.PlatLogListHolder">
+		update plat_log_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="logType != null and logType != ''">
+				`LOG_TYPE` = #{logType},
+			</if>
+			<if test="logHolder != null and logHolder != ''">
+				`LOG_HOLDER` = #{logHolder},
+			</if>
+			<if test="logReq != null and logReq != ''">
+				`LOG_REQ` = #{logReq},
+			</if>
+			<if test="logResp != null and logResp != ''">
+				`LOG_RESP` = #{logResp},
+			</if>
+			<if test="remoteAddr != null and remoteAddr != ''">
+				`REMOTE_ADDR` = #{remoteAddr},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="classDesc != null and classDesc != ''">
+				`CLASS_DESC` = #{classDesc},
+			</if>
+			<if test="optType != null and optType != ''">
+				`OPT_TYPE` = #{optType},
+			</if>
+			<if test="userName != null and userName != ''">
+				`USER_NAME` = #{userName},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platloglist.holder.PlatLogListHolder">
+		delete from plat_log_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platloglist.holder.PlatLogListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.CLASS_DESC,
+  E.DATA_NAME  AS OPT_TYPE,
+  F.NAME       AS USER_NAME
+FROM PLAT_OPT_LOG A
+  LEFT JOIN PLAT_ATTR B
+    ON B.CLASS_NAME = A.LOG_HOLDER
+      AND B.ATTR_NAME = 'ID'
+  LEFT JOIN PLAT_DICT E
+    ON E.DATA_ID = A.LOG_TYPE
+      AND E.GROUP_ID = 'LOG_TYPE'
+  LEFT JOIN PLAT_USER F
+    ON A.CREATE_USER_ID = F.ID
+    where 1=1   ]]>
+    <if test="createTimeL != null and createTimeL != ''">
+		and A.CREATE_TIME &gt;= #{createTimeL}
+	</if>
+	<if test="createTimeR != null and createTimeR != ''">
+		and A.CREATE_TIME &lt;= #{createTimeR}
+	</if>
+   ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platloglist.holder.PlatLogListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  B.CLASS_DESC,
+  E.DATA_NAME  AS OPT_TYPE,
+  F.NAME       AS USER_NAME
+FROM PLAT_OPT_LOG A
+  LEFT JOIN PLAT_ATTR B
+    ON B.CLASS_NAME = A.LOG_HOLDER
+      AND B.ATTR_NAME = 'ID'
+  LEFT JOIN PLAT_DICT E
+    ON E.DATA_ID = A.LOG_TYPE
+      AND E.GROUP_ID = 'LOG_TYPE'
+  LEFT JOIN PLAT_USER F
+    ON A.CREATE_USER_ID = F.ID]]>
+    <if test="createTimeL != null and createTimeL != ''">
+		and A.CREATE_TIME &gt;= #{createTimeL}
+	</if>
+	<if test="createTimeR != null and createTimeR != ''">
+		and A.CREATE_TIME &lt;= #{createTimeR}
+	</if>
+   ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platloglist.holder.PlatLogListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  B.CLASS_DESC,
+  E.DATA_NAME  AS OPT_TYPE,
+  F.NAME       AS USER_NAME
+FROM PLAT_OPT_LOG A
+  LEFT JOIN PLAT_ATTR B
+    ON B.CLASS_NAME = A.LOG_HOLDER
+      AND B.ATTR_NAME = 'ID'
+  LEFT JOIN PLAT_DICT E
+    ON E.DATA_ID = A.LOG_TYPE
+      AND E.GROUP_ID = 'LOG_TYPE'
+  LEFT JOIN PLAT_USER F
+    ON A.CREATE_USER_ID = F.ID]]>
+    <if test="createTimeL != null and createTimeL != ''">
+		and A.CREATE_TIME &gt;= #{createTimeL}
+	</if>
+	<if test="createTimeR != null and createTimeR != ''">
+		and A.CREATE_TIME &lt;= #{createTimeR}
+	</if>
+   ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

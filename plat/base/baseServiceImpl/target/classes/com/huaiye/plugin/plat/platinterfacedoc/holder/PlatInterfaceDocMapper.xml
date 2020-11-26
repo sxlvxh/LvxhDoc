@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocHolder">
+		<result column="ID" property="id" />
+		<result column="NAME" property="name" />
+		<result column="INTFC_GROUP" property="intfcGroup" />
+		<result column="REQ_URL" property="reqUrl" />
+		<result column="REQ_WAY" property="reqWay" />
+		<result column="INTFC_DESC" property="intfcDesc" />
+		<result column="REQ_PARAMS_DESC" property="reqParamsDesc" />
+		<result column="REQ_PARAMS" property="reqParams" />
+		<result column="RESP_PARAMS" property="respParams" />
+		<result column="RESP_PARAMS_DESC" property="respParamsDesc" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`NAME`,`INTFC_GROUP`,`REQ_URL`,`REQ_WAY`,`INTFC_DESC`,`REQ_PARAMS_DESC`,`REQ_PARAMS`,`RESP_PARAMS`,`RESP_PARAMS_DESC`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `NAME` = #{name}
+					</when>
+					<otherwise>
+				and `NAME` like concat("%", #{name}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="intfcGroup != null and intfcGroup != ''">
+				and `INTFC_GROUP` = #{intfcGroup}
+			</if>
+			<if test="reqUrl != null and reqUrl != ''">
+				and `REQ_URL` = #{reqUrl}
+			</if>
+			<if test="reqWay != null and reqWay != ''">
+				and `REQ_WAY` = #{reqWay}
+			</if>
+			<if test="intfcDesc != null and intfcDesc != ''">
+				and `INTFC_DESC` = #{intfcDesc}
+			</if>
+			<if test="reqParamsDesc != null and reqParamsDesc != ''">
+				and `REQ_PARAMS_DESC` = #{reqParamsDesc}
+			</if>
+			<if test="reqParams != null and reqParams != ''">
+				and `REQ_PARAMS` = #{reqParams}
+			</if>
+			<if test="respParams != null and respParams != ''">
+				and `RESP_PARAMS` = #{respParams}
+			</if>
+			<if test="respParamsDesc != null and respParamsDesc != ''">
+				and `RESP_PARAMS_DESC` = #{respParamsDesc}
+			</if>
+			<if test="isdel != null ">
+				and `ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and `CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and `UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and `CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and `CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and `CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and `UPDATE_TIME` = #{updateTime}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocHolder">
+		insert into plat_interface_doc( <include refid="Base_Colnum_List" /> )values( #{id},#{name},#{intfcGroup},#{reqUrl},#{reqWay},#{intfcDesc},#{reqParamsDesc},#{reqParams},#{respParams},#{respParamsDesc},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_interface_doc(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.name},#{log.intfcGroup},#{log.reqUrl},#{log.reqWay},#{log.intfcDesc},#{log.reqParamsDesc},#{log.reqParams},#{log.respParams},#{log.respParamsDesc},#{log.isdel},#{log.createUserId},#{log.updateUserId},#{log.createTime},#{log.updateTime} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocHolder">
+		update plat_interface_doc set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="name != null">
+				`NAME` = #{name},
+			</if>
+			<if test="intfcGroup != null">
+				`INTFC_GROUP` = #{intfcGroup},
+			</if>
+			<if test="reqUrl != null">
+				`REQ_URL` = #{reqUrl},
+			</if>
+			<if test="reqWay != null">
+				`REQ_WAY` = #{reqWay},
+			</if>
+			<if test="intfcDesc != null">
+				`INTFC_DESC` = #{intfcDesc},
+			</if>
+			<if test="reqParamsDesc != null">
+				`REQ_PARAMS_DESC` = #{reqParamsDesc},
+			</if>
+			<if test="reqParams != null">
+				`REQ_PARAMS` = #{reqParams},
+			</if>
+			<if test="respParams != null">
+				`RESP_PARAMS` = #{respParams},
+			</if>
+			<if test="respParamsDesc != null">
+				`RESP_PARAMS_DESC` = #{respParamsDesc},
+			</if>
+			<if test="isdel != null">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocHolder">
+		delete from plat_interface_doc <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocHolder">
+		select <include refid="Base_Colnum_List" /> from plat_interface_doc <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocHolder">
+		select count(1) from (SELECT 1 FROM plat_interface_doc <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platinterfacedoc.holder.PlatInterfaceDocHolder">
+		select <include refid="Base_Colnum_List" /> from plat_interface_doc <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListHolder">
+		<result column="ID" property="id" />
+		<result column="SOFT_CODE" property="softCode" />
+		<result column="SOFT_NAME" property="softName" />
+		<result column="SOFT_TYPE" property="softType" />
+		<result column="SOFT_DESC" property="softDesc" />
+		<result column="SOFT_IMG" property="softImg" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="FILE_PATH" property="filePath" />
+		<result column="MANDATORY" property="mandatory" />
+		<result column="VERSION" property="version" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="PRE_VERSION" property="preVersion" />
+		<result column="SOFT_TYPE_NAME" property="softTypeName" />
+		<result column="FILE_PATH_TYPE_NAME" property="filePathTypeName" />
+		<result column="MANDATORY_NAME" property="mandatoryName" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`SOFT_CODE`,`SOFT_NAME`,`SOFT_TYPE`,`SOFT_DESC`,`SOFT_IMG`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`FILE_PATH`,`MANDATORY`,`VERSION`,`DESCRIPTION`,`PRE_VERSION`,`SOFT_TYPE_NAME`,`FILE_PATH_TYPE_NAME`,`MANDATORY_NAME`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="softCode != null and softCode != ''">
+				and t.`SOFT_CODE` = #{softCode}
+			</if>
+			<if test="softName != null and softName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`SOFT_NAME` = #{softName}
+					</when>
+					<otherwise>
+				and t.`SOFT_NAME` like concat("%", #{softName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="softType != null and softType != ''">
+				and t.`SOFT_TYPE` = #{softType}
+			</if>
+			<if test="softDesc != null and softDesc != ''">
+				and t.`SOFT_DESC` = #{softDesc}
+			</if>
+			<if test="softImg != null and softImg != ''">
+				and t.`SOFT_IMG` = #{softImg}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="filePath != null and filePath != ''">
+				and t.`FILE_PATH` = #{filePath}
+			</if>
+			<if test="mandatory != null ">
+				and t.`MANDATORY` = #{mandatory}
+			</if>
+			<if test="version != null and version != ''">
+				and t.`VERSION` = #{version}
+			</if>
+			<if test="description != null and description != ''">
+				and t.`DESCRIPTION` = #{description}
+			</if>
+			<if test="preVersion != null and preVersion != ''">
+				and t.`PRE_VERSION` = #{preVersion}
+			</if>
+			<if test="softTypeName != null and softTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`SOFT_TYPE_NAME` = #{softTypeName}
+					</when>
+					<otherwise>
+				and t.`SOFT_TYPE_NAME` like concat("%", #{softTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="filePathTypeName != null and filePathTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`FILE_PATH_TYPE_NAME` = #{filePathTypeName}
+					</when>
+					<otherwise>
+				and t.`FILE_PATH_TYPE_NAME` like concat("%", #{filePathTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="mandatoryName != null and mandatoryName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`MANDATORY_NAME` = #{mandatoryName}
+					</when>
+					<otherwise>
+				and t.`MANDATORY_NAME` like concat("%", #{mandatoryName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListHolder">
+		insert into plat_soft_list( <include refid="Base_Colnum_List" /> )values( #{id},#{softCode},#{softName},#{softType},#{softDesc},#{softImg},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{filePath},#{mandatory},#{version},#{description},#{preVersion},#{softTypeName},#{filePathTypeName},#{mandatoryName} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListHolder">
+		update plat_soft_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="softCode != null and softCode != ''">
+				`SOFT_CODE` = #{softCode},
+			</if>
+			<if test="softName != null and softName != ''">
+				`SOFT_NAME` = #{softName},
+			</if>
+			<if test="softType != null and softType != ''">
+				`SOFT_TYPE` = #{softType},
+			</if>
+			<if test="softDesc != null and softDesc != ''">
+				`SOFT_DESC` = #{softDesc},
+			</if>
+			<if test="softImg != null and softImg != ''">
+				`SOFT_IMG` = #{softImg},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="filePath != null and filePath != ''">
+				`FILE_PATH` = #{filePath},
+			</if>
+			<if test="mandatory != null ">
+				`MANDATORY` = #{mandatory},
+			</if>
+			<if test="version != null and version != ''">
+				`VERSION` = #{version},
+			</if>
+			<if test="description != null and description != ''">
+				`DESCRIPTION` = #{description},
+			</if>
+			<if test="preVersion != null and preVersion != ''">
+				`PRE_VERSION` = #{preVersion},
+			</if>
+			<if test="softTypeName != null and softTypeName != ''">
+				`SOFT_TYPE_NAME` = #{softTypeName},
+			</if>
+			<if test="filePathTypeName != null and filePathTypeName != ''">
+				`FILE_PATH_TYPE_NAME` = #{filePathTypeName},
+			</if>
+			<if test="mandatoryName != null and mandatoryName != ''">
+				`MANDATORY_NAME` = #{mandatoryName},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListHolder">
+		delete from plat_soft_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  C.FILE_PATH,
+  C.MANDATORY,
+  C.VERSION,
+  C.DESCRIPTION,
+  C.PRE_VERSION,
+  B.DATA_NAME   AS SOFT_TYPE_NAME,
+  E.DATA_NAME   AS FILE_PATH_TYPE_NAME,
+  F.DATA_NAME AS MANDATORY_NAME
+FROM PLAT_SOFT A
+  LEFT JOIN PLAT_SOFT_VERSION C
+    ON C.ACTIVE = 0
+      AND C.SOFT_CODE = A.SOFT_CODE
+  LEFT JOIN PLAT_DICT B
+    ON A.SOFT_TYPE = B.DATA_ID
+      AND B.GROUP_ID = 'SOFT_TYPE'
+  LEFT JOIN PLAT_DICT E
+    ON C.FILE_PATH_TYPE = E.DATA_ID
+      AND E.GROUP_ID = 'FILE_PATH_TYPE'
+ LEFT JOIN PLAT_DICT F
+    ON C.MANDATORY = F.DATA_ID
+      AND F.GROUP_ID = 'YES_OR_NO']]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  A.*,
+  C.FILE_PATH,
+  C.MANDATORY,
+  C.VERSION,
+  C.DESCRIPTION,
+  C.PRE_VERSION,
+  B.DATA_NAME   AS SOFT_TYPE_NAME,
+  E.DATA_NAME   AS FILE_PATH_TYPE_NAME,
+  F.DATA_NAME AS MANDATORY_NAME
+FROM PLAT_SOFT A
+  LEFT JOIN PLAT_SOFT_VERSION C
+    ON C.ACTIVE = 0
+      AND C.SOFT_CODE = A.SOFT_CODE
+  LEFT JOIN PLAT_DICT B
+    ON A.SOFT_TYPE = B.DATA_ID
+      AND B.GROUP_ID = 'SOFT_TYPE'
+  LEFT JOIN PLAT_DICT E
+    ON C.FILE_PATH_TYPE = E.DATA_ID
+      AND E.GROUP_ID = 'FILE_PATH_TYPE'
+ LEFT JOIN PLAT_DICT F
+    ON C.MANDATORY = F.DATA_ID
+      AND F.GROUP_ID = 'YES_OR_NO']]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platsoftlist.holder.PlatSoftListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  A.*,
+  C.FILE_PATH,
+  C.MANDATORY,
+  C.VERSION,
+  C.DESCRIPTION,
+  C.PRE_VERSION,
+  B.DATA_NAME   AS SOFT_TYPE_NAME,
+  E.DATA_NAME   AS FILE_PATH_TYPE_NAME,
+  F.DATA_NAME AS MANDATORY_NAME
+FROM PLAT_SOFT A
+  LEFT JOIN PLAT_SOFT_VERSION C
+    ON C.ACTIVE = 0
+      AND C.SOFT_CODE = A.SOFT_CODE
+  LEFT JOIN PLAT_DICT B
+    ON A.SOFT_TYPE = B.DATA_ID
+      AND B.GROUP_ID = 'SOFT_TYPE'
+  LEFT JOIN PLAT_DICT E
+    ON C.FILE_PATH_TYPE = E.DATA_ID
+      AND E.GROUP_ID = 'FILE_PATH_TYPE'
+ LEFT JOIN PLAT_DICT F
+    ON C.MANDATORY = F.DATA_ID
+      AND F.GROUP_ID = 'YES_OR_NO']]>) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

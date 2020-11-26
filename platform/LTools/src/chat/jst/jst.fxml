@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="486.0" prefWidth="938.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.jst.JstController">
+   <children>
+      <Label layoutX="43.0" layoutY="37.0" text="数据库IP" />
+      <Label layoutX="43.0" layoutY="81.0" text="数据库名称" />
+      <Label layoutX="43.0" layoutY="119.0" text="账号" />
+      <Label layoutX="43.0" layoutY="157.0" text="密码" />
+      <TextField fx:id="dbIP" layoutX="118.0" layoutY="33.0" />
+      <TextField fx:id="dbName" layoutX="118.0" layoutY="77.0" />
+      <TextField fx:id="dbUser" layoutX="118.0" layoutY="115.0" />
+      <PasswordField fx:id="dbPwd" layoutX="118.0" layoutY="153.0" />
+      <Button fx:id="testBtn" layoutX="118.0" layoutY="263.0" mnemonicParsing="false" onAction="#testEvent" text="测试连接" />
+      <Button fx:id="saveBtn" layoutX="191.0" layoutY="263.0" mnemonicParsing="false" onAction="#saveEvent" text="导入" />
+      <Label layoutX="40.0" layoutY="192.0" text="原始数据" />
+      <TextField fx:id="filePath" layoutX="118.0" layoutY="188.0" />
+      <Button fx:id="selectFile" layoutX="284.0" layoutY="188.0" mnemonicParsing="false" onAction="#fileChooser" text="选择" />
+      <TextArea fx:id="resultContent" layoutX="402.0" layoutY="19.0" prefHeight="414.0" prefWidth="504.0" />
+      <Button fx:id="del" layoutX="252.0" layoutY="263.0" mnemonicParsing="false" text="删除老数据" onAction="#removeEvent" />
+   </children>
+</AnchorPane>

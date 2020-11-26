@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		<result column="ID" property="id" />
+		<result column="NAME" property="name" />
+		<result column="LOGIN_NAME" property="loginName" />
+		<result column="PASSWORD" property="password" />
+		<result column="ADDRESS" property="address" />
+		<result column="MOBILE_PHONE" property="mobilePhone" />
+		<result column="EMAIL" property="email" />
+		<result column="SEX" property="sex" />
+		<result column="LOGIN_ERROR_TIMES" property="loginErrorTimes" />
+		<result column="LAST_LOGIN_TIME" property="lastLoginTime" />
+		<result column="ISDEL" property="isdel" />
+		<result column="CREATE_USER_ID" property="createUserId" />
+		<result column="UPDATE_USER_ID" property="updateUserId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ENT_CODE" property="entCode" />
+		<result column="JOB_CODE" property="jobCode" />
+		<result column="ISCHARGE" property="ischarge" />
+		<result column="EXT_NUMBER" property="extNumber" />
+		<result column="JOB_NO" property="jobNo" />
+		<result column="AGE" property="age" />
+		<result column="BIRTHDAY" property="birthday" />
+		<result column="IMG_URL" property="imgUrl" />
+		<result column="ID_NUMBER" property="idNumber" />
+		<result column="ID_TYPE" property="idType" />
+		<result column="TELEPHONE" property="telephone" />
+		<result column="IS_PASSWORD_EMPTY" property="isPasswordEmpty" />
+		<result column="USER_TYPE" property="userType" />
+		<result column="USER_SERVICE_TYPE" property="userServiceType" />
+		<result column="USER_DEP_CODE" property="userDepCode" />
+		<result column="REMARK" property="remark" />
+		<result column="USER_CODE" property="userCode" />
+		<result column="USER_PARAMS" property="userParams" />
+		<result column="ENT_NAME" property="entName" />
+		<result column="ENT_PARAMS" property="entParams" />
+		<result column="SEX_NAME" property="sexName" />
+		<result column="JOB_NAME" property="jobName" />
+		<result column="ISCHARGE_NAME" property="ischargeName" />
+		<result column="ID_TYPE_NAME" property="idTypeName" />
+		<result column="USER_TYPE_NAME" property="userTypeName" />
+		<result column="USER_SERVICE_TYPE_NAME" property="userServiceTypeName" />
+		<result column="ROLE_NAMES" property="roleNames" />
+		<result column="DEP_NAME" property="depName" />
+		<result column="ACTIVE_ENT_CODE" property="activeEntCode" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`NAME`,`LOGIN_NAME`,`PASSWORD`,`ADDRESS`,`MOBILE_PHONE`,`EMAIL`,`SEX`,`LOGIN_ERROR_TIMES`,`LAST_LOGIN_TIME`,`ISDEL`,`CREATE_USER_ID`,`UPDATE_USER_ID`,`CREATE_TIME`,`UPDATE_TIME`,`ENT_CODE`,`JOB_CODE`,`ISCHARGE`,`EXT_NUMBER`,`JOB_NO`,`AGE`,`BIRTHDAY`,`IMG_URL`,`ID_NUMBER`,`ID_TYPE`,`TELEPHONE`,`IS_PASSWORD_EMPTY`,`USER_TYPE`,`USER_SERVICE_TYPE`,`USER_DEP_CODE`,`REMARK`,`USER_CODE`,`USER_PARAMS`,`ENT_NAME`,`ENT_PARAMS`,`SEX_NAME`,`JOB_NAME`,`ISCHARGE_NAME`,`ID_TYPE_NAME`,`USER_TYPE_NAME`,`USER_SERVICE_TYPE_NAME`,`ROLE_NAMES`,`DEP_NAME`,`ACTIVE_ENT_CODE`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and t.`ID` = #{id}
+			</if>
+			<if test="name != null and name != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`NAME` = #{name}
+					</when>
+					<otherwise>
+				and t.`NAME` like concat("%", #{name}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="loginName != null and loginName != ''">
+				and t.`LOGIN_NAME` = #{loginName}
+			</if>
+			<if test="password != null and password != ''">
+				and t.`PASSWORD` = #{password}
+			</if>
+			<if test="address != null and address != ''">
+				and t.`ADDRESS` = #{address}
+			</if>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				and t.`MOBILE_PHONE` = #{mobilePhone}
+			</if>
+			<if test="email != null and email != ''">
+				and t.`EMAIL` = #{email}
+			</if>
+			<if test="sex != null ">
+				and t.`SEX` = #{sex}
+			</if>
+			<if test="loginErrorTimes != null ">
+				and t.`LOGIN_ERROR_TIMES` = #{loginErrorTimes}
+			</if>
+			<if test="lastLoginTime != null and lastLoginTime != ''">
+				and t.`LAST_LOGIN_TIME` = #{lastLoginTime}
+			</if>
+			<if test="lastLoginTimeL != null and lastLoginTimeL != ''">
+				and t.`LAST_LOGIN_TIME` &gt;= #{lastLoginTimeL}
+			</if>
+			<if test="lastLoginTimeR != null and lastLoginTimeR != ''">
+				and t.`LAST_LOGIN_TIME` &lt;= #{lastLoginTimeR}
+			</if>
+			<if test="isdel != null ">
+				and t.`ISDEL` = #{isdel}
+			</if>
+			<if test="createUserId != null ">
+				and t.`CREATE_USER_ID` = #{createUserId}
+			</if>
+			<if test="updateUserId != null ">
+				and t.`UPDATE_USER_ID` = #{updateUserId}
+			</if>
+			<if test="createTime != null and createTime != ''">
+				and t.`CREATE_TIME` = #{createTime}
+			</if>
+			<if test="createTimeL != null and createTimeL != ''">
+				and t.`CREATE_TIME` &gt;= #{createTimeL}
+			</if>
+			<if test="createTimeR != null and createTimeR != ''">
+				and t.`CREATE_TIME` &lt;= #{createTimeR}
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				and t.`UPDATE_TIME` = #{updateTime}
+			</if>
+			<if test="entCode != null and entCode != ''">
+				and t.`ENT_CODE` = #{entCode}
+			</if>
+			<if test="jobCode != null and jobCode != ''">
+				and t.`JOB_CODE` = #{jobCode}
+			</if>
+			<if test="ischarge != null ">
+				and t.`ISCHARGE` = #{ischarge}
+			</if>
+			<if test="extNumber != null ">
+				and t.`EXT_NUMBER` = #{extNumber}
+			</if>
+			<if test="jobNo != null and jobNo != ''">
+				and t.`JOB_NO` = #{jobNo}
+			</if>
+			<if test="age != null ">
+				and t.`AGE` = #{age}
+			</if>
+			<if test="birthday != null and birthday != ''">
+				and t.`BIRTHDAY` = #{birthday}
+			</if>
+			<if test="birthdayL != null and birthdayL != ''">
+				and t.`BIRTHDAY` &gt;= #{birthdayL}
+			</if>
+			<if test="birthdayR != null and birthdayR != ''">
+				and t.`BIRTHDAY` &lt;= #{birthdayR}
+			</if>
+			<if test="imgUrl != null and imgUrl != ''">
+				and t.`IMG_URL` = #{imgUrl}
+			</if>
+			<if test="idNumber != null and idNumber != ''">
+				and t.`ID_NUMBER` = #{idNumber}
+			</if>
+			<if test="idType != null ">
+				and t.`ID_TYPE` = #{idType}
+			</if>
+			<if test="telephone != null and telephone != ''">
+				and t.`TELEPHONE` = #{telephone}
+			</if>
+			<if test="isPasswordEmpty != null ">
+				and t.`IS_PASSWORD_EMPTY` = #{isPasswordEmpty}
+			</if>
+			<if test="userType != null ">
+				and t.`USER_TYPE` = #{userType}
+			</if>
+			<if test="userServiceType != null and userServiceType != ''">
+				and t.`USER_SERVICE_TYPE` = #{userServiceType}
+			</if>
+			<if test="userDepCode != null and userDepCode != ''">
+				and t.`USER_DEP_CODE` = #{userDepCode}
+			</if>
+			<if test="remark != null and remark != ''">
+				and t.`REMARK` = #{remark}
+			</if>
+			<if test="userCode != null and userCode != ''">
+				and t.`USER_CODE` = #{userCode}
+			</if>
+			<if test="userParams != null and userParams != ''">
+				and t.`USER_PARAMS` = #{userParams}
+			</if>
+			<if test="entName != null and entName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ENT_NAME` = #{entName}
+					</when>
+					<otherwise>
+				and t.`ENT_NAME` like concat("%", #{entName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="entParams != null and entParams != ''">
+				and t.`ENT_PARAMS` = #{entParams}
+			</if>
+			<if test="sexName != null and sexName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`SEX_NAME` = #{sexName}
+					</when>
+					<otherwise>
+				and t.`SEX_NAME` like concat("%", #{sexName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="jobName != null and jobName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`JOB_NAME` = #{jobName}
+					</when>
+					<otherwise>
+				and t.`JOB_NAME` like concat("%", #{jobName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="ischargeName != null and ischargeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ISCHARGE_NAME` = #{ischargeName}
+					</when>
+					<otherwise>
+				and t.`ISCHARGE_NAME` like concat("%", #{ischargeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="idTypeName != null and idTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ID_TYPE_NAME` = #{idTypeName}
+					</when>
+					<otherwise>
+				and t.`ID_TYPE_NAME` like concat("%", #{idTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="userTypeName != null and userTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`USER_TYPE_NAME` = #{userTypeName}
+					</when>
+					<otherwise>
+				and t.`USER_TYPE_NAME` like concat("%", #{userTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="userServiceTypeName != null and userServiceTypeName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`USER_SERVICE_TYPE_NAME` = #{userServiceTypeName}
+					</when>
+					<otherwise>
+				and t.`USER_SERVICE_TYPE_NAME` like concat("%", #{userServiceTypeName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="roleNames != null and roleNames != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`ROLE_NAMES` = #{roleNames}
+					</when>
+					<otherwise>
+				and t.`ROLE_NAMES` like concat("%", #{roleNames}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="depName != null and depName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and t.`DEP_NAME` = #{depName}
+					</when>
+					<otherwise>
+				and t.`DEP_NAME` like concat("%", #{depName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		insert into plat_user_list( <include refid="Base_Colnum_List" /> )values( #{id},#{name},#{loginName},#{password},#{address},#{mobilePhone},#{email},#{sex},#{loginErrorTimes},#{lastLoginTime},#{isdel},#{createUserId},#{updateUserId},#{createTime},#{updateTime},#{entCode},#{jobCode},#{ischarge},#{extNumber},#{jobNo},#{age},#{birthday},#{imgUrl},#{idNumber},#{idType},#{telephone},#{isPasswordEmpty},#{userType},#{userServiceType},#{userDepCode},#{remark},#{userCode},#{userParams},#{entName},#{entParams},#{sexName},#{jobName},#{ischargeName},#{idTypeName},#{userTypeName},#{userServiceTypeName},#{roleNames},#{depName},#{activeEntCode} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		update plat_user_list set
+		<trim suffixOverrides=",">
+			<if test="id != null ">
+				`ID` = #{id},
+			</if>
+			<if test="name != null and name != ''">
+				`NAME` = #{name},
+			</if>
+			<if test="loginName != null and loginName != ''">
+				`LOGIN_NAME` = #{loginName},
+			</if>
+			<if test="password != null and password != ''">
+				`PASSWORD` = #{password},
+			</if>
+			<if test="address != null and address != ''">
+				`ADDRESS` = #{address},
+			</if>
+			<if test="mobilePhone != null and mobilePhone != ''">
+				`MOBILE_PHONE` = #{mobilePhone},
+			</if>
+			<if test="email != null and email != ''">
+				`EMAIL` = #{email},
+			</if>
+			<if test="sex != null ">
+				`SEX` = #{sex},
+			</if>
+			<if test="loginErrorTimes != null ">
+				`LOGIN_ERROR_TIMES` = #{loginErrorTimes},
+			</if>
+			<if test="lastLoginTime != null and lastLoginTime != ''">
+				`LAST_LOGIN_TIME` = #{lastLoginTime},
+			</if>
+			<if test="isdel != null ">
+				`ISDEL` = #{isdel},
+			</if>
+			<if test="createUserId != null ">
+				`CREATE_USER_ID` = #{createUserId},
+			</if>
+			<if test="updateUserId != null ">
+				`UPDATE_USER_ID` = #{updateUserId},
+			</if>
+			<if test="createTime != null and createTime != ''">
+				`CREATE_TIME` = #{createTime},
+			</if>
+			<if test="updateTime != null and updateTime != ''">
+				`UPDATE_TIME` = #{updateTime},
+			</if>
+			<if test="entCode != null and entCode != ''">
+				`ENT_CODE` = #{entCode},
+			</if>
+			<if test="jobCode != null and jobCode != ''">
+				`JOB_CODE` = #{jobCode},
+			</if>
+			<if test="ischarge != null ">
+				`ISCHARGE` = #{ischarge},
+			</if>
+			<if test="extNumber != null ">
+				`EXT_NUMBER` = #{extNumber},
+			</if>
+			<if test="jobNo != null and jobNo != ''">
+				`JOB_NO` = #{jobNo},
+			</if>
+			<if test="age != null ">
+				`AGE` = #{age},
+			</if>
+			<if test="birthday != null and birthday != ''">
+				`BIRTHDAY` = #{birthday},
+			</if>
+			<if test="imgUrl != null and imgUrl != ''">
+				`IMG_URL` = #{imgUrl},
+			</if>
+			<if test="idNumber != null and idNumber != ''">
+				`ID_NUMBER` = #{idNumber},
+			</if>
+			<if test="idType != null ">
+				`ID_TYPE` = #{idType},
+			</if>
+			<if test="telephone != null and telephone != ''">
+				`TELEPHONE` = #{telephone},
+			</if>
+			<if test="isPasswordEmpty != null ">
+				`IS_PASSWORD_EMPTY` = #{isPasswordEmpty},
+			</if>
+			<if test="userType != null ">
+				`USER_TYPE` = #{userType},
+			</if>
+			<if test="userServiceType != null and userServiceType != ''">
+				`USER_SERVICE_TYPE` = #{userServiceType},
+			</if>
+			<if test="userDepCode != null and userDepCode != ''">
+				`USER_DEP_CODE` = #{userDepCode},
+			</if>
+			<if test="remark != null and remark != ''">
+				`REMARK` = #{remark},
+			</if>
+			<if test="userCode != null and userCode != ''">
+				`USER_CODE` = #{userCode},
+			</if>
+			<if test="userParams != null and userParams != ''">
+				`USER_PARAMS` = #{userParams},
+			</if>
+			<if test="entName != null and entName != ''">
+				`ENT_NAME` = #{entName},
+			</if>
+			<if test="entParams != null and entParams != ''">
+				`ENT_PARAMS` = #{entParams},
+			</if>
+			<if test="sexName != null and sexName != ''">
+				`SEX_NAME` = #{sexName},
+			</if>
+			<if test="jobName != null and jobName != ''">
+				`JOB_NAME` = #{jobName},
+			</if>
+			<if test="ischargeName != null and ischargeName != ''">
+				`ISCHARGE_NAME` = #{ischargeName},
+			</if>
+			<if test="idTypeName != null and idTypeName != ''">
+				`ID_TYPE_NAME` = #{idTypeName},
+			</if>
+			<if test="userTypeName != null and userTypeName != ''">
+				`USER_TYPE_NAME` = #{userTypeName},
+			</if>
+			<if test="userServiceTypeName != null and userServiceTypeName != ''">
+				`USER_SERVICE_TYPE_NAME` = #{userServiceTypeName},
+			</if>
+			<if test="roleNames != null and roleNames != ''">
+				`ROLE_NAMES` = #{roleNames},
+			</if>
+			<if test="depName != null and depName != ''">
+				`DEP_NAME` = #{depName},
+			</if>
+			<if test="activeEntCode != null and activeEntCode != ''">
+				`ACTIVE_ENT_CODE` = #{activeEntCode},
+			</if>
+		</trim>
+		where t.ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		delete from plat_user_list <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  a.*,
+  b.ENT_NAME,
+  b.ENT_PARAMS,
+  c.DATA_NAME  AS sex_name,
+  D.JOB_NAME,
+  E.DATA_NAME  AS ISCHARGE_NAME,
+  F.DATA_NAME  AS ID_TYPE_NAME,
+  G.DATA_NAME  AS USER_TYPE_NAME,
+  H.DATA_NAME  AS USER_SERVICE_TYPE_NAME,
+  j.role_names,
+  I.NAME       AS DEP_NAME,
+  ''           AS active_ent_code
+FROM ( SELECT * FROM plat_user ]]> 
+	     <if test="activeEntCode != null and activeEntCode != ''">
+					WHERE FIND_IN_SET(ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+		</if>
+	<![CDATA[) a
+  LEFT JOIN plat_ent b
+    ON a.ENT_CODE = b.ENT_CODE
+  LEFT JOIN plat_dict c
+    ON c.DATA_ID = a.SEX
+      AND c.GROUP_ID = 'sex'
+  LEFT JOIN plat_job d
+    ON a.JOB_CODE = D.JOB_CODE
+  LEFT JOIN plat_dict E
+    ON E.DATA_ID = A.ISCHARGE
+      AND E.GROUP_ID = 'YES_OR_NO'
+  LEFT JOIN plat_dict F
+    ON F.DATA_ID = A.ID_TYPE
+      AND F.GROUP_ID = 'ID_TYPE'
+  LEFT JOIN plat_dict G
+    ON G.DATA_ID = A.USER_TYPE
+      AND G.GROUP_ID = 'USER_TYPE'
+  LEFT JOIN plat_dict H
+    ON H.DATA_ID = A.USER_SERVICE_TYPE
+      AND H.GROUP_ID = 'USER_SERVICE_TYPE'
+  LEFT JOIN plat_dep I
+    ON I.DEP_CODE = A.USER_DEP_CODE
+  LEFT JOIN (SELECT
+               a1.USER_CODE,
+               GROUP_CONCAT(b1.ROLE_NAME) AS role_names
+             FROM plat_user_role a1,
+               plat_role b1
+             WHERE a1.ROLE_ID = b1.ID
+             GROUP BY a1.USER_CODE) j
+    ON j.user_code = a.USER_CODE
+    ]]>
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		select count(1) from (SELECT 1 FROM (<![CDATA[SELECT
+  a.*,
+  b.ENT_NAME,
+  b.ENT_PARAMS,
+  c.DATA_NAME  AS sex_name,
+  D.JOB_NAME,
+  E.DATA_NAME  AS ISCHARGE_NAME,
+  F.DATA_NAME  AS ID_TYPE_NAME,
+  G.DATA_NAME  AS USER_TYPE_NAME,
+  H.DATA_NAME  AS USER_SERVICE_TYPE_NAME,
+  j.role_names,
+  I.NAME       AS DEP_NAME,
+  ''           AS active_ent_code
+FROM ( SELECT * FROM plat_user ]]> 
+	     <if test="activeEntCode != null and activeEntCode != ''">
+					WHERE FIND_IN_SET(ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+		</if>
+	<![CDATA[) a
+  LEFT JOIN plat_ent b
+    ON a.ENT_CODE = b.ENT_CODE
+  LEFT JOIN plat_dict c
+    ON c.DATA_ID = a.SEX
+      AND c.GROUP_ID = 'sex'
+  LEFT JOIN plat_job d
+    ON a.JOB_CODE = D.JOB_CODE
+  LEFT JOIN plat_dict E
+    ON E.DATA_ID = A.ISCHARGE
+      AND E.GROUP_ID = 'YES_OR_NO'
+  LEFT JOIN plat_dict F
+    ON F.DATA_ID = A.ID_TYPE
+      AND F.GROUP_ID = 'ID_TYPE'
+  LEFT JOIN plat_dict G
+    ON G.DATA_ID = A.USER_TYPE
+      AND G.GROUP_ID = 'USER_TYPE'
+  LEFT JOIN plat_dict H
+    ON H.DATA_ID = A.USER_SERVICE_TYPE
+      AND H.GROUP_ID = 'USER_SERVICE_TYPE'
+  LEFT JOIN plat_dep I
+    ON I.DEP_CODE = A.USER_DEP_CODE
+  LEFT JOIN (SELECT
+               a1.USER_CODE,
+               GROUP_CONCAT(b1.ROLE_NAME) AS role_names
+             FROM plat_user_role a1,
+               plat_role b1
+             WHERE a1.ROLE_ID = b1.ID
+             GROUP BY a1.USER_CODE) j
+    ON j.user_code = a.USER_CODE
+    ]]>
+    ) t  <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  a.*,
+  b.ENT_NAME,
+  b.ENT_PARAMS,
+  c.DATA_NAME  AS sex_name,
+  D.JOB_NAME,
+  E.DATA_NAME  AS ISCHARGE_NAME,
+  F.DATA_NAME  AS ID_TYPE_NAME,
+  G.DATA_NAME  AS USER_TYPE_NAME,
+  H.DATA_NAME  AS USER_SERVICE_TYPE_NAME,
+  j.role_names,
+  I.NAME       AS DEP_NAME,
+  ''           AS active_ent_code
+FROM ( SELECT * FROM plat_user ]]> 
+	     <if test="activeEntCode != null and activeEntCode != ''">
+					WHERE FIND_IN_SET(ENT_CODE,GET_CHILD_ENT(#{activeEntCode}))
+		</if>
+	<![CDATA[) a
+  LEFT JOIN plat_ent b
+    ON a.ENT_CODE = b.ENT_CODE
+  LEFT JOIN plat_dict c
+    ON c.DATA_ID = a.SEX
+      AND c.GROUP_ID = 'sex'
+  LEFT JOIN plat_job d
+    ON a.JOB_CODE = D.JOB_CODE
+  LEFT JOIN plat_dict E
+    ON E.DATA_ID = A.ISCHARGE
+      AND E.GROUP_ID = 'YES_OR_NO'
+  LEFT JOIN plat_dict F
+    ON F.DATA_ID = A.ID_TYPE
+      AND F.GROUP_ID = 'ID_TYPE'
+  LEFT JOIN plat_dict G
+    ON G.DATA_ID = A.USER_TYPE
+      AND G.GROUP_ID = 'USER_TYPE'
+  LEFT JOIN plat_dict H
+    ON H.DATA_ID = A.USER_SERVICE_TYPE
+      AND H.GROUP_ID = 'USER_SERVICE_TYPE'
+  LEFT JOIN plat_dep I
+    ON I.DEP_CODE = A.USER_DEP_CODE
+  LEFT JOIN (SELECT
+               a1.USER_CODE,
+               GROUP_CONCAT(b1.ROLE_NAME) AS role_names
+             FROM plat_user_role a1,
+               plat_role b1
+             WHERE a1.ROLE_ID = b1.ID
+             GROUP BY a1.USER_CODE) j
+    ON j.user_code = a.USER_CODE
+    ]]>
+    ) t <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by t.${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+		<select id="getListByUserCode" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platuserlist.holder.PlatUserListHolder">
+		select <include refid="Base_Colnum_List" /> from (<![CDATA[SELECT
+  a.*,
+  b.ENT_NAME,
+  b.ENT_PARAMS,
+  c.DATA_NAME  AS sex_name,
+  D.JOB_NAME,
+  E.DATA_NAME  AS ISCHARGE_NAME,
+  F.DATA_NAME  AS ID_TYPE_NAME,
+  G.DATA_NAME  AS USER_TYPE_NAME,
+  H.DATA_NAME  AS USER_SERVICE_TYPE_NAME,
+  j.role_names,
+  I.NAME       AS DEP_NAME,
+  ''           AS active_ent_code
+FROM ( SELECT * FROM plat_user ]]> 
+	     <if test="userCode != null and userCode != ''">
+			WHERE USER_CODE in (${userCode})
+		</if>
+	<![CDATA[) a
+  LEFT JOIN plat_ent b
+    ON a.ENT_CODE = b.ENT_CODE
+  LEFT JOIN plat_dict c
+    ON c.DATA_ID = a.SEX
+      AND c.GROUP_ID = 'sex'
+  LEFT JOIN plat_job d
+    ON a.JOB_CODE = D.JOB_CODE
+  LEFT JOIN plat_dict E
+    ON E.DATA_ID = A.ISCHARGE
+      AND E.GROUP_ID = 'YES_OR_NO'
+  LEFT JOIN plat_dict F
+    ON F.DATA_ID = A.ID_TYPE
+      AND F.GROUP_ID = 'ID_TYPE'
+  LEFT JOIN plat_dict G
+    ON G.DATA_ID = A.USER_TYPE
+      AND G.GROUP_ID = 'USER_TYPE'
+  LEFT JOIN plat_dict H
+    ON H.DATA_ID = A.USER_SERVICE_TYPE
+      AND H.GROUP_ID = 'USER_SERVICE_TYPE'
+  LEFT JOIN plat_dep I
+    ON I.DEP_CODE = A.USER_DEP_CODE
+  LEFT JOIN (SELECT
+               a1.USER_CODE,
+               GROUP_CONCAT(b1.ROLE_NAME) AS role_names
+             FROM plat_user_role a1,
+               plat_role b1
+             WHERE a1.ROLE_ID = b1.ID
+             GROUP BY a1.USER_CODE) j
+    ON j.user_code = a.USER_CODE
+    ]]>
+    ) t 
+	</select> 
+	
+</mapper>  

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobMapper">
+	
+	<resultMap id="BaseResultMap" type="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobHolder">
+		<result column="ID" property="id" />
+		<result column="GROUP_NAME" property="groupName" />
+		<result column="JOB_NAME" property="jobName" />
+		<result column="CLASS_NAME" property="className" />
+		<result column="METHOD_NAME" property="methodName" />
+		<result column="CRON_EXP" property="cronExp" />
+		<result column="DELAY_SECOND" property="delaySecond" />
+		<result column="ENABLE" property="enable" />
+		<result column="PARAMS" property="params" />
+		<result column="REMARK" property="remark" />
+	</resultMap>
+	
+	<sql id="Base_Colnum_List">
+		`ID`,`GROUP_NAME`,`JOB_NAME`,`CLASS_NAME`,`METHOD_NAME`,`CRON_EXP`,`DELAY_SECOND`,`ENABLE`,`PARAMS`,`REMARK`
+	</sql>
+	
+	<sql id="Where_Clause">
+		<trim suffixOverrides="and | or">
+			<if test="id != null ">
+				and `ID` = #{id}
+			</if>
+			<if test="groupName != null and groupName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `GROUP_NAME` = #{groupName}
+					</when>
+					<otherwise>
+				and `GROUP_NAME` like concat("%", #{groupName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="jobName != null and jobName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `JOB_NAME` = #{jobName}
+					</when>
+					<otherwise>
+				and `JOB_NAME` like concat("%", #{jobName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="className != null and className != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `CLASS_NAME` = #{className}
+					</when>
+					<otherwise>
+				and `CLASS_NAME` like concat("%", #{className}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="methodName != null and methodName != ''">
+				<choose>
+					<when test="nofuzzy == 1">
+				and `METHOD_NAME` = #{methodName}
+					</when>
+					<otherwise>
+				and `METHOD_NAME` like concat("%", #{methodName}, "%") 
+					</otherwise>
+				</choose>
+			</if>
+			<if test="cronExp != null and cronExp != ''">
+				and `CRON_EXP` = #{cronExp}
+			</if>
+			<if test="delaySecond != null ">
+				and `DELAY_SECOND` = #{delaySecond}
+			</if>
+			<if test="enable != null ">
+				and `ENABLE` = #{enable}
+			</if>
+			<if test="params != null and params != ''">
+				and `PARAMS` = #{params}
+			</if>
+			<if test="remark != null and remark != ''">
+				and `REMARK` = #{remark}
+			</if>
+		</trim>
+	</sql>
+	
+	<sql id="Delete_Clause">
+		where <trim prefixOverrides="and | or"><include refid="Where_Clause" /></trim>
+	</sql>
+	
+	<insert id="insert" parameterType="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobHolder">
+		insert into plat_schedule_job( <include refid="Base_Colnum_List" /> )values( #{id},#{groupName},#{jobName},#{className},#{methodName},#{cronExp},#{delaySecond},#{enable},#{params},#{remark} )
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey></insert>
+	
+	<insert id="insertBatch">
+		insert into plat_schedule_job(<include refid="Base_Colnum_List" />)
+		VALUES
+		<foreach collection="list" item="log" separator=",">  
+		(#{log.id},#{log.groupName},#{log.jobName},#{log.className},#{log.methodName},#{log.cronExp},#{log.delaySecond},#{log.enable},#{log.params},#{log.remark} )
+		</foreach>
+	<selectKey keyProperty="id" resultType="java.lang.Integer">	select LAST_INSERT_ID() as id  </selectKey>
+	</insert>
+	
+	<update id="update" parameterType="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobHolder">
+		update plat_schedule_job set
+		<trim suffixOverrides=",">
+			<if test="id != null">
+				`ID` = #{id},
+			</if>
+			<if test="groupName != null">
+				`GROUP_NAME` = #{groupName},
+			</if>
+			<if test="jobName != null">
+				`JOB_NAME` = #{jobName},
+			</if>
+			<if test="className != null">
+				`CLASS_NAME` = #{className},
+			</if>
+			<if test="methodName != null">
+				`METHOD_NAME` = #{methodName},
+			</if>
+			<if test="cronExp != null">
+				`CRON_EXP` = #{cronExp},
+			</if>
+			<if test="delaySecond != null">
+				`DELAY_SECOND` = #{delaySecond},
+			</if>
+			<if test="enable != null">
+				`ENABLE` = #{enable},
+			</if>
+			<if test="params != null">
+				`PARAMS` = #{params},
+			</if>
+			<if test="remark != null">
+				`REMARK` = #{remark},
+			</if>
+		</trim>
+		where ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobHolder">
+		delete from plat_schedule_job <include refid="Delete_Clause" />
+	</delete>
+	
+	<sql id="Query_Clause">
+		where 1=1 <include refid="Where_Clause" />
+	</sql>
+	
+	<select id="getList" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobHolder">
+		select <include refid="Base_Colnum_List" /> from plat_schedule_job <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if> 
+	</select> 
+
+	<select id="getCountOfSummary" resultType="int" parameterType="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobHolder">
+		select count(1) from (SELECT 1 FROM plat_schedule_job <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> ) temp
+	</select> 
+
+	<select id="getListOfSummary" resultMap="BaseResultMap" parameterType="com.huaiye.plugin.plat.platschedulejob.holder.PlatScheduleJobHolder">
+		select <include refid="Base_Colnum_List" /> from plat_schedule_job <include refid="Query_Clause" />
+		<if test="groupBy != null and groupBy != ''"> 
+			group by ${groupBy}
+		</if> 
+		<if test="sort != null and sort != ''"> 
+			order by ${sort.field} ${sort.order} 
+		</if>
+		limit ${pages.startNo},${pages.pageSize} 
+	</select>
+	
+</mapper>  

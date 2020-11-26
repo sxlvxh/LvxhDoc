@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="513.0" prefWidth="612.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chat.coder.UpdateSqlController">
+   <children>
+      <Label layoutX="38.0" layoutY="18.0" text="描述" />
+      <TextField fx:id="sqlDesc" layoutX="135.0" layoutY="14.0" prefHeight="23.0" prefWidth="165.0" />
+      <Label layoutX="38.0" layoutY="51.0" text="类名称" />
+      <TextField fx:id="className" layoutX="135.0" layoutY="44.0" prefHeight="23.0" prefWidth="165.0" />
+      <Label layoutX="325.0" layoutY="18.0" text="虚拟表名称" />
+      <TextField fx:id="tableName" layoutX="421.0" layoutY="14.0" prefHeight="23.0" prefWidth="165.0" />
+      <Label layoutX="38.0" layoutY="84.0" text="SQL语句" />
+      <TextArea fx:id="strSql" layoutX="135.0" layoutY="79.0" prefHeight="390.0" prefWidth="450.0" />
+      <Label layoutX="326.0" layoutY="48.0" text="模块" />
+      <Label fx:id="modelSqlId" layoutX="421.0" layoutY="44.0" prefHeight="23.0" prefWidth="165.0" />
+      <Button fx:id="cancelBtn" layoutX="342.0" layoutY="480.0" mnemonicParsing="false" onAction="#cancelProjectModel" text="取消" />
+      <Button fx:id="saveBtn" layoutX="295.0" layoutY="480.0" mnemonicParsing="false" onAction="#saveProjectModel" text="保存" />
+   </children>
+</AnchorPane>
