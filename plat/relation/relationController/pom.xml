@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.lvxh.plugin.plat</groupId>
     <artifactId>relation</artifactId>
-    <version>V100R001C03-SNAPSHOT</version>
+    <version>LVXH-V100-SNAPSHOT</version>
   </parent>
   <artifactId>relationController</artifactId>
   <name>relationController</name>
@@ -17,7 +17,7 @@
     <dependency>
       <groupId>com.lvxh.plugin.plat</groupId>
       <artifactId>relationService</artifactId>
-      <version>V100R001C03-SNAPSHOT</version>
+      <version>LVXH-V100-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

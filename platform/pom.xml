@@ -5,7 +5,7 @@
     <groupId>com.lvxh.plugin.platform</groupId>  
     <artifactId>platform</artifactId>  
 	<packaging>pom</packaging> 
-    <version>V100R003C02-SNAPSHOT</version>   
+    <version>LVXH-V100-SNAPSHOT</version>   
     <distributionManagement>
 		<snapshotRepository>
             <id>snapshots</id>
@@ -23,6 +23,6 @@
     <module>platformService</module>
     <module>platformServiceImpl</module>
     <module>license</module>
-    <module>wsgateway</module>
+  <!--   <module>wsgateway</module> -->
   </modules>
 </project>

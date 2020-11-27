@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.lvxh.plugin.platform</groupId>
 	<artifactId>mynetty</artifactId>
-	<version>V100R003C03-SNAPSHOT</version>
+	<version>LVXH-V100-SNAPSHOT</version>
 	<name>mynetty</name>
 	<url>http://maven.apache.org</url>
 	<properties>

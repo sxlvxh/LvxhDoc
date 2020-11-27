@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.lvxh.plugin.plat</groupId>
 		<artifactId>utils</artifactId>
-		<version>V100R001C03-SNAPSHOT</version>
+		<version>LVXH-V100-SNAPSHOT</version>
 	</parent>
 	<artifactId>docUtils</artifactId>
 	<name>docUtils</name>

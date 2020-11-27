@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.lvxh.plugin.plat</groupId>
 		<artifactId>utils</artifactId>
-		<version>V100R001C03-SNAPSHOT</version>
+		<version>LVXH-V100-SNAPSHOT</version>
 	</parent>
 	<artifactId>fileWeb</artifactId>
 	<packaging>war</packaging>
@@ -20,17 +20,17 @@
 		<dependency>
 			<groupId>com.lvxh.plugin.platform</groupId>
 			<artifactId>mynetty</artifactId>
-			<version>V100R003C03-SNAPSHOT</version>
+			<version>LVXH-V100-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.lvxh.plugin.plat</groupId>
 			<artifactId>baseService</artifactId>
-			<version>V100R001C03-SNAPSHOT</version>
+			<version>LVXH-V100-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.lvxh.plugin.plat</groupId>
 			<artifactId>relationService</artifactId>
-			<version>V100R001C03-SNAPSHOT</version>
+			<version>LVXH-V100-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jodconverter</groupId>

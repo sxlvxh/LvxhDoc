@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.lvxh.plugin.platform</groupId>
 		<artifactId>platform</artifactId>
-		<version>V100R003C02-SNAPSHOT</version>
+		<version>LVXH-V100-SNAPSHOT</version>
 	</parent>
 	<artifactId>platformService</artifactId>
 	<name>platformService</name>
@@ -300,7 +300,7 @@
 		<dependency>
 			<groupId>com.lvxh.plugin.platform</groupId>
 			<artifactId>license</artifactId>
-			<version>V100R003C02-SNAPSHOT</version>
+			<version>LVXH-V100-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

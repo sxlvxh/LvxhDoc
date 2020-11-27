@@ -5,7 +5,7 @@
    <parent>
 		<groupId>com.lvxh.plugin.plat</groupId>
 		<artifactId>plat</artifactId>
-		<version>V100R001C03-SNAPSHOT</version>
+		<version>LVXH-V100-SNAPSHOT</version>
 	</parent>
 	<packaging>pom</packaging>      
     <artifactId>base</artifactId>
