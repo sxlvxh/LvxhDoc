@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#fff;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+
+</style>
+</head>
+<body>
+<h3>查询按钮参数说明</h3>
+<section>
+<pre>
+  略
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>url</td><td>查询接口地址</td></tr>
+ <tr><td>sort</td><td>排序规则</td></tr>
+ <tr><td>css</td><td>按钮样式</td></tr>
+ <tr><td>img</td><td>按钮图标样式</td></tr>
+ <tr><td>paging</td><td>是否加载分页插件</td></tr>
+ <tr><td>enableCheck</td><td>多选框显示规则</td></tr>
+</table>
+</section>
+
+
+<h4>参数实例</h4>
+<section>
+<pre>
+ {
+	"url": "../platuserlist/grid.action",
+	"sort": {
+		"field": "id",
+		"order": "desc"
+	},
+	"css": "btn btn-white btn-success",
+	"img": "glyphicon glyphicon-search btn-white",
+	"paging": true,
+	"enableCheck": [{
+			"field": "id",
+			"rule": [{
+					"rule": "equal",
+					"value": 1
+				}
+			]
+		}
+	]
+}
+</pre>
+</section>
+
+
+</body>
+</html>

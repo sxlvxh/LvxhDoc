@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+    <p>
+    // 使用jquery的ajax方法发送请求，如果是跨域请求，服务端返回的响应头需要包含允许跨域访问的声明：
+    Access-Control-Allow-Origin:*
+    </p>
+
+    测试接口地址：<input placeholder="请输入API地址" id="ajax_test_api" value="http://localhost" style="width:800px;font-size:12px;padding:3px;margin-top:20px;"></input><br/><br/>
+    发送类型：<input type="radio" checked id="ajax_test_type" name="ajax_test_type" value="POST" style="display:inline-block;margin-right:5px;" >POST
+    <input type="radio" id="ajax_test_type" name="ajax_test_type" value="GET" style="margin-left:20px;margin-right:5px;">GET<br/><br/>
+    <label for="ajax_test_post_header">Post请求头(header)：JSON格式</label><br>
+    <textarea id="ajax_test_post_header" style="width: 60%;">{"Content-Type":"application/json"}</textarea><br><br/>
+    <label for="ajax_test_post_body">Post请求内容(body)：</label><br>
+    <textarea id="ajax_test_post_body" style="width: 60%;"></textarea><br>
+    <button id="ajax_test_btn_send" style="padding:3px 10px 3px 10px;">发送</button>
+    <div id="ajax_test_result" style="margin-top:10px; border:1px solid #eee;padding:10px;"></div>
+    <script src="http://192.168.2.169/hyui/public/js/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("#ajax_test_btn_send").click(function() {
+                var api = $("#ajax_test_api").val();
+                var type = $("#ajax_test_type").val();
+                var body = $("#ajax_test_post_body").val();
+                if (api == "") {
+                    alert("接口地址不可为空");
+                    return;
+                }
+                var sendParam = {
+                    url: api ,
+                    type: type,
+                    dataType: "json",
+                    beforeSend: function(xhr) {
+                        var headerContent = $("#ajax_test_post_header").val();
+                        if (headerContent != "") {
+                            try {
+                                var headerObj = JSON.parse(headerContent);
+                                for (var key in headerObj) {
+                                    xhr.setRequestHeader(key, headerObj[key]);
+                                }
+                            } catch (e) {
+                                console.log("http header set failed:");
+                                console.log(e);
+                            }
+                        }
+                    }
+                };
+                if (type == "POST" && body != "") {
+                    sendParam.data = body;
+                }
+                $.ajax(sendParam).done(function(response) {
+                    $("#ajax_test_result").text(JSON.stringify(response));
+                }).fail(function(error) {
+                    console.log(error);
+                    $("#ajax_test_result").text(error.status + ":" + error.statusText);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<title>fmp4 player</title>  
+</head>
+<body>
+
+ 
+   <script type="text/javascript" src="hyplayer.js" ></script>  
+  
+   <div class="wsplayer">
+   <video id="video1" width="1280" height="720" controls="controls" autoplay="autoplay"></video>
+   </div>
+
+    <script>
+ 
+	window.onload = function () {	
+        var video1 = document.getElementById('video1');
+	video1.addEventListener('error',function(e){ console.error(e); });
+       var player = new hyplayer("ws://192.168.2.202:5080","rtsp://192.168.2.198:554/2268/rtsp:////192.168.2.99:554/Streaming/Channels/101?transportmode=unicast&profile=Profile_1?BitRate=2048;FrameRate=25;IFrame=25;DmgType=2258",video1);    
+        player.openws();
+    };
+
+ 
+    </script>
+	
+</body>
+</html>

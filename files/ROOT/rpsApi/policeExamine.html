@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>审核警力报备</h3>
+<section>
+<pre>
+审核警力报备
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+http://192.168.2.107:8080/rps-war/rpspolicereport/examine.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>id</td><td>记录ID</td></tr>
+ <tr><td>examineDesc</td><td>审核描述</td></tr>
+</table>
+</section>
+
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+    "id": 2,
+    "examineDesc": "dddddd"
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "更新成功"
+}
+</pre>
+</section>
+
+</body>
+</html>

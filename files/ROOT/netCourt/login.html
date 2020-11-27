@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>互联网法庭接口文档</title>
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+ boyd,html{
+  width:100%;
+  height: 100%;
+ }
+</style>
+</head>
+<body>
+<h4>接口说明</h4>
+<section>
+<pre>
+ 账号登陆，用于用户初次登陆系统鉴权使用。
+</pre>
+</section>
+<h4>请求路径 【<color style='color:red'>HTTP+JSON</color>】</h4>
+<section>
+<pre>
+ https://127.0.0.1:39290/platWeb/main/appLogin.action  
+</pre>
+</section>
+
+<h4>请求参数说明</h4>
+<section>
+<pre>
+mobilePhone:登陆用户的手机号码  <color style='color:blue'>与loginName参数二选一</color>
+loginName：用户账号   <color style='color:blue'>与mobilePhone参数二选一</color>
+password:用户账号的登陆密码   <color style='color:red'>必填参数</color>
+</pre>
+</section>
+
+<h4>请求参数示例</h4>
+<section>
+<pre>
+{
+	"mobilePhone": "13913017145",
+	"password": "123456"
+}
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+<pre>
+menu_list：菜单集合
+      menuType： <color style='color:red'> 菜单类型  1 web界面 2 手机app 3 web通讯录  4 pc客户端 </color>
+platConfig：系统配置
+   platEnt：企业参数
+          entCode：企业编号
+          entName：企业名称
+          entParams：企业参数 <color style='color:red'>内容为该企业的流媒体服务器配置参数 json字符串</color>
+   filesServerVisit：文件服务器地址
+loing_user：用户属性
+    "name": 名称,
+    "loginName": 登陆账号,           
+    "address": 地址,
+    "mobilePhone": 手机号码,
+    "entCode": 用户所在的企业编号,          
+    "imgUrl": 用户图标   <color style='color:red'>需要配合文件服务器地址使用</color>,          
+    "userDepCode": 用户部门编号,
+    "userCode": 用户唯一标识,
+</pre>
+</section>
+<h4>返回参数示例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "成功！",
+    "obj": {
+        "menu_list": [
+            {
+                "id": 1,               
+                "menuCode": "1001",
+                "name": "系统管理",
+                "description": "系统管理(平台)",
+                "menuUrl": "",              
+                "imgUrl": "/userfiles/lvxh/20191127/4152ef9f85ae4542b03c4f1582781283.jpg", 
+                "menuType": 1              
+            }
+        ],
+        "platConfig": {
+            "platEnt": {              
+                "id": 320101,
+                "entCode": "A320101",
+                "entName": "南京市总队",               
+                "shortName": "总队",               
+                "entParams": "{\r\n\t\"intranet\": \"192.168.2.198\",\r\n\t\"intranetPort\": 9001,\r\n\t\"extranet\": \"192.168.2.198\",\r\n\t\"extranetPort\": 9001,\t\r\n}"
+            },
+            "filesServerVisit": "http://192.168.2.111:39290/fileServer/plat/"           
+        },
+        "loing_user": {           
+            "id": 2,            
+            "name": "吕孝怀",
+            "loginName": "lvxh1",           
+            "address": "",
+            "mobilePhone": "13913017146",
+            "email": "",
+            "sex": 1,
+            "entCode": "A320101",          
+            "imgUrl": "/userfiles/lvxh/20191127/4152ef9f85ae4542b03c4f1582781283.jpg",          
+            "userDepCode": "9b3e50737b0043238d1aac3ff4d2d93c",
+            "userCode": "4a5aa5e418f3410194d6856103ad0bc7",
+            "sexName": "男",          
+            "idTypeName": "身份证",
+            "userTypeName": "技术员",
+            "userServiceTypeName": "执行人",
+            "roleNames": "系统管理员",
+            "depName": "开发部"           
+        }
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

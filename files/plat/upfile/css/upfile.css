@@ -1,0 +1,12 @@
+.proc-container{
+	border:1px solid #DDD; 
+	height:16px;
+	float:left;
+}
+.proc-button{
+	float:left;
+	margin-left:10px;
+}
+.proc-container-div{
+	height:30px;
+}

@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+.room-left{
+	float: left;
+	width:20%;
+	background: rgba(22, 98, 250, 0.15);
+	border: 1px solid #0A4A96;
+}
+
+.room-tree, .room-player-warp{
+	height: 100%;
+}
+.room-player-warp{
+	height: 100%;
+	float: left;
+	width:80%;
+}
+
+.record-row{
+	height: 30px;
+	line-height: 30px;
+	text-indent: 10px;
+	cursor: pointer;
+	border-bottom:1px solid rgba(0,216,255,.65);
+}
+.record-row:hover{
+	background: #4D6878;
+}
+
+.record-row-active{
+	background: #4D6878;
+}
+
+
+.rdShowBtn{
+	width: 20px;
+	background: red;
+	position: absolute;
+	top: 50%;
+	left: -20px;
+	padding: 6px;
+	text-align: center;	
+	margin-top: -60px;
+	cursor: pointer;
+}
+
+.search-warp{
+	width: 100%;
+	height:	32px;
+	margin-bottom: 10px;
+	background: rgba(255, 255, 255, 0);
+	border: 1px solid #4499FA;
+	border-radius: 16px;
+}
+.search-warp input{
+	width:90%;
+	height: 100%;
+	background: rgba(255, 255, 255, 0);
+	border: none;
+	text-indent: 14px;
+}
+.search-warp img{
+	width: 20px;
+	height: 20px;
+	cursor: pointer;
+}
+
+/*********************************观摩****************************/
+.court-player, .court-watch-info{
+	float: left;
+	width:calc(100%- 420px);
+	height: 100%;
+	box-sizing: border-box;
+	background: rgba(21, 97, 250, 0.15);
+	border: 1px solid #094A96;
+}
+.court-watch-info{
+	margin-left: 30px;
+	width:390px;
+}
+
+
+.no-skin .nav-list > li .tanspColor > li > a{
+	color: transparent!important;
+}
+

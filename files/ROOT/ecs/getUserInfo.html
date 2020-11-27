@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>根据userCode和domainCode获取人员信息</h3>
+<section>
+<pre>
+ 根据userCode和domainCode获取人员信息
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+ https://192.168.2.132:8280/platWeb/platgroupuser/list.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+
+<table>
+ <tr><td>domainCode </td><td>用户的域编码</td></tr>
+  <tr><td>userCode </td><td>用户的userCode </td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+[{
+		"domainCode" : "f079595d296b",
+		"userCode" : "29c31e9fa1f1448583348636fda3e8fe"
+	}
+]
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "result": [
+        {
+            "treeList": [],
+            "nofuzzy": 0,
+            "negativeFields": [],
+            "domainCode": "f079595d296b",
+            "name": "张磊1",
+            "password": null,
+            "imgUrl": "http://192.168.2.150:8280/fileServer/plat//theme/default//images/man.png",//用户头像
+            "userType": 1,
+            "userCode": "29c31e9fa1f1448583348636fda3e8fe",
+            "userTypeName": "技术员",
+            "userServiceTypeName": "执行人"
+        },
+        {
+            "treeList": [],
+            "nofuzzy": 0,
+            "negativeFields": [],
+            "domainCode": "f079595d296b",
+            "name": "季芳芳",
+            "password": null,
+            "imgUrl": "http://192.168.2.150:8280/fileServer/plat//theme/default//images/man.png",
+            "userType": 2,
+            "userCode": "88748784a24f43b982c0436c9f1b6bf6",
+            "userTypeName": "管理者",
+            "userServiceTypeName": "法官"
+        }
+    ]
+}
+</pre>
+</section>
+
+</body>
+</html>

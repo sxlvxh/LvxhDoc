@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>增加监督检查</h3>
+<section>
+<pre>
+ 增加监督检查
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+http://192.168.2.107:8080/rps-war/rpscheck/add.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+  <tr><td>entCode</td><td>企业编号(登录人的企业编号，可不用显示)</td></tr>
+  <tr><td>deptId</td><td>部门ID(登录人的部门ID,可不用显示)</td></tr>
+  <tr><td>checkType</td><td>监测类型：0 默认类型 <color style='color:red'> 通过查询数据字典获取 </color></td></tr>
+  <tr><td>list</td><td>文件列表  <color style='color:red'> 数组，多条记录 </color></td><td>
+     <table>
+		 <tr><td>fileUrl</td><td>String<td><td>文件相对路径 </td></tr>
+		 <tr><td>fileType</td><td>int<td><td>文件类型 1 图片 2 视频 3 音频</td></tr>
+   </table>
+  </td></tr>
+  <tr><td>checkDesc</td><td>检查内容</td></tr>
+  <tr><td>checkResp</td><td>检查结果</td></tr>
+  <tr><td>checkTime</td><td>检查时间</td></tr>
+  <tr><td>checkUserId</td><td>检查人员id(登录人的用户id，可不用显示)</td></tr>
+</table>
+</section>
+
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+    "entCode": "10000",
+    "deptId": "10200020",
+    "checkType": "0",
+    "list": [{"fileUrl":"d/ss/sss","fileType":1},{"fileUrl":"c/ss/sss","fileType":1}],
+    "checkDesc": "本次检查涉及XXXXXX",
+    "checkResp": "本次检查最终结果是A+",
+    "checkTime": "2020-05-19 10:10:10",
+    "checkUserId": "1"
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "添加成功"
+}
+</pre>
+</section>
+
+</body>
+</html>

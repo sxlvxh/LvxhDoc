@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#fff;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>业务系统接口</h3>
+<section>
+<pre>
+1. 业务服务器在影视频客户端配置业务服务器唯一请求地址
+2. 接口鉴权，使用Session校验模式
+3. 除登录接口之外的接口均需要在消息头增加SessionID参数
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+http://127.0.0.1:39290/platWeb/three/service.action  
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>method</td><td>接口路由方法  <color style='color:red'>【业务服务器根据此方法来处理相应的业务逻辑】</color></td></tr>
+ <tr><td>params</td><td>根据接口路由方法配置不同的参数 </td></tr>
+</table>
+</section>
+
+<h4>method参数说明</h4>
+<section>
+<table>
+ <tr><td>accountLogin</td><td>账号登录</td><td></td><td><a href="accountLogin.html">参数说明</a></td></tr> 
+ <tr><td>authLogin</td><td>授权码登录</td><td></td><td><a href="authLogin.html">参数说明</a></td></tr> 
+ <tr><td>memberList</td><td>根据业务码获取参会成员列表</td><td>需要sessionID</td><td><a href="memberList.html">参数说明</a></td></tr> 
+ <tr><td>memberDetail</td><td>根据用户码获取参会成员详情</td><td>需要sessionID</td><td><a href="memberDetail.html">参数说明</a></td></tr> 
+</table>
+</section>
+
+<h4>请求头参数说明</h4>
+<section>
+http header 增加 Cookie: JSESSIONID=DFEEF6EE6A0F3D0ED230CC0ECBDEFE0E
+此sessionID为登录返回的SessionID
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+ {
+	"method": "accountLogin",
+	"params": {...}
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+ {
+	"code": 0,
+	"desc": "成功！",
+	"result": {...}
+}
+</pre>
+</section>
+
+</body>
+</html>

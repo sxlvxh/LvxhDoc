@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+table
+{
+ width:100%;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title">根据保障任务类型查询电子围栏</span></div>
+<div class="content">
+		<section>
+	<DIV id="confbutton_list_params" class="params_div">
+		<table border="1">
+			<tr><td class="td-title" style="background-color:blue;color:#fff" >请求路径：</td><td colspan="4">/cgtasktemptree/getAreaListByTask.action</td></tr>
+			<tr style="color:red;">
+			    <td>接口使用说明：</td>
+			    <td colspan="4">保障任务地图左侧围栏按钮</td>
+			</tr>
+			<tr><td>请求参数描述</td></tr>
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >请求JSON：</td>
+				<td colspan="4">
+				  <pre>
+{
+    "entCode": "320101",   //单位编码，必填
+    "deptId": 320101,      //部门ID，非必填
+    "cgTemplateType":"1",  //任务类型，1日常任务，2保障任务，3临时任务4上报事件5渣土管控，必填
+    "classify":"" ,         //保障任务类型，cgTemplateType为2时必填，1扫雪防冻2国家公祭日3灯会保障4防汛保障
+    "areaType":"1"
+}
+				  </pre>
+				</td>
+			</tr>
+			
+			<tr><td class="td-title" id="confbutton_list_params_out">返回参数描述：</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>code</td>
+			    <td>int</td>
+			    <td></td>
+			    <td>返回码 0：成功 1：失败</td>
+			</tr>
+	        <tr>
+			    <td>result</td>
+			    <td>List</td>
+			    <td></td>
+			    <td>围栏类型集合</td>
+			</tr>
+		
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >返回JSON：</td>
+				<td colspan="4">
+				 <pre>
+{
+    "code": 0,
+    "desc": "查询成功",
+    "result": [
+        {
+            "createTime": "2019-01-16 15:58:32",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 620,
+            "isdel": 0,
+            "updateTime": "2019-01-16 17:10:42",
+            "updateUserId": 13003459,
+            "entCode": "320101",
+            "deptId": 320101,
+            "title": "南京市-大区域",
+            "shortName": "大区域",
+            "areaType": "5",
+            "shapeType": "3",
+            "polygons": "118.704567,32.076383;118.767808,32.080788;118.778156,32.050923;118.708017,32.045292;118.706292,32.045537",
+            "fenceStyle": "dashed|#ff0000|2|0.6|#ff0000|0.2",
+            "remark": "",
+            "radius": 0,
+            "lng": 118.732968,
+            "lat": 32.0597846,
+            "tags": ""
+        },
+        {
+            "createTime": "2019-01-16 15:59:32",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 621,
+            "isdel": 0,
+            "updateTime": "2019-01-16 17:10:57",
+            "updateUserId": 13003459,
+            "entCode": "320101",
+            "deptId": 320101,
+            "title": "小区域-01",
+            "shortName": "小区域",
+            "areaType": "1",
+            "shapeType": "3",
+            "polygons": "118.777847,32.036616;118.772098,32.018494;118.789346,32.003797;118.834189,32.003062;118.833327,32.023637;118.818379,32.036616;118.804868,32.037841",
+            "fenceStyle": "dashed|#ff0000|2|0.6|#ff0000|0.2",
+            "remark": "",
+            "radius": 0,
+            "lng": 118.8042934,
+            "lat": 32.0228661,
+            "tags": "",
+            "postId": 620
+        },
+        {
+            "createTime": "2019-01-16 16:00:13",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 622,
+            "isdel": 0,
+            "updateTime": "2019-01-16 17:11:05",
+            "updateUserId": 13003459,
+            "entCode": "320101",
+            "deptId": 320101,
+            "title": "岗点",
+            "shortName": "岗点1",
+            "areaType": "2",
+            "shapeType": "5",
+            "polygons": "",
+            "fenceStyle": "solid||1|0||0",
+            "remark": "",
+            "radius": 0,
+            "lng": 118.796784,
+            "lat": 32.023142,
+            "tags": "exame_point",
+            "postId": 620
+        },
+        {
+            "createTime": "2019-01-16 16:01:16",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 626,
+            "isdel": 0,
+            "updateTime": "2019-01-16 16:01:24",
+            "updateUserId": 1,
+            "entCode": "320101",
+            "deptId": 320101,
+            "title": "岗点2",
+            "shortName": "岗点2",
+            "areaType": "2",
+            "shapeType": "5",
+            "polygons": "",
+            "fenceStyle": "solid||1|0||0",
+            "remark": "",
+            "radius": 0,
+            "lng": 118.764337,
+            "lat": 32.005314,
+            "tags": "university"
+        },
+        {
+            "createTime": "2019-01-16 16:41:30",
+            "createUserId": 13001440,
+            "nofuzzy": 0,
+            "id": 632,
+            "isdel": 0,
+            "entCode": "320101",
+            "deptId": 320101,
+            "title": "gmgjm",
+            "shortName": "gmgjm",
+            "areaType": "4",
+            "shapeType": "4",
+            "polygons": "118.673213,32.122105;118.679393,32.112685;118.681549,32.1051;118.686005,32.098127;118.68931,32.095924",
+            "fenceStyle": "dashed|#ff0000|5|0.6||undefined",
+            "remark": "",
+            "radius": 0,
+            "lng": 118.681894,
+            "lat": 32.1067882,
+            "tags": ""
+        },
+        {
+            "createTime": "2019-01-16 17:16:13",
+            "createUserId": 13003459,
+            "nofuzzy": 0,
+            "id": 638,
+            "isdel": 0,
+            "entCode": "320101",
+            "deptId": 320101,
+            "title": "小区域-01-01",
+            "shortName": "小区域-01-01",
+            "areaType": "1",
+            "shapeType": "3",
+            "polygons": "118.71779,32.129604;118.769245,32.115415;118.706292,32.069407;118.774994,32.05178;118.775282,32.051291",
+            "fenceStyle": "dashed|#ff0000|2|0.6|#ff0000|0.2",
+            "remark": "",
+            "radius": 0,
+            "lng": 118.7487206,
+            "lat": 32.0834994,
+            "tags": "",
+            "postId": 621
+        }
+    ]
+}
+				 </pre>
+				</td>
+			</tr>
+		</table>
+		<script>
+			document.getElementById("confbutton_list_params_in").rowSpan = 25;
+			document.getElementById("confbutton_list_params_out").rowSpan = 27;
+		</script>
+	</DIV>
+</section>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>互联网法庭接口文档</title>
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+
+</style>
+</head>
+<body>
+<h4>接口说明</h4>
+<section>
+<pre>
+  JS调用客户端方法，用于web界面通知客户端处理业务方法
+</pre>
+</section>
+<h4>方法名称 【<color style='color:red'>方法调用</color>】</h4>
+<section>
+<pre>
+  jsToCs(params);
+</pre>
+</section>
+
+<h4>请求参数</h4>
+<section>
+<pre>
+ params 为业务需要json字符串
+ reqType 为数字 
+ 		1：开庭
+		2： 更改庭审状态
+		3：加入庭审
+		4：调用CS发送透传消息的方法 （举证质证页面使用）
+		6:举证质证页面调用cs发送透传消息
+ msg：为json字符串
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<pre>
+ {
+  "reqType":"",
+  "msg":""
+ }
+</pre>
+</section>
+
+<h4>返回参数</h4>
+<section>
+<pre>
+无
+</pre>
+</section>
+
+</body>
+</html>

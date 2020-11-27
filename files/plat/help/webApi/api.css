@@ -1,0 +1,46 @@
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 10px;
+  cursor: pointer;
+ }
+ body,html{
+  width:100%;
+  height: 100%;
+  background-color:#eee;
+ }
+ iframe
+ {
+  height: 100%;
+  width: 100%;
+  min-height: 800px;
+  overflow: auto;
+  background-color:#fafafa;
+ }
+ body,html{
+	 width:100%;
+	 height:100%;
+	 padding:0px;
+	 margin:0px;
+     background-color:#fafafa;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }

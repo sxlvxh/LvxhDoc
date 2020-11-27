@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>更新消息状态</h3>
+<section>
+<pre>
+更新消息状态
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+ https://192.168.2.132:8280/platWeb/platsms/updateStatus.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+
+<table>
+<tr><td>target </td><td>接受者userCode</td></tr>
+<tr><td>src </td><td>发送人的userCode </td></tr>
+<tr><td>smsType </td><td>消息类型 </td></tr>
+<tr><td>sort </td><td>排序 </td></tr>
+<tr><td colspan="2">
+<table>
+<tr><td>field </td><td>排序属性</td></tr>
+<tr><td>order </td><td>排序方式 asc升序 desc降序 </td></tr>
+</table>
+</td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"target" : "8f05e88abcea4e02815a8579041cca28",
+	"smsType" : "notice",
+	"pages" : {
+		"curPage" : 1,
+		"pageSize" : 20
+	},
+	"sort" : {
+		"field" : "id",
+		"order" : "desc"
+	}
+}
+
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+
+<table>
+<tr><td>result </td><td>消息列表</td></tr>
+	<tr><td colspan="2" >
+		<table>
+		<tr><td>src </td><td>发送者的userCode</td></tr>
+		<tr><td>target </td><td>接受者的userCode</td></tr>
+		<tr><td>content </td><td>消息内容</td></tr>
+		<tr><td>status </td><td>聊天状态</td></tr>
+		<tr><td>smsType </td><td>消息类型</td></tr>
+		</table>
+	</td></tr>
+<tr><td>pages </td><td>分页参数</td></tr>
+	<tr><td colspan="2">
+		<table>
+		<tr><td>curPage </td><td>当前分页</td></tr>
+		<tr><td>pageCount </td><td>分页总数</td></tr>
+		<tr><td>pageSize </td><td>分页大小</td></tr>
+		<tr><td>totalCount </td><td>数据总数</td></tr>
+		<tr><td>startNo </td><td>开始查询的id</td></tr>
+		</table>
+	</td>
+</tr>
+</table>
+</section>
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+	"code" : 0,
+	"desc" : "分页查询成功",
+	"result" : [{
+			"treeList" : [],
+			"createTime" : "2020-06-08 14:10:57",
+			"nofuzzy" : 0,
+			"id" : 1574,
+			"isdel" : 0,
+			"negativeFields" : [],
+			"src" : "29c31e9fa1f1448583348636fda3e8fe",
+			"target" : "8f05e88abcea4e02815a8579041cca28",
+			"content" : "{\"type\":\"addFriend\",\"content\":\"张磊1已将您加为常用联系人！\",\"creatTime\":\"2020-06-08 14:10:56\"}",
+			"status" : 0,
+			"smsType" : "notice"
+		}
+	],
+	"pages" : {
+		"curPage" : 1,
+		"pageCount" : 1,
+		"pageSize" : 20,
+		"totalCount" : 1,
+		"startNo" : 0
+	}
+}
+
+</pre>
+</section>
+
+</body>
+</html>

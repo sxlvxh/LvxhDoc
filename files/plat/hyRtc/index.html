@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>怀业H5-Demo</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+              
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>怀业HTML5无插件演示实例</legend>
+</fieldset>
+<div class="layui-fluid">  
+  <div class="layui-row layui-col-space30">
+    <div class="layui-col-md9">
+        <div class="layui-tab layui-tab-brief" lay-filter="current">
+            <ul class="layui-tab-title">
+              <li  class="layui-this" lay-id="t1">媒体演示</li>
+              <li lay-id="t2">实时对讲</li>
+              <li lay-id="t3">会议演示</li>
+              <li lay-id="t4">通用消息模拟</li>
+              <li id="userstat" lay-id="t5">个人中心(未注册)</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <div class="layui-col-md2" >
+                      <button class="layui-btn" onclick="onGetDeviceList()" >刷新设备列表</button>
+                      <div id="treedevice" class="device_tree"></div>
+                      <label id="serviceUrlLab">四元组:</label>
+                      <label id="serviceUrl"></label>
+                      <button class="layui-btn" onclick="onPlayServiceUrl()" >播放四元组</button>
+                      <fieldset class="layui-elem-field site-demo-button">
+                        <legend>云台控制</legend>
+                            <img src="img/leftup.png" id="btnZoomCtrlLU"   onmousedown="onClickZoomCloudCtr(zoomclould_leftup,1)" onmouseup="onClickZoomCloudCtr(zoomclould_leftup,0)"/>
+                            <img src="img/up.png" id="btnZoomCtrlU"   onmousedown="onClickZoomCloudCtr(zoomclould_up,1)" onmouseup="onClickZoomCloudCtr(zoomclould_up,0)"/>
+                            <img src="img/rightup.png" id="btnZoomCtrlRU"   onmousedown="onClickZoomCloudCtr(zoomclould_rightup,1)" onmouseup="onClickZoomCloudCtr(zoomclould_rightup,0)"/>
+                            <br>
+                            <img src="img/left.png" id="btnZoomCtrlL"   onmousedown="onClickZoomCloudCtr(zoomclould_left,1)" onmouseup="onClickZoomCloudCtr(zoomclould_left,0)"/>
+                            <img src="img/cloudblank.png" id="btnZoomCtrlB"/>
+                            <img src="img/right.png" id="btnZoomCtrlR"   onmousedown="onClickZoomCloudCtr(zoomclould_right,1)" onmouseup="onClickZoomCloudCtr(zoomclould_right,0)"/>
+                            <br>
+                            <img src="img/leftdown.png" id="btnZoomCtrlLD"   onmousedown="onClickZoomCloudCtr(zoomclould_leftdown,1)" onmouseup="onClickZoomCloudCtr(zoomclould_leftdown,0)"/>
+                            <img src="img/down.png" id="btnZoomCtrlD"   onmousedown="onClickZoomCloudCtr(zoomclould_down,1)" onmouseup="onClickZoomCloudCtr(zoomclould_down,0)"/>
+                            <img src="img/rightdown.png" id="btnZoomCtrlRD"   onmousedown="onClickZoomCloudCtr(zoomclould_rightdown,1)" onmouseup="onClickZoomCloudCtr(zoomclould_rightdown,0)"/>
+                      </fieldset> 
+                </div>
+              	<div class="layui-col-md5" >
+              		播放预览:
+              		<div class="sideBar layui-bg-gray">
+					            <span class="no-padding">
+					                <img src="img/player.png" class="left" title="Player" style="height:30px;"/>
+					                <label>url:</label>
+			                    <input type="text" id="playurl" value = "rtsp://192.168.2.198:554/2275/rtsp://127.0.0.1:554/20/1/7?BitRate=2048;FrameRate=25;IFrame=100;DmgType=2275"  style="width:70%;">
+                          <label id="pScale">Scale:1x</label>
+					            </span>
+					        </div>
+					        <div class="canvasDiv layui-bg-black">
+					            <canvas id="playCanvas" height="300"></canvas>
+					        </div>
+					        <div class="sideBar layui-bg-gray">
+											<img src="img/play.png" id="btnPlayVideo" onclick="playVideo()" style="height:30px;"/>
+											<img src="img/fastforward.png" id="btnFastforward" onclick="setPlayScale()" style="height:30px;"/>
+											<img src="img/stop.png" id="btnStopVideo" onclick="stopVideo()" style="height:30px;"/>
+											<span class="track-padding">
+					                <input id="timeTrack" type="range" value="0">
+					            </span>
+											<label id="timeLabel" style="height:30px;">00:00:00/00:00:00</label>   
+                      <img src="img/volume.png"  title="Audio" style="height:30px;"/> 
+                      <div id="slideAudio" class="demo-slider layui-inline" style="width:120px;"></div>                  
+											<img src="img/fullscreen.png" id="btnPlayerFullscreen"   onclick="playerfullscreen()" style="height:30px;margin-left:20px;"/>
+					        </div>
+                </div>
+                <div class="layui-col-md4 layui-col-md-offset1">
+                	采集预览:
+									<div class="sideBar layui-bg-gray">
+					            <span class="no-padding">
+					                <img src="img/camera.png" class="left" title="Player" style="height:30px;"/>
+					            </span>
+					        </div>
+					        <div class="canvasDiv layui-bg-black" id="videos-container"  style="height:300px;"></div>
+					        <div class="sideBar layui-bg-gray">
+											<img src="img/start_cam.png" class="left" id="btnCapture" onclick="startStopCapture()" style="height:30px;"/>
+											<span class="no-padding right">
+					                <img src="img/fullscreen.png" class="right" id="btnCaptureFullscreen"
+					                    onclick="capturefullscreen()" style="height:30px;"/>
+					            </span>
+									</div>
+                </div>
+              </div>
+              <div class="layui-tab-item ">
+              	<div class="layui-row layui-col-space30">
+	              	<div class="layui-col-md2" >
+	              		  <button class="layui-btn" onclick="onGetUserList()" >刷新用户列表</button>
+	              			<div id="treeuser" class="user_tree"></div>
+                            <br>                           
+                            <p id="talkUser">对讲人:</p>
+							<br>
+                            <button class="layui-btn" onclick="onStartTalk()" >发起对讲</button>
+                            <button class="layui-btn layui-btn-primary" onclick="onQuitTalk()" >结束对讲</button>
+	              	</div>
+	              	<div class="layui-col-md10" >
+	              			<div class="layui-row layui-col-space30">
+                                <div class="layui-col-md5" >
+                                    <div class="sideBar layui-bg-gray">
+                                        <span class="no-padding">
+                                            <img src="img/player.png" class="left" title="Player" style="height:30px;"/>
+                                        </span>
+                                    </div>
+                                    <div class="canvasDiv layui-bg-black">
+                                        <canvas id="tbPlayCanvas" height="300"></canvas>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md5" >
+                                        <div class="sideBar layui-bg-gray">
+                                        <span class="no-padding">
+                                            <img src="img/camera.png" class="left" title="capture" style="height:30px;"/>
+                                        </span>
+                                        </div>
+                                        <div class="canvasDiv layui-bg-black" id="tb-videos-container" style="height:300px;"></div>
+                                </div>                            
+                            </div>    
+	              	</div>	
+              	</div>
+              </div>
+              <div class="layui-tab-item">
+                    <div class="layui-row layui-col-space30">
+                    <div class="layui-col-md2" >
+                          <button class="layui-btn" onclick="onGetUserList()" >刷新用户列表</button>
+                            <div id="treeuser_mt" class="user_tree"></div>
+                            <br>
+                            <p>
+                              <br>
+                            <button class="layui-btn" onclick="onStartMeeting()" >发起会议</button>
+                            </p>
+                            <p>
+                              <br>
+                            <button class="layui-btn" onclick="onInviteMeetingUser()" >邀请会议</button>
+                            <button class="layui-btn layui-btn-primary" onclick="onKickMeetingUser()" >请出会议</button>
+                            </p>
+                            <p>
+                              <br>
+                            <button class="layui-btn layui-btn-primary" onclick="onQuitMeeting()" >退出会议</button>
+                            <button class="layui-btn layui-btn-primary" onclick="onEndMeeting()" >结束会议</button>
+                            </p>
+                    </div>
+                    <div class="layui-col-md10" >
+                            <div class="layui-row layui-col-space30">
+                                <div class="layui-col-md5" >
+                                    <div class="sideBar layui-bg-gray">
+                                        <span class="no-padding">
+                                            <img src="img/player.png" class="left" title="Player" style="height:30px;"/>
+                                        </span>
+                                    </div>
+                                    <div class="canvasDiv layui-bg-black">
+                                        <canvas id="mtPlayCanvas" height="300"></canvas>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md5" >
+                                        <div class="sideBar layui-bg-gray">
+                                        <span class="no-padding">
+                                            <img src="img/camera.png" class="left" title="capture" style="height:30px;"/>
+                                        </span>
+                                        </div>
+                                        <div class="canvasDiv layui-bg-black" id="mt-videos-container" style="height:300px;"></div>
+                                </div>                            
+                            </div>    
+                    </div>  
+                </div>
+              </div>
+              <div class="layui-tab-item"> 
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">通用消息体:</label>
+                        <label class="layui-form-label">消息号</label>
+                        <div class="layui-input-block">
+                          <input type="text" id="commonMsgType" value="54001" class="layui-input" style="width:80px;">
+                        </div>
+                        <div class="layui-input-block">
+                          <textarea name="desc" id="commonContent" value="" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <button class="layui-btn" onclick="onSendCommonMsg()">发送消息</button>
+              </div>
+              <div class="layui-tab-item">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">用户ID</label>
+                    <div class="layui-input-block">
+                      <input type="text" id="userid" value="userid_test" class="layui-input" style="width:200px;">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                      <input type="text" id="username" value="test"  class="layui-input" style="width:200px;" >
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">服务器IP</label>
+                    <div class="layui-input-block">
+                      <input type="text" id="serverip" value=self.ip class="layui-input" style="width:200px;">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">服务器port</label>
+                    <div class="layui-input-block">
+                      <input type="text" id="serverport" value="9001" class="layui-input" style="width:200px;">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">采集码率</label>
+                    <div class="layui-input-block">
+                      <select id="capturelevel" style="width:200px; height:40px;">
+                        <option value="0">低</option>
+                        <option value="1" selected="">中</option>
+                        <option value="2">高</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">音频格式</label>
+                    <div class="layui-input-block">
+                      <select id="AudioType" style="width:200px; height:40px;">
+                        <option value="2">G711A</option>
+                        <option value="12" selected="">OPUS</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">音频采样率</label>
+                    <div class="layui-input-block">
+                      <select id="AudioSamplerate" style="width:200px; height:40px;">
+                        <option value="8000">8000</option>
+                        <option value="16000" selected="">16000</option>
+                        <option value="48000">48000</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button class="layui-btn" onclick="onClickRegist()" >注册</button>
+                      <button  class="layui-btn layui-btn-primary" onclick="onClickUnregist()">注销</button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>    
+    </div>
+    <div class="layui-col-md3">
+        <div class="layui-card">
+            <div class="layui-card-header layui-bg-green" style="height:50px;">返回消息</div>
+            <div class="layui-card-body" id="msgcbText">
+                    返回消息
+            </div>
+          </div>
+  </div>
+
+
+
+
+
+
+          
+<script src="layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script type='text/javascript' src="HyRtcSdk.js"></script>
+<script type='text/javascript'>
+var localUrl = window.location.href;
+self.ip = localUrl.substr(localUrl.indexOf("://") + 3);
+self.ip = "192.168.2.198";//self.ip.substr(0,self.ip.indexOf("/"));
+document.getElementById("serverip").value = self.ip;
+window.addEventListener("resize", resizeCanvas, false);
+
+function resizeCanvas() {
+    playCanvas.width = window.innerWidth;
+    playCanvas.height = window.innerHeight;
+}
+
+var pCanvas = document.getElementById('playCanvas');
+pCanvas.addEventListener('dblclick', function(e){
+  p = getEventPosition(e);
+
+  var id = self.hysdk.getPlayIdByCanvasId("playCanvas");
+  if (self.zoom) {
+    //zoom out
+    self.hysdk.playZoomOut(id);
+  }else{
+    //zoom in
+    var pos = {x : p.x * 4096 / document.getElementById("playCanvas").offsetWidth,y : p.y * 4096 / document.getElementById("playCanvas").offsetHeight};
+    self.hysdk.playZoomIn(pos, id);
+  }
+
+  self.zoom = !self.zoom;
+}, false);
+
+function getEventPosition(ev){
+  var x, y;
+  if (ev.layerX || ev.layerX == 0) {
+    x = ev.layerX;
+    y = ev.layerY;
+  } else if (ev.offsetX || ev.offsetX == 0) { // Opera
+    x = ev.offsetX;
+    y = ev.offsetY;
+  }
+  return {x: x, y: y};
+}
+
+    self.playid = 0;
+		layui.use('element', function(){
+		  var element = layui.element;  
+		  //监听导航点击
+		  element.on('nav(demo)', function(elem){
+		    layer.msg(elem.text());
+		  });
+		});
+
+    layui.use('slider', function(){
+    var $ = layui.$
+    ,slider = layui.slider;
+    //默认滑块
+    self.objSlider = slider.render({
+      elem: '#slideAudio'
+      ,value: 100
+      ,change: function(value){
+        if (self.playid > 0) {
+          slider.disabled = false;
+          self.hysdk.setPlayVolume(self.playid,value);
+        }
+          else{
+            slider.disabled = true;
+          }
+      }
+    });
+    });
+        self.audioAec = 0;
+        self.playTalkUser = null;
+        self.playMeeting = null
+        this.InitParams();
+
+    		//Player object.
+        var addr = "wss://" + self.ip + ":13000";
+        self.hysdk = new HySdk(addr,MsgCallBack);
+
+        document.getElementById("userid").value = self.hysdk.getRandomUid();
+        document.getElementById("username").value = self.hysdk.getRandomUid();
+
+        //Rtsp url.
+        //var rtspUrl = "rtsp://192.168.2.198:554/2268/rtsp://192.168.2.32:554/snl/live/1/1?BitRate=1024;FrameRate=25;IFrame=50;DmgType=2258";
+        var rtspUrl = document.getElementById("playurl").value;
+        //"rtsp://192.168.2.198:554/2807/rtsp://HyWsCapturer:554?BitRate=512;FrameRate=25;IFrame=100;DmgType=2807";
+        //var rtspUrl = "rtsp://192.168.2.198:554/2268/rtsp://192.168.1.48:554/2275/rtsp://127.0.0.1:554/4/1/133?BitRate=2048;FrameRate=25;IFrame=100;DmgType=2275";
+  
+        //Formated logger.
+        var logger = new Logger("Page");
+
+        var captureStarted = false;
+
+        var READYTOPROCESS = false;
+        var tt = this;
+        window.onbeforeunload = function closeWindow(e)
+        {
+            if (!READYTOPROCESS)
+            {
+                tt.onClickUnregist();
+                //message to be returned to the popup box.
+                var message = '你确定要关闭吗？',
+                    e = e || window.event;
+                if (e)
+                    e.returnValue = message; // IE
+                return message; // Safari
+            }
+        };
+
+
+        function playVideo(type) {
+            //0:url 1:serviceUrl
+            var tt = type || 0;
+            var el = document.getElementById("btnPlayVideo");
+            var currentState = playerStateIdle ;
+
+            if (self.playid > 0) {
+              currentState = self.hysdk.getPlayState(self.playid);
+              if (currentState == playerStatePlaying) {
+                  el.src = "img/play.png";
+              } else {
+                  el.src = "img/pause.png";
+              }
+            }
+
+            if (currentState == playerStateIdle) {
+                const canvasId = "playCanvas";
+                var canvas = document.getElementById(canvasId);
+                if (!canvas) {
+                    logger.logError("No Canvas with id " + canvasId + "!");
+                    return false;
+                }
+
+                var config = {
+                  canvas:canvas,
+                  aec:self.audioAec
+                }
+
+                if (tt == 0) {
+                  self.zoom = false;
+                  rtspUrl = document.getElementById("playurl").value;
+                  self.playid = self.hysdk.startPlayUrl(rtspUrl, config, function (e) {
+                      console.log("play error " + e.errorno + " status " + e.desc + ".");
+                      if (e.error >= 0) {
+                          logger.logInfo("Finished.");
+                      }
+                  });
+                }else{
+                  self.zoom = false;
+                  var serviceUrl = document.getElementById("serviceUrl").innerText;
+                  if (serviceUrl.length <= 0) return;
+                  self.playid = self.hysdk.startPlayServiceUrl(serviceUrl, config, function (e) {
+                      console.log("play error " + e.errorno + " status " + e.desc + ".");
+                      if (e.error >= 0) {
+                          logger.logInfo("Finished.");
+                      }
+                  });
+                }
+
+                var timeTrack = document.getElementById("timeTrack");
+                var timeLabel = document.getElementById("timeLabel");
+                self.hysdk.setPlayTrack(self.playid,timeTrack, timeLabel);
+                el.src = "img/pause.png";
+
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+            } else if ( currentState == playerStatePlaying) {
+                self.hysdk.pausePlay(self.playid,1);
+            }
+            else {
+                self.hysdk.pausePlay(self.playid,0);
+            }
+
+            return true;
+        }
+
+        self.scale = 1;
+		function setPlayScale(){
+			self.scale *=  2;
+			self.scale = (self.scale == 8) ? 1 : self.scale;
+	    var ss = document.getElementById("pScale");
+	    ss.innerHTML = "Scale:"+self.scale+"x";
+			if(self.playid > 0){
+	                   self.hysdk.setPlayScale(self.playid,self.scale);
+			}
+		}
+
+        function stopVideo() {
+          self.zoom = false;
+            if(self.playid > 0){
+                self.hysdk.stopPlay(self.playid);
+                var button = document.getElementById("btnPlayVideo");
+                button.src = "img/play.png";
+                self.playid = 0;
+            }
+    	    self.scale = 1;
+    		  var ss = document.getElementById("pScale");
+    	    ss.innerHTML = "Scale:"+self.scale+"x";
+          self.objSlider.setValue(100);
+        }
+
+        function playerfullscreen() {
+          if(self.playid > 0){
+            self.hysdk.playFullscreen(self.playid);
+          }
+        }
+
+        function capturefullscreen() {
+            self.hysdk.captureFullscreen();
+        }
+
+        function startStopCapture() {
+            if (!captureStarted) {
+                var config = self.hysdk.getCaptureDefaultConfig(self.captureParam.captureLevel);
+                config.videoId = "videos-container";
+                config.audiocodec = document.getElementById("AudioType").value * 1;
+                if (config.audiocodec == eAudioTypePCMA) {
+                  config.samplerate = 8000
+                }else{
+                  config.samplerate = document.getElementById("AudioSamplerate").value * 1;
+                }
+                self.hysdk.startCapture(config);
+            } else {
+                self.hysdk.stopCapture();
+            }
+            captureStarted = !captureStarted;
+
+            var el = document.getElementById("btnCapture");
+            if (captureStarted) {
+                el.src = "img/stop_cam.png";
+            } else {
+                el.src = "img/start_cam.png";
+            }
+
+        }
+
+		function onGetUserList()
+		{
+			 self.hysdk.getUserList(MsgCallBack);
+             self.startMeetingParam.lstMeetingUserInfo = [];
+             self.inviteMeetingUserParam.lstMeetingUserInfo = [];
+		}
+
+        function onStartMeeting()
+        {
+            self.captureParam.captureCanvasId = "mt-videos-container";
+            var userInfo = self.hysdk.getUserInfo();
+            //发起者作为主会议人
+            self.startMeetingParam.strMainUserDomainCode = userInfo.userDomainCode;
+            self.startMeetingParam.strMainUserID = userInfo.userid;
+            var that = this;
+            self.hysdk.startMeeting(self.captureParam,self.startMeetingParam,function(e){
+                if(0 == e.errorno)
+                {
+                    //playmeeting
+                    var canvas = document.getElementById("mtPlayCanvas");
+                    self.hysdk.startPlayMeeting(null,{canvas:canvas,aec:self.audioAec},null);
+                }
+                else
+                {
+                   showNotice("发起会议失败"); 
+                }
+            });
+        }
+
+        function onInviteMeetingUser()
+        {
+            self.hysdk.inviteMeetingUser(self.inviteMeetingUserParam,MsgCallBack);
+        }
+
+        function onKickMeetingUser()
+        {
+            self.hysdk.kickoutMeetingUser(self.kickMeetingUserParam,MsgCallBack);
+        }
+		
+        function onQuitMeeting()
+        {
+            self.hysdk.quitMeeting();
+        }
+
+        function onEndMeeting()
+        {
+            self.hysdk.stopMeeting();
+            this.stopplay();
+        }
+
+        function onAcceptMeeting()
+        {
+            self.joinMeetingParam.nIsAgree = 1;
+            self.captureParam.captureCanvasId = "mt-videos-container";
+            self.hysdk.joinMeeting(self.captureParam,self.joinMeetingParam,MsgCallBack);
+
+            //var playinfo = {
+            //    strMeetingDomainCode : 
+            //    nMeetingID,
+            //    nQuality:0
+            //}
+            var canvas = document.getElementById("mtPlayCanvas");
+            self.hysdk.startPlayMeeting(null,{canvas:canvas,aec:self.audioAec},this.MsgCallBack);
+        }
+
+        function onRefuseMeeting()
+        {
+            self.joinMeetingParam.nIsAgree = 0;
+            self.hysdk.joinMeeting(self.captureParam,self.joinMeetingParam,MsgCallBack);
+        }
+
+        function ShowDevice(obj)
+        {
+             layui.use(['tree', 'util'], function(){
+               var tree = layui.tree
+               ,layer = layui.layer
+               ,util = layui.util
+               ,data1 = obj;
+            
+             tree.render({
+               elem: '#treedevice'
+               ,data: data1
+               ,showCheckbox: false  //是否显示复选框
+               ,id: 'demoId1'
+               ,isJump: false //是否允许点击节点时弹出新窗口跳转
+               ,click: function(obj){
+                document.getElementById("serviceUrl").innerText = obj.data.serviceUrl;
+               }
+             });
+           });
+        }
+
+        function ShowUsers(obj)
+        {
+            var serviceType = self.hysdk.getServiceType();
+             layui.use(['tree', 'util'], function(){
+               var tree = layui.tree
+               ,layer = layui.layer
+               ,util = layui.util
+               ,data1 = obj;
+            
+                   tree.render({
+                     elem: '#treeuser'
+                     ,data: data1
+                     ,showCheckbox: false  //是否显示复选框
+                     ,id: 'demoId1'
+                     ,isJump: false //是否允许点击节点时弹出新窗口跳转
+                     ,click: function(obj){
+                       var data = obj.data;  //获取当前点击的节点数据
+                       document.getElementById("talkUser").innerText = "对讲人: " + data.strUserName;
+                       self.startTalkParam.lsToUsers[0].strToUserDomainCode = self.hysdk.getUserInfo().userDomainCode;
+                       self.startTalkParam.lsToUsers[0].strToUserID = data.strUserID;
+                       self.startTalkParam.lsToUsers[0].strToUserName = data.strUserName;
+
+                       //layer.msg('状态：'+ obj.state + '<br>节点数据：' + JSON.stringify(data));
+                     }
+                   });
+
+                    tree.render({
+                     elem: '#treeuser_mt'
+                     ,data: data1
+                     ,showCheckbox: true  //是否显示复选框
+                     ,id: 'demoId2'
+                     ,isJump: false //是否允许点击节点时弹出新窗口跳转
+                     ,oncheck: function(obj){
+                       var data = {
+                            strUserDomainCode : self.hysdk.getUserInfo().userDomainCode,
+                            strUserID : obj.data.strUserID,
+                            strUserName : obj.data.strUserName,
+                            nDevType : obj.data.nDevType
+                       };
+
+                       if(obj.checked)
+                       {
+                            self.startMeetingParam.lstMeetingUserInfo.push(data);
+                            self.kickMeetingUserParam.strUserDomainCode = data.strUserDomainCode;
+                            self.kickMeetingUserParam.strUserID = data.strUserID;
+                        }else{
+                            var i = 0;
+                            var lss = self.startMeetingParam.lstMeetingUserInfo;
+                            for (;i<lss.length;++i)
+                            {
+                                if (lss[i].strUserDomainCode == data.strUserDomainCode 
+                                    && lss[i].strUserID == data.strUserID
+                                    && lss[i].nDevType == data.nDevType  )
+                                     {
+                                        break;
+                                     }
+                            }
+                            
+                            if (i > 0) {
+                                self.startMeetingParam.lstMeetingUserInfo.splice(i, 1);
+                            }
+                       } 
+
+                       self.inviteMeetingUserParam.lstMeetingUserInfo = self.startMeetingParam.lstMeetingUserInfo;
+                     }
+                   });
+             });
+        }
+/*
+        function getCheckedUser()
+        {
+            layui.use(['tree', 'util'], function(){
+              var tree = layui.tree
+              ,layer = layui.layer
+              ,util = layui.util
+
+              var checkedData = tree.getChecked('demoId2'); //获取选中节点的数据
+                  
+              layer.showNotice(JSON.stringify(checkedData), {shade:0});
+              console.log(checkedData);
+
+          }
+  
+        }
+*/
+        function showNotice(content)
+        {
+            layui.use('layer', function(){ //独立版的layer无需执行这一句
+              var layer = layui.layer; //独立版的layer无需执行这一句
+              layer.open({
+                type: 1
+                ,offset: "t" //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+                ,id: 'layerDemot' //防止重复弹出
+                ,content: '<div style="padding: 20px 100px;">'+ content +'</div>'
+                ,btn: '关闭全部'
+                ,btnAlign: 'c' //按钮居中
+                ,shade: 0 //不显示遮罩
+                ,yes: function(){
+                  layer.closeAll();
+                }
+              });
+          });
+        }
+
+//type:【 0：talk  1：meeting】
+        function showTip(type,content)
+        {
+            var that = this;
+            layui.use('layer', function(){ //独立版的layer无需执行这一句
+              var  layer = layui.layer; //独立版的layer无需执行这一句
+              
+              layer.msg(content, {
+                time: 30000, //20s后自动关闭
+                btn: ['接受', '拒绝'],
+                btn1: function(){
+                  if (1 == type) {
+                    that.onAcceptMeeting();
+                  }
+                  else{
+                    that.CallingAccept();
+                  }
+                  layer.closeAll();
+                },
+                btn2: function(){
+                  if (1 == type) {
+                    that.onRefuseMeeting();
+                  }
+                  else{
+                    that.CallingRefuse();
+                  }
+                    layer.closeAll();
+                }
+              });
+                            
+            });
+        }		
+
+        function onStartTalk(){
+            self.captureParam.captureCanvasId = "tb-videos-container";
+            self.hysdk.startTalkback(self.captureParam,self.startTalkParam,MsgCallBack);
+        }
+
+        function onQuitTalk(){
+            self.hysdk.quitTalkback();
+            this.stopplay();
+        }
+				
+        function MsgCallBack(e){
+            var response = document.getElementById("msgcbText");
+            if (response.innerText.length > 2000){
+            	response.innerText = "返回消息：";
+            }
+            response.innerText += "\r\n" + self.splitStr + "\r\n";
+            response.innerText += FormatJson(JSON.stringify(e));
+
+            if(e.msgtype == kNotifyUserJoinTalkback)
+            {
+				layui.element.tabChange('current', 't2');
+                var userJoinTalk = JSON.parse(e.msgContent);
+
+                self.playTalkUser = {
+                    domianCode:userJoinTalk.strFromUserDomainCode,
+                    userTokenId:userJoinTalk.strFromUserTokenID
+                }
+
+                self.joinTalkParam.nIsAgree = 1;
+                showTip(0,userJoinTalk.strFromUserName + "邀请你参加对讲: ");
+            }
+
+            if(e.msgtype == kNotifyInviteUserJoinMeeting)
+            {
+                layui.element.tabChange('current', 't3');
+                var userJoinMt = JSON.parse(e.msgContent);
+
+                self.playMeeting = {
+                    strMeetingDomainCode : userJoinMt.strMeetingDomainCode,
+                    nMeetingID : userJoinMt.nMeetingID,
+                    nQuality : 0
+                }
+                self.joinMeetingParam.nIsAgree = 1;
+                showTip(1,userJoinMt.strInviteUserName + "邀请你参加会议: ");
+            }
+
+            if(e.msgtype == kNotifyPeerUserMeetingInfo)
+            {
+                layui.element.tabChange('current', 't3');
+                var userMt = JSON.parse(e.msgContent);
+
+                var tips = userMt.strToUserName;
+
+                switch(userMt.nIsAgree)
+                {
+                    case 0:
+                        tips+="拒绝参加会议";
+                    break;
+                    case 1:
+                        tips+="同意参加会议";
+                    break;
+                    case 2:
+                        tips+="未接听";
+                    break;
+                    case 3:
+                        tips+="离线";
+                    break;
+                    case 4:
+                        tips+="已在会议中";
+                    break;
+                }
+
+                showNotice(tips);
+            }
+
+            if (e.msgtype == kNotifyMeetingStat) {
+              var mtSt = JSON.parse(e.msgContent);
+              if (mtSt.nMeetingStatus == 2) {
+                //meeting stoped
+                onEndMeeting();
+              }
+            }
+            
+            
+            if(e.msgtype == kUserRegistRsp)
+            {
+            	if(0 == e.errorno){
+            		document.getElementById("userstat").innerText = "个人中心(已注册:" + self.hysdk.getUserInfo().userName + ")";
+            	}
+            }
+            
+
+            if(e.msgtype == kNotifyTalkbackStatusInfo)
+            {
+                var talkInfo = JSON.parse(e.msgContent);
+                if(talkInfo.nTalkbackStatus == 2) //对讲结束
+                {
+                    onQuitTalk();
+                }
+            }
+
+            if(e.msgtype == kNotifyKickUserTalkback)
+            {
+                this.showNotice("你被踢出对讲");
+                onQuitTalk();
+            }
+
+            if(e.msgtype == kNotifyTalkbackPeerUserOption)
+            {
+                var obj = JSON.parse(e.msgContent);
+                if(1 == obj.nIsAgree){
+                    // start play 
+                    var canvas = document.getElementById("tbPlayCanvas");
+                    self.playTalkUser = {
+                    domianCode:obj.strToUserDomainCode,
+                    userTokenId:obj.strToUserTokenID
+                    }
+                    self.hysdk.startPlayUser(self.playTalkUser,{canvas:canvas,aec:self.audioAec},MsgCallBack);
+                    
+                }
+                else{
+                    //quit
+                    onQuitTalk();
+                }
+
+                var tips = obj.strToUserName;
+
+                switch(obj.nIsAgree)
+                {
+                    case 0:
+                        tips+="拒绝参加对讲";
+                    break;
+                    case 1:
+                        tips+="同意参加对讲";
+                    break;
+                    case 2:
+                        tips+="未接听";
+                    break;
+                    case 3:
+                        tips+="离线";
+                    break;
+                    case 4:
+                        tips+="退出对讲";
+                    break;
+                    case 5:
+                        tips+="已在对讲中";
+                    break;
+                }
+                showNotice(tips);
+            }
+
+            if(e.msgtype == kGetUserListRsp)
+            {
+                var obj = JSON.parse(e.desc);
+				function addTitle(x){
+                    x.title = x.strUserName;
+                    x.spread = true;
+					return x;
+                }
+				var ll = {
+				title : self.hysdk.getUserInfo().userDomainName,
+				children : obj.map(addTitle)
+				}
+				var treeCxt = [];
+				treeCxt.push(ll);
+                this.ShowUsers(treeCxt);
+          }
+
+          if(e.msgtype == kGetDeviceListRsp)
+          {
+              var obj = JSON.parse(e.desc);
+              var tDomaincode = self.hysdk.getUserInfo().userDomainCode;
+              var tDevicecode = null;
+              var tChannelcode = null;
+              function addStreamTitle(z){
+                z.serviceUrl = tDomaincode+"-"+tDevicecode+"-"+tChannelcode+"-"+z.strStreamCode;
+                z.title = z.strStreamName;
+                z.spread = true;
+                return z;
+              }
+              function addChannelTitle(y){
+                tChannelcode = y.strChannelCode;
+                y.title = y.strChannelName
+                y.spread = true;
+                y.children = y.streamList.map(addStreamTitle);
+                return y;
+              }
+              function addTitle(x){
+                          tDevicecode = x.strDeviceCode;
+                          x.title = x.strDeviceName;
+                          x.spread = true;
+                          x.children = x.channelList.map(addChannelTitle);
+                return x;
+              }
+          var ll = {
+          title : self.hysdk.getUserInfo().userDomainName,
+          children : obj.devliceList.map(addTitle)
+          }
+          var treeCxt = [];
+          treeCxt.push(ll);
+                  this.ShowDevice(treeCxt);
+            }
+        }
+  
+    function CallingAccept()
+    {
+        self.joinTalkParam.nIsAgree = 1;
+        self.captureParam.captureCanvasId = "tb-videos-container";
+        self.hysdk.joinTalkback(self.captureParam,self.joinTalkParam,MsgCallBack);
+
+        var canvas = document.getElementById("tbPlayCanvas");
+        self.hysdk.startPlayUser(self.playTalkUser,{canvas:canvas,aec:self.audioAec},this.MsgCallBack);
+    }
+
+    function CallingRefuse()
+    {
+        self.joinTalkParam.nIsAgree = 0;
+        self.hysdk.joinTalkback(self.captureParam,self.joinTalkParam,MsgCallBack);
+    }
+
+
+    function stopplay()
+    {
+        self.hysdk.stopPlay(-1,this.MsgCallBack);
+    }
+    
+    function onClickRegist()
+    {
+    	self.registParam.strUserID = document.getElementById("userid").value;
+    	self.registParam.strUserName = document.getElementById("username").value;
+    	self.registParam.strServerIP = document.getElementById("serverip").value;
+    	self.registParam.nServerPort = document.getElementById("serverport").value * 1;
+    	
+      self.captureParam.captureLevel =  document.getElementById("capturelevel").value * 1;
+      self.captureParam.audioType = document.getElementById("AudioType").value * 1;
+      if (self.captureParam == eAudioTypePCMA) {
+        self.captureParam.audioSamplerate = 8000
+      }else{
+        self.captureParam.audioSamplerate = document.getElementById("AudioSamplerate").value * 1;
+      }
+
+    	self.hysdk.regist(self.registParam, this.MsgCallBack);
+    }
+    
+    function onClickUnregist()
+    {
+      //添加清理状态操作
+      var sst = self.hysdk.getServiceType();
+      if (sst == kServiceTalking) {
+        self.hysdk.quitTalkback();
+      }
+
+      if (sst == kServiceMeeting) {
+        self.hysdk.quitMeeting();
+      }
+
+      self.hysdk.stopPlay(-1,null);
+    	self.hysdk.unregist(this.MsgCallBack);
+    	document.getElementById("userstat").innerText = "个人中心(未注册)";
+    }
+
+    function onGetDeviceList()
+    {
+       self.hysdk.getDeviceList(MsgCallBack);
+    }
+
+    function onPlayServiceUrl()
+    {
+        this.stopVideo();
+        this.playVideo(1);
+    }
+
+    function onClickZoomCloudCtr(arrow,enable)
+    {
+      var id = self.hysdk.getPlayIdByCanvasId("playCanvas");
+      self.hysdk.zoomCloudCtr(id,arrow,enable);
+    }
+
+    function onSendCommonMsg()
+    {
+        var cc = document.getElementById("commonContent");
+        var tt = document.getElementById("commonMsgType");
+        self.hysdk.sendCommonMsg(tt.value*1,cc.value,this.MsgCallBack);
+    }
+
+    function InitParams()
+    {
+        self.splitStr = "==========================================";
+        self.registParam = {
+        strUserID: "ToBeReplacedUserID",
+        strUserName: "ToBeReplacedUserName",
+        nDevType: 9,
+        strServerIP: self.ip,
+        nServerPort: 9001,
+        nPriority:0
+        };
+
+        self.captureParam = {
+        captureLevel:1,
+        captureCanvasId:"videos-container",
+        audioType : eAudioTypeOPUS,
+        audioSamplerate: 16000
+        };
+
+        self.startTalkParam = {
+        strTalkbackName:"testtalk",
+        strTalkbackDesc:"Test talkback",
+        strTrunkPara:"",
+        nTalkbackMode:1,
+        nRecord:0,
+        nInviteStyle:1,
+        lsToUsers:
+        [{strToUserDomainCode:"3401000000",
+        strToUserID:"aaa",
+        strToUserName : "xxx"}],
+        nNoneDevice:0,
+        nVoiceIntercom:0
+        };
+
+        self.joinTalkParam = {
+        nIsAgree:1,
+        nVoiceIntercom:0
+        };
+
+        self.startMeetingParam = {
+        strMeetingName:"meeting",
+        strMeetingDesc:"Meeting Desc",
+        strTrunkPara:"TrunkPara",
+        strMainUserDomainCode:"3401000000",
+        strMainUserID:"userid",
+        nMeetingMode:1,
+        nRecord:0,
+        nInviteStyle:1,
+        nVoiceIntercom:0,
+        nForceInvite:1,
+        nSynthesise:1,
+        nNeedCapture:1,
+        lstMeetingUserInfo:
+            [{
+                strUserDomainCode:"3401000000",
+                strUserID:"aaa",
+                strUserName : "xxx",
+                nDevType:1}]
+        };
+
+        self.inviteMeetingUserParam = {
+            lstMeetingUserInfo:
+            [{
+                strUserDomainCode:"3401000000",
+                strUserID:"aaa",
+                strUserName : "xxx",
+                nDevType:1}]
+        };
+
+        self.kickMeetingUserParam = {
+            strUserDomainCode:"3401000000",
+            strUserID:"aaa"
+        }
+
+        self.joinMeetingParam = {
+        nIsAgree:1,
+        nPicMode:0,
+        nNeedCapture:1
+        };
+    }
+
+    function FormatJson(json, options) {
+    var reg = null,
+        formatted = '',
+        pad = 0,
+        PADDING = '    ';
+    options = options || {};
+    options.newlineAfterColonIfBeforeBraceOrBracket = (options.newlineAfterColonIfBeforeBraceOrBracket === true) ? true : false;
+    options.spaceAfterColon = (options.spaceAfterColon === false) ? false : true;
+    if (typeof json !== 'string') {
+        json = JSON.stringify(json);
+    } else {
+        json = JSON.parse(json);
+        json = JSON.stringify(json);
+    }
+    reg = /([\{\}])/g;
+    json = json.replace(reg, '\r\n$1\r\n');
+    reg = /([\[\]])/g;
+    json = json.replace(reg, '\r\n$1\r\n');
+    reg = /(\,)/g;
+    json = json.replace(reg, '$1\r\n');
+    reg = /(\r\n\r\n)/g;
+    json = json.replace(reg, '\r\n');
+    reg = /\r\n\,/g;
+    json = json.replace(reg, ',');
+    if (!options.newlineAfterColonIfBeforeBraceOrBracket) {
+        reg = /\:\r\n\{/g;
+        json = json.replace(reg, ':{');
+        reg = /\:\r\n\[/g;
+        json = json.replace(reg, ':[');
+    }
+    if (options.spaceAfterColon) {
+        reg = /\:/g;
+        json = json.replace(reg, ':');
+    }
+    (json.split('\r\n')).forEach(function (node, index) {
+            var i = 0,
+                indent = 0,
+                padding = '';
+
+            if (node.match(/\{$/) || node.match(/\[$/)) {
+                indent = 1;
+            } else if (node.match(/\}/) || node.match(/\]/)) {
+                if (pad !== 0) {
+                    pad -= 1;
+                }
+            } else {
+                indent = 0;
+            }
+
+            for (i = 0; i < pad; i++) {
+                padding += PADDING;
+            }
+
+            formatted += padding + node + '\r\n';
+            pad += indent;
+        }
+    );
+    return formatted;
+};
+
+</script>
+
+</body>
+</html>

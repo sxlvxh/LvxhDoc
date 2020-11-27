@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>互联网法庭接口文档</title>
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+ boyd,html{
+  width:100%;
+  height: 100%;
+ }
+</style>
+</head>
+<body>
+<h4>接口说明</h4>
+<section>
+<pre>
+按用户查询庭审列表
+</pre>
+</section>
+<h4>请求路径 【<color style='color:red'>HTTP+JSON</color>】</h4>
+<section>
+<pre>
+  http://192.168.2.132:8380/courtWeb/trialcaselistbyrole/grid.action  
+</pre>
+</section>
+<h4>请求参数说明</h4>
+<section>
+<pre>
+partyCode:用户编码 <color style='color:blue'></color>
+autoCode:用户建权编码 <color style='color:blue'></color>
+
+</pre>
+</section>
+
+<h4>请求参数示例</h4>
+<section>
+<pre>
+{
+	"userCode": "13913017145",
+	"autoCode": "123456"
+}
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+<pre>
+result：结果集合
+      "treeList": [],
+       "createTime": 开始时间
+       "createUserId": 创建人id
+       "nofuzzy": 模糊查询
+       "id": id
+       "isdel": 是否逻辑删除 0否1是
+       "negativeFields": [],
+       "startDate": 庭审开始时间
+       "trialCode": 庭审编号
+       "caseSeqCode": 案件序列编号
+       "caseInfo": 案件描述
+       "roomCode": 庭室编码
+       "judgeCode": 法官编码
+       "clerkCode": 书记员编码
+       "entCode": 企业编码
+       "roomId": 庭室id
+       "syncNo": 同步编号
+       "status": 庭审状态
+       "trialParams":庭审参数
+       "caseCode": 案件编号
+       "caseName": 案件名称
+       "judgeCodeName": 法官名陈
+       "clerkCodeName": 书记员名称
+       "entName": 企业名陈
+       "trialStatusName": 庭审状态名称
+       "activeEntCode": 当前企业编码
+ "pages": 分页查询对象
+        "curPage": 1,当前分页
+        "pageCount": 1,一共多少分页
+        "pageSize": 10,分页大小
+        "totalCount": 3,查询结果共多少条
+        "startNo": 0 从第几条数据开始查询
+    }
+</pre>
+</section>
+<h4>返回参数示例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "分页查询成功",
+    "result": [
+        {
+            "treeList": [],
+            "createTime": "2020-04-14 17:41:55",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 3,
+            "isdel": 0,
+            "negativeFields": [],
+            "startDate": "2020-04-14 17:40:00",
+            "trialCode": "371",
+            "caseSeqCode": "1002",
+            "caseInfo": "唱片公司员工劳动纠纷",
+            "roomCode": "3333",
+            "judgeCode": "ww",
+            "clerkCode": "ww",
+            "entCode": "A320101",
+            "roomId": 10100077,
+            "syncNo": "1",
+            "status": 0,
+            "trialParams": "一些重要参数",
+            "caseCode": "(2019)苏0404民初6503号",
+            "caseName": "常州巨汽进出口有限公司与林海宝买卖合同纠纷",
+            "judgeCodeName": "王伟",
+            "clerkCodeName": "王伟",
+            "entName": "南京中院",
+            "trialStatusName": "排期",
+            "activeEntCode": ""
+        },
+        {
+            "treeList": [],
+            "createTime": "2020-04-14 17:39:24",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 2,
+            "isdel": 0,
+            "negativeFields": [],
+            "startDate": "2020-04-14 17:34:36",
+            "trialCode": "213",
+            "caseSeqCode": "1001",
+            "caseInfo": "疫情期间口罩贩卖开价合同纠纷",
+            "roomCode": "2222",
+            "judgeCode": "ww",
+            "clerkCode": "ww",
+            "entCode": "A320101",
+            "roomId": 10100076,
+            "syncNo": "1",
+            "status": 0,
+            "trialParams": "一些重要参数",
+            "caseCode": "(2020)苏02民终482号",
+            "caseName": "孙红红与无锡越界体育管理有限公司合同纠纷",
+            "judgeCodeName": "王伟",
+            "clerkCodeName": "王伟",
+            "entName": "南京中院",
+            "trialStatusName": "排期",
+            "activeEntCode": ""
+        },
+        {
+            "treeList": [],
+            "createTime": "2020-04-14 11:42:58",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 1,
+            "isdel": 0,
+            "negativeFields": [],
+            "startDate": "2020-04-14 11:40:37",
+            "trialCode": "101",
+            "caseSeqCode": "1000",
+            "caseInfo": "黄某某和刘某某打架",
+            "roomCode": "1111",
+            "judgeCode": "lvxh",
+            "clerkCode": "lvxh",
+            "entCode": "A320101",
+            "roomId": 10100075,
+            "syncNo": "1",
+            "status": 0,
+            "trialParams": "一些重要参数",
+            "caseCode": "(2020)苏02民申3号",
+            "caseName": "叶希与张晓舟场外股票融资合同纠纷",
+            "judgeCodeName": "吕孝怀",
+            "clerkCodeName": "吕孝怀",
+            "entName": "南京中院",
+            "trialStatusName": "排期",
+            "activeEntCode": ""
+        }
+    ],
+    "pages": {
+        "curPage": 1,
+        "pageCount": 1,
+        "pageSize": 10,
+        "totalCount": 3,
+        "startNo": 0
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

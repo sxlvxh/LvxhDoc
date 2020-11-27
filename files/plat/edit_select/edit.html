@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+  	<meta charset="utf-8">
+    <title>Bootstrap菜单</title>
+    <link href="css/editSelect.css" rel="stylesheet">
+    <script src="js/jquery-1.8.3.js"></script>
+    <script src="js/editSelect.js"></script>
+	<script>
+	 var opt = {
+		 "list":[
+		     {key:"abc",value:"abc",content:"<input value='hahahah'/>"},
+			 {key:"bbb",value:"bbb",content:"asdfs"},
+			 {key:"ddd",value:"ddd",content:"asdfs"}
+			 ]
+	     };
+	    $(function(){
+		  $("#mySelect").bxxeditSelect(opt);
+		  $("#mySelect1").bxxeditSelect(opt);
+		  
+		});
+	   </script>
+</head>
+<body>
+ <input id="mySelect" style="width:200px;height:30px; border:1px solid #DDDDDD;"/>
+ <div style=" height:850px; display:block">大家好</div>
+ <input id="mySelect1" style="width:200px;height:30px; border:1px solid #DDDDDD;"/>
+</body>

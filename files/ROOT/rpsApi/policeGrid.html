@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>分页查询警力报备</h3>
+<section>
+<pre>
+ 分页查询警力报备
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+http://192.168.2.107:8080/rps-war/rpspolicereport/gridEx.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>page</td><td>分页对象 </td></tr>
+ <tr><td>curPage</td><td>当前页码 </td></tr>
+  <tr><td>pageSize</td><td>每页查询记录条数 </td></tr>
+</table>
+</section>
+
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"pages":{"curPage":1,"pageSize":10}
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "分页查询成功",
+    "result": [
+        {
+            "createTime": "2020-05-14 09:44:34",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 2,
+            "isdel": 0,
+            "entCode": "10000",
+            "deptId": 20000399,
+            "policeRecType": "0",
+            "areaType": "0",
+            "reportDesc": "rr",
+            "prStatus": "0",
+            "policeRecTypeName": "签到",
+            "prTypeName": "未审核",
+            "entName": "青岛铁路公安处",
+            "createUserName": "超级管理员",
+            "areaTypeName": "乘警"
+        },
+        {
+            "createTime": "2020-05-14 09:52:49",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 3,
+            "isdel": 0,
+            "entCode": "10000",
+            "deptId": 20000399,
+            "policeRecType": "0",
+            "areaType": "0",
+            "reportDesc": "rr",
+            "prStatus": "0",
+            "policeRecTypeName": "签到",
+            "prTypeName": "未审核",
+            "entName": "青岛铁路公安处",
+            "createUserName": "超级管理员",
+            "areaTypeName": "乘警"
+        },
+        {
+            "createTime": "2020-05-14 09:53:12",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 4,
+            "isdel": 0,
+            "entCode": "10000",
+            "deptId": 20000399,
+            "policeRecType": "0",
+            "areaType": "0",
+            "reportDesc": "rr",
+            "prStatus": "0",
+            "policeRecTypeName": "签到",
+            "prTypeName": "未审核",
+            "entName": "青岛铁路公安处",
+            "createUserName": "超级管理员",
+            "areaTypeName": "乘警"
+        }
+    ],
+    "pages": {
+        "curPage": 1,
+        "pageCount": 1,
+        "pageSize": 10,
+        "totalCount": 3,
+        "startNo": 0
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

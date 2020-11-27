@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>按用户名称查询人员</h3>
+<section>
+<pre>
+按用户名称查询人员
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+ https://192.168.2.132:8380/platWeb/platuser/search.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>name </td><td></td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"name": "季",
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "result": [
+        {
+            "pid": "A320101",
+            "id": "88748784a24f43b982c0436c9f1b6bf6",
+            "name": "季芳芳",
+            "img": "/images/man.png",
+            "dataType": "user",
+            "selected": false,
+            "hasChild": false,
+            "selectedCount": 0,
+            "noSelectCount": 0,
+            "label": "<span class='search_label_mark'>[南京中院---管理部]</span>",
+            "obj": {
+                "treeList": [],
+                "createTime": "2020-02-14 13:57:42",
+                "createUserId": 1,
+                "nofuzzy": 0,
+                "id": 504,
+                "isdel": 0,
+                "updateTime": "2020-04-20 16:25:43",
+                "updateUserId": 1,
+                "negativeFields": [],
+                "domainCode": "f079595d296b",
+                "name": "季芳芳",
+                "loginName": "jff",
+                "password": null,
+                "address": "",
+                "mobilePhone": "1234562222",
+                "email": "",
+                "sex": 1,
+                "entCode": "A320101",
+                "jobCode": "10001",
+                "ischarge": 0,
+                "imgUrl": "/images/man.png",
+                "idNumber": "",
+                "idType": 1,
+                "userType": 2,
+                "userServiceType": "4",
+                "userDepCode": "e898411f1be64c4f8caff0f8159460ec",
+                "userCode": "88748784a24f43b982c0436c9f1b6bf6",
+                "userParams": "",
+                "entName": "南京中院",
+                "entParams": "{\r\n\t\"intranet\" : \"192.168.2.84\",\r\n\t\"intranetPort\" : 9001,\r\n\t\"extranet\" : \"192.168.2.84\",\r\n\t\"extranetPort\" : 9001,\r\n\t\"domainCode\" : \"f079595d296b\",\r\n\t\"groupCode\" : \"A001\",\r\n\t\"intranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"extranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"intranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"extranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"intranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\",\r\n\t\"extranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\"\r\n}\r\n",
+                "sexName": "男",
+                "jobName": "员工",
+                "ischargeName": "是",
+                "idTypeName": "身份证",
+                "userTypeName": "管理者",
+                "userServiceTypeName": "法官",
+                "roleNames": "系统管理员",
+                "depName": "管理部",
+                "activeEntCode": ""
+            },
+            "sortTime": 0,
+            "treeList": []
+        },
+               {
+            "pid": "A320101",
+            "id": "8f05e88abcea4e02815a8579041cca28",
+            "name": "季芳芳5",
+            "img": "/images/man.png",
+            "dataType": "user",
+            "selected": false,
+            "hasChild": false,
+            "selectedCount": 0,
+            "noSelectCount": 0,
+            "label": "<span class='search_label_mark'>[南京中院---庭审部门]</span>",
+            "obj": {
+                "treeList": [],
+                "createTime": "2020-04-29 13:34:31",
+                "createUserId": 1,
+                "nofuzzy": 0,
+                "id": 549,
+                "isdel": 0,
+                "updateTime": "2020-05-15 15:49:19",
+                "updateUserId": 1,
+                "negativeFields": [],
+                "domainCode": "f079595d296b",
+                "name": "季芳芳5",
+                "loginName": "jff5",
+                "password": null,
+                "address": "",
+                "mobilePhone": "15651953913",
+                "email": "",
+                "sex": 1,
+                "entCode": "A320101",
+                "jobCode": "10001",
+                "ischarge": 0,
+                "imgUrl": "/images/man.png",
+                "idNumber": "",
+                "idType": 1,
+                "userType": 72,
+                "userServiceType": "6",
+                "userDepCode": "4bfe92931d9f4a878e684dd9c973ab7d",
+                "userCode": "8f05e88abcea4e02815a8579041cca28",
+                "userParams": "",
+                "entName": "南京中院",
+                "entParams": "{\r\n\t\"intranet\" : \"192.168.2.84\",\r\n\t\"intranetPort\" : 9001,\r\n\t\"extranet\" : \"192.168.2.84\",\r\n\t\"extranetPort\" : 9001,\r\n\t\"domainCode\" : \"f079595d296b\",\r\n\t\"groupCode\" : \"A001\",\r\n\t\"intranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"extranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"intranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"extranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"intranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\",\r\n\t\"extranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\"\r\n}\r\n",
+                "sexName": "男",
+                "jobName": "员工",
+                "ischargeName": "是",
+                "idTypeName": "身份证",
+                "userTypeName": "法院当事人",
+                "userServiceTypeName": "当事人",
+                "roleNames": "系统管理员,审判长",
+                "depName": "庭审部门",
+                "activeEntCode": ""
+            },
+            "sortTime": 0,
+            "treeList": []
+        },
+        {
+            "pid": "A320101",
+            "id": "badd238c53b14baf90da00ce51f275d0",
+            "name": "季芳芳22",
+            "img": "/userfiles/lvxh/20200509/85cbcbad403c448aa421fa71e71cef6a.jpg",
+            "dataType": "user",
+            "selected": false,
+            "hasChild": false,
+            "selectedCount": 0,
+            "noSelectCount": 0,
+            "label": "<span class='search_label_mark'>[南京中院---庭审部门]</span>",
+            "obj": {
+                "treeList": [],
+                "createTime": "2020-05-26 14:55:15",
+                "createUserId": 549,
+                "nofuzzy": 0,
+                "id": 9598,
+                "isdel": 0,
+                "updateTime": "2020-06-02 16:10:27",
+                "updateUserId": 1,
+                "negativeFields": [],
+                "domainCode": "f079595d296b",
+                "name": "季芳芳22",
+                "loginName": "e619367d6c294dc39f7da7304249e76c",
+                "password": null,
+                "address": "",
+                "mobilePhone": "15751953912",
+                "email": "",
+                "sex": 1,
+                "entCode": "A320101",
+                "jobCode": "10001",
+                "ischarge": 0,
+                "imgUrl": "/userfiles/lvxh/20200509/85cbcbad403c448aa421fa71e71cef6a.jpg",
+                "idNumber": "",
+                "idType": 1,
+                "userType": 72,
+                "userServiceType": "6",
+                "userDepCode": "4bfe92931d9f4a878e684dd9c973ab7d",
+                "userCode": "badd238c53b14baf90da00ce51f275d0",
+                "userParams": "",
+                "entName": "南京中院",
+                "entParams": "{\r\n\t\"intranet\" : \"192.168.2.84\",\r\n\t\"intranetPort\" : 9001,\r\n\t\"extranet\" : \"192.168.2.84\",\r\n\t\"extranetPort\" : 9001,\r\n\t\"domainCode\" : \"f079595d296b\",\r\n\t\"groupCode\" : \"A001\",\r\n\t\"intranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"extranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"intranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"extranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"intranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\",\r\n\t\"extranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\"\r\n}\r\n",
+                "sexName": "男",
+                "jobName": "员工",
+                "ischargeName": "是",
+                "idTypeName": "身份证",
+                "userTypeName": "法院当事人",
+                "userServiceTypeName": "当事人",
+                "roleNames": "系统管理员",
+                "depName": "庭审部门",
+                "activeEntCode": ""
+            },
+            "sortTime": 0,
+            "treeList": []
+        }
+    ],
+    "obj": {
+        "8748784a24f43b982c0436c9f1b6bf6": {
+            "pid": "A320101",
+            "id": "8748784a24f43b982c0436c9f1b6bf6",
+            "name": "季芳芳",
+            "img": "/images/man.png",
+            "dataType": "user",
+            "selected": false,
+            "hasChild": false,
+            "selectedCount": 0,
+            "noSelectCount": 0,
+            "label": "<span class='search_label_mark'>[南京中院---庭审部门]</span>",
+            "obj": {
+                "treeList": [],
+                "createTime": "2020-04-21 16:30:38",
+                "nofuzzy": 0,
+                "id": 519,
+                "isdel": 0,
+                "negativeFields": [],
+                "domainCode": "f079595d296b",
+                "name": "季芳芳",
+                "loginName": "e619367d6c294dc39f7da7304249e76c",
+                "password": null,
+                "mobilePhone": "15751953913",
+                "entCode": "A320101",
+                "imgUrl": "/images/man.png",
+                "userType": 72,
+                "userServiceType": "6",
+                "userDepCode": "4bfe92931d9f4a878e684dd9c973ab7d",
+                "userCode": "8748784a24f43b982c0436c9f1b6bf6",
+                "entName": "南京中院",
+                "entParams": "{\r\n\t\"intranet\" : \"192.168.2.84\",\r\n\t\"intranetPort\" : 9001,\r\n\t\"extranet\" : \"192.168.2.84\",\r\n\t\"extranetPort\" : 9001,\r\n\t\"domainCode\" : \"f079595d296b\",\r\n\t\"groupCode\" : \"A001\",\r\n\t\"intranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"extranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"intranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"extranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"intranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\",\r\n\t\"extranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\"\r\n}\r\n",
+                "userTypeName": "法院当事人",
+                "userServiceTypeName": "当事人",
+                "roleNames": "系统管理员,审判长",
+                "depName": "庭审部门",
+                "activeEntCode": ""
+            },
+            "sortTime": 0,
+            "treeList": []
+        },
+        "8f05e88abcea4e02815a8579041cca28": {
+            "pid": "A320101",
+            "id": "8f05e88abcea4e02815a8579041cca28",
+            "name": "季芳芳5",
+            "img": "/images/man.png",
+            "dataType": "user",
+            "selected": false,
+            "hasChild": false,
+            "selectedCount": 0,
+            "noSelectCount": 0,
+            "label": "<span class='search_label_mark'>[南京中院---庭审部门]</span>",
+            "obj": {
+                "treeList": [],
+                "createTime": "2020-04-29 13:34:31",
+                "createUserId": 1,
+                "nofuzzy": 0,
+                "id": 549,
+                "isdel": 0,
+                "updateTime": "2020-05-15 15:49:19",
+                "updateUserId": 1,
+                "negativeFields": [],
+                "domainCode": "f079595d296b",
+                "name": "季芳芳5",
+                "loginName": "jff5",
+                "password": null,
+                "address": "",
+                "mobilePhone": "15651953913",
+                "email": "",
+                "sex": 1,
+                "entCode": "A320101",
+                "jobCode": "10001",
+                "ischarge": 0,
+                "imgUrl": "/images/man.png",
+                "idNumber": "",
+                "idType": 1,
+                "userType": 72,
+                "userServiceType": "6",
+                "userDepCode": "4bfe92931d9f4a878e684dd9c973ab7d",
+                "userCode": "8f05e88abcea4e02815a8579041cca28",
+                "userParams": "",
+                "entName": "南京中院",
+                "entParams": "{\r\n\t\"intranet\" : \"192.168.2.84\",\r\n\t\"intranetPort\" : 9001,\r\n\t\"extranet\" : \"192.168.2.84\",\r\n\t\"extranetPort\" : 9001,\r\n\t\"domainCode\" : \"f079595d296b\",\r\n\t\"groupCode\" : \"A001\",\r\n\t\"intranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"extranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"intranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"extranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"intranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\",\r\n\t\"extranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\"\r\n}\r\n",
+                "sexName": "男",
+                "jobName": "员工",
+                "ischargeName": "是",
+                "idTypeName": "身份证",
+                "userTypeName": "法院当事人",
+                "userServiceTypeName": "当事人",
+                "roleNames": "系统管理员,审判长",
+                "depName": "庭审部门",
+                "activeEntCode": ""
+            },
+            "sortTime": 0,
+            "treeList": []
+        },
+        "8759c2203e5e49ca8c1397ccdd6101e5": {
+            "pid": "A320101",
+            "id": "8759c2203e5e49ca8c1397ccdd6101e5",
+            "name": "季芳芳测试",
+            "img": "/images/man.png",
+            "dataType": "user",
+            "selected": false,
+            "hasChild": false,
+            "selectedCount": 0,
+            "noSelectCount": 0,
+            "label": "<span class='search_label_mark'>[南京中院---管理部]</span>",
+            "obj": {
+                "treeList": [],
+                "createTime": "2020-05-14 11:39:11",
+                "createUserId": 1,
+                "nofuzzy": 0,
+                "id": 555,
+                "isdel": 0,
+                "updateTime": "2020-05-19 15:47:03",
+                "updateUserId": 1,
+                "negativeFields": [],
+                "domainCode": "f079595d296b",
+                "name": "季芳芳测试",
+                "loginName": "96159f7e76d64d85beeb019a8f02c8dc",
+                "password": null,
+                "address": "",
+                "mobilePhone": "13254878914",
+                "sex": 1,
+                "entCode": "A320101",
+                "jobCode": "10001",
+                "imgUrl": "/images/man.png",
+                "idNumber": "",
+                "idType": 1,
+                "userType": 1,
+                "userServiceType": "1",
+                "userDepCode": "e898411f1be64c4f8caff0f8159460ec",
+                "userCode": "8759c2203e5e49ca8c1397ccdd6101e5",
+                "userParams": "",
+                "entName": "南京中院",
+                "entParams": "{\r\n\t\"intranet\" : \"192.168.2.84\",\r\n\t\"intranetPort\" : 9001,\r\n\t\"extranet\" : \"192.168.2.84\",\r\n\t\"extranetPort\" : 9001,\r\n\t\"domainCode\" : \"f079595d296b\",\r\n\t\"groupCode\" : \"A001\",\r\n\t\"intranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"extranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"intranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"extranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"intranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\",\r\n\t\"extranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\"\r\n}\r\n",
+                "sexName": "男",
+                "jobName": "员工",
+                "idTypeName": "身份证",
+                "userTypeName": "技术员",
+                "userServiceTypeName": "执行人",
+                "depName": "管理部",
+                "activeEntCode": ""
+            },
+            "sortTime": 0,
+            "treeList": []
+        },
+        "badd238c53b14baf90da00ce51f275d0": {
+            "pid": "A320101",
+            "id": "badd238c53b14baf90da00ce51f275d0",
+            "name": "季芳芳22",
+            "img": "/userfiles/lvxh/20200509/85cbcbad403c448aa421fa71e71cef6a.jpg",
+            "dataType": "user",
+            "selected": false,
+            "hasChild": false,
+            "selectedCount": 0,
+            "noSelectCount": 0,
+            "label": "<span class='search_label_mark'>[南京中院---庭审部门]</span>",
+            "obj": {
+                "treeList": [],
+                "createTime": "2020-05-26 14:55:15",
+                "createUserId": 549,
+                "nofuzzy": 0,
+                "id": 9598,
+                "isdel": 0,
+                "updateTime": "2020-06-02 16:10:27",
+                "updateUserId": 1,
+                "negativeFields": [],
+                "domainCode": "f079595d296b",
+                "name": "季芳芳22",
+                "loginName": "e619367d6c294dc39f7da7304249e76c",
+                "password": null,
+                "address": "",
+                "mobilePhone": "15751953912",
+                "email": "",
+                "sex": 1,
+                "entCode": "A320101",
+                "jobCode": "10001",
+                "ischarge": 0,
+                "imgUrl": "/userfiles/lvxh/20200509/85cbcbad403c448aa421fa71e71cef6a.jpg",
+                "idNumber": "",
+                "idType": 1,
+                "userType": 72,
+                "userServiceType": "6",
+                "userDepCode": "4bfe92931d9f4a878e684dd9c973ab7d",
+                "userCode": "badd238c53b14baf90da00ce51f275d0",
+                "userParams": "",
+                "entName": "南京中院",
+                "entParams": "{\r\n\t\"intranet\" : \"192.168.2.84\",\r\n\t\"intranetPort\" : 9001,\r\n\t\"extranet\" : \"192.168.2.84\",\r\n\t\"extranetPort\" : 9001,\r\n\t\"domainCode\" : \"f079595d296b\",\r\n\t\"groupCode\" : \"A001\",\r\n\t\"intranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"extranetHttp\" : \"http://192.168.2.84:9200/sie/httpjson/\",\r\n\t\"intranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"extranetWs\" : \"ws://192.168.2.84:12000\",\r\n\t\"intranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\",\r\n\t\"extranetWebIp\" : \"http://192.168.2.132:8380/platWeb/\"\r\n}\r\n",
+                "sexName": "男",
+                "jobName": "员工",
+                "ischargeName": "是",
+                "idTypeName": "身份证",
+                "userTypeName": "法院当事人",
+                "userServiceTypeName": "当事人",
+                "roleNames": "系统管理员",
+                "depName": "庭审部门",
+                "activeEntCode": ""
+            },
+            "sortTime": 0,
+            "treeList": []
+        }
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#fff;
+ }
+</style>
+</head>
+<body>
+<h3>树节点参数说明</h3>
+<section>
+<pre>
+  略
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>dynamicResult</td><td>动态参数配置</td></tr>
+</table>
+</section>
+
+
+<h4>参数实例</h4>
+<section>
+<pre>
+    {
+	"dynamicResult": {
+		"url": "../platrole/getTree.action",
+		"postDynamicParam": [{
+				"nodeType": "elementNode",
+				"postName": "id",
+				"paramNodeName": "id",
+				"pNodeID": "7f397381-b7e2-44fa-91fc-05bb2517d3ae_form"
+			}
+		],
+		"postStaticData": {
+			"sort": {
+				"field": "id desc"
+			}
+		}
+	},
+	"allCheck":true,
+        "expand":true,
+        "treeHeight":320}
+
+</pre>
+</section>
+</section>
+
+</body>
+</html>

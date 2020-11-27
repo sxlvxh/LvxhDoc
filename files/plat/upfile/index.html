@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>web socket 文件上传</title>
+	<link rel="stylesheet" href="./css/upfile.css" />
+	<script type="text/javascript"	src="./js/jquery.js"></script>
+	<script type="text/javascript"	src="./js/upfile.js"></script>
+</head>
+<body>
+    <button class="button operate-button" id="upload-btn" onclick="upAllFile();">批量上传</button>
+    <div id="upload-container">
+	    <div style="height:100px;">
+		    <!--input的id随意填，button的id要用（input的id+"-btn"）,click事件要传入（input的id）-->
+		    <input type="file" id="file0" style="margin-bottom:10px;width:350px;"/>
+		    <button class="button operate-button" id="file0-btn" onclick="upFile1();">上传</button>
+		</div>
+		<div style="height:100px;">
+		    <input type="file" id="file1" style="margin-bottom:10px;width:350px;"/>
+		    <button class="button operate-button" id="file1-btn" onclick="upFile2();">上传</button>
+		</div>
+		<div style="height:100px;">
+		    <input type="file" id="file2" style="margin-bottom:10px;width:350px;"/>
+		    <button class="button operate-button" id="file2-btn" onclick="upFile2();">上传</button>
+		</div>
+		<div style="height:100px;">
+		    <input type="file" id="file3" style="margin-bottom:10px;width:350px;"/>
+		    <button class="button operate-button" id="file3-btn" onclick="upFile2();">上传</button>
+		</div>
+	</div>
+	<style>
+	    .operate-button{
+			background-color: #198CFF;
+			border: none;
+			height: 25px;
+			color: #fff;
+			border-radius: 3px;
+			padding: 0px 10px;
+			cursor:pointer;
+			margin:0px 3px;
+		}
+		.operate-button:hover{
+			background-color: #0070E0;
+		}
+	</style>
+ <script>
+	var lxhUpfile;
+	var lxhUpfile1;
+	function upFile1(){
+	    if(lxhUpfile){
+			lxhUpfile.removeNode();
+			if(lxhUpfile.ws.readyState===1){  //webSorcket开启时，需关闭
+			   lxhUpfile.ws.close();
+			}
+		}
+	    lxhUpfile = upFile("file0");  //input的id
+	}
+	
+	function upFile2(){
+	   if(lxhUpfile1){
+			lxhUpfile1.removeNode();
+			if(lxhUpfile1.ws.readyState===1){  //webSorcket开启时，需关闭
+			   lxhUpfile1.ws.close();
+			}
+		}
+	    lxhUpfile1 = upFile("file1"); //input的id
+	}
+	
+	function upFile(id){
+		var f = document.getElementById(id);
+		var files = f.files;
+		if (files && files.length) {
+			var opts = {
+				//file : files[0],
+				code : uuid(),
+				url : "ws://192.168.2.132:9898/upload",
+				step:1,
+				input:f,
+				userCode:"lvxh",  
+				procWidth:"300px",
+				cancelFunc:function(){
+				
+				},
+				success:function(msg){ 
+					//alert(msg.desc);
+					console.log(msg);
+				}
+			};
+			var lxhUpfile = new LxhUpfile(opts);
+			lxhUpfile.up();
+			return lxhUpfile;
+		}else{
+			alert("请选择文件后再上传");
+		}
+	}
+	
+	var lxhUpfiles = [];
+	function upAllFile(){
+	    if(lxhUpfiles.length > 0){
+		    $.each(lxhUpfiles,function(i,n){
+				if(n){
+				    n.removeNode();
+					if(n.ws.readyState===1){  //webSorcket开启时，需关闭
+					   n.ws.close();
+					}
+				}
+			})
+		}	
+	    $("div",$("#upload-container")).each(function(idx,ele){
+			if($("input",$(ele)).val() != ""){
+				var lxhUpfile = upFile("file"+idx);
+				lxhUpfiles.push(lxhUpfile);
+			}
+		})
+	}
+	
+	/*LxhUpfile.prototype.pause= function() {
+	   lxhUpfile.pause(false);	
+	}
+	LxhUpfile.prototype.reUp = function(){	 
+		lxhUpfile.pause(true);
+		lxhUpfile.startX();
+	}
+	LxhUpfile.prototype.cancle = function(){
+		lxhUpfile.cancle();	
+	}*/
+
+	/*function pause(){	 
+		lxhUpfile.pause(false);	
+	}
+
+	function reUp(){	 
+		lxhUpfile.pause(true);
+		lxhUpfile.startX();
+	}
+	function cancle(){
+		lxhUpfile.cancle();	
+	}
+
+	function up(){
+		var f = document.getElementById("file");
+		var ws = new WebSocket("ws://127.0.0.1:9898/upload");
+		var files = f.files;
+		console.log(files);
+		var file = files[0];
+		var size = file.size;
+		var name = file.name;
+		var code = uuid();
+		var step = 1024*1024*1;
+		var size = file.size;
+		var start = 0;
+		var end = step;
+		//  sendMsg(ws,file,size,tep,0);
+		ws.onopen = function (ev) {
+			if (files && files.length) {
+				ws.send(JSON.stringify({name:name,code:code,size:size,type:"file"}));  
+				// sendMsg(ws,file,size,tep,0)
+			}
+		};
+		ws.onmessage = function (ev) {
+			if(typeof(ev.data) == "string")
+			{ 
+				console.error(ev.data);
+				var json = JSON.parse(ev.data);
+				if(json.res === 1)
+				{
+					//var t = i/(size/tep)*100;
+					var blob = file.slice(start, end);
+					var fileReader = new FileReader();
+					fileReader.readAsArrayBuffer(blob);
+					fileReader.onload = function (e) {
+						var result = e.target.result;
+						// 发送数据到服务器端
+						ws.send(result);
+						start = end;
+						end = end + step; 	
+					}
+				}else
+				{
+					ws.close();
+				}
+				proc.style.width=json.ratio+"%";  
+			}
+		};
+		ws.onerror = function () {
+			 
+		};
+		ws.onclose = function () {
+			  
+		};
+	}*/
+ </script>
+</body>
+</html>

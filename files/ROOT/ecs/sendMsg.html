@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>好友发送消息</h3>
+<section>
+<pre>
+ 通讯录好友发送消息
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+
+https://192.168.2.132:8280/platWeb/platsms/sendMsg.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+
+<table>
+<tr><td>smsType</td><td>消息类型</td></tr>
+<tr><td>contentType</td><td>发送消息内容类型contentType 1 文字 2 图片 3 视频 4 语音</td></tr>
+<tr><td>src</td><td>发送者用户编码</td></tr>
+<tr><td>content</td><td>消息内容（字符串）</td></tr>
+<tr><td>targets</td><td>消息接受者的用户编码（数组）</td></tr>
+<tr><td>target</td><td>消息接受者的用户编码</td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"smsType" : "chat",
+	"contentType" : 1,
+	"src" : "3c5d15220cb14d3d97377bb5d5014c4a",
+	"content" : "{\"contentType\":1,\"content\":\"1111\"}",
+	"targets" : ["7272f856b5c74aabb309f0ddc754f375"],
+	"target" : "7272f856b5c74aabb309f0ddc754f375"
+}
+
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{"code":0}
+</pre>
+</section>
+
+</body>
+</html>

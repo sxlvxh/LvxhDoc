@@ -1,0 +1,155 @@
+.lvxhCalPanel{
+border:1px solid #dddddd;
+background-color:#EEEEEE;
+float:right;
+position: absolute;
+color:blue;
+width:300px;
+z-index: 9999;
+}
+.lvxhCalHead
+{
+/*  height:40px; */
+ width:100%;
+ padding-left:10px;
+ background-color:#EEEEEE;
+}
+.lvxhCalContent
+{
+ background-color:#FFFFFF;
+}
+.lvxhCalBtn
+{
+ 
+ background-color:#EEEEEE;
+}
+.prevYearCss,.prevMonthCss,.curYearMonthCss,.nextMonthCss,.nextYearCss
+{
+  border:0px solid red;
+  width:16px;
+  height:18px;
+  cursor:pointer;
+}
+.curYearMonthCss
+{
+  width:100%;
+}
+.prevYearCss
+{
+ background: url(../image/back.png) no-repeat;
+ background-position:-48px -160px;
+}
+.prevMonthCss
+{
+ background: url(../image/back.png) no-repeat;
+ background-position:-96px -16px;
+}
+.nextMonthCss
+{
+ background: url(../image/back.png) no-repeat;
+ background-position:-32px -16px;
+}
+.nextYearCss
+{
+ background: url(../image/back.png) no-repeat;
+ background-position:-32px -160px;
+}
+.lvxhCalPanel table tr td
+{
+ height:30px;
+
+}
+.lvxhCalPanel table tr td span{ color:#393939;}
+.lvxhDateCss
+{
+  background-color:#FFFFFF;
+  cursor:pointer;
+}
+.lvxhDateCss:hover
+{
+ background-color:#3ba8ea;
+ color:#FFFFFF;
+
+}
+.lvxhDateCss:hover span{
+	color:#FFFFFF;
+}
+.lvxhDateSelect
+{
+  background-color:#FFFFFF;
+  color:blue;
+}
+.lvxhDateSelected
+{
+   background-color:#3ba8ea;
+   color:#FFFFFF;
+}
+.lvxhDateSelected span{
+	 color:#FFFFFF;
+}
+.lvxhCalBtnDiv
+{
+
+ border-top:1px solid #DDDDDD;
+ float:left;
+ background-color:#FFFFFF;
+ padding:0;
+ margin:0;
+}
+.lvxhCalBtnDiv input
+{
+ 
+ width:20px;
+ border:0px;
+ height:26px;
+ margin-left:5px;
+ color:blue;
+ padding: 0px !important;
+}
+.timeUp
+{ 
+ height:12px;
+ width:20px;
+ border:1px solid #DDDDDD;
+ background: url(../image/back.png) no-repeat;
+ background-position:2px -18px;
+  cursor:pointer;
+}
+.timeDown
+{
+ height:12px;
+ width:20px;
+ border:1px solid #DDDDDD;
+ background: url(../image/back.png) no-repeat;
+ background-position:-63px -16px;
+ cursor:pointer;
+}
+.timeUp:hover,.timeDown:hover
+{
+ border:1px solid #3ba8ea;
+}
+.todayBtn,.confirmBtn,.cleanBtn
+{
+ width:50px;
+ height:22px;
+ border:1px solid #dddddd;
+ float:right;
+ text-align:center;
+ padding-top:1px;
+ margin:2px 1px 0px 1px;
+  cursor:pointer;
+}
+.todayBtn:hover,.confirmBtn:hover,.cleanBtn:HOVER
+{
+ border:1px solid #3ba8ea;
+}
+#calendarTH th
+{
+	text-align:  center !important;
+}
+.lvxhCalPanel table tr td .curYearMonthCss span{ 
+	color:#438eb9;
+} 
+.lvxhCalPanel,.lvxhCalBtnDiv input{
+	color:#438eb9;
+}

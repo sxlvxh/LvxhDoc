@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#fff;
+ }
+</style>
+</head>
+<body>
+<h3>时间参数说明</h3>
+<section>
+<pre>
+  略
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>dateFormat</td><td>时间format参数</td></tr>
+</table>
+</section>
+
+
+<h4>参数实例</h4>
+<section>
+<pre>
+    {"dateFormat":"yyyy-mm-dd"}
+	{"dateFormat":"yyyy-mm-dd hh:ii:ss"}
+</pre>
+<pre>
+ {"prior":true,"initValueType":"startDate","initValue":"0"}  //当天 yyyy-mm-dd
+ {"prior":true,"initValueType":"startDate","initValue":"86400000"}  //前一天 yyyy-mm-dd
+</pre> 
+
+<pre>
+ {"prior":true,"initValueType":"startTime","initValue":"0"}  //当天 yyyy-mm-dd hh:ii:ss
+ {"prior":true,"initValueType":"startTime","initValue":"86400000"}  //前一天 yyyy-mm-dd hh:ii:ss
+</pre> 
+</section>
+</section>
+
+</body>
+</html>

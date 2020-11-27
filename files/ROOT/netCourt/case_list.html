@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>互联网法庭接口文档</title>
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+ boyd,html{
+  width:100%;
+  height: 100%;
+ }
+</style>
+</head>
+<body>
+<h4>接口说明</h4>
+<section>
+<pre>
+查询案件列表
+</pre>
+</section>
+<h4>请求路径 【<color style='color:red'>HTTP+JSON</color>】</h4>
+<section>
+<pre>
+ http://192.168.2.132:8380/courtWeb/caselist/grid.action 
+</pre>
+</section>
+
+<h4>请求参数说明</h4>
+<section>
+<pre>
+caseName:案件名陈 （选填）<color style='color:blue'></color>
+sort:查询结果排序（选填）<color style='color:blue'>field是按什么属性排序， order是排序类型 desc降序 asc升序</color>
+pages: 分页查询参数（必填）<color style='color:blue'>curPage当前查询页， pageSize单次查询的大小</color>
+</pre>
+</section>
+
+<h4>请求参数示例</h4>
+<section>
+<pre>
+{
+	"caseName" : "",
+	"sort" : {
+		"field" : "id",
+		"order" : "desc"
+	},
+	"pages" : {
+		"curPage" : 1,
+		"pageSize" : 10
+	}
+}
+
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+<pre>
+result：结果集合
+		"createTime" : 创建时间,
+		"createUserId" : 1,
+		"nofuzzy" : 0,
+		"id" : 21,
+		"isdel" : 0,
+		"updateTime" : 修改时间,
+		"updateUserId" : -1,
+		"negativeFields" : [],
+		"caseCode" : 案件编号
+		"caseName" : 案件名陈
+		"caseType" : "1",
+		"depCode" : 部门编码
+		"untakerCode" : 承办人编号
+		"syncNo" : 同步编号
+		"depName" : 承办部门
+		"untakerName" : 承办人
+		"caseTypeName" : 案件类型
+ "pages": 分页查询对象
+        "curPage": 1,当前分页
+        "pageCount": 1,一共多少分页
+        "pageSize": 10,分页大小
+        "totalCount": 3,查询结果共多少条
+        "startNo": 0 从第几条数据开始查询
+    }
+</pre>
+</section>
+<h4>返回参数示例</h4>
+<section>
+<pre>
+{
+	"code" : 0,
+	"desc" : "分页查询成功",
+	"result" : [{
+			"treeList" : [],
+			"createTime" : "2020-03-24 16:25:16",
+			"createUserId" : 1,
+			"nofuzzy" : 0,
+			"id" : 21,
+			"isdel" : 0,
+			"updateTime" : "2020-03-24 17:00:01",
+			"updateUserId" : -1,
+			"negativeFields" : [],
+			"caseCode" : "(2020)苏02民终484号",
+			"caseName" : "无锡聚为科技有限公司与陈巍劳动合同纠纷",
+			"caseType" : "1",
+			"depCode" : "9aaac172314244e8ace95cd67afe5506",
+			"untakerCode" : "lvxh",
+			"syncNo" : "A60_136838",
+			"depName" : "业务部",
+			"untakerName" : "吕孝怀",
+			"caseTypeName" : "执行案件"
+		}, {
+			"treeList" : [],
+			"createTime" : "2020-03-24 16:25:08",
+			"createUserId" : 1,
+			"nofuzzy" : 0,
+			"id" : 20,
+			"isdel" : 0,
+			"updateTime" : "2020-03-25 23:00:01",
+			"updateUserId" : -1,
+			"negativeFields" : [],
+			"caseCode" : "(2020)苏02民终544号",
+			"caseName" : "淮安市瑞达土石方工程有限公司与钱乐英分期付款买卖合同纠纷",
+			"caseType" : "1",
+			"depCode" : "9aaac172314244e8ace95cd67afe5506",
+			"untakerCode" : "lvxh",
+			"syncNo" : "A60_136580",
+			"depName" : "业务部",
+			"untakerName" : "吕孝怀",
+			"caseTypeName" : "执行案件"
+		}
+	],
+	"pages" : {
+		"curPage" : 1,
+		"pageCount" : 1,
+		"pageSize" : 10,
+		"totalCount" : 6,
+		"startNo" : 0
+	}
+}
+
+</pre>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>webSocket</title>
+    <script src='jquery.js'></script>  
+   <script src='adapter.js'></script> 
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+   <script src='janus.js'></script> 
+   <script src='hysdk.js'></script> 
+   <style>
+  		button{
+  			/* display:none; */
+  		}
+  		.videowarp video{
+  			width: 500px;
+  			height: 350px;
+  		}
+  		.video-row{
+  			float: left;
+  			width: 500px;
+  			height: 400px;
+  		}
+  		.video-row span{
+  			padding:6px;
+  			color: #fff;
+  			background: blue;
+  		}
+   </style>
+  
+        
+   </head>
+   <body>
+   		<div>
+   			<table>
+   				<tr>
+   					<td>websokcet地址：</td>
+   					<td><input id='url' type='text' value="ws://192.168.2.198:12000"/></td>
+   				</tr>
+   				<tr>
+   					<td>流媒体地址：</td>
+   					<td><input id='svrIp' type='text' value="192.168.2.198"/></td>
+   				</tr>
+   				<tr>
+   					<td>流媒体端口：</td>
+   					<td><input id = "svrPort" type='text' value="9001"/></td>
+   				</tr>
+   				<tr>
+   					<td>登录名：</td>
+   					<td><input id='loginName' type='text' value='jff'/></td>
+   				</tr>
+   				<tr>
+   					<td>被叫：</td>
+   					<td><input id='callloginName' type='text' value='jff111'/></td>
+   				</tr>
+   				<tr>
+   					<td><button id='register-btn' onclick='register()'>注册</button></td>
+   					<td><button id='call-btn' onclick='call()'>call</button></td>
+   					<td><button id='stop-btn' onclick='stop()'>stop</button></td>
+   				</tr>
+   			</table>
+   			<div class='videowarp'>
+   				<div class='video-row'>
+   					<video id='localVideo' autoplay playsinline muted="muted"></video>
+   					<div>
+   						<span class='localbitrate'>0</span>
+   					</div>
+   				</div>
+   				
+   				<div class='video-row'>
+   					<video id='remoteVideo' autoplay playsinline muted="muted"></video>
+   					<div>
+   						<span class='remotebitrate'>0</span>
+   					</div>
+   				</div>
+   				
+   			</div>
+   		</div>
+   </body>
+    <script type="text/javascript">
+    //rtsp://192.168.2.198:554/2337/rtsp://10000079_2:554?BitRate=512;FrameRate=25;IFrame=100;DmgType=2337
+
+   		var janus = null;
+   		var server = null;
+   		function getUserInfo()
+   		{
+   		   var opt = {
+   			    url:$("#url").val(),
+   				svrIp:$("#svrIp").val(),
+   				userName:$("#loginName").val(),
+   				svrPort:$("#svrPort").val(),
+   				mac:Janus.randomString(12),
+   			    loginName:$("#loginName").val(),
+   			    loginSuccess:function(msg){
+   				   //console.log("11111" , msg)		
+   			     	console.log("流媒体登录成功===");
+   				   if(msg.nResultCode === 0)
+   					   {}
+   				   else
+   					   {
+   					    sdk.kickOut({strUserTokenID:msg.strUserTokenID});
+   					   }
+   			   },
+   			   log: true
+   		    };		
+   		    console.log(JSON.stringify(opt));
+   			return opt;
+   		}
+   		
+   		
+   		var opaqueId = "echotest-"+Janus.randomString(12);
+   		if(window.location.protocol === 'http:')
+   			server = "http://192.168.2.176:8088/janus";
+   		else
+   			server = "wss://192.168.2.176:8989";
+   		var hyJanus = new hyWebRtc({
+   			server: server,
+   			plugin:"janus.plugin.cmf_agent",
+   			opaqueId: opaqueId,
+   			videoNode: $("#localVideo").get(0),
+   			remoteVideo: 'remoteVideo',
+   			initError:initError,
+   			loginName:$("#loginName").val(),
+   			log:true
+   		});
+   		hyJanus.init();
+    	
+    	//注册
+    	function register(){
+    		var loginName = $("#loginName").val();
+    		var register = { request: "register", username: loginName };
+    		hyJanus.videocall.send({ message: register });
+    		
+    	}
+    	
+    	//注册
+    	function call(){
+    		var loginName = $("#callloginName").val();
+    		// Call this user
+    		hyJanus.videocall.createOffer(
+    			{
+    				// By default, it's sendrecv for audio and video...
+    				media: { data: true/* ,video:"screen" */ },	// ... let's negotiate data channels as well
+    				// If you want to test simulcasting (Chrome and Firefox only), then
+    				// pass a ?simulcast=true when opening this demo page: it will turn
+    				// the following 'simulcast' property to pass to janus.js to true
+    				simulcast: true,
+    				success: function(jsep) {
+    					Janus.debug("Got SDP!", jsep);
+    					//var body = { request: "call", username: $('#callloginName').val() };
+    					var body = { request: "publish", uuid: "12345678","server_ip":'192.168.2.198',"stream_type":2};
+    					hyJanus.videocall.send({ message: body, jsep: jsep });
+    					/* 
+    					Janus.listDevices(function(devices){
+    		    			devices.forEach(function(device) {
+    		    				console.log(" ======== " ,device);
+    		    			});
+    		    		});  */
+    					
+    				},
+    				error: function(error) {
+    					Janus.error("WebRTC error...", error);
+    				}
+    			});
+    	}
+    	
+    	function stop(){
+    		hyJanus.janus.destroy();
+    	}
+    	
+    	function initError(e){
+    		console.log(" eeeeeee",e);
+    		try{hyJanus.janus.destroy();}catch(ee){};
+    		hyJanus = new HYJANS({
+       			server: server,
+       			plugin:"janus.plugin.cmf_agent",
+       			opaqueId: opaqueId,
+       			localVideo: $("#localVideo").get(0),
+       			remoteVideo: 'remoteVideo',
+       			initError:initError
+       		});
+    	}
+    </script>
+</html>
+

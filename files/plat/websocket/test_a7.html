@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>webSocket</title>
+   <script src='jquery.js'></script>
+   <script src='json2.js'></script> 
+   <script src='websocket.js'></script> 
+   <script type="text/javascript">
+   try{
+	    var opt = {
+		    url:"ws://192.168.3.132:8989/ws",
+		    loginName:"10107",
+		    loginSuccess:function(nettyWs){
+			   nettyWs.sendMsg("{\"msgType\":\"nettyForwardService\",\"src\":\"10106\",\"content\":5555}");
+		    }
+	    };
+	   var nettyWs = new NETTY_WS(opt);
+	   
+    }catch(e){
+	    window.console && window.console.error(e);
+    }
+    </script>
+        
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a href="javascript:WebSocketTest()">运行 WebSocket</a>
+      </div>
+      
+   </body>
+</html>

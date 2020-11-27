@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>获取群组成员</h3>
+<section>
+<pre>
+获取群组成员
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+ https://192.168.2.132:8280/platWeb/platgroupuser/list.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+
+<table>
+ <tr><td>groupCode </td><td>群组编码</td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"groupCode":"2976a9df52ca4459aeefc9b9008a73a3"
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "查询成功",
+    "result": [
+        {
+            "treeList": [],
+            "nofuzzy": 0,
+            "id": 1174,
+            "negativeFields": [],
+            "groupCode": "2976a9df52ca4459aeefc9b9008a73a3",
+            "friendMark": "139120100010",
+            "friendUserCode": "3709214bb4184e3a811e26aeab011840",
+            "isAdmin": "1",
+            "userCode": "3709214bb4184e3a811e26aeab011840",
+            "imgUrl": "/images/man.png",
+            "entCode": "A320101",
+            "userServiceType": "1",
+            "userType": 1,
+            "domainCode": ""
+        },
+        {
+            "treeList": [],
+            "nofuzzy": 0,
+            "id": 1173,
+            "negativeFields": [],
+            "groupCode": "2976a9df52ca4459aeefc9b9008a73a3",
+            "friendMark": "吕孝怀12",
+            "friendUserCode": "c91b454168bc4790bc1c515f47b1dd9c",
+            "isAdmin": "1",
+            "userCode": "c91b454168bc4790bc1c515f47b1dd9c",
+            "imgUrl": "/userfiles/lvxh/20200604/12b8816113e24f97bee2e5af6a649430.png",
+            "entCode": "A320101",
+            "userServiceType": "1",
+            "userType": 1,
+            "domainCode": ""
+        },
+        {
+            "treeList": [],
+            "nofuzzy": 0,
+            "id": 1175,
+            "negativeFields": [],
+            "groupCode": "2976a9df52ca4459aeefc9b9008a73a3",
+            "friendMark": "吕孝怀",
+            "friendUserCode": "lvxh",
+            "isAdmin": "0",
+            "userCode": "lvxh",
+            "imgUrl": "/userfiles/lvxh/20200509/85cbcbad403c448aa421fa71e71cef6a.jpg",
+            "entCode": "A320101",
+            "userServiceType": "1",
+            "userType": 1,
+            "domainCode": ""
+        }
+    ]
+}
+</pre>
+</section>
+
+</body>
+</html>

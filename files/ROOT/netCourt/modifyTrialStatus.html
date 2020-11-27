@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>互联网法庭接口文档</title>
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+ boyd,html{
+  width:100%;
+  height: 100%;
+ }
+</style>
+</head>
+<body>
+<h4>接口说明</h4>
+<section>
+<pre>
+庭审状态变更【2020-04-28新增】
+</pre>
+</section>
+<h4>请求路径 【<color style='color:red'>HTTP+JSON</color>】</h4>
+<section>
+<pre>
+http://192.168.2.132:8380/courtWeb/court/modifyTrialStatus.action
+</pre>
+</section>
+
+<h4>请求参数说明</h4>
+<section>
+<pre>
+trialCode:庭审编码 <color style='color:blue'></color>
+status：状态开始  0：排期（初始状态） 1 开庭  2 休庭 3 闭庭
+</pre>
+</section>
+
+<h4>请求参数示例</h4>
+<section>
+<pre>
+{
+	"trialCode": "034d625b03b646c18e3a643e5145ca90",
+	"status": "0"
+}
+
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+<pre>
+
+</pre>
+</section>
+<h4>返回参数示例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "obj": {
+        "treeList": [],
+        "createTime": "2020-04-20 17:12:44",
+        "createUserId": 1,
+        "nofuzzy": 0,
+        "id": 4171,
+        "isdel": 0,
+        "updateTime": "2020-04-28 09:28:01",
+        "negativeFields": [],
+        "roomList": [],
+        "partyList": [],
+        "startDate": "2020-04-20 17:12:41",
+        "trialCode": "034d625b03b646c18e3a643e5145ca90",
+        "caseSeqCode": "1002",
+        "caseInfo": "",
+        "roomCode": "03067578208f4f6689080e35c2437c67",
+        "judgeCode": "88748784a24f43b982c0436c9f1b6bf6",
+        "clerkCode": "ed2e09e97d684863a1c59c64ec5a4544",
+        "entCode": "A320101",
+        "status": 1
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+table
+{
+ width:100%;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title">获取任务执行明细</span></div>
+<div class="content">
+		<section>
+	<DIV id="confbutton_list_params" class="params_div">
+		<table border="1">
+			<tr><td class="td-title" style="background-color:blue;color:#fff" >请求路径：</td><td colspan="4">/cgtasktempexeclist/getTaskExecDtl.action</td></tr>
+			<tr><td>请求参数描述</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>entCode</td>
+			    <td>String</td>
+			    <td>必须输入</td>
+			    <td>单位代码</td>
+			</tr>
+			<tr>
+			    <td>taskTempId</td>
+			    <td>int</td>
+			    <td>必须输入</td>
+			    <td>任务模板ID</td>
+			</tr>
+			<tr>
+			    <td>userId</td>
+			    <td>String</td>
+			    <td>必须输入</td>
+			    <td>用户Id</td>
+			</tr>
+			<tr>
+			    <td>tempAreaId</td>
+			    <td>int</td>
+			    <td>必须输入</td>
+			    <td>任务区域Id</td>
+			</tr>
+			<tr>
+			    <td>areaTimeId</td>
+			    <td>int</td>
+			    <td>必须输入</td>
+			    <td>任务时间Id</td>
+			</tr>	
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >请求JSON：</td>
+				<td colspan="4">
+				  <pre>
+{
+    "userId": 13010283,
+    "taskTempId": 1,
+    "entCode": "320101",
+    "tempAreaId": 17,
+    "areaTimeId": 27
+}
+				  </pre>
+				</td>
+			</tr>
+			<tr><td class="td-title" id="confbutton_list_params_out">返回参数描述：</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>code</td>
+			    <td>int</td>
+			    <td></td>
+			    <td>返回码 0：成功 1：失败</td>
+			</tr>
+	        <tr>
+			    <td>result</td>
+			    <td>List</td>
+			    <td></td>
+			    <td>任务执行明细集合</td>
+			</tr>
+		
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >返回JSON：</td>
+				<td colspan="4">
+				 <pre>
+{
+    "code": 0,
+    "desc": "获取执行明细成功",
+    "result": {
+        "createTime": "2018-12-18 17:20:10",
+        "nofuzzy": 0,
+        "id": 1,
+        "isdel": 0,
+        "updateTime": "2018-12-18 19:02:43",
+        "entCode": "320101",
+        "taskTempId": 1,
+        "tempAreaId": 22,
+        "areaTimeId": 31,
+        "userId": 13010283,
+        "loginName": "C0F2D6DC942E4EC9B4DB70059C97DC47",
+        "execName": "",
+        "userEntCode": "320101",
+        "execTime": "2018-12-18 17:20:10",
+        "execType": "1",
+        "execNote": "",
+        "execStatus": "1",
+        "detailList": [
+            {
+                "createTime": "2018-12-18 17:33:43",
+                "nofuzzy": 0,
+                "id": 1,
+                "isdel": 0,
+                "entCode": "320101",
+                "execId": 1,
+                "taskTempId": 1,
+                "execType": "1",
+                "contentType": "1",
+                "extendCol1": "0"
+            },
+            {
+                "createTime": "2018-12-18 19:02:44",
+                "nofuzzy": 0,
+                "id": 2,
+                "isdel": 0,
+                "entCode": "320101",
+                "execId": 1,
+                "taskTempId": 1,
+                "execType": "1",
+                "contentType": "1",
+                "extendCol1": "0"
+            }
+        ]
+    }
+}
+				 </pre>
+				</td>
+			</tr>
+		</table>
+		<script>
+			document.getElementById("confbutton_list_params_in").rowSpan = 25;
+			document.getElementById("confbutton_list_params_out").rowSpan = 27;
+		</script>
+	</DIV>
+</section>
+</div>
+
+</body>
+</html>

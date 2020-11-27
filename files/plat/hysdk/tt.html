@@ -1,0 +1,54 @@
+<html>
+  <head>
+    	<title> WebRTC 获取音视频设备</title>
+  </head>
+  <body>
+    <div>
+      <div>
+        <label>audio input device:</label>
+        <select id="audioSource"></select>
+      </div>
+      <div>
+        <label>audio output device:</label>
+        <select id="audioOutput"></select>
+      </div>
+      <div>
+        <label>video input device:</label>
+        <select id="videoSource"></select>
+      </div>
+    </div>
+    <script>
+	
+	// 这种方式只在Chrome浏览器有效，因为各个浏览器获取音视频权限的内部实现都不一样，所以这种方式在Safari和Firefox浏览器看不到设备名称
+'use strict'
+
+if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) {
+    console.log('不支持获取设备信息！');
+}else{
+     // 获取音视频数据的api，这里需要给浏览器授权。audio和video都为true表示采集的既有音频又有视频数据
+    navigator.mediaDevices.getUserMedia({audio: true, video: true});
+    // 获取音视频设备，成功调用gotDevices方法，失败调用handleError方法
+    navigator.mediaDevices.enumerateDevices().then(gotDevices).catch(handleError);
+}
+
+// 浏览器获取音视频设备成功时调用的方法
+function gotDevices(deviceInfos){
+  //  const audioInputSelect = $("#audioinput")[0];
+  //  const audioOutputSelect = $("#audiooutput")[0];
+  //  const videoInputSelect = $("#videoinput")[0];
+
+    deviceInfos.forEach(function(deviceInfo){
+        console.log('设备种类='+deviceInfo.kind + '：设备名 = ' + deviceInfo.label + '；设备id = ' + deviceInfo.deviceId + '；groupId='+deviceInfo.groupId);
+        
+      
+    })
+}
+
+// 浏览器获取音视频设备失败时调用的方法
+function handleError(err){
+    console.log(err.name+':'+err.message);
+}
+	
+	</script>
+  </body>
+</html>

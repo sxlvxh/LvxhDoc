@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+
+</style>
+</head>
+<body>
+<div class="top"><span class="title">接口约定</span></div>
+<div class="content">
+		<ul class=" list-paddingleft-2" style="list-style-type: disc;">
+			<li>
+				<p style="text-align: left;">
+					<strong>&nbsp;接口约定</strong>
+				</p>
+			</li>
+		</ul>
+		<p style="text-align: left;">
+			接口协议为 HTTP 协议。
+		</p>
+		<p style="text-align: left;">
+			所有接口输入输出参数均使用 String/Json 字符串形式。
+		</p>
+		<p style="text-align: left;">
+			返回结果参数类型，类型都为 Json 字符串格式。
+		</p>
+		<ul class=" list-paddingleft-2" style="list-style-type: disc;">
+			<li>
+				<p style="text-align: left;">
+					<strong>消息正文格式说明</strong>
+				</p>
+			</li>
+		</ul>
+		<p style="text-align: left;">
+			所有接口的请求和响应数据按 JSON 格式来封装，如下所示：
+		</p>
+		<p>
+			{
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;Name&quot;: &quot;huaiye&quot;,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;Num&quot;: 0,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;InCity&quot;: [&quot;nanjing&quot;, &quot;yangzhou&quot;],
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;get_group_channel_list&quot;: {
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;GradeSchool&quot;: &quot;xinghua&quot;,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;MiddleSchool&quot;: [&quot;mahua&quot;, &quot;zihua&quot;]
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>}
+		</p>
+		<p>
+			}
+		</p>
+		<ul class=" list-paddingleft-2" style="list-style-type: disc;">
+			<li>
+				<p style="text-align: left;">
+					<strong>字符编码</strong>
+				</p>
+			</li>
+		</ul>
+		<p style="text-align: left;">
+			请求及返回结果都使用 UTF-8 字符集进行编码。
+		</p>
+		<ul class=" list-paddingleft-2" style="list-style-type: disc;">
+			<li>
+				<p style="text-align: left;">
+					<strong>返回码说明</strong>
+				</p>
+			</li>
+		</ul>
+		<p>
+			{
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;code&quot;: 0,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;desc&quot;: &quot;查询成功&quot;,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;result&quot;: [{
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;nofuzzy&quot;: 0,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;id&quot;: 10102356,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;isdel&quot;: 0,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;userId&quot;: 1,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;groupName&quot;: &quot;常用联系人&quot;,
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>&quot;groupType&quot;: 2
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>}
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="white-space:pre"></span>]
+		</p>
+		<p>
+			&nbsp;&nbsp;&nbsp;&nbsp;}
+		</p>
+		<p>
+			<br/>
+		</p>
+</div>
+
+</body>
+</html>

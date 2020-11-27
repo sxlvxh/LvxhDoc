@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+<title>怀业WEBSDK实例</title>
+<link rel="stylesheet" href="css/bootstrap.min.css"/>
+<link rel="stylesheet" href="css/demo.css"/>
+<script type="text/javascript" src='js/img64.js'></script>
+<script type="text/javascript" src='js/jquery.js'></script>
+<script type="text/javascript" src='js/adapter.min.js'></script>
+<script type="text/javascript" src="js/jquery.blockUI.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootbox.min.js"></script>
+<script type="text/javascript" src="js/spin.min.js"></script>
+<script type="text/javascript" src="js/toastr.min.js"></script>
+<script type="text/javascript" src='js/janus.js'></script>
+<script type="text/javascript" src='js/hysdk.js'></script>
+<script type="text/javascript" src='js/demo.js'></script>
+</head>
+<body>
+  <div class="left">
+    <ul class="left-panel">
+         <li><h3>怀业WEBSDK实例</h3></li>
+         <!-- <li>
+			<a href="#unlockLi">解锁Chrome浏览器证书错误 </a>
+		 </li> -->
+	     <li>
+			<a href="#logintLi">1、用户</a>
+			<ul>
+				<li><a href="#logintLi">1.1  用户注册</a></li>
+				<li><a href="#logoutLi">1.2  用户注销</a></li>
+				<li><a href="#getUInfoLI">1.3  获取人员状态</a></li>
+				<li><a href="#getUURlUI">1.4  获取人员视频地址</a></li>
+				<li><a href="#setFriendUI">1.5  设置关注用户</a></li>
+				<li><a href="#sendCustomMsg">1.6 发送自定义消息</a></li>
+			</ul>
+		</li>
+	     <li>
+			<a href="#setLayout">2、播放器</a>
+			<ul>
+				<li><a href="#setLayout">2.1 设置布局</a></li>
+				<li><a href="#playUrl">2.2 websocket模式播放</a></li>
+				<li><a href="#playRtcUrl">2.3 rtc模式播放</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#usb-dev-li">3、采集</a>
+			<ul>
+				<li><a href="#usb-dev-li">3.1  获取USB设备</a></li>
+				<li><a href="#startcaputerli">3.2 USB采集</a></li>
+				<li><a href="#captureWatchli">3.3 USB采集预览</a></li>
+				<li><a href="#startvoicecaputerli">3.4 USB语音采集</a></li>
+				<li><a href="#setDeviceCaptureli">3.5 指定设备采集</a></li>
+				<li><a href="#screenCaputerli">3.6 屏幕采集</a></li>
+				<li><a href="#playUserCapture">3.7 播放用户采集视频</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#getDeviceli">4、设备</a>
+			<ul>
+				<li><a href="#getDeviceli">4.1 获取设备</a></li>
+				<li><a href="#getDeviceRecordli">4.2 查询设备录像列表</a></li>
+				<li><a href="#setCaptureli">4.3  设置采集参数</a></li>
+				
+			</ul>
+		</li>
+		<li>
+			<a href="#createMeetingli">5、会议</a>
+			<ul>
+				<li><a href="#createMeetingli">5.1  创建会议</a></li>
+				<li><a href="#getMeetingli">5.2  查询会议列表</a></li>
+				<li><a href="#PredetermineMeeting">5.3  创建预约会议</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#createMTalkli">6、对讲</a>
+			<ul>
+				<li><a href="#createMTalkli">6.1  发起对讲</a></li>
+				<li><a href="#getTalkli">6.2 查询对讲列表</a></li>
+				<li><a href="#getTalkRecord">6.3 查询对讲录像</a></li>
+			</ul>
+		</li>
+		<li>
+			<a href="#groupTalk">7、集群对讲</a>
+			<ul>
+				<li><a href="#createTrunkChannelli">7.1 创建集群对讲</a></li>
+				<li><a href="#getTrunkListli">7.2 查询频道列表</a></li>
+			</ul>
+		</li>
+		
+    </ul>
+  </div>
+  <div class="right">
+  
+     <h3 id="unlockLi">解锁Chrome浏览器证书错误</h3>
+	     <div>
+			<pre>
+	     <red>
+解决这个问题很简单,只需要修改你平时用来启动Chrome的快捷方式就可以忽略掉证书错误.
+具体的操作方法是这样的:
+1、找到你的Chrome快捷方式.
+2、右键图标,选择属性
+3、找到”目标”文本框,里面的内容是你的Chrome程序路径,类似这样"C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe"
+4、在这段文本的后面输入一个空格,然后输入 --ignore-certificate-errors
+5、修改后的文本应该类似于这样: "C:\Users\Administrator\AppData\Local\Google\Chrome\Application\chrome.exe" --ignore-certificate-errors
+6、点击确定
+7、重新打开你的Chrome浏览器
+执行上述操作后,以后你每次通过该快捷方式打开Chrome,都会从根本上忽略掉浏览器中的所有证书错误.<a onclick="unlockSie();">解锁</a>
+			</red>
+			</pre>
+	     </div>
+     <h3 id="logintLi">用户注册</h3>
+     <div>
+        <table>
+				<tr>
+					<td>websokcet地址</td>
+					<td><input id="url" value="wss://192.168.2.198:13000"></input><red>*流媒体消息通信地址</red></td>
+				</tr>
+				<tr>
+					<td>流媒体地址：</td>
+					<td><input id="svrIp" value="192.168.2.198"></input><red>*流媒体服务器IP地址</red></td>
+				</tr>
+				<tr>
+					<td>用户名称：</td>
+					<td><input id="userName" value="jff"></input><red>*登录用户名称</red></td>
+				</tr>
+				<tr>
+					<td>登录账号：</td>
+					<td><input id="loginName" value="jff"></input><red>*登录账号</red></td>
+				</tr>
+				<tr>
+					<td>流媒体端口：</td>
+					<td><input id="svrPort" value="9001"></input><red>*流媒体端口</red></td>
+				</tr>
+				<tr>
+					<td>websocket播放地址：</td>
+					<td><input id="websocketPlatUrl" value="wss://192.168.2.198:443/stream"></input><red>*流媒体播放视频地址</red></td>
+				</tr>	
+				<tr>
+					<td>webRtc地址：</td>
+					<td><input id="webRtcUrl" value="https://192.168.2.198:443/janus"></input><red>webrtc通信地址[会议功能使用，无会议功能时忽略此配置]</red></td>
+				</tr>	
+				<tr>
+					<td>STUN/TURN服务器列表：</td>
+					<td><input id="iceServers" value='[{"urls": "stun:stun.l.google.com:19302"}]'></input><red></red></td>
+				</tr>	
+									
+			</table>
+			<div>
+				<button id = 'login-btn' class="btn btn-primary rightbtn" onclick="reload();">登录</button>				
+			</div>
+     </div>
+     <h3 id="logoutLi">用户注销</h3>
+     <div>
+			<div>
+				<button id="logout-btn" class="btn btn-danger  rightbtn" style="display:none;" onclick="lougout();">退出</button>				
+			</div>
+     </div>
+     <h3 id="getUInfoLI">获取人员状态</h3>
+     <div>
+			<div>
+				<button class="btn btn-primary rightbtn" onclick="getUInfo();">查询</button>				
+			</div>
+			<table class='table' id="uInfoTable">
+			 
+			</table>
+     </div>
+     <h3 id="getUURlUI">获取人员视频地址</h3>
+     <div>
+			<div>
+			用户账号：<input id="userLoginName" value="lvxh1004"/>	<button class="btn btn-primary" onclick="getUURl();">查询</button>				
+			</div>
+			<div id="getUURResp">
+			 
+			</div>
+     </div>
+     <h3 id="setFriendUI">关注用户</h3>
+     <div>
+			<div>
+			用户账号：<textarea id="friendParams">	
+[{
+"strUserDomainCode": "085700f33a0f",
+"strUserID": "lvxh1004"
+},
+{
+"strUserDomainCode": "085700f33a0f",
+"strUserID": "lvxh1004"
+}]
+	        </textarea>
+			<button class="btn btn-primary" onclick="setFriend();">设置</button>				
+			</div>
+     </div>
+      <h3 id="sendCustomMsg">发送自定义消息</h3>
+     <div>
+			<div>
+			&nbsp;接&nbsp;收&nbsp;人&nbsp;：<textarea id="acceptUser">	
+[{
+"strUserDomainCode": "085700f33a0f",
+"strUserID": "lvxh1001"
+},
+{
+"strUserDomainCode": "085700f33a0f",
+"strUserID": "lvxh1002"
+}]
+	        </textarea><br/>
+        	消息内容：<input id="msgContent"></input>
+			<button class="btn btn-primary" onclick="sendCustomMsg();">发送</button>				
+			</div>
+     </div>
+     
+     
+     <h3 id="setLayout">设置布局</h3>
+     <div>
+			<div>
+			    &nbsp;rtsp&nbsp;地&nbsp;址&nbsp;:<input id="rtsp_url" value="rtsp://192.168.2.198:554/2268/rtsp://192.168.2.172:554/H264?ch=1&subtype=0&proto=Onvif?BitRate=2048;FrameRate=25;IFrame=50;DmgType=2258"/><br>
+				布局数量：<select id="layout" >
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option selected value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					<option value="13">13</option>
+					<option value="14">14</option>
+					<option value="15">15</option>
+					<option value="16">16</option>
+					<option value="17">17</option>
+					<option value="18">18</option>
+					<option value="19">19</option>
+					<option value="20">20</option>
+					<option value="21">21</option>
+					<option value="22">22</option>
+					<option value="23">23</option>
+					<option value="24">24</option>
+					<option value="25">25</option>
+				</select>
+				<button class="btn btn-primary" onclick="setLayout();">设置</button>
+				<button class="btn btn-success" onclick="addLayout();">追加</button>
+				<button class="btn btn-danger" onclick="reduceLayout();">减少</button>
+				<button class="btn btn-primary" onclick="playerx();">播放</button>
+				<button class="btn btn-primary" onclick="playerx1();">播放【指定播放器】</button>
+				<button class="btn btn-primary" onclick="playerxRtc();">RTC播放</button>		
+				<!-- <button class="btn btn-primary" onclick="setSizeScreen();">大小画面</button>	
+				<button class="btn btn-primary" onclick="backToOrg();">还原</button>	 -->				
+				<div id='playPanel' class='playStyle' ></div>
+			</div>
+     </div>
+     <h3 id="playUrl">websocket模式播放</h3>
+     <div>
+		<div>
+			播放的url：<input id="playUrlcont" value="rtsp://192.168.2.198:554/2268/rtsp://192.168.2.172:554/H264?ch=1&subtype=0&proto=Onvif?BitRate=2048;FrameRate=25;IFrame=50;DmgType=2258"/>
+			<button class="btn btn-primary" onclick="playUrl();">播放</button>
+			<div id='playUrlPanel' class='playStyle'></div>
+		</div>
+     </div>
+     
+     <h3 id="playRtcUrl">rtc模式播放</h3>
+     <div>
+		<div>
+			播放的url：<input id="playRtccont" value="rtsp://192.168.2.198:554/2268/rtsp://192.168.2.172:554/H264?ch=1&subtype=0&proto=Onvif?BitRate=2048;FrameRate=25;IFrame=50;DmgType=2258"/>
+			<button class="btn btn-primary" onclick="playRtcUrl();">播放</button>
+			<div id='playRtcPanel' class='playStyle'></div>
+		</div>
+     </div>
+     
+     
+     <h3 id="usb-dev-li">获取USB设备</h3>
+     <div>
+		<div>
+			<button class="btn btn-primary rightbtn" onclick="queryUsb();">查询</button>
+			<table class='table table1' id='usb-table'></table>
+		</div>
+     </div>
+     
+     <h3 id="startcaputerli">USB采集</h3>
+     <div>
+		<div>
+			<button class="btn btn-primary rightbtn" onclick="startCapture();">采集</button>
+			<div id='captureRtcPanel' class='playStyle'></div>
+		</div>
+     </div>
+     <h3 id="captureWatchli">USB采集预览</h3>
+     <div>
+		<div>
+			<button class="btn btn-primary rightbtn" onclick="captureWatch();">采集</button>
+			<div id='captureWatchPanel' class='playStyle'></div>
+		</div>
+     </div>
+     
+     <h3 id="startvoicecaputerli">USB语音采集</h3>
+     <div>
+		<div>
+			<button class="btn btn-primary rightbtn" onclick="startVoiceCapture();">采集</button>
+			<div id='captureVoicePanel' class='playStyle'></div>
+		</div>
+     </div>
+     
+     <h3 id="setDeviceCaptureli">指定设备采集</h3>
+     <div>
+		<div>
+		采集参数：<textarea id="setDeviceParam">	
+	{
+		"video" : {
+			"deviceId" : {
+				"exact" : "870203a0279f615922da2934c7d7140efbfee00bc78be2f00a50082ee2714235"
+			}
+		},
+		"replaceVideo" : true,
+		"data" : true
+	}
+	        </textarea>
+			<button class="btn btn-primary" onclick="setDeviceCapture();">采集</button>
+			<div id='setDevicePanel' class='playStyle'></div>
+		</div>
+     </div>
+     
+      <h3 id="screenCaputerli">屏幕采集</h3>
+     <div>
+		<div>
+			<button class="btn btn-primary rightbtn" id='startScreenCapture' onclick="startScreenCapture();">采集</button>
+			<button class="btn btn-primary rightbtn" id='stopScreenCapture' onclick="stopScreenCapture();" style='display:none;'>停止采集</button>
+			<div id='captureScreenPanel' class='playStyle'></div>
+		</div>
+     </div>
+      <h3 id="playUserCapture">播放用户采集视频</h3>
+     <div>
+   		<table>
+			<tr>
+				<td>domaincode</td>
+				<td><input id="domaincode" value=""></input></td>
+			</tr>
+			<tr>
+				<td>用户loginName：</td>
+				<td><input id="playLoginName" value=""></input></td>
+			</tr>
+		</table>
+     
+		<div>
+			<button class="btn btn-primary rightbtn" onclick="playUserCapture();">播放</button>
+			<div id='playcapturePanel' class='playStyle'></div>
+		</div>
+     </div>
+     
+      <h3 id="getDeviceli">获取设备</h3>
+     <div>
+		<div style='position: relative;'>
+			<button class="btn btn-primary rightbtn" onclick="getDomain('setUserIpc');">获取</button>
+			<div id='devicTree'></div><div id="devicePlayer"  style='display:block; width: 320px; height: 180px; position: absolute; top:0px;right: 50px;'></div>
+		</div>
+     </div>
+     <h3 id="getDeviceRecordli">查询设备录像列表</h3>
+     <div  style='position: relative;z-index: 1000;'>
+		设备参数：<textarea id="getrecordparam">	
+{"serviceUrl":{
+		"strDomainCode": "085700f33a0f",
+		"strDeviceCode": "085700f33a0f1130000001",
+		"strChannelCode": "085700f33a0f1310000001",
+		"strStreamCode": "085700f33a0f0000001"
+		},
+		"strStartTime": "2020-11-01 00:00:00",
+		"strEndTime": "2020-11-30 23:59:59"
+	}				
+			 </textarea>	
+<button class="btn btn-primary rightbtn" onclick="getDevRecord();">查询</button>
+<table class='table table1' id="devRecordTable">
+			 
+</table>
+<div style='position: absolute; top: 10px; right:-320px;'>
+				<div id='devRecordPlayer' class='playStyle'style="width:320px;height: 180px;z-index: 1000;"></div>
+			</div>
+     </div>
+     
+  <h3 id="setCaptureli">设置参数</h3>
+     <div style='width: 440px ;margin:20px;'>
+     	媒体源：<select id ='selectbtn' onchange='selectchange()'>
+			<option value='ipc'>网络摄像头</option>
+     		<option value='usb'>USB设备</option>
+     	</select>
+		<div id='ipcdiv' style='width: 100%; border:1px solid #dcebf7; padding: 10px;'>
+	
+设备参数：<textarea id="ipcParam">	
+{
+		"strDomainCode": "085700f33a0f",
+		"strDeviceCode": "085700f33a0f1130000001",
+		"strChannelCode": "085700f33a0f1310000001",
+		"strStreamCode": "085700f33a0f0000001",
+		"nIsUse": 1
+	}				
+			 </textarea>	
+		<button class="btn btn-primary rightbtn" onclick="setUserIpc();">保存</button>
+		</div>
+		<div id='usbdiv'  style='width: 100%; display: none; border:1px solid #dcebf7; padding: 10px;'>
+			分辨率：<select id='curresParam'><option value=320x180 >320x180</option>
+				<option value=320x240  >320x240</option>
+				<option value=640x360  >640x360</option>
+				<option value=640x480  >640x480</option>
+				<option value=1280x720 >1280x720</option>
+				<option value=1920x1080 >1920x1080</option></select>
+			码率：<select id='bitParam'><option value=0  selected>不限制</option>
+				<option value=128  >128Kbit</option>
+				<option value=256 >256Kbit</option>
+				<option value=512  >512Kbit</option>
+				<option value=1024  >1Mbit</option>
+				<option value=1500 >1.5Mbit</option>
+				<option value=2000 >2Mbit</option></select>
+			音频：<select id='audioParam'></select>
+			视频：<select id='videoParam'></select>
+			<button class="btn btn-primary rightbtn" onclick="saveUsbSetting();">保存</button>
+		</div>
+     </div>
+     
+      <h3 id="createMeetingli">创建会议</h3>
+     <div>
+			<div >
+			会议参数：<textarea id="meetingparam">	
+ {
+"strMeetingName": "会议测试",
+"strMeetingDesc": "会议测试",
+"nVoiceIntercom": 0,
+"lstMeetingUserInfo": [{
+    "strUserDomainCode": "085700f33a0f",
+    "strUserID": "jff",
+    "strUserName": "jff",
+    "nDevType": 1
+},
+{
+    "strUserDomainCode": "085700f33a0f",
+    "strUserID": "lvxh1004",
+    "strUserName": "吕孝怀",
+    "nDevType": 1
+},
+{
+    "strUserDomainCode": "085700f33a0f",
+    "strUserID": "lvxh1024",
+    "strUserName": "吕孝s怀",
+    "nDevType": 1
+},
+{
+    "strUserDomainCode": "085700f33a0f",
+    "strUserID": "lvxh3024",
+    "strUserName": "吕adfas怀",
+    "nDevType": 1
+}
+]
+}			
+	        </textarea><br/>
+				<button class="btn btn-primary rightbtn" onclick="createMeeting();" id='createMeetBtn' >创建</button>	
+				<button class="btn btn-primary " id='inviteBtn' onclick= 'initSelectPanel();' style='display: none;'>邀请</button>	
+				<button class="btn btn-primary " id='startRecordBtn'  style='display: none;'>录像</button>	
+				<button class="btn btn-primary " id='stopRecordBtn'  style='display: none;'>停止录像</button>	
+				<button class="btn btn-primary rightbtn"  id='lockBtn' style='display: none; margin-left: 10px;'>锁定</button>	
+				<button class="btn btn-primary rightbtn"  id='stopMeetBtn' style='display: none; margin-left: 10px;'>结束</button>	
+				<button class="btn btn-primary rightbtn" id='quitMeetBtn' style='display: none;'>退出</button>
+				<div style='position: relative; width:900px;' >
+					<div id='meetingPlayer' class='playStyle'></div>
+					<div id='meetingUser' style='position: absolute; top:0; right: 10px; width: 290px;height: 100%; border:1px solid #dcebf7;'></div>
+				</div>	
+			</div>
+     </div>
+      <h3 id="getMeetingli">查询会议列表</h3>
+     <div style='position: relative;z-index: 1000;'>
+     		开始时间：<input id="recordStartTime" value="2020-10-13 12:00:00"></input>
+     		结束时间：<input id="recordEndTime" value="2020-10-31 12:00:00"></input>
+     		</br>会议状态：<select id='meetingStatus' >
+     			<option value=1>正在进行</option>
+     			<option value=2>已经结束</option>
+     			<option value=4>尚未开始</option>
+     			<option value=5 selected=selected >尚未结束</option>
+     		</select>
+			<div>
+				<button class="btn btn-primary rightbtn" onclick="getMeetingInfo();">查询</button>				
+				<table class='table table1' id="meetingInfoTable">
+			 
+				</table>
+			</div>
+			
+			<div style='position: absolute; top: 10px; right:-320px;'>
+				<div id='recordPlayer' class='playStyle'style="width:320px;height: 180px;z-index: 1000;"></div>
+			</div>
+     </div>  
+     
+    <h3 id="PredetermineMeeting">创建预约会议</h3>
+     <div>
+             <div>
+			     <table>
+						<tr>
+							<td>开始时间</td>
+							<td><input id="meetingStartTime" value="2020-10-13 12:00:00"></input></td>
+						</tr>
+						<tr>
+							<td>会议时长</td>
+							<td><input id="nMeetingDuration" value="120"></input>分钟</td>
+						</tr>
+					</table>
+             </div>
+			<div>
+				<button class="btn btn-primary rightbtn" onclick="setMeeting();">创建</button>				
+			</div>
+     </div> 
+      <h3 id="createMTalkli">创建对讲</h3>
+     <div>
+			<div >
+			设备参数：<textarea id="talkparam">	
+ {
+"strTalkbackName": "对讲测试",
+"strTalkbackDesc": "对讲测试",
+"nVoiceIntercom": 0,
+"nRecord": 0,
+"listToUser": [{
+    "strToUserDomainCode": "085700f33a0f",
+    "strToUserID": "jff",
+    "strToUserName": "jff"
+}
+]
+}			
+	        </textarea><br/>
+				<button class="btn btn-primary rightbtn" onclick="createTalk();" id='createTalkBtn' >创建</button>	
+				<button class="btn btn-primary rightbtn"  id='stopTalkBtn' style='display: none; margin-left: 10px;'>结束</button>	
+				<button class="btn btn-primary rightbtn" id='quitTalkBtn' style='display: none;'>退出</button>
+				<div style='position: relative;'>
+					<div id='talkPlayer' class='playStyle' style="height:200px"></div>
+				</div>	
+			</div>
+     </div>
+   
+    <h3 id="getTalkli">查询对讲列表</h3>
+     <div style='position: relative;z-index: 1000;'>
+     		开始时间：<input id="strQueryStartTime" value="2020-10-13 12:00:00"></input>
+     		结束时间：<input id="strQueryEndTime" value="2020-10-31 12:00:00"></input>
+     		</br>会议状态：<select id='talkStatus' >
+     			<option value=''>全部</option>
+     			<option value=1>正在进行</option>
+     			<option value=2>已经结束</option>
+     		</select>
+			<div>
+				<button class="btn btn-primary rightbtn" onclick="getTalkList();">查询</button>				
+			</div>
+			<table class='table table1' id="talkInfoTable"></table>
+			<!-- <div style='position: absolute; top: 10px; right:-320px;'>
+				<div id='recordPlayer' class='playStyle'style="width:320px;height: 180px;z-index: 1000;"></div>
+			</div> -->
+     </div>  
+     <h3 id="getTalkRecord">查询对讲录像</h3>
+     <div style='position: relative;z-index: 1000;'>
+     		     		设备参数：<textarea id="talkrecordparam">	
+ {
+"strDomainCode":"085700f33a0f",
+"nTalkbackID": 0
+}	
+ </textarea><br/>
+			<div>
+				<button class="btn btn-primary rightbtn" onclick="getTalkrecordList();">查询</button>				
+			</div>
+			<table class='table table1' id="talkrecordTable"></table>
+			<div style='position: absolute; top: 10px; right:-320px;'>
+				<div id='recordPlayer' class='playStyle'style="width:320px;height: 180px;z-index: 1000;"></div>
+			</div>
+     </div> 
+    <h3 id="createTrunkChannelli">创建集群对讲</h3>
+     <div>
+			<div >
+			设备参数：<textarea id="createTrunkparam">	
+ {
+"strTrunkChannelName": "测试集群频道",
+"nTrunkChannelType": 1,
+"nRecordStatus": 0,
+"nSpeakTimeout": 60,
+"lstTrunkChannelUser":[{
+	"strTcUserDomainCode": "085700f33a0f",
+	"strTcUserID": "jff",
+	"strTcUserName": "jff",
+	"nPriority": 1,
+	"nEnforce": 0
+}]
+}			
+	        </textarea><br/>
+<button class="btn btn-primary rightbtn" onclick="createTrunkChannel();" id='createTrunkBtn' >创建</button>			
+<button class="btn btn-primary " id='tcinviteBtn' onclick= 'inittcinvitePanel();' style='display: none;'>邀请</button>	
+<button class="btn btn-primary " id='startSpeak' style='display: none;'>开始发言</button>
+<button class="btn btn-primary " id='stopSpeak' style='display: none;'>结束发言</button>
+<button class="btn btn-primary " id='startVRecord' style='display: none;'>开始录音</button>
+<button class="btn btn-primary " id='stopVRecord' style='display: none;'>停止录音</button>
+<button class="btn btn-primary " id='tcquitBtn' style='display: none;'>离开</button>
+<button class="btn btn-primary " id='delChannel' style='display: none;'>解散</button>
+			</div>
+<div style='position: relative; width:900px;' >
+<div id='tchannelPlayer' class='playStyle' style='display: none;'></div>
+<div id='tchannelUser' style='width: 290px;height: 100%; border:1px solid #dcebf7;'></div>
+</div>
+     </div>
+     
+ <h3 id="getTrunkListli">查询频道列表</h3>
+<div style='position: relative;z-index: 1000;'>
+  		开始时间：<input id="strBeginCreateTime" value="2020-10-01 12:00:00"></input>
+  		结束时间：<input id="strEndCreateTime" value="2020-11-30 12:00:00"></input></br>
+  		频道名称/id：<input id="strTrunkChannelKey" placeholder='请输入频道名称或id'></input>
+  		会议状态：<select id='nTrunkChannelType' >
+  			<option value="">全部</option>
+  			<option value=1>静态频道</option>
+  			<option value=2>临时频道（正在进行）</option>
+  			<option value=4>历史频道（临时结束）</option>
+  			<option value=8>默认频道</option>
+  		</select>
+<div>
+	<button class="btn btn-primary rightbtn" onclick="getTrunkList();">查询</button>		
+	<table class='table table1' id="trunkInfoTable"></table>		
+</div>
+
+<div style='position: absolute; top: 10px; right:-320px;'>
+<div id='recordPlayer' class='playStyle'style="width:320px;height: 180px;z-index: 1000;"></div>
+</div>
+  </div>  
+     
+     
+<div class="menutree" id="logLi">
+		<h3>日志：</h3>
+		<a class="emptybtn" style="margin-right:50px;" onclick="showLog();">隐藏/显示</a>
+		<a class="emptybtn" onclick="cleanLog();">清空</a>
+	</div>	
+	<div id="logs" class="log"></div>
+</body>
+<script type="text/javascript">
+	
+</script>
+</html>

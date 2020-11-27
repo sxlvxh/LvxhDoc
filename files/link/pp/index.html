@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<script src="json2.js"></script>
+<script>
+ $(function(){
+     $("li span").bind("click",function(){	 	
+	    var _this = $(this);
+	    var url = _this.attr("path");
+	
+		if(url)
+		{
+		  $("#iframe").attr({"src":url});
+		  }
+	 });
+ });
+</script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   line-height:50px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	background-color:blue;
+	color:#fff;
+
+ }
+.left{
+  width:15%;
+  border-right:1px solid #ddd;
+  height:900px;
+  }
+.right{
+   width:85%;
+   height:900px;
+   float:right;
+   margin-top:-900px;
+  }
+.title
+{
+  margin-left:100px;
+    
+}
+#iframe
+{
+  border:0px;
+}
+li span{
+ cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title"><strong>检察院接口文档</strong></span></div>
+<div class="left">
+  <ul>
+    <li>
+	<span>接口说明</span>
+	<ul>
+	 <li><span  path="agreement.html">接口约定</span></li>
+	</ul>
+	</li>
+	<li><span>用户管理</span>
+		<ul>
+		 <li><span  path="appKeepSessionAlive.html">APP测试连接</span></li>
+		 <li><span  path="applogin.html">APP登录</span></li>
+		 <li><span  path="getAppMenu.html">获取APP菜单</span></li>
+		 <li><span  path="getExecutorUser.html">获取执行人</span></li>
+		 <li><span  path="getUserInfo.html">获取人员详细信息</span></li>
+		 <li><span  path="uploadPointsToYingyan.html">查询轨迹(上传百度鹰眼)</span></li>
+		<li><span  path="searchUser.html">搜索用户</span></li>
+		<li><span  path="userDetails.html">查询用户详细信息(含在线状态)</span></li>
+		</ul>
+	</li>
+	<li><span>通讯录</span>
+	      <ul>
+		 <li><span  path="sysentchildlist.html">获取子企业</span></li>
+		 <li><span  path="getDepList.html">获取企业下的部门</span></li>
+		 <li><span  path="getUserList.html">获取部门人员</span></li>
+		 <li><span  path="contactuserList.html">查询常用联系人</span></li>
+		 <li><span  path="sysconfcontactgroup.html">查询常用联系人分组ID</span></li>
+		
+		</ul>
+	</li>
+    <!-- 以下为正式内容-->
+        	<li><span>公共接口</span>
+	      <ul>
+		 <li><span  path="casesummaryquery.html">pp_case表查询（适用于案件和接访列表查询）</span></li>
+	 <li><span  path="addActivity.html">新增活动（适用于案件和接访列表查询，在pp_process表中添加一笔记录）</span></li>
+     <li><span  path="startCaseRecording.html">开始接访/案件录像</span></li>
+      <li><span  path="stopCaseRecording.html">停止接访/案件录像</span></li>
+       <li><span  path="modifyCase.html">更新接访/案件信息</span></li>
+       <li><span  path="deleteCase.html">删除接访/案件信息</span></li>
+		<li><span  path="caseProcessQuery.html">接访/案件流程信息查询</span></li>
+        <li><span  path="caseVideoDetailsQuery.html">接访/案件录像详情查询</span></li>
+		</ul>
+	</li>
+    	<li><span>接访管理</span>
+	      <ul>
+		 <li><span  path="acceptRegister.html">接访登记</span></li>
+		<li><span  path="sendTxtMsg.html">发送文字消息</span></li>
+        <li><span  path="setupCase.html">接访转案件（立案）</span></li>
+        <li><span  path="transferCase.html">流转</span></li>
+        <li><span  path="qryAcceptDetails.html">查询媒体室信息</span></li>
+       
+		
+		</ul>
+	</li>
+    
+    <li><span>案件管理</span>
+	      <ul>
+		 <li><span path="registerCase.html">案件登记</span></li>
+		
+		
+		</ul>
+	</li>
+	<li><span>版本更新</span>
+	      <ul>
+		 <li><span  path="getVersion.html">获取最新版本</span></li>		
+		</ul>
+	</li>
+    
+	
+  </ul>
+</div>
+<div class="right">
+ <iframe width="100%" height="100%" src="agreement.html" id="iframe"></iframe>
+</div>
+</body>
+</html>

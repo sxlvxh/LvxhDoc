@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>webSocket</title>
+   <script src='jquery.js'></script>
+   <script src='json2.js'></script> 
+   <script src='websocket.js'></script> 
+   <script type="text/javascript">
+   function test(){
+	   try{
+		   var opt = {
+				   url:"ws://127.0.0.1:8989/ws",
+				   loginName:"123456",
+				   success:function(nettyWs){
+					   nettyWs.sendMsg("{\"msgType\":\"nettyForwardService\",\"src\":\"test\",\"content\":5555}");
+				   }
+		   };
+		   var nettyWs = new NETTY_WS(opt);
+		   
+	   }catch(e){
+		   window.console && window.console.error(e);
+	   }
+	   
+   }
+      </script>
+        
+   </head>
+   <body>
+   
+      <div id="sse">
+         <a>服务器</a><input/>
+      </div>
+      
+   </body>
+</html>

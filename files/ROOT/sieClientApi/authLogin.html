@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>授权码登录</h3>
+<section>
+<pre>
+客户端登录系统调用接口
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+http://127.0.0.1:39290/platWeb/three/service.action  
+</pre>
+</section>
+
+<h4>请求参数说明</h4>
+<section>
+<table>
+ <tr><td>method</td><td>String</td><td>登录方法<color style='color:red'> 【固定传 "authLogin"】</color></td><td></td></tr>
+ <tr><td>params</td><td>Object</td><td>授权码登录参数 </td><td>
+   <table>
+		 <tr><td>authCode</td><td>String<td><td>授权码 </td></tr>
+   </table>
+ </td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"method": "authLogin",
+	"params": {
+		"authCode": "12356"
+	}
+}
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+<table>
+ <tr><td>code</td><td>int</td><td><a href="result-code.html">返回码</a></td><td></td></tr>
+ <tr><td>desc</td><td>String</td><td>返回描述</td><td></td></tr>
+ <tr><td>result</td><td>Object</td><td>返回结果 </td><td>
+   <table>
+		 <tr>
+			 <td>menu</td><td>Object 数组</td><td>菜单数组</td><td>
+			       <table>
+			       		<tr><td>menuCode</td><td>String</td><td>菜单编号</td></tr>
+			       		<tr><td>name</td><td>String</td><td>菜单名称</td></tr>
+			       		<tr><td>menuAction</td><td>String</td><td>菜单点击跳转的URL</td></tr>
+			       		<tr><td>imgUrl</td><td>String</td><td>菜单图标URL地址</td></tr>
+			       		
+			       </table>
+			 </td>
+		 </tr>
+		 <tr><td>config</td><td>Object</td><td>系统配置 </td><td>
+			       <table>
+			       		<tr><td>sieIp</td><td>String</td><td>流媒体IP地址</td></tr>
+			       		<tr><td>siePort</td><td>int</td><td>流媒体端口号</td></tr>
+			       		<tr><td>domainCode</td><td>String</td><td>流媒体域编码</td></tr>
+			       </table>
+			 </td></tr>
+		 <tr><td>user</td><td>Object</td><td>用户信息 </td><td>
+			       <table>
+			       		<tr><td>name</td><td>String</td><td>用户名称</td></tr>
+			       		<tr><td>imgUrl</td><td>String</td><td>用户头像</td></tr>
+			       		<tr><td>userCode</td><td>String</td><td>全系统唯一用户标识</td></tr>			       		
+			       </table>
+			 </td></tr>
+   </table>
+ </td></tr>
+</table>
+</section>
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+	"code": 0,
+	"desc": "成功！",
+	"result": {
+		"menu": [{
+				"menuCode": "1001",
+				"name": "系统管理",
+				"menuAction": "http://192.168.2.132:8380/courtWeb/page.action",
+				"imgUrl": "http://192.168.2.132/files/plat/userfiles/lvxh/20191127/4152ef9f85ae4542b03c4f1582781283.jpg"
+			}
+		],
+		"config": {
+			"sieIp": "192.168.2.60",
+			"siePort": 9001,
+			"domainCode": "A10001"
+		},
+		"user": {
+			"name": "吕孝怀",
+			"imgUrl": "http://192.168.2.132/files/plat/userfiles/lvxh/20191127/4152ef9f85ae4542b03c4f1582781283.jpg",
+			"userCode": "4a5aa5e418f3410194d6856103ad0bc7"
+		}
+	}
+}
+</pre>
+</section>
+
+</body>
+</html>

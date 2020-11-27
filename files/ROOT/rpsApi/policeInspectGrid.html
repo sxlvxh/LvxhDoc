@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>分页查询监督检查</h3>
+<section>
+<pre>
+ 分页查询监督检查
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+http://192.168.2.107:8080/rps-war/rpscheck/gridEx.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>page</td><td>分页对象 </td></tr>
+ <tr><td>curPage</td><td>当前页码 </td></tr>
+  <tr><td>pageSize</td><td>每页查询记录条数 </td></tr>
+</table>
+</section>
+
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"pages":{"curPage":1,"pageSize":10}
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "分页查询成功",
+    "result": [],
+    "pages": {
+        "curPage": 1,
+        "pageCount": 1,
+        "pageSize": 10,
+        "totalCount": 3,
+        "startNo": 0
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+body,html
+{
+	padding:0px;
+	margin:0px;
+
+}
+.lvxh-navbar
+{
+	width: 100%;
+	height: 60px;
+	
+}
+.lvxh-border
+{
+	border:1px solid #ddd;
+}
+
+.lvxh-border-radius
+{
+border-radius: 5px; /* 所有角都使用半径为5px的圆角，此属性为CSS3标准属性 */
+-moz-border-radius: 5px; /* Mozilla浏览器的私有属性 */
+-webkit-border-radius: 5px; /* Webkit浏览器的私有属性 */
+	
+}
+.lvxh-bg-green
+{
+	background-color:green;
+}
+.lvxh-content-page
+{
+	width:100%;
+	min-height:1000px;
+	position:relative;
+	margin-left:300px;
+	float:left;
+}
+.lvxh-left-menu
+{
+	width:180px;
+	min-height:1000px;
+	position:relative;
+	float:left;
+}
+.lvxh-line-block
+{
+	display:inline-block;
+}
+.panel
+{
+   display:inline-block;
+   height:30px;
+   width: 300px;
+   margin:5px;
+ }
+ .b_close{   width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-right: 10px solid gainsboro;
+    border-bottom: 15px solid transparent;
+	position:absolute;
+	right:0;
+	top:50%;
+	margin-top:-15px;
+}
+.lvxh_menu
+{
+	width:170px;
+	min-height:1000px;
+	position:relative;
+}
+.lvxh-bg-maroon{background-color:maroon;}
+.lvxh-bg-darkred{background-color:darkred;}
+.lvxh-bg-brown{background-color:brown;}
+.lvxh-bg-firebrick{background-color:firebrick;}
+.lvxh-bg-crimson{background-color:crimson;}
+.lvxh-bg-red{background-color:red;}
+.lvxh-bg-mediumvioletred{background-color:mediumvioletred;}
+.lvxh-bg-palevioletred{background-color:palevioletred;}
+.lvxh-bg-deeppink{background-color:deeppink;}
+.lvxh-bg-fuchsia{background-color:fuchsia;}
+.lvxh-bg-hotpink{background-color:hotpink;}
+.lvxh-bg-pink{background-color:pink;}
+.lvxh-bg-lightpink{background-color:lightpink;}
+.lvxh-bg-mistyrose{background-color:mistyrose;}
+.lvxh-bg-lavenderblush{background-color:lavenderblush;}
+.lvxh-bg-indigo{background-color:indigo;}
+.lvxh-bg-purple{background-color:purple;}
+.lvxh-bg-darkmagenta{background-color:darkmagenta;}
+.lvxh-bg-darkorchid{background-color:darkorchid;}
+.lvxh-bg-blueviolet{background-color:blueviolet;}
+.lvxh-bg-darkviolet{background-color:darkviolet;}
+.lvxh-bg-slateblue{background-color:slateblue;}
+.lvxh-bg-mediumpurple{background-color:mediumpurple;}
+.lvxh-bg-mediumslateblue{background-color:mediumslateblue;}
+.lvxh-bg-mediumorchid{background-color:mediumorchid;}
+.lvxh-bg-violet{background-color:violet;}
+.lvxh-bg-plum{background-color:plum;}
+.lvxh-bg-thistle{background-color:thistle;}
+.lvxh-bg-lavender{background-color:lavender;}
+.lvxh-bg-saddlebrown{background-color:saddlebrown;}
+.lvxh-bg-sienna{background-color:sienna;}
+.lvxh-bg-chocolate{background-color:chocolate;}
+.lvxh-bg-indianred{background-color:indianred;}
+.lvxh-bg-rosybrown{background-color:rosybrown;}
+.lvxh-bg-lightcorol{background-color:lightcorol;}
+.lvxh-bg-salmon{background-color:salmon;}
+.lvxh-bg-lightsalmon{background-color:lightsalmon;}
+.lvxh-bg-orangered{background-color:orangered;}
+.lvxh-bg-tomato{background-color:tomato;}
+.lvxh-bg-coral{background-color:coral;}
+.lvxh-bg-darkorange{background-color:darkorange;}
+.lvxh-bg-sandybrown{background-color:sandybrown;}
+.lvxh-bg-peru{background-color:peru;}
+.lvxh-bg-tan{background-color:tan;}
+.lvxh-bg-burlywood{background-color:burlywood;}
+.lvxh-bg-wheat{background-color:wheat;}
+.lvxh-bg-moccasin{background-color:moccasin;}
+.lvxh-bg-navajowhite{background-color:navajowhite;}
+.lvxh-bg-peachpuff{background-color:peachpuff;}
+.lvxh-bg-bisque{background-color:bisque;}
+.lvxh-bg-antuquewhite{background-color:antuquewhite;}
+.lvxh-bg-papayawhip{background-color:papayawhip;}
+.lvxh-bg-cornsilk{background-color:cornsilk;}
+.lvxh-bg-oldlace{background-color:oldlace;}
+.lvxh-bg-linen{background-color:linen;}
+.lvxh-bg-seashell{background-color:seashell;}
+.lvxh-bg-snow{background-color:snow;}
+.lvxh-bg-floralwhite{background-color:floralwhite;}
+.lvxh-bg-ivory{background-color:ivory;}
+.lvxh-bg-mintcream{background-color:mintcream;}
+.lvxh-bg-darkgoldenrod{background-color:darkgoldenrod;}
+.lvxh-bg-goldenrod{background-color:goldenrod;}
+.lvxh-bg-gold{background-color:gold;}
+.lvxh-bg-yellow{background-color:yellow;}
+.lvxh-bg-darkkhaki{background-color:darkkhaki;}
+.lvxh-bg-khaki{background-color:khaki;}
+.lvxh-bg-palegoldenrod{background-color:palegoldenrod;}
+.lvxh-bg-beige{background-color:beige;}
+.lvxh-bg-lemonchiffon{background-color:lemonchiffon;}
+.lvxh-bg-lightgoldenrodyellow{background-color:lightgoldenrodyellow};
+.lvxh-bg-lightyellow{background-color:lightyellow;}
+.lvxh-bg-darkslategray{background-color:darkslategray;}
+.lvxh-bg-darkolivegreen{background-color:darkolivegreen;}
+.lvxh-bg-olive{background-color:olive;}
+.lvxh-bg-darkgreen{background-color:darkgreen;}
+.lvxh-bg-forestgreen{background-color:forestgreen;}
+.lvxh-bg-seagreen{background-color:seagreen;}
+.lvxh-bg-green{background-color:green;}
+.lvxh-bg-lightseagreen{background-color:lightseagreen;}
+.lvxh-bg-madiumaquamarine{background-color:madiumaquamarine;}
+.lvxh-bg-mediumseagreen{background-color:mediumseagreen;}
+.lvxh-bg-darkseagreen{background-color:darkseagreen;}
+.lvxh-bg-yellowgreen{background-color:yellowgreen;}
+.lvxh-bg-limegreen{background-color:limegreen;}
+.lvxh-bg-lime{background-color:lime;}
+.lvxh-bg-chartreuse{background-color:chartreuse;}
+.lvxh-bg-lawngreen{background-color:lawngreen;}
+.lvxh-bg-greenyellow{background-color:greenyellow;}
+.lvxh-bg-mediumspringgreen{background-color:mediumspringgreen;}
+.lvxh-bg-springgreen{background-color:springgreen;}
+.lvxh-bg-lightgreen{background-color:lightgreen;}
+.lvxh-bg-palegreen{background-color:palegreen;}
+.lvxh-bg-aquamarine{background-color:aquamarine;}
+.lvxh-bg-honeydew{background-color:honeydew;}
+.lvxh-bg-midnightblue{background-color:midnightblue;}
+.lvxh-bg-navy{background-color:navy;}
+.lvxh-bg-darkblue{background-color:darkblue;}
+.lvxh-bg-darkslateblue{background-color:darkslateblue;}
+.lvxh-bg-mediumblue{background-color:mediumblue;}
+.lvxh-bg-royalblue{background-color:royalblue;}
+.lvxh-bg-dodgerblue{background-color:dodgerblue;}
+.lvxh-bg-cornflowerblue{background-color:cornflowerblue;}
+.lvxh-bg-deepskyblue{background-color:deepskyblue;}
+.lvxh-bg-lightskyblue{background-color:lightskyblue;}
+.lvxh-bg-lightsteelblue{background-color:lightsteelblue;}
+.lvxh-bg-lightblue{background-color:lightblue;}
+.lvxh-bg-steelblue{background-color:steelblue;}
+.lvxh-bg-darkcyan{background-color:darkcyan;}
+.lvxh-bg-cadetblue{background-color:cadetblue;}
+.lvxh-bg-darkturquoise{background-color:darkturquoise;}
+.lvxh-bg-mediumturquoise{background-color:mediumturquoise;}
+.lvxh-bg-turquoise{background-color:turquoise;}
+.lvxh-bg-skyblue{background-color:skyblue;}
+.lvxh-bg-powderblue{background-color:powderblue;}
+.lvxh-bg-paleturquoise{background-color:paleturquoise;}
+.lvxh-bg-lightcyan{background-color:lightcyan;}
+.lvxh-bg-azure{background-color:azure;}
+.lvxh-bg-aliceblue{background-color:aliceblue;}
+.lvxh-bg-aqua{background-color:aqua;}
+.lvxh-bg-black{background-color:black;}
+.lvxh-bg-dimgray{background-color:dimgray;}
+.lvxh-bg-gray{background-color:gray;}
+.lvxh-bg-slategray{background-color:slategray;}
+.lvxh-bg-lightslategray{background-color:lightslategray;}
+.lvxh-bg-dakgray{background-color:dakgray;}
+.lvxh-bg-silver{background-color:silver;}
+.lvxh-bg-lightgray{background-color:lightgray;}
+.lvxh-bg-gainsboro{background-color:gainsboro;}
+.lvxh-bg-whitesmoke{background-color:whitesmoke;}
+.lvxh-bg-ghostwhite{background-color:ghostwhite;}
+.lvxh-bg-white{background-color:white;}
+
+.lvxh-color-maroon{ color:maroon;}
+.lvxh-color-darkred{ color:darkred;}
+.lvxh-color-brown{ color:brown;}
+.lvxh-color-firebrick{ color:firebrick;}
+.lvxh-color-crimson{ color:crimson;}
+.lvxh-color-red{ color:red;}
+.lvxh-color-mediumvioletred{ color:mediumvioletred;}
+.lvxh-color-palevioletred{ color:palevioletred;}
+.lvxh-color-deeppink{ color:deeppink;}
+.lvxh-color-fuchsia{ color:fuchsia;}
+.lvxh-color-hotpink{ color:hotpink;}
+.lvxh-color-pink{ color:pink;}
+.lvxh-color-lightpink{ color:lightpink;}
+.lvxh-color-mistyrose{ color:mistyrose;}
+.lvxh-color-lavenderblush{ color:lavenderblush;}
+.lvxh-color-indigo{ color:indigo;}
+.lvxh-color-purple{ color:purple;}
+.lvxh-color-darkmagenta{ color:darkmagenta;}
+.lvxh-color-darkorchid { color:darkorchid ;}
+.lvxh-color-blueviolet{ color:blueviolet;}
+.lvxh-color-darkviolet{ color:darkviolet;}
+.lvxh-color-slateblue{ color:slateblue;}
+.lvxh-color-mediumpurple{ color:mediumpurple;}
+.lvxh-color-mediumslateblue{ color:mediumslateblue;}
+.lvxh-color-mediumorchid{ color:mediumorchid;}
+.lvxh-color-violet{ color:violet;}
+.lvxh-color-plum{ color:plum;}
+.lvxh-color-thistle{ color:thistle;}
+.lvxh-color-lavender{ color:lavender;}
+.lvxh-color-saddlebrown{ color:saddlebrown;}
+.lvxh-color-sienna{ color:sienna;}
+.lvxh-color-chocolate{ color:chocolate;}
+.lvxh-color-indianred{ color:indianred;}
+.lvxh-color-rosybrown{ color:rosybrown;}
+.lvxh-color-lightcorol{ color:lightcorol;}
+.lvxh-color-salmon{ color:salmon;}
+.lvxh-color-lightsalmon{ color:lightsalmon;}
+.lvxh-color-orangered{ color:orangered;}
+.lvxh-color-tomato{ color:tomato;}
+.lvxh-color-coral{ color:coral;}
+.lvxh-color-darkorange{ color:darkorange;}
+.lvxh-color-sandybrown{ color:sandybrown;}
+.lvxh-color-peru{ color:peru;}
+.lvxh-color-tan{ color:tan;}
+.lvxh-color-burlywood{ color:burlywood;}
+.lvxh-color-wheat{ color:wheat;}
+.lvxh-color-moccasin{ color:moccasin;}
+.lvxh-color-navajowhite{ color:navajowhite;}
+.lvxh-color-peachpuff{ color:peachpuff;}
+.lvxh-color-bisque{ color:bisque;}
+.lvxh-color-antuquewhite{ color:antuquewhite;}
+.lvxh-color-papayawhip{ color:papayawhip;}
+.lvxh-color-cornsilk{ color:cornsilk;}
+.lvxh-color-oldlace{ color:oldlace;}
+.lvxh-color-linen{ color:linen;}
+.lvxh-color-seashell{ color:seashell;}
+.lvxh-color-snow{ color:snow;}
+.lvxh-color-floralwhite{ color:floralwhite;}
+.lvxh-color-ivory{ color:ivory;}
+.lvxh-color-mintcream{ color:mintcream;}
+.lvxh-color-darkgoldenrod{ color:darkgoldenrod;}
+.lvxh-color-goldenrod{ color:goldenrod;}
+.lvxh-color-gold{ color:gold;}
+.lvxh-color-yellow{ color:yellow;}
+.lvxh-color-darkkhaki{ color:darkkhaki;}
+.lvxh-color-khaki{ color:khaki;}
+.lvxh-color-palegoldenrod{ color:palegoldenrod;}
+.lvxh-color-beige{ color:beige;}
+.lvxh-color-lemonchiffon{ color:lemonchiffon;}
+.lvxh-color-lightgoldenrodyellow{ color:lightgoldenrodyellow;}
+.lvxh-color-lightyellow { color:lightyellow ;}
+.lvxh-color-darkslategray{ color:darkslategray;}
+.lvxh-color-darkolivegreen{ color:darkolivegreen;}
+.lvxh-color-olive{ color:olive;}
+.lvxh-color-darkgreen{ color:darkgreen;}
+.lvxh-color-forestgreen{ color:forestgreen;}
+.lvxh-color-seagreen{ color:seagreen;}
+.lvxh-color-green{ color:green;}
+.lvxh-color-lightseagreen{ color:lightseagreen;}
+.lvxh-color-madiumaquamarine{ color:madiumaquamarine;}
+.lvxh-color-mediumseagreen{ color:mediumseagreen;}
+.lvxh-color-darkseagreen{ color:darkseagreen;}
+.lvxh-color-yellowgreen{ color:yellowgreen;}
+.lvxh-color-limegreen{ color:limegreen;}
+.lvxh-color-lime{ color:lime;}
+.lvxh-color-chartreuse{ color:chartreuse;}
+.lvxh-color-lawngreen{ color:lawngreen;}
+.lvxh-color-greenyellow{ color:greenyellow;}
+.lvxh-color-mediumspringgreen{ color:mediumspringgreen;}
+.lvxh-color-springgreen{ color:springgreen;}
+.lvxh-color-lightgreen { color:lightgreen ;}
+.lvxh-color-palegreen{ color:palegreen;}
+.lvxh-color-aquamarine{ color:aquamarine;}
+.lvxh-color-honeydew{ color:honeydew;}
+.lvxh-color-midnightblue{ color:midnightblue;}
+.lvxh-color-navy{ color:navy;}
+.lvxh-color-darkblue{ color:darkblue;}
+.lvxh-color-darkslateblue{ color:darkslateblue;}
+.lvxh-color-mediumblue{ color:mediumblue;}
+.lvxh-color-royalblue{ color:royalblue;}
+.lvxh-color-dodgerblue{ color:dodgerblue;}
+.lvxh-color-cornflowerblue{ color:cornflowerblue;}
+.lvxh-color-deepskyblue{ color:deepskyblue;}
+.lvxh-color-lightskyblue{ color:lightskyblue;}
+.lvxh-color-lightsteelblue{ color:lightsteelblue;}
+.lvxh-color-lightblue{ color:lightblue;}
+.lvxh-color-steelblue{ color:steelblue;}
+.lvxh-color-darkcyan{ color:darkcyan;}
+.lvxh-color-cadetblue{ color:cadetblue;}
+.lvxh-color-darkturquoise{ color:darkturquoise;}
+.lvxh-color-mediumturquoise{ color:mediumturquoise;}
+.lvxh-color-turquoise{ color:turquoise;}
+.lvxh-color-skyblue{ color:skyblue;}
+.lvxh-color-powderblue{ color:powderblue;}
+.lvxh-color-paleturquoise{ color:paleturquoise;}
+.lvxh-color-lightcyan{ color:lightcyan;}
+.lvxh-color-azure{ color:azure;}
+.lvxh-color-aliceblue{ color:aliceblue;}
+.lvxh-color-aqua{ color:aqua;}
+.lvxh-color-black{ color:black;}
+.lvxh-color-dimgray{ color:dimgray;}
+.lvxh-color-gray{ color:gray;}
+.lvxh-color-slategray{ color:slategray;}
+.lvxh-color-lightslategray{ color:lightslategray;}
+.lvxh-color-dakgray{ color:dakgray;}
+.lvxh-color-silver{ color:silver;}
+.lvxh-color-lightgray{ color:lightgray;}
+.lvxh-color-gainsboro{ color:gainsboro;}
+.lvxh-color-whitesmoke{ color:whitesmoke;}
+.lvxh-color-ghostwhite{ color:ghostwhite;}
+.lvxh-color-white{ color:white;}

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>增加警力报备</h3>
+<section>
+<pre>
+ 增加警力报备
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+http://192.168.2.107:8080/rps-war/sysconfdictionaries/list.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>groupId</td><td>数据字典分组信息</td></tr>
+</table>
+</section>
+
+<h4>数据字典分组信息</h4>
+<section>
+<table border=1>
+<tr>
+<td bgcolor=silver class='medium'>GROUP_ID</td><td bgcolor=silver class='medium'>GROUP_NAME</td></tr>
+<tr>
+<td class='normal' valign='top'>ACTIVE_STATUS</td>
+<td class='normal' valign='top'>激活状态</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>AREA_TYPE</td>
+<td class='normal' valign='top'>岗位类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ARTICAL_CATEGORY</td>
+<td class='normal' valign='top'>所属栏目</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>BUTTON_CSS</td>
+<td class='normal' valign='top'>按钮样式</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>BUTTON_IMG</td>
+<td class='normal' valign='top'>按钮图标</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>BUTTON_LEVEL</td>
+<td class='normal' valign='top'>按钮级别</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>BUTTON_TYPE</td>
+<td class='normal' valign='top'>按钮类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>CALL_STATUS</td>
+<td class='normal' valign='top'>通话状态</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>CASE_TYPE</td>
+<td class='normal' valign='top'>案件类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>CONFIG_TYPE</td>
+<td class='normal' valign='top'>配置项类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>CUSTOM_GROUPS</td>
+<td class='normal' valign='top'>群组类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>DEP_TYPE</td>
+<td class='normal' valign='top'>部门类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>DEVICE_TYPE</td>
+<td class='normal' valign='top'>视频设备类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>DISPLAY</td>
+<td class='normal' valign='top'>显示类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>DZTZ_TYPE</td>
+<td class='normal' valign='top'>电子台账类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EDUCATION</td>
+<td class='normal' valign='top'>学历</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ENABLE</td>
+<td class='normal' valign='top'>启用类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ENABLE_DIALOG</td>
+<td class='normal' valign='top'>弹窗类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ENT_TYPE</td>
+<td class='normal' valign='top'>企业类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EVENT_CLASSIFY</td>
+<td class='normal' valign='top'>事件分类</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EVENT_DATA_SRC</td>
+<td class='normal' valign='top'>事件数据来源</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EVENT_GRADE</td>
+<td class='normal' valign='top'>任务事件等级</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EVENT_NOTE</td>
+<td class='normal' valign='top'>事件执行备注</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EVENT_REC_TYPE</td>
+<td class='normal' valign='top'>事件记录类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EVENT_STATE</td>
+<td class='normal' valign='top'>事件状态</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>EXEC_TYPE</td>
+<td class='normal' valign='top'>执行类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>FIELD_TYPE</td>
+<td class='normal' valign='top'>属性类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>HAS_VIDEO</td>
+<td class='normal' valign='top'>是否有录像</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ID_TYPE</td>
+<td class='normal' valign='top'>证件类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ISCHARGE</td>
+<td class='normal' valign='top'>是否是主管</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>IS_TCP_SERVER</td>
+<td class='normal' valign='top'>是否TCP服务</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>JDJC_TYPE</td>
+<td class='normal' valign='top'>监督检查类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>JLBB_TYPE</td>
+<td class='normal' valign='top'>警力报备类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>JLTZ_STATE</td>
+<td class='normal' valign='top'>警令通知状态</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>JQCZ_TYPE</td>
+<td class='normal' valign='top'>警情处置类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>LAYOUT_TYPE</td>
+<td class='normal' valign='top'>布局类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>LOCAL_SERVER</td>
+<td class='normal' valign='top'>是否为本地服务器</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>MEETING_INVITE_STYLE</td>
+<td class='normal' valign='top'>会议参加方式</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>MEETING_MODE</td>
+<td class='normal' valign='top'>会议模式</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>MEETING_STATUS</td>
+<td class='normal' valign='top'>会议对讲状态</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>MEETING_VOICE_INTERCOM</td>
+<td class='normal' valign='top'>会议对讲模式</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>MENU_BACKGROUND</td>
+<td class='normal' valign='top'>菜单背景色</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>MENU_TYPE</td>
+<td class='normal' valign='top'>菜单类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>OPT_LOG_TYPE</td>
+<td class='normal' valign='top'>日志类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>PAGE_MAIN_TONE</td>
+<td class='normal' valign='top'>界面主色调</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>PATROL_ROUTE</td>
+<td class='normal' valign='top'>巡查线路名称</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>POLICE_REC_TYPE</td>
+<td class='normal' valign='top'>警力报备类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>PR_TYPE</td>
+<td class='normal' valign='top'>报备审核状态</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>READ_FLAG</td>
+<td class='normal' valign='top'>通知读取标志</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ROLE_TYPE</td>
+<td class='normal' valign='top'>角色类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ROOM_NODE_TYPE</td>
+<td class='normal' valign='top'>采集点类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ROOM_TYPE</td>
+<td class='normal' valign='top'>设备组类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>SEND_FLAG</td>
+<td class='normal' valign='top'>通知发送状态</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>SEX</td>
+<td class='normal' valign='top'>性别</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>SHOW_TYPE</td>
+<td class='normal' valign='top'>是否显示</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>SYNTHESIS_FLAG</td>
+<td class='normal' valign='top'>画面类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>TALKBACK_MODE</td>
+<td class='normal' valign='top'>对讲模式</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>TALKBACK_NONE_DEVICE</td>
+<td class='normal' valign='top'>是否有设备</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>THEME_SELECT</td>
+<td class='normal' valign='top'>界面风格</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>TITLE_COLOR</td>
+<td class='normal' valign='top'>标题颜色</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>TOOLS_DOC_TYPE</td>
+<td class='normal' valign='top'>实用工具分类</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>update</td>
+<td class='normal' valign='top'>升级类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>USER_AREA_TYPE</td>
+<td class='normal' valign='top'>用户岗位类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>USER_DEV_TYPE</td>
+<td class='normal' valign='top'>用户设备类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>USER_ROLE_LEVE</td>
+<td class='normal' valign='top'>用户的权限层级</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>USER_TYPE</td>
+<td class='normal' valign='top'>用户类型</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>WARN_GRADE</td>
+<td class='normal' valign='top'>事件预警等级</td>
+</tr>
+<tr>
+<td class='normal' valign='top'>ZYGAS_POINT_TYPE</td>
+<td class='normal' valign='top'>中裕燃气站点类型</td>
+</tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"groupId": "POLICE_REC_TYPE"
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "查询成功",
+    "result": [
+        {
+            "createTime": "2020-05-14 09:23:29",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 100001281,
+            "isdel": 0,
+            "dataId": "0",
+            "dataName": "签到",
+            "groupId": "POLICE_REC_TYPE",
+            "groupName": "警力报备类型"
+        },
+        {
+            "createTime": "2020-05-14 09:23:35",
+            "createUserId": 1,
+            "nofuzzy": 0,
+            "id": 100001282,
+            "isdel": 0,
+            "dataId": "1",
+            "dataName": "工作日志",
+            "groupId": "POLICE_REC_TYPE",
+            "groupName": "警力报备类型"
+        }
+    ]
+}
+</pre>
+</section>
+
+</body>
+</html>

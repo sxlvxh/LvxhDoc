@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+   <head>
+   <meta charset="utf-8">
+   <title>webSocket</title>
+   <script type="text/javascript" src='jquery.js'></script>
+   <script type="text/javascript" src='json2.js'></script> 
+   <script type="text/javascript" src='websocket.js'></script> 
+   <script type="text/javascript" src="vue/dist/vue.js"></script>
+   <script type="text/javascript" src="vue/dist/vue-resource.min.js"></script>
+   </head>
+   <style>
+        .half-page-label{
+		    float:left;
+		}
+        .half-page{
+		    width:50%;
+			float:left;
+		}
+		.main-page{
+		    width:100%;
+			height:35px;
+			line-height:35px;
+		}
+   </style>
+    <body>
+        <div id="sse">
+		    <div class="row">
+			    <div class="main-page">
+					<div class="half-page-label"><label>服务器地址：</label></div>
+					<div class="half-page"><input type="text"  v-model="url"/></div>	
+				</div>
+				 <div class="main-page">
+				    <div class="half-page-label"><label>登录名称：</label></div>
+					<div class="half-page"><input type="text"  v-model="loginName"/></div>
+				</div>
+				<div class="main-page" style="height:100px;">
+				    <div class="half-page-label"><label>发送内容：</label></div>
+					<div class="half-page"><textarea class="main-page" v-model="content" style="height:80px;"></textarea></div>
+				</div>
+				<!--<div class="main-page" style="height:100px;">
+				    <div class="half-page-label"><label>接收内容：</label></div>
+					<div class="half-page"><textarea class="main-page" v-model="receiveContent" style="height:80px;"></textarea></div>
+				</div>-->
+				<div class="main-page">
+				    <div class="half-page-label"><label>接收人：</label></div>
+					<div class="half-page"><input type="text"  v-model="src"/></div>
+				</div>
+				<div class="main-page">
+				    <button @click="loginIn()">登录</button>
+					<button @click="send()">发送</button>
+				</div>
+				<img id="testImg"/>
+				<div id="recvContent" style="min-height:80px;border:1px solid red;width:100%;"></div>
+			</div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        $(function(){
+		    var mVm = new Vue({
+			    el: '#sse', 
+				data:{
+				    url:"ws://192.168.3.132:8089/ws",
+					loginName:"123456",
+					content:"",
+					receiveContent:"",
+					msgType:"nettyForwardService",
+					src:"test",
+					nettyWs:"",
+					sendContent:{}
+				},
+				methods:{
+				    loginIn:function(){
+					    var _this = this;
+						try{
+							if(typeof(_this.nettyWs) == "object"){
+								_this.nettyWs.destory();
+							}
+							var opt = {
+								url:_this.url,
+								loginName:_this.loginName,
+								loginSuccess:function(nettyWs){
+								    /*nettyWs.sendMsg(JSON.stringify({
+										msgType : _this.msgType,
+										src : _this.src,
+										content : _this.content
+									}));*/ 
+								},
+								receive:function(msg){
+								   //window.console && window.console.error(msg);						  							 
+								   if(msg.msgType == "base64Img")
+								   {
+								      $("#testImg").attr({"src":"data:image/png;base64," + msg.content});
+								   }else
+								   {
+								       $("#recvContent").append($("<div/>").append(JSON2.stringify(msg)));
+								   }
+								   //alert(json.content);
+								},
+								procClosed:function(){
+								   
+								},
+								procError:function(){
+								  
+								},
+								log:true
+							};
+							_this.nettyWs = new NETTY_WS(opt);   
+						}catch(e){
+							window.console && window.console.error(e);
+						}
+					},
+					send:function(){
+						var _this = this;
+						var setContent = {
+						    msgType : "chat",
+							src : _this.loginName,
+							content : _this.content,
+							targets : _this.src.split(",")
+						}; 											
+						_this.nettyWs.sendMsg(setContent);
+					}
+				}
+			})
+		})
+    </script>
+</html>

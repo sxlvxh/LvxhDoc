@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html lang="zh">
+ <head></head>
+ <body>
+  <section>
+    <canvas id="t_1" width="400" height="300"></canvas>
+  </section>
+ </body>
+ <script>
+  var canvas = document.getElementById("t_1");
+ 
+  var context = canvas.getContext("2d");
+  context.fillRect(0,0,100,100);
+  context.strokeRect(120,0,100,100);
+  
+  context.fillStyle="rgba(255,1,0,0.1)";
+  context.fillRect(240,0,100,100);
+  
+ </script>
+</html>

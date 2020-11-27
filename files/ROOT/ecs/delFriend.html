@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>删除好友</h3>
+<section>
+<pre>
+ 通讯录删除好友
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+
+https://192.168.2.132:8280/platWeb/platcontact/deleteFriend.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+
+<table>
+<tr><td>userCode</td><td>删除好友的编码</td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{"userCode":"7272f856b5c74aabb309f0ddc754f375"}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{"code":0,"desc":"操作成功!"}
+</pre>
+</section>
+
+</body>
+</html>

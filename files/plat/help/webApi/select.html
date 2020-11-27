@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#fff;
+ }
+</style>
+</head>
+<body>
+<h3>下拉框属性参数说明</h3>
+<section>
+<pre>
+  略
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>staticResult</td><td>静态参数配置</td></tr>
+ <tr><td>dynamicResult</td><td>动态参数配置，通过接口查询下拉框中的选择数据</td></tr>
+ <tr><td>event</td><td>下拉框事件</td></tr>
+</table>
+</section>
+
+
+<h4>参数实例</h4>
+<section>
+<pre>
+ {
+	"staticResult": [{
+			"value": "",
+			"label": "全部"
+		}
+	],
+	"dynamicResult": {
+		"url": "../platmenu/list.action",
+		"postDynamicParam": [],
+		"postStaticData": {
+			"sort": {
+				"field": "id desc"
+			}
+		},
+		"resData": {
+			"id": "menuCode",
+			"value": "name"
+		}
+	},
+	"event": [{
+			"name": "change",
+			"func": "changeSelect",
+			"changeNodes": ["buttonCode"]
+		}
+	]
+}
+</pre>
+</section>
+
+<h4>全静态数据实例</h4>
+<section>
+<pre>
+ {
+	"staticResult": [{
+			"value": "",
+			"label": "全部"
+		},{
+			"value": "0",
+			"label": "是"
+		},{
+			"value": "1",
+			"label": "否"
+		}
+	]
+}
+</pre>
+</section>
+
+<h4>全动态数据实例</h4>
+<section>
+<pre>
+ {
+	"dynamicResult": {
+		"url": "../platdict/list.action",
+		"postDynamicParam": [],
+		"postStaticData": {
+			"groupId": "FIELD_TYPE",
+			"sort": {
+				"field": "id asc"
+			}
+		},
+		"resData": {
+			"id": "dataId",
+			"value": "dataName"
+		}
+	}
+}
+</pre>
+</section>
+
+</body>
+</html>

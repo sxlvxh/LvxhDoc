@@ -1,0 +1,233 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>怀业H5播放demo</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+</head>
+<body>
+              
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+  <legend>怀业HTML5无插件演示实例</legend>
+</fieldset>
+<div class="layui-fluid">  
+  <div class="layui-row layui-col-space30">
+    <div class="layui-col-md9">
+        <div class="layui-tab layui-tab-brief" lay-filter="current">
+            <ul class="layui-tab-title">
+              <li  class="layui-this" lay-id="t1">媒体演示</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <div class="layui-col-md6" >
+              		播放预览:
+              		<div class="sideBar layui-bg-gray">
+					            <span class="no-padding">
+					                <img src="img/player.png" class="left" title="Player" style="height:30px;"/>
+					                <label>url:</label>
+			                    <input type="text" id="playurl" value = "rtsp://192.168.2.198:554/2275/rtsp://127.0.0.1:554/17/1/5?BitRate=2048;FrameRate=25;IFrame=100;DmgType=2275"  style="width:80%;">
+                          <label id="pScale">Scale:1x</label>
+					            </span>
+					        </div>
+					        <div class="canvasDiv layui-bg-black">
+					            <canvas id="playCanvas" height="300"></canvas>
+					        </div>
+					        <div class="sideBar layui-bg-gray">
+											<img src="img/play.png" id="btnPlayVideo" onclick="playVideo()" style="height:30px;"/>
+											<img src="img/fastforward.png" id="btnFastforward" onclick="setPlayScale()" style="height:30px;"/>
+											<img src="img/stop.png" id="btnStopVideo" onclick="stopVideo()" style="height:30px;"/>
+											<span class="track-padding">
+					                <input id="timeTrack" type="range" value="0">
+					            </span>
+											<label id="timeLabel" style="height:30px;">00:00:00/00:00:00</label>   
+                      <img src="img/volume.png"  title="Audio" style="height:30px;"/> 
+                      <div id="slideAudio" class="demo-slider layui-inline" style="width:120px;"></div>                  
+											<img src="img/fullscreen.png" id="btnPlayerFullscreen"   onclick="playerfullscreen()" style="height:30px;"/>
+					        </div>
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>    
+    </div>
+
+
+          
+<script src="layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+<script type='text/javascript' src="/demo/HyRtcSdk.js"></script>
+<script type='text/javascript'>
+var localUrl = window.location.href;
+self.ip = localUrl.substr(localUrl.indexOf("://") + 3);
+self.ip = self.ip.substr(0,self.ip.indexOf("/"));
+window.addEventListener("resize", resizeCanvas, false);
+
+function resizeCanvas() {
+    playCanvas.width = window.innerWidth;
+    playCanvas.height = window.innerHeight;
+}
+    self.playid = 0;
+		layui.use('element', function(){
+		  var element = layui.element;  
+		  //监听导航点击
+		  element.on('nav(demo)', function(elem){
+		    layer.msg(elem.text());
+		  });
+		});
+
+    layui.use('slider', function(){
+    var $ = layui.$
+    ,slider = layui.slider;
+    //默认滑块
+    slider.render({
+      elem: '#slideAudio'
+      ,value: 100
+      ,change: function(value){
+        if (self.playid > 0) {
+          slider.disabled = false;
+          self.hysdk.setPlayVolume(self.playid,value);
+        }
+          else{
+            slider.disabled = true;
+          }
+      }
+    });
+    });
+	self.scale = 1;
+    		//Player object.
+        var addr = "ws://" + self.ip + ":0";
+        self.hysdk = new HySdk(addr,null);
+
+        //Rtsp url.
+        //var rtspUrl = "rtsp://192.168.2.198:554/2268/rtsp://192.168.2.32:554/snl/live/1/1?BitRate=1024;FrameRate=25;IFrame=50;DmgType=2258";
+        var rtspUrl = document.getElementById("playurl").value;
+        //"rtsp://192.168.2.198:554/2807/rtsp://HyWstest:554?BitRate=512;FrameRate=25;IFrame=100;DmgType=2807";
+        //var rtspUrl = "rtsp://192.168.2.198:554/2268/rtsp://192.168.1.48:554/2275/rtsp://127.0.0.1:554/4/1/133?BitRate=2048;FrameRate=25;IFrame=100;DmgType=2275";
+
+        var READYTOPROCESS = false;
+        var tt = this;
+        window.onbeforeunload = function closeWindow(e)
+        {
+            if (!READYTOPROCESS)
+            {
+                self.hysdk.stopPlay(-1,null);
+                //message to be returned to the popup box.
+                var message = '你确定要关闭吗？',
+                    e = e || window.event;
+                if (e)
+                    e.returnValue = message; // IE
+                return message; // Safari
+            }
+        };
+
+
+        function playVideo() {
+            var el = document.getElementById("btnPlayVideo");
+            var currentState = playerStateIdle ;
+
+            if (self.playid > 0) {
+              currentState = self.hysdk.getPlayState(self.playid);
+              if (currentState == playerStatePlaying) {
+                  el.src = "img/play.png";
+              } else {
+                  el.src = "img/pause.png";
+              }
+            }
+
+            if (currentState == playerStateIdle) {
+                const canvasId = "playCanvas";
+                var canvas = document.getElementById(canvasId);
+                if (!canvas) {
+                    logger.logError("No Canvas with id " + canvasId + "!");
+                    return false;
+                }
+                rtspUrl = document.getElementById("playurl").value;
+                var config = {
+                  canvas:canvas,
+                  aec:0
+                }
+                self.playid = self.hysdk.startPlayUrl(rtspUrl, config, function (e) {
+                      console.log("play error " + e.errorno + " status " + e.desc + ".");
+                      if (e.error == 1) {
+                          logger.logInfo("Finished.");
+                      }
+                });
+
+                var timeTrack = document.getElementById("timeTrack");
+                var timeLabel = document.getElementById("timeLabel");
+                self.hysdk.setPlayTrack(self.playid,timeTrack, timeLabel);
+                 el.src = "img/pause.png";
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            } else if ( currentState == playerStatePlaying) {
+                self.hysdk.pausePlay(self.playid,1);
+            }
+            else {
+                self.hysdk.pausePlay(self.playid,0);
+            }
+		
+            return true;
+        }
+	
+	function setPlayScale(){
+		self.scale *=  2;
+		self.scale = (self.scale == 8) ? 1 : self.scale;
+    var ss = document.getElementById("pScale");
+    ss.innerHTML = "Scale:"+self.scale+"x";
+		if(self.playid > 0){
+                   self.hysdk.setPlayScale(self.playid,self.scale);
+		}
+	}
+
+        function stopVideo() {
+            if(self.playid > 0){
+                self.hysdk.stopPlay(self.playid);
+                var button = document.getElementById("btnPlayVideo");
+                button.src = "img/play.png";
+                self.playid = 0;
+            }
+	    self.scale = 1;
+		var ss = document.getElementById("pScale");
+	    ss.innerHTML = "Scale:"+self.scale+"x";
+        }
+
+        function playerfullscreen() {
+          if(self.playid > 0){
+            self.hysdk.playFullscreen(self.playid);
+          }
+        }
+
+        function showNotice(content)
+        {
+            layui.use('layer', function(){
+              var layer = layui.layer;
+              layer.open({
+                type: 1
+                ,offset: "t" 
+                ,id: 'layerDemot'
+                ,content: '<div style="padding: 20px 100px;">'+ content +'</div>'
+                ,btn: '关闭全部'
+                ,btnAlign: 'c' 
+                ,shade: 0 
+                ,yes: function(){
+                  layer.closeAll();
+                }
+              });
+          });
+        }
+
+      function onGetDeviceList()
+      {
+         self.hysdk.getDeviceList(MsgCallBack);
+      }
+
+</script>
+
+</body>
+</html>

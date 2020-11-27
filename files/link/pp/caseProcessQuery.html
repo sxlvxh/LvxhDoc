@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+table
+{
+ width:100%;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title">接访/案件流程信息查询</span></div>
+<div class="content">
+		<section>
+	<DIV id="confbutton_list_params" class="params_div">
+		<table border="1">
+			<tr><td class="td-title" style="background-color:blue;color:#fff" >请求路径：</td><td colspan="4">caseprocessquery/grid1.action</td></tr>
+			<tr><td>请求参数描述</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+             <tr>
+			    <td>recType</td>
+			    <td>int</td>
+			    <td>必须输入</td>
+			    <td>记录类型： 0 接访记录 1 案件记录</td>
+			</tr>
+             <tr>
+			    <td>sort</td>
+			    <td>结构体</td>
+			    <td>必须输入</td>
+			    <td>排序规则</td>
+			</tr>
+            <tr>
+			    <td>caseCode</td>
+			    <td>String</td>
+			    <td>可选</td>
+			    <td>案件/接访编号</td>
+			</tr>
+             <tr>
+			    <td>caseName</td>
+			    <td>String</td>
+			    <td>可选</td>
+			    <td>案件/接访名称</td>
+			</tr>
+           
+             
+				
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >请求JSON：</td>
+				<td colspan="4">
+				  <pre>
+{
+    "recType": 1,
+    "sort": {
+        "field": "CREATE_TIME",
+        "order": "asc"
+    }
+}
+				  </pre>
+				</td>
+			</tr>
+			
+			<tr><td class="td-title" id="confbutton_list_params_out">返回参数描述：</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>code</td>
+			    <td>int</td>
+			    <td></td>
+			    <td>返回码 0：成功 1：失败</td>
+			</tr>
+	        <tr>
+			    <td>desc</td>
+			    <td>String</td>
+			    <td></td>
+			    <td>返回描述</td>
+			</tr>
+		
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >返回JSON：</td>
+				<td colspan="4">
+				 <pre>
+{
+  "code": 0,
+  "desc": "分页查询成功",
+  "result": [
+    {
+      "createTime": "2019-03-01 10:15:32",
+      "createUserId": 1,
+      "nofuzzy": 0,
+      "id": 337,
+      "isdel": 0,
+      "updateTime": "2019-03-01 10:26:02",
+      "caseCode": "苏A案件录入2019",
+      "caseName": "苏A案件录入2019",
+      "caseSource": 1,
+      "content": "苏A案件录入2019",
+      "isAcceptRecord": 1,
+      "isSecret": 0,
+      "lastActivityId": 559,
+      "undertakerEntCode": "320101",
+      "recType": 1,
+      "undertakerDepId": 320101,
+      "undertakerUserId": 1,
+      "undertakerName": "超级管理员1111",
+      "activityList": [
+        {
+          "createTime": "2019-03-01 10:15:32",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 554,
+          "isdel": 0,
+          "updateTime": "2019-03-01 10:15:44",
+          "updateUserId": 1,
+          "caseId": 337,
+          "caseProcessStep": 4,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "beforeProcId": -1,
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员1111",
+          "clerkName": "超级管理员1111"
+        },
+        {
+          "createTime": "2019-03-01 10:15:32",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 555,
+          "isdel": 0,
+          "updateTime": "2019-03-01 10:15:56",
+          "updateUserId": 1,
+          "caseId": 337,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 554,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "苏A案件录入2019本地提讯",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员1111",
+          "clerkName": "超级管理员1111"
+        },
+        {
+          "createTime": "2019-03-01 10:15:32",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 556,
+          "isdel": 0,
+          "updateTime": "2019-03-01 10:16:28",
+          "updateUserId": 1,
+          "caseId": 337,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 555,
+          "processRemoteFlag": 1,
+          "proceType": 2,
+          "remarkName": "苏A案件录入2019远程提讯",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员1111",
+          "clerkName": "超级管理员1111"
+        },
+        {
+          "createTime": "2019-03-01 10:15:32",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 557,
+          "isdel": 0,
+          "updateTime": "2019-03-01 10:17:39",
+          "updateUserId": 1,
+          "caseId": 337,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 556,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "苏A案件录入2019本地提讯",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员1111",
+          "clerkName": "超级管理员1111"
+        },
+        {
+          "createTime": "2019-03-01 10:15:32",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 558,
+          "isdel": 0,
+          "updateTime": "2019-03-01 10:26:02",
+          "updateUserId": 1,
+          "caseId": 337,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 557,
+          "processRemoteFlag": 1,
+          "proceType": 2,
+          "remarkName": "苏A案件录入2019",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员1111",
+          "clerkName": "超级管理员1111"
+        },
+        {
+          "createTime": "2019-03-01 10:15:32",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 559,
+          "isdel": 0,
+          "caseId": 337,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 0,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 558,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "1234",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员1111",
+          "clerkName": "超级管理员1111"
+        }
+      ]
+    },
+    {
+      "createTime": "2019-03-01 10:44:12",
+      "createUserId": 1,
+      "nofuzzy": 0,
+      "id": 341,
+      "isdel": 0,
+      "updateTime": "2019-03-04 17:07:16",
+      "caseCode": "测试接访",
+      "caseName": "测试接访",
+      "caseSource": 1,
+      "caseStatus": 1,
+      "content": "测试接访",
+      "isAcceptRecord": 0,
+      "isSecret": 1,
+      "lastActivityId": 577,
+      "undertakerEntCode": "320101",
+      "recType": 1,
+      "undertakerDepId": 52012510,
+      "undertakerUserId": 13019046,
+      "undertakerName": "季芳芳【手机】",
+      "activityList": [
+        {
+          "createTime": "2019-03-01 10:47:57",
+          "createUserId": 13019046,
+          "nofuzzy": 0,
+          "id": 566,
+          "isdel": 0,
+          "updateTime": "2019-03-01 10:47:57",
+          "updateUserId": 13019046,
+          "caseId": 341,
+          "caseProcessStep": 1,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 52012510,
+          "prosecutorId": 13019046,
+          "clerkId": 13019046,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": -1,
+          "processRemoteFlag": 0,
+          "acceptedPerson": "345345",
+          "proceType": 2,
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "季芳芳【手机】",
+          "clerkName": "季芳芳【手机】"
+        },
+        {
+          "createTime": "2019-03-01 10:47:57",
+          "createUserId": 13019046,
+          "nofuzzy": 0,
+          "id": 567,
+          "isdel": 0,
+          "updateTime": "2019-03-04 17:07:16",
+          "updateUserId": 1,
+          "caseId": 341,
+          "caseProcessStep": 3,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 52012510,
+          "prosecutorId": 13019046,
+          "clerkDepId": 52012510,
+          "clerkId": 13019046,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 566,
+          "processRemoteFlag": 0,
+          "acceptedPerson": "345345",
+          "proceType": 2,
+          "remarkName": "345345",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "季芳芳【手机】",
+          "clerkName": "季芳芳【手机】"
+        },
+        {
+          "createTime": "2019-03-01 10:47:57",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 577,
+          "isdel": 0,
+          "caseId": 341,
+          "caseProcessStep": 4,
+          "caseProcessStatus": 0,
+          "prosecutorDepId": 52012510,
+          "prosecutorId": 13019046,
+          "clerkDepId": 52012510,
+          "clerkId": 13019046,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 567,
+          "processRemoteFlag": 0,
+          "acceptedPerson": "345345",
+          "proceType": 2,
+          "remarkName": "345345",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "季芳芳【手机】",
+          "clerkName": "季芳芳【手机】"
+        }
+      ]
+    },
+    {
+      "createTime": "2019-03-04 11:31:27",
+      "createUserId": 1,
+      "nofuzzy": 0,
+      "id": 342,
+      "isdel": 0,
+      "updateTime": "2019-03-07 11:39:03",
+      "caseCode": "苏A2019案件录入1",
+      "caseName": "苏A2019案件录入1",
+      "caseSource": 2,
+      "content": "苏A2019案件录入1",
+      "isAcceptRecord": 1,
+      "isSecret": 0,
+      "lastActivityId": 607,
+      "undertakerEntCode": "320101",
+      "recType": 1,
+      "undertakerDepId": 320101,
+      "undertakerUserId": 1,
+      "undertakerName": "超级管理员",
+      "activityList": [
+        {
+          "createTime": "2019-03-04 11:31:27",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 568,
+          "isdel": 0,
+          "updateTime": "2019-03-04 11:31:52",
+          "updateUserId": 1,
+          "caseId": 342,
+          "caseProcessStep": 4,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "beforeProcId": -1,
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-04 11:31:27",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 570,
+          "isdel": 0,
+          "updateTime": "2019-03-07 11:39:03",
+          "updateUserId": 1,
+          "caseId": 342,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 568,
+          "processRemoteFlag": 1,
+          "proceType": 2,
+          "remarkName": "苏A2019案件录入1",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-04 11:31:27",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 607,
+          "isdel": 0,
+          "caseId": 342,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 0,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 570,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "侧是是是",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        }
+      ]
+    },
+    {
+      "createTime": "2019-03-04 11:31:35",
+      "createUserId": 1,
+      "nofuzzy": 0,
+      "id": 343,
+      "isdel": 0,
+      "updateTime": "2019-03-04 13:41:23",
+      "caseCode": "苏A2019案件录入2",
+      "caseName": "苏A2019案件录入2",
+      "caseSource": 6,
+      "content": "苏A2019案苏A2019案件录入2件录入1",
+      "isAcceptRecord": 1,
+      "isSecret": 0,
+      "lastActivityId": 572,
+      "undertakerEntCode": "320101",
+      "recType": 1,
+      "undertakerDepId": 320101,
+      "undertakerUserId": 1,
+      "undertakerName": "超级管理员",
+      "activityList": [
+        {
+          "createTime": "2019-03-04 11:31:35",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 569,
+          "isdel": 0,
+          "updateTime": "2019-03-04 11:32:01",
+          "updateUserId": 1,
+          "caseId": 343,
+          "caseProcessStep": 4,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "beforeProcId": -1,
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-04 11:31:35",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 571,
+          "isdel": 0,
+          "updateTime": "2019-03-04 13:41:23",
+          "updateUserId": 1,
+          "caseId": 343,
+          "caseProcessStep": 9,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 569,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "苏A2019案件录入2",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-04 11:31:35",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 572,
+          "isdel": 0,
+          "caseId": 343,
+          "caseProcessStep": 9,
+          "caseProcessStatus": 0,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 571,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "苏A2019案件录入3",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        }
+      ]
+    },
+    {
+      "createTime": "2019-03-06 11:01:12",
+      "createUserId": 1,
+      "nofuzzy": 0,
+      "id": 351,
+      "isdel": 0,
+      "updateTime": "2019-03-12 14:52:34",
+      "caseCode": "顺风顺水的",
+      "caseName": "闪电贷",
+      "caseSource": 1,
+      "content": "试试",
+      "isAcceptRecord": 1,
+      "isSecret": 0,
+      "lastActivityId": 685,
+      "undertakerEntCode": "320101",
+      "recType": 1,
+      "undertakerDepId": 320101,
+      "undertakerUserId": 1,
+      "undertakerName": "超级管理员",
+      "activityList": [
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 591,
+          "isdel": 0,
+          "updateTime": "2019-03-07 11:19:59",
+          "updateUserId": 1,
+          "caseId": 351,
+          "caseProcessStep": 4,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "beforeProcId": -1,
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 600,
+          "isdel": 0,
+          "updateTime": "2019-03-07 11:20:10",
+          "updateUserId": 1,
+          "caseId": 351,
+          "caseProcessStep": 9,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 591,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "qqqq",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 601,
+          "isdel": 0,
+          "updateTime": "2019-03-07 11:20:34",
+          "updateUserId": 1,
+          "caseId": 351,
+          "caseProcessStep": 9,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 600,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "12312312",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 602,
+          "isdel": 0,
+          "updateTime": "2019-03-07 11:36:17",
+          "updateUserId": 1,
+          "caseId": 351,
+          "caseProcessStep": 9,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 601,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "dddddddd",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 603,
+          "isdel": 0,
+          "caseId": 351,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 0,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 602,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "232233",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 604,
+          "isdel": 0,
+          "updateTime": "2019-03-07 11:36:24",
+          "updateUserId": 1,
+          "caseId": 351,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 602,
+          "processRemoteFlag": 1,
+          "proceType": 2,
+          "remarkName": "444",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 605,
+          "isdel": 0,
+          "updateTime": "2019-03-07 11:38:13",
+          "updateUserId": 1,
+          "caseId": 351,
+          "caseProcessStep": 9,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 604,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "1321312",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 606,
+          "isdel": 0,
+          "updateTime": "2019-03-12 14:52:34",
+          "updateUserId": 1,
+          "caseId": 351,
+          "caseProcessStep": 6,
+          "caseProcessStatus": 1,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 605,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "dddddd",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        },
+        {
+          "createTime": "2019-03-06 11:01:12",
+          "createUserId": 1,
+          "nofuzzy": 0,
+          "id": 685,
+          "isdel": 0,
+          "caseId": 351,
+          "caseProcessStep": 9,
+          "caseProcessStatus": 0,
+          "prosecutorDepId": 320101,
+          "prosecutorId": 1,
+          "clerkDepId": 320101,
+          "clerkId": 1,
+          "recordStatus": 0,
+          "voiceStatus": 0,
+          "beforeProcId": 606,
+          "processRemoteFlag": 0,
+          "proceType": 2,
+          "remarkName": "测试出庭活动",
+          "prosecutorEntCode": "320101",
+          "prosecutorName": "超级管理员",
+          "clerkName": "超级管理员"
+        }
+      ]
+    }
+  ],
+  "pages": {
+    "curPage": 1,
+    "pageCount": 1,
+    "pageSize": 10,
+    "totalCount": 5,
+    "startNo": 0
+  }
+}
+				 </pre>
+				</td>
+			</tr>
+		</table>
+		<script>
+			document.getElementById("confbutton_list_params_in").rowSpan = 25;
+			document.getElementById("confbutton_list_params_out").rowSpan = 27;
+		</script>
+	</DIV>
+</section>
+</div>
+
+</body>
+</html>

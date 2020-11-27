@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+table
+{
+ width:100%;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title">根据用户查询任务执行明细</span></div>
+<div class="content">
+		<section>
+	<DIV id="confbutton_list_params" class="params_div">
+		<table border="1">
+			<tr><td class="td-title" style="background-color:blue;color:#fff" >请求路径：</td><td colspan="4">/cgtasktempexeclist/getExecListWithDtlByUser.action</td></tr>
+			<tr><td>请求参数描述</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>entCode</td>
+			    <td>String</td>
+			    <td>必须输入</td>
+			    <td>单位代码</td>
+			</tr>
+			<tr>
+			    <td>userId</td>
+			    <td>int</td>
+			    <td>必填</td>
+			    <td>用户ID</td>
+			</tr>
+			<tr>
+			    <td>taskDate</td>
+			    <td>String</td>
+			    <td>非必填</td>
+			    <td>任务日期</td>
+			</tr>
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >请求JSON：</td>
+				<td colspan="4">
+				  <pre>
+{
+	"entCode":"320101",
+	"userId":13010283,
+	"taskDate":"2018-12-24"
+}
+				  </pre>
+				</td>
+			</tr>
+			
+			<tr><td class="td-title" id="confbutton_list_params_out">返回参数描述：</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>code</td>
+			    <td>int</td>
+			    <td></td>
+			    <td>返回码 0：成功 1：失败</td>
+			</tr>
+	        <tr>
+			    <td>result</td>
+			    <td>List</td>
+			    <td></td>
+			    <td>任务集合</td>
+			</tr>
+		
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >返回JSON：</td>
+				<td colspan="4">
+				 <pre>
+{
+    "code": 0,
+    "desc": "查询成功",
+    "result": [
+        {
+            "nofuzzy": 0,
+            "entCode": "320101",
+            "tasktempId": 1,
+            "deptId": 320101,
+            "taskCode": "dafd",
+            "taskName": "dsfdsf",
+            "startTime": "08:00",
+            "endTime": "20:00",
+            "userIds": "13010283,13010285",
+            "userNames": "陆浩,fxt1",
+            "areaId": 22,
+            "efenceId": 16,
+            "areaName": "test巡查路线",
+            "areaType": "4"
+        }
+    ]
+}
+				 </pre>
+				</td>
+			</tr>
+		</table>
+		<script>
+			document.getElementById("confbutton_list_params_in").rowSpan = 25;
+			document.getElementById("confbutton_list_params_out").rowSpan = 27;
+		</script>
+	</DIV>
+</section>
+</div>
+
+</body>
+</html>

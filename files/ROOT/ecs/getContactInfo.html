@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>更新消息状态</h3>
+<section>
+<pre>
+更新消息状态
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+ https://192.168.2.132:8280/platWeb/platsms/getContactInfo.action
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+
+<table>
+<tr><td>target </td><td>接受者userCode</td></tr>
+<tr><td>src </td><td>发送人的userCode </td></tr>
+<tr><td>sort </td><td>排序 </td></tr>
+<tr><td colspan="2">
+<table>
+<tr><td>field </td><td>排序属性</td></tr>
+<tr><td>order </td><td>排序方式 asc升序 desc降序 </td></tr>
+</table>
+</td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"src" : "29c31e9fa1f1448583348636fda3e8fe",
+	"target" : "8f05e88abcea4e02815a8579041cca28",
+	"sort" : {
+		"field" : "create_time",
+		"order" : "asc"
+	}
+}
+
+</pre>
+</section>
+
+<h4>返回参数讲解</h4>
+<section>
+<table>
+<tr><td>obj </td><td>返回数据</td></tr>
+<tr><td colspan="2">
+	<table>
+		<tr><td>msgList </td><td>消息列表</td></tr>
+		<tr><td colspan="2">
+			<table>
+				<tr><td>src </td><td>发送者userCode</td></tr>
+				<tr><td>target </td><td>接受者userCode</td></tr>
+				<tr><td>content </td><td>消息内容</td></tr>
+				<tr><td>status </td><td>消息状态</td></tr>
+				<tr><td>smsType </td><td>发送者userCode</td></tr>
+				<tr><td>contentType </td><td>内容类型 1 文字 2 图片 3 视频 4 语音</td></tr>
+				<tr><td>sendType </td><td>0 自己发送  1 自己收到</td></tr>
+				<tr><td>sourceMsg </td><td>源消息内容</td></tr>
+			</table>
+		</td></tr>
+		<tr><td>userList </td><td>用户信息列表</td></tr>
+		<tr><td colspan="2">
+			<table>
+				<tr><td>name </td><td>用户名</td></tr>
+				<tr><td>sex </td><td>用户性别 </td></tr>
+				<tr><td>imgUrl </td><td>用户头像</td></tr>
+				<tr><td>userCode </td><td>用户编码</td></tr>
+				<tr><td>domainCode </td><td>域编码</td></tr>
+				<tr><td>friend </td><td>是否是好友</td></tr>
+				<tr><td>friendMark </td><td>好友备注</td></tr>
+			</table>
+		</td></tr>
+	</table>
+</td></tr>
+</table>
+</section>
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+	"code" : 0,
+	"obj" : {
+		"treeList" : [],
+		"nofuzzy" : 0,
+		"sort" : {
+			"fieldType" : 0,
+			"field" : "create_time",
+			"order" : "asc"
+		},
+		"negativeFields" : [],
+		"msgList" : [{
+				"treeList" : [],
+				"createTime" : "2020-06-08 14:10:57",
+				"nofuzzy" : 0,
+				"id" : 1574,
+				"isdel" : 0,
+				"negativeFields" : [],
+				"src" : "29c31e9fa1f1448583348636fda3e8fe",
+				"target" : "8f05e88abcea4e02815a8579041cca28",
+				"content" : "{\"type\":\"addFriend\",\"content\":\"张磊1已将您加为常用联系人！\",\"creatTime\":\"2020-06-08 14:10:56\"}",
+				"status" : 1,
+				"smsType" : "notice"
+			}, {
+				"treeList" : [],
+				"createTime" : "2020-06-08 14:10:58",
+				"nofuzzy" : 0,
+				"id" : 1576,
+				"isdel" : 0,
+				"negativeFields" : [],
+				"src" : "29c31e9fa1f1448583348636fda3e8fe",
+				"target" : "8f05e88abcea4e02815a8579041cca28",
+				"content" : "{\"contentType\":1,\"content\":\"阿斯顿发送到\"}",
+				"status" : 0,
+				"smsType" : "chat",
+				"contentType" : 1,
+				"sendType" : 1,
+				"sourceMsg" : "{\"targets\":[\"8f05e88abcea4e02815a8579041cca28\"],\"src\":\"29c31e9fa1f1448583348636fda3e8fe\",\"target\":\"8f05e88abcea4e02815a8579041cca28\",\"content\":\"{\\\"contentType\\\":1,\\\"content\\\":\\\"阿斯顿发送到\\\"}\",\"smsType\":\"chat\",\"contentType\":1,\"treeList\":[],\"nofuzzy\":0,\"negativeFields\":[]}"
+			}, {
+				"treeList" : [],
+				"createTime" : "2020-06-08 14:11:02",
+				"nofuzzy" : 0,
+				"id" : 1578,
+				"isdel" : 0,
+				"negativeFields" : [],
+				"src" : "29c31e9fa1f1448583348636fda3e8fe",
+				"target" : "8f05e88abcea4e02815a8579041cca28",
+				"content" : "{\"contentType\":1,\"content\":\" 阿斯顿撒多\"}",
+				"status" : 0,
+				"smsType" : "chat",
+				"contentType" : 1,
+				"sendType" : 1,
+				"sourceMsg" : "{\"targets\":[\"8f05e88abcea4e02815a8579041cca28\"],\"src\":\"29c31e9fa1f1448583348636fda3e8fe\",\"target\":\"8f05e88abcea4e02815a8579041cca28\",\"content\":\"{\\\"contentType\\\":1,\\\"content\\\":\\\" 阿斯顿撒多\\\"}\",\"smsType\":\"chat\",\"contentType\":1,\"treeList\":[],\"nofuzzy\":0,\"negativeFields\":[]}"
+			}, {
+				"treeList" : [],
+				"createTime" : "2020-06-08 14:11:05",
+				"nofuzzy" : 0,
+				"id" : 1580,
+				"isdel" : 0,
+				"negativeFields" : [],
+				"src" : "29c31e9fa1f1448583348636fda3e8fe",
+				"target" : "8f05e88abcea4e02815a8579041cca28",
+				"content" : "{\"contentType\":1,\"content\":\"撒旦法\"}",
+				"status" : 0,
+				"smsType" : "chat",
+				"contentType" : 1,
+				"sendType" : 1,
+				"sourceMsg" : "{\"targets\":[\"8f05e88abcea4e02815a8579041cca28\"],\"src\":\"29c31e9fa1f1448583348636fda3e8fe\",\"target\":\"8f05e88abcea4e02815a8579041cca28\",\"content\":\"{\\\"contentType\\\":1,\\\"content\\\":\\\"撒旦法\\\"}\",\"smsType\":\"chat\",\"contentType\":1,\"treeList\":[],\"nofuzzy\":0,\"negativeFields\":[]}"
+			}
+		],
+		"userList" : [{
+				"treeList" : [],
+				"nofuzzy" : 0,
+				"negativeFields" : [],
+				"name" : "张磊1",
+				"password" : null,
+				"sex" : 1,
+				"imgUrl" : "/images/man.png",
+				"userCode" : "29c31e9fa1f1448583348636fda3e8fe",
+				"domainCode" : "f079595d296b",
+				"friend" : true,
+				"friendMark" : "张磊1"
+			}, {
+				"treeList" : [],
+				"nofuzzy" : 0,
+				"negativeFields" : [],
+				"name" : "季芳芳5",
+				"password" : null,
+				"sex" : 1,
+				"imgUrl" : "/images/man.png",
+				"userCode" : "8f05e88abcea4e02815a8579041cca28",
+				"domainCode" : "f079595d296b",
+				"friend" : false
+			}
+		],
+		"src" : "29c31e9fa1f1448583348636fda3e8fe",
+		"target" : "8f05e88abcea4e02815a8579041cca28"
+	}
+}
+
+</pre>
+</section>
+
+</body>
+</html>

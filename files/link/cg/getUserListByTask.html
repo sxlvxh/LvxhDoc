@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+table
+{
+ width:100%;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title">根据保障任务类型查询人员</span></div>
+<div class="content">
+		<section>
+	<DIV id="confbutton_list_params" class="params_div">
+		<table border="1">
+			<tr><td class="td-title" style="background-color:blue;color:#fff" >请求路径：</td><td colspan="4">/cgtasktemptree/getUserListByTask.action</td></tr>
+			<tr style="color:red;">
+			    <td>接口使用说明：</td>
+			    <td colspan="4">保障任务地图左侧电子围栏按钮</td>
+			</tr>
+			<tr><td>请求参数描述</td></tr>
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >请求JSON：</td>
+				<td colspan="4">
+				  <pre>
+{
+    "entCode": "320101",   //单位编码，必填
+    "deptId": 320101,      //部门ID，非必填
+    "cgTemplateType":"1",  //任务类型，1日常任务，2保障任务，3临时任务4上报事件5渣土管控，必填
+    "classify":""          //保障任务类型，cgTemplateType为2时必填，1扫雪防冻2国家公祭日3灯会保障4防汛保障
+}
+				  </pre>
+				</td>
+			</tr>
+			
+			<tr><td class="td-title" id="confbutton_list_params_out">返回参数描述：</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>code</td>
+			    <td>int</td>
+			    <td></td>
+			    <td>返回码 0：成功 1：失败</td>
+			</tr>
+	        <tr>
+			    <td>result</td>
+			    <td>List</td>
+			    <td></td>
+			    <td>集合</td>
+			</tr>
+		
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >返回JSON：</td>
+				<td colspan="4">
+				 <pre>
+{
+    "code": 0,
+    "desc": "查询成功",
+    "result": [
+        {
+            "createTime": "2018-12-04 14:39:00",
+            "nofuzzy": 0,
+            "id": 13001441,
+            "isdel": 0,
+            "updateTime": "2019-01-16 09:29:00",
+            "strUserTokenID": "",
+            "strMacAddr": "",
+            "nDevType": "0",
+            "nState": "0",
+            "name": "钱靖1",
+            "loginName": "3B83D62A2CA042F2B56BC98F05BD3B19",
+            "password": "335a466f1fd3e03fbac1b1264b7a4ed21638de66fda30aeb43a0dff45fca30b0",
+            "address": "",
+            "mobilePhone": "15995005552",
+            "email": "",
+            "sex": 1,
+            "entCode": "320101",
+            "jobId": 1,
+            "imgUrl": "/user/man.png",
+            "idNumber": "",
+            "userType": 4,
+            "extendIndexa": "320101",
+            "extendIndexc": "2",
+            "extendIndexd": "",
+            "loginNo": "2"
+        }
+    ]
+}				 </pre>
+				</td>
+			</tr>
+		</table>
+		<script>
+			document.getElementById("confbutton_list_params_in").rowSpan = 25;
+			document.getElementById("confbutton_list_params_out").rowSpan = 27;
+		</script>
+	</DIV>
+</section>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+*{ padding:0px; margin:0;}
+.bxxSelPanel{ border:1px solid #ccc; position:absolute; z-index:9999;}
+#mySelect{ margin:10px;}
+.bxxSelPanel{ background:#fff; height: 200px; overflow: auto;}
+.bxx-line{width:100%;cursor: pointer; text-align: left;padding: 1px 10px;}
+.bxx-line:HOVER{background-color: #67a6db;color: #fff;}

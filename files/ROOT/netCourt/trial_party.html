@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>互联网法庭接口文档</title>
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+ boyd,html{
+  width:100%;
+  height: 100%;
+ }
+</style>
+</head>
+<body>
+<h4>接口说明</h4>
+<section>
+<pre>
+根据庭审编号查询庭审信息
+</pre>
+</section>
+<h4>请求路径 【<color style='color:red'>HTTP+JSON</color>】</h4>
+<section>
+<pre>
+http://192.168.2.132:8380/courtWeb/court/getTrialUser.action
+</pre>
+</section>
+
+<h4>修改记录</h4>
+<section>
+<pre>
+ <color style='color:red'>2020-04-27参与人属性返回参数增加imgUrl【用户头像】</color>
+</pre>
+</section>
+
+
+<h4>请求参数说明</h4>
+<section>
+<pre>
+trialCode:庭审编码 <color style='color:blue'></color>
+
+</pre>
+</section>
+
+<h4>请求参数示例</h4>
+<section>
+<pre>
+{"trialCode":"034d625b03b646c18e3a643e5145ca90"}
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+<pre>
+roomList：庭室固定设备集合
+         "id": 10,     
+        "roomNodeName": 庭室名称
+        "roomCode": "03067578208f4f6689080e35c2437c67", 庭室编码
+        "roomNodeType": 设备类型
+        "domainCode": 设备域
+        "devCode": 设备编号
+        "videoChannelCode": 通道编号
+        "videoStreamCode": 流编号
+        "videoStreamType": 主副码流标志位 1：主码流 其他为辅码流
+        "streamViceFlag": 是否支持手机端副码流观摩 0 是 1 否
+partyList： 当事人集合		
+        "id": 987,      
+        "updateTime": "2020-04-21 16:49:01",    
+        "trialCode": 庭审编码
+        "seat": 会议画面的顺序
+        "userCode": 用户编码
+        "verifyStatus": 人脸公安认证标记0 未认证 1 已认证
+        "authCode": 鉴权码
+        "userName": 当事人名陈
+        "loginName": 登录名称
+        "mobilePhone": 手机号码
+        "entCode": 企业编码（法院编码）
+        "seatName": 席位名称
+</pre>
+</section>
+<h4>返回参数示例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "obj": {    
+        "id": 4171,
+        "isdel": 0,
+         "roomList": [
+            {              
+                "id": 11,              
+                "roomNodeName": "",
+                "roomCode": "03067578208f4f6689080e35c2437c67",
+                "domainCode": "88C2555D4CD7",
+                "domainName": "怀业ARM流媒体平台",
+                "devCode": "88C2555D4CD71130000002",
+                "devName": "192.168.2.164",
+                "videoChannelCode": "88C2555D4CD71310000002",
+                "videoChannelName": "192.168.2.164_vc_1",
+                "videoStreamCode": "88C2555D4CD70000004",
+                "videoStreamName": "VideoStream1",
+                "lng": "",
+                "lat": "",
+                "entCode": "A320101"
+            }
+        ],
+        "partyList": [
+            {               
+                "id": 989,              
+                "trialCode": "034d625b03b646c18e3a643e5145ca90",
+                "seat": "1",
+                "userCode": "85da3a95ef6f460f8be015bf6133130a",
+                "verifyStatus": 0,
+                "authCode": "989",
+                "userName": "1478",
+                "loginName": "720bc52cbf9a46c6bd6cf4ddc2ecc3ce",
+                "mobilePhone": "123",
+                "entCode": "A320101",
+                "seatName": "原告",
+                "imgUrl": "/images/man.png"
+            }
+        ],
+        "meetHolder": {
+            "treeList": [],
+            "createTime": "2020-04-27 17:04:56",
+            "createUserId": 543,
+            "nofuzzy": 0,
+            "id": 3444,
+            "isdel": 0,
+            "updateTime": "2020-04-30 10:46:41",
+            "negativeFields": [],
+            "trialCode": "034d625b03b646c18e3a643e5145ca90",
+            "meetingId": 1112,
+            "status": 1,
+            "domainCode": "A000"
+        },
+        "startDate": "2020-04-20 17:12:41",
+        "trialCode": "034d625b03b646c18e3a643e5145ca90",
+        "caseSeqCode": "1002",
+        "caseInfo": "",
+        "roomCode": "03067578208f4f6689080e35c2437c67",
+        "judgeCode": "88748784a24f43b982c0436c9f1b6bf6",
+        "clerkCode": "ed2e09e97d684863a1c59c64ec5a4544",
+        "entCode": "A320101",
+        "status": 0
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

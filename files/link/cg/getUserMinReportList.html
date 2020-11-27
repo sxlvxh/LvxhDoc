@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+table
+{
+ width:100%;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title">任务执行分钟检查列表接口</span></div>
+<div class="content">
+		<section>
+	<DIV id="confbutton_list_params" class="params_div">
+		<table border="1">
+			<tr><td class="td-title" style="background-color:blue;color:#fff" >请求路径：</td><td colspan="4">/cguserminreport/list.action</td></tr>
+			<tr><td>请求参数描述</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>uentCode</td>
+			    <td>String</td>
+			    <td>必须输入</td>
+			    <td>用户的企业编码</td>
+			</tr>
+			<tr>
+			    <td>userId</td>
+			    <td>String</td>
+			    <td>必须输入</td>
+			    <td>用户编号</td>
+			</tr>
+			<tr>
+			    <td>checkTimeL</td>
+			    <td>String</td>
+			    <td>必须输入</td>
+			    <td>开始时间</td>
+			</tr>
+			<tr>
+			    <td>checkTimeR</td>
+			    <td>String</td>
+			    <td>必须输入</td>
+			    <td>结束时间</td>
+			</tr>
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >请求JSON：</td>
+				<td colspan="4">
+				  <pre>
+{
+	"uentCode": "320102",
+	"userId": 13019945,
+	"checkTimeL": "2019-01-10 00:00:00",
+	"checkTimeR": "2019-01-10 24:00:00"
+}
+				  </pre>
+				</td>
+			</tr>
+			
+			<tr><td class="td-title" id="confbutton_list_params_out">返回参数描述：</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>code</td>
+			    <td>int</td>
+			    <td></td>
+			    <td>返回码 0：成功 1：失败</td>
+			</tr>
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >返回JSON：</td>
+				<td colspan="4">
+				 <pre>
+{
+	"code": 0,
+	"desc": "查询成功",
+	"result": [
+		{
+			"nofuzzy": 0,
+			"id": 432,
+			"checkTime": "2019-01-10 18:50:00",
+			"uentCode": "320102",
+			"userId": 13019945,
+			"tentCode": "320102",
+			"taskId": 19,
+			"taskAreaId": 201,
+			"taskAreaType": 5,
+			"attendanceCheck": 0,
+			"amileage": 0.0,
+			"imileage": 0.0
+		},
+		{
+			"nofuzzy": 0,
+			"id": 434,
+			"checkTime": "2019-01-10 21:00:00",
+			"uentCode": "320102",
+			"userId": 13019945,
+			"tentCode": "320102",
+			"taskId": 26,
+			"taskAreaId": 285,
+			"taskAreaType": 5,
+			"attendanceCheck": 0,
+			"amileage": 0.0,
+			"imileage": 0.0
+		},
+		{
+			"nofuzzy": 0,
+			"id": 435,
+			"checkTime": "2019-01-10 21:10:00",
+			"uentCode": "320102",
+			"userId": 13019945,
+			"tentCode": "320102",
+			"taskId": 26,
+			"taskAreaId": 285,
+			"taskAreaType": 5,
+			"attendanceCheck": 0,
+			"amileage": 0.0,
+			"imileage": 0.0
+		},
+		{
+			"nofuzzy": 0,
+			"id": 437,
+			"checkTime": "2019-01-10 21:20:00",
+			"uentCode": "320102",
+			"userId": 13019945,
+			"tentCode": "320102",
+			"taskId": 26,
+			"taskAreaId": 285,
+			"taskAreaType": 5,
+			"attendanceCheck": 0,
+			"amileage": 0.0,
+			"imileage": 0.0
+		},
+		{
+			"nofuzzy": 0,
+			"id": 439,
+			"checkTime": "2019-01-10 21:30:00",
+			"uentCode": "320102",
+			"userId": 13019945,
+			"tentCode": "320102",
+			"taskId": 26,
+			"taskAreaId": 285,
+			"taskAreaType": 3,
+			"attendanceCheck": 1,
+			"curAdress": "111111111",
+			"amileage": 1111.0,
+			"imileage": 111.0
+		}
+	]
+}
+				 </pre>
+				</td>
+			</tr>
+		</table>
+		<script>
+			document.getElementById("confbutton_list_params_in").rowSpan = 25;
+			document.getElementById("confbutton_list_params_out").rowSpan = 27;
+		</script>
+	</DIV>
+</section>
+</div>
+
+</body>
+</html>

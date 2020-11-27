@@ -1,0 +1,49 @@
+var menu = [{
+		"title": "CS调用JS方法",
+		"url": "csToJs.html"
+	}, {
+		"title": "JS调用CS方法",
+		"url": "jsToCs.html"
+	}, {
+		"title": "cs调用指定页面上方法",
+		"url": "csCallPageFunc.html"
+	}, {
+		"title": "链接测试",
+		"url": "testconn.html"
+	}, {
+		"title": "账号登陆",
+		"url": "login.html"
+	}, {
+		"title": "账号退出",
+		"url": "logout.html"
+	}, {
+		"title": "庭审排期(按企业过滤)",
+		"url": "trial_ent.html"
+	}, {
+		"title": "庭审排期(按用户过滤)",
+		"url": "trial_user.html"
+	}, {
+		"title": "案件列表",
+		"url": "case_list.html"
+	}, {
+		"title": "查询庭审人员",
+		"url": "trial_party.html"
+	}, {
+		"title": "增加庭审会议记录",
+		"url": "insertMeeting.html"
+	}, {
+		"title": "庭审状态变更",
+		"url": "modifyTrialStatus.html"
+	}, {
+		"title": "修改会议状态",
+		"url": "modifyMeetStatus.html"
+	}, {
+		"title": "根据用户授权码查询庭审信息",
+		"url": "trial_party_auth.html"
+	}, {
+		"title": "根据会议id和域编码查询庭审信息",
+		"url": "trial_party_meetid.html"
+	}
+	
+	
+];

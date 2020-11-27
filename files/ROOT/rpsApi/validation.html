@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#fff;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+
+</style>
+</head>
+<body>
+<h3>校验参数说明</h3>
+<section>
+<pre>
+  略
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>略</td><td></td></tr>
+
+</table>
+</section>
+
+
+<h4>校验参数</h4>
+<section>
+<pre>
+1、非空校验
+{	
+	"validateParam" : [{
+			"id" : "required",
+			"message" : "用户名不能为空"
+		}
+	]
+}
+
+2、手机号码校验
+{	
+	"validateParam" : [{
+			"id" : "telephone",
+			"message" : "手机号码不符合要求，0-9的11数字组成！"
+		}
+	]
+}
+
+3、新增时的唯一性校验
+{	
+	"validateParam" : [{
+			"id" : "ajax",
+			"message" : "改手机号码已经存在",
+			"post" : "mobilephone",
+			"url" : "../platuser/list.action"
+		}
+	]
+}
+
+4、修改时的唯一性校验
+{	
+	"validateParam" : [{
+			"id" : "custom_ajax",
+			"message" : "该手机号码已经存在",
+			"post" : "mobilePhone",
+			"url" : "../platuser/list.action",
+            "modifyId": "id",
+            "parentId":"bd77cb98-ca78-4cb9-a72f-ab4b834fc44e"
+		}
+	]
+}
+
+5、录入长度校验
+
+{	
+	"validateParam" : [{
+			"id": "length",
+			"start": "0",
+			"end": "16",
+			"message": "密码长度需在6~16之间！"
+		}
+	]
+}
+
+</pre>
+</section>
+
+</body>
+</html>

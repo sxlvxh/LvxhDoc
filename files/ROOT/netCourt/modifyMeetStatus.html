@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>互联网法庭接口文档</title>
+<style>
+section
+ {
+  border:1px solid #ddd;
+  padding:10px 10px;
+  background-color:#eee;
+ }
+ h3
+ {
+  padding:0px 10px;
+  font-size:16px;
+ }
+  h4
+ {
+  padding:0px 10px;
+  font-size:14px;
+ }
+ li{
+  margin: 10px;
+  list-style:none;
+ }
+ a{
+  line-height:30px;
+  border-left:1px solid blue;
+  padding:3px 20px;
+ }
+ boyd,html{
+  width:100%;
+  height: 100%;
+ }
+</style>
+</head>
+<body>
+<h4>接口说明</h4>
+<section>
+<pre>
+修改庭审会议记录状态
+</pre>
+</section>
+<h4>请求路径 【<color style='color:red'>HTTP+JSON</color>】</h4>
+<section>
+<pre>
+http://192.168.2.132:8380/courtWeb/court/modifyMeetStatus.action
+</pre>
+</section>
+
+<h4>请求参数说明</h4>
+<section>
+<pre>
+meetingId：会议ID
+status：会议状态 1:开始  2:结束
+domainCode：会议所在域编码
+</pre>
+</section>
+
+<h4>请求参数示例</h4>
+<section>
+<pre>
+{	
+	"meetingId": 1112,
+	"status": 1,
+	"domainCode": "A000"
+}
+
+</pre>
+</section>
+
+<h4>返回参数说明</h4>
+<section>
+<pre>
+
+</pre>
+</section>
+<h4>返回参数示例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "操作成功!",
+    "obj": {
+        "treeList": [],
+        "createTime": "2020-04-27 17:04:56",
+        "createUserId": 543,
+        "nofuzzy": 0,
+        "id": 3444,
+        "isdel": 0,
+        "negativeFields": [],
+        "trialCode": "034d625b03b646c18e3a643e5145ca90",
+        "meetingId": 1112,
+        "status": 1,
+        "domainCode": "A000"
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

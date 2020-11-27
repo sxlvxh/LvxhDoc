@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>吕孝怀的开发文档</title>
+<link href="api.css" rel="stylesheet" type="text/css" />
+<script src="jquery.js" type="text/javascript"></script>
+<script src="json2.js" type="text/javascript"></script>
+<script src="api.js" type="text/javascript"></script>
+<script src="data.js" type="text/javascript"></script>
+<script>
+$(function(){
+ var api = new API({iframe:$("#iframe")});
+ api.menu(menu,$(".page-center-left"));
+});
+</script>
+</head>
+ <body>
+
+  <div class="page-center">
+    <div class="page-center-left"></div>
+	<div class="page-center-right">
+	    <iframe id="iframe" src="" class="iframe"></iframe>
+	</div>
+  </div>
+</body>
+ 
+</html>

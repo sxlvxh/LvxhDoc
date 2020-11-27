@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<script src="json2.js"></script>
+<script>
+ $(function(){
+     $("li span").bind("click",function(){	 	
+	    var _this = $(this);
+	    var url = _this.attr("path");
+	
+		if(url)
+		{
+		  $("#iframe").attr({"src":url});
+		  }
+	 });
+ });
+</script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   line-height:50px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	background-color:blue;
+	color:#fff;
+
+ }
+.left{
+  width:15%;
+  border-right:1px solid #ddd;
+  height:900px;
+  }
+.right{
+   width:85%;
+   height:900px;
+   float:right;
+   margin-top:-900px;
+  }
+.title
+{
+  margin-left:100px;
+    
+}
+#iframe
+{
+  border:0px;
+}
+li span{
+ cursor:pointer;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title"><strong>城管接口文档</strong></span></div>
+<div class="left">
+  <ul>
+    <li>
+	<span>接口说明</span>
+	<ul>
+	 <li><span  path="agreement.html">接口约定</span></li>
+	</ul>
+	</li>
+	<li><span>用户管理</span>
+		<ul>
+		 <li><span  path="appKeepSessionAlive.html">APP测试连接</span></li>
+		 <li><span  path="applogin.html">APP登录</span></li>
+		 <li><span  path="getAppMenu.html">获取APP菜单</span></li>
+		 <li><span  path="getExecutorUser.html">获取执行人</span></li>
+		 <li><span  path="getUserInfo.html">获取人员详细信息</span></li>
+		 <li><span  path="uploadPointsToYingyan.html">查询轨迹(上传百度鹰眼)</span></li>
+		<li><span  path="searchUser.html">搜索用户</span></li>
+		<li><span  path="userDetails.html">查询用户详细信息(含在线状态)</span></li>
+		</ul>
+	</li>
+	<li><span>通讯录</span>
+	      <ul>
+		 <li><span  path="sysentchildlist.html">获取子企业</span></li>
+		 <li><span  path="getDepList.html">获取企业下的部门</span></li>
+		 <li><span  path="getUserList.html">获取部门人员</span></li>
+		 <li><span  path="contactuserList.html">查询常用联系人</span></li>
+		 <li><span  path="sysconfcontactgroup.html">查询常用联系人分组ID</span></li>
+		 <li><span  path="submitEmpPosition.html">上报坐标</span></li>
+		 <li><span  path="getMobileFollowUser.html">App查询需要关注的用户</span></li>
+		 <li><span  path="getAlarmReceiverList.html">App查询接警人员</span></li>
+		</ul>
+	</li>
+	<li><span>版本更新</span>
+	      <ul>
+		 <li><span  path="getVersion.html">获取最新版本</span></li>		
+		</ul>
+	</li>
+	<li><span>音视频</span>
+	      <ul>
+		 <li><span  path="startMeeting.html">开始会议</span></li>		
+		 <li><span  path="stopMeeting.html">结束会议</span></li>	
+		 <li><span  path="startTalkback.html">开始对讲</span></li>	
+		 <li><span  path="stopTalkback.html">结束对讲</span></li>	
+	     <li><span  path="doNotify.html">录像回调通知</span></li>	
+		</ul>
+	</li>
+	<li>
+	    <span>城管地图上电子围栏相关</span>
+	    <ul>
+	   		<li><span path="getAreaListByTaskId.html">根据任务ID查询电子围栏列表</span></li>
+		    <li><span path="getTaskUserListByAreaType.html">根据围栏类型查询人员列表</span></li>
+		    <li><span path="getUserExecDtlByAreaType.html">根据围栏类型查询人员执行明细</span></li>
+		    <!-- <li><span path="getTaskListByPostOrGrid.html" style="color:red;">根据岗点或者网格查询任务列表(废弃)</span></li> -->
+		    <li><span path="getTaskListByAreaType.html">根据围栏类型查询任务列表</span></li>
+		    <!-- <li><span path="getExecListWithDtlByPostOrGrid.html" style="color:red;">根据岗点或者网格查询任务执行明细(废弃)</span></li> -->
+		    <li><span path="getExecListWithDtlByAreaType.html">根据围栏类型查询任务执行明细</span></li>
+		    <li><span path="getExecListWithDtlByUser.html">根据用户查询任务执行明细</span></li>
+		    <li><span path="getTaskInfoByUser.html">根据用户查询任务信息</span></li>
+		</ul>
+	</li>
+	<li>
+	    <span>城管岗点树</span>
+	    <ul>
+		    <li><span path="getDailyPostTreeAreaList.html">日常任务获取电子围栏列表</span></li>
+		    <li><span path="getPostTreeAreaList.html">非日常任务获取电子围栏列表</span></li>
+		    <li><span path="getPostTreeUserList.html">获取区域时间段下人员</span></li>
+		</ul>
+	</li>
+	<li>
+	    <span>城管时间树</span>
+	    <ul>
+		    <li><span path="getTimeTreePeriodList.html">时间树获取时间段</span></li>		
+		    <li><span path="getTimeTreeAreaList.html">时间树查询时间段下的区域、岗点、路线</span></li>	
+		    <li><span path="getTimeTreeUserList.html">时间树查询执行人列表</span></li>	
+		</ul>
+	</li>
+	<li>
+	    <span>城管任务归档详情相关接口</span>
+	    <ul>
+		    <li><span path="getEfenceListHasExec.html">查询任务下有录像的电子围栏</span></li>		
+		    <li><span path="getUserListHasExec.html">查询电子围栏下有录像的人员</span></li>	
+		</ul>
+	</li>
+	<li>
+	    <span>保障任务地图相关接口</span>
+	    <ul>
+		    <li><span path="getAreaListByTask.html">根据保障任务类型查询电子围栏</span></li>		
+		    <li><span path="getUserListByTask.html">根据保障任务类型查询人员</span></li>
+		    <li><span path="getUserNotInTaskWithState.html">保障任务查询不在任务里的人员列表</span></li>		
+		</ul>
+	</li>
+	<li>
+	    <span>APP任务执行相关</span>
+	    <ul>
+		    <li><span path="getTaskByUser.html">根据用户获取任务列表</span></li>		
+		    <li><span path="getTaskExecDtl.html">查询任务执行明细</span></li>	
+		    <li><span path="saveTaskExecDtl.html">保存任务执行明细</span></li>
+		    <li><span path="deleteExecDtlVideo.html">删除执行录像</span></li>	
+		    <li><span path="getTaskRemarksList.html">获取备注下拉框</span></li>	
+		    <li><span path="endTaskExec.html">结束任务</span></li>	
+		    <li><span path="uploadCgExecFile.html">文件上传</span></li>	
+		    <li><span path="getTempTaskImgs.html">获取临时任务图片</span></li>
+		    <li><span path="submitEvent.html">上报事件</span></li>
+		    <li><span path="submitEventDel.html">上报事件删除接口</span></li>
+		    <li><span path="submitEventSave.html">上报事件执行信息保存接口</span></li>
+		    <li><span path="submitEventQuery.html">上报事件查询详情接口</span></li>
+		    <li><span path="submitEventQueryList.html">上报事件查询列表接口</span></li>
+			<li><span path="getUserMinReportList.html">任务执行分钟检查列表接口</span></li>
+		</ul>
+	</li>
+	<li>
+	    <span>APP警令通知</span>
+	    <ul>
+		    <li><span path="getBulletinViewUser.html">获取我的警令通知</span></li>		
+		    <li><span path="setBulletinViewRead.html">设置通知已读标志</span></li>	
+		    <li><span path="getJltzMsgCount.html">获取警令通知未读数</span></li>
+		</ul>
+	</li>	
+  </ul>
+</div>
+<div class="right">
+ <iframe width="100%" height="100%" src="agreement.html" id="iframe"></iframe>
+</div>
+</body>
+</html>

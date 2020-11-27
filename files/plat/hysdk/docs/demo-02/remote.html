@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>WebRTC 入门教程 Demo01</title>
+    <script src="../adapter.js"></script>
+	<script src="websocket.js"></script>
+</head>
+<body>
+   <input type="text" value="lvxh1" name="key" id="key" onkeyup="if (event.keyCode == 13) {connect();return false;}" />
+   <input type="text" value="lvxh" name="key1" id="key1" onkeyup="if (event.keyCode == 13) {connect();return false;}" />
+  <h1>使用RTCPeerConnection流式传输视频</h1>
+   
+  <video id="localVideo" autoplay controls="controls"></video>
+  <video id="remoteVideo" autoplay controls="controls"></video>
+  
+  <div>
+    <button id="connect" onclick="connect()">连接</button>
+    <button id="startButton">Start</button>
+    <button id="callButton">Call</button>
+    <button id="hangupButton">Hang Up</button>
+  </div>
+
+  <script src="remote.js"></script>
+  <script>  
+  </script>
+
+</body>
+</html>

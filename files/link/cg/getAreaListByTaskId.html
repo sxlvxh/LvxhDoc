@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9" />
+		<meta charset="utf-8" />
+<link rel="stylesheet" href="help.css" />
+<title>接口文档</title>
+<script src="jquery.js"></script>
+<style>
+body,html{
+ height:100%;
+ width:100%;
+ padding:0px;
+ margin:0px;
+}
+.top{
+   height:30px;
+   width:100%;
+    border-bottom:1px solid #ddd;
+	font-size:20px;
+	padding-left:20px;
+ }
+table
+{
+ width:100%;
+}
+</style>
+</head>
+<body>
+<div class="top"><span class="title">根据任务ID查询电子围栏列表</span></div>
+<div class="content">
+		<section>
+	<DIV id="confbutton_list_params" class="params_div">
+		<table border="1">
+			<tr><td class="td-title" style="background-color:blue;color:#fff" >请求路径：</td><td colspan="4">/cgtasktemplatetree/getTaskTempAreaList.action</td></tr>
+			<tr style="color:red;">
+			    <td>接口使用说明：</td>
+			    <td colspan="4">任务管理模块，查看任务详情时，初始化左边的树形第一级调用</td>
+			</tr>
+			<tr><td>请求参数描述</td></tr>
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >请求JSON：</td>
+				<td colspan="4">
+				  <pre>
+{
+    "entCode": "320101",   //单位编码，必填
+    "deptId": 320101,      //部门ID，非必填
+    "cgTemplateType":"1",  //任务类型，1日常任务，2保障任务，3临时任务4上报事件5渣土管控，必填
+    "classify":"",          //保障任务类型，cgTemplateType为2时必填，1扫雪防冻2国家公祭日3灯会保障4防汛保障
+    "taskDate":"2019-01-14",  //日期
+    "taskId":14            //任务ID，所点击记录得ID
+}
+				  </pre>
+				</td>
+			</tr>
+			
+			<tr><td class="td-title" id="confbutton_list_params_out">返回参数描述：</td></tr>
+			<tr style="background-color:blue;color:#fff" >
+			    <th>属性</th>
+			    <th>类型</th>
+			    <th>备注</th>
+			    <th>说明</th>
+			</tr>
+			<tr>
+			    <td>code</td>
+			    <td>int</td>
+			    <td></td>
+			    <td>返回码 0：成功 1：失败</td>
+			</tr>
+	        <tr>
+			    <td>result</td>
+			    <td>List</td>
+			    <td></td>
+			    <td>电子围栏集合</td>
+			</tr>
+		
+			<tr>
+				<td class="td-title" style="background-color:blue;color:#fff" >返回JSON：</td>
+				<td colspan="4">
+				 <pre>
+{
+    "code": 0,
+    "desc": "查询成功",
+    "result": [
+        {
+            "nofuzzy": 0,
+            "taskId": 14,
+            "areaId": 15,
+            "areaName": "200米",
+            "entCode": "320101",
+            "areaType": "3",
+            "postId": 17,
+            "efenceId": 14
+        },
+        {
+            "nofuzzy": 0,
+            "taskId": 14,
+            "areaId": 16,
+            "areaName": "test巡查路线",
+            "entCode": "320101",
+            "areaType": "4",
+            "efenceId": 16
+        }
+    ]
+}
+				 </pre>
+				</td>
+			</tr>
+		</table>
+		<script>
+			document.getElementById("confbutton_list_params_in").rowSpan = 25;
+			document.getElementById("confbutton_list_params_out").rowSpan = 27;
+		</script>
+	</DIV>
+</section>
+</div>
+
+</body>
+</html>

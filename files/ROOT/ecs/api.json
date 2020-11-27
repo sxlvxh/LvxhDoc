@@ -1,0 +1,57 @@
+var menu = [{
+		"title": "新互联网开庭",
+		"list": [{
+				"title": "1.1 用户登录",
+				"url": "login.html"
+			},{
+				"title": "1.2 测试链接接",
+				"url": "test.html"
+			},{
+				"title": "1.3 根据条件获取用户信息",
+				"url": "getUserInfo.html"
+			},{
+				"title": "1.4 获取群成员",
+				"url": "getGroupUser.html"
+			},{
+				"title": "1.5获取好友与群组",
+				"url": "getCommons.html"
+			},{
+				"title": "1.6 获取组织架构",
+				"url": "getOSTree.html"
+			},{
+				"title": "1.7 按用户名称查询人员",
+				"url": "search.html"
+			},{
+				"title": "1.8 查询未读消息",
+				"url": "getMsgCount.html"
+			},{
+				"title": "1.9 获取历史聊天内容",
+				"url": "getContactInfo.html"
+			},{
+				"title": "1.10 更新消息状态",
+				"url": "updatemsgstatus.html"
+			},{
+				"title": "1.11 查询系统消息",
+				"url": "getSystemMsg.html"
+			},{
+				"title": "1.12 添加常用联系人",
+				"url": "addFriend.html"
+			},{
+				"title": "1.13 删除常用联系人",
+				"url": "delFriend.html"
+			},{
+				"title": "1.14  好友发送消息",
+				"url": "sendMsg.html"
+			},{
+				"title": "1.15  发送群组消息",
+				"url": "sendGroupMsg.html"
+			},{
+				"title": "1.16  创建群组与添加人员",
+				"url": "createGroup.html"
+			},{
+				"title": "1.17  上传文件",
+				"url": "upload.html"
+			}
+		]
+	}
+];

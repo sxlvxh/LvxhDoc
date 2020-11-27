@@ -1,0 +1,30 @@
+var menu = [{
+		"title": "业务服务接口",
+		"list": [{
+				"title": "统一接口说明",
+				"url": "indexApi.html"
+			},
+			{
+				"title": "账号登录",
+				"url": "accountLogin.html"
+			},
+			{
+				"title": "返回码说明",
+				"url": "result-code.html"
+			}
+		]
+	}, {
+		"title": "界面属性",
+		"list": [{
+				"title": "下拉框参数配置",
+				"url": "select.html"
+			},{
+				"title": "render参数配置",
+				"url": "render.html"
+			},{
+				"title": "校验参数配置",
+				"url": "validation.html"
+			}
+		]
+	}
+];

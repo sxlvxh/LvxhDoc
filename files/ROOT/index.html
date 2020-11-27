@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta charset="utf-8" />
+		<title>吕孝怀的个人主页</title>
+
+		<meta name="description" content="Draggabble Widget Boxes with Persistent Position and State" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="assets/css/jquery-ui.custom.min.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+
+		<!--[if lte IE 9]>
+			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+		<![endif]-->
+		<link rel="stylesheet" href="assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+
+		<!--[if lte IE 9]>
+		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+		<!-- inline styles related to this page -->
+
+		<!-- ace settings handler -->
+		<script src="assets/js/ace-extra.min.js"></script>
+       <script src="config.js"></script>
+		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+		<!--[if lte IE 8]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+<style>
+.my_link a
+{
+  border: 2px solid #fff;
+  padding:3px 6px;
+  border-radius:3px;
+}
+</style>
+	</head>
+
+	<body class="no-skin">
+		<div id="navbar" class="navbar navbar-default          ace-save-state">
+			<div class="navbar-container ace-save-state" id="navbar-container">
+				<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+					<span class="sr-only">Toggle sidebar</span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+
+					<span class="icon-bar"></span>
+				</button>
+
+				<div class="navbar-header pull-left">
+					<a href="index.html" class="navbar-brand">
+						<small>
+							<i class="fa fa-tachometer bigger-160 green"></i>
+							吕孝怀的个人主页
+						</small>
+					</a>
+				</div>
+
+				
+		</div>
+
+		<div class="main-container ace-save-state" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.loadState('main-container')}catch(e){}
+			</script>
+
+			
+			<div class="main-content">
+				<div class="main-content-inner">
+					<div class="breadcrumbs ace-save-state" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="ace-icon fa fa-home home-icon"></i>
+								<a href="#">主页</a>
+							</li>
+						
+						</ul><!-- /.breadcrumb -->
+
+					
+					</div>
+
+					<div class="page-content">
+
+
+						<div class="row">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+								<div class="invisible" id="main-widget-container">
+									<div class="row">
+										<div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-1">
+											<div class="widget-box" id="widget-box-1">
+												<div class="widget-header">
+													<h5 class="widget-title">常用链接</h5>
+
+													<div class="widget-toolbar">														
+
+														<a href="#" data-action="fullscreen" class="orange2">
+															<i class="ace-icon fa fa-expand"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-chevron-up"></i>
+														</a>
+
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info my_link">
+															 <a target="_blank" href="https://www.baidu.com/">百度</a>
+															 <a target="_blank" href="http://developer.baidu.com/map/">百度地图开发平台</a>
+															 <a target="_blank" href="http://echarts.baidu.com/">eCharts</a>
+															 <a target="_blank" href="http://ueditor.baidu.com/website/index.html">百度富文本编辑器</a>
+															 <a target="_blank" href="http://www.lvxh.site:3000/">知识库</a>
+															 <a target="_blank" href="http://192.168.2.110:3000/">知识库【本地】</a>
+														</p>
+														<p class="alert alert-success  my_link">
+															 <a target="_blank" href=" http://www.tianditu.gov.cn/">天地图</a>
+														     <a target="_blank" href="http://www.pbccrc.org.cn/">征信中心</a>
+														     <a target="_blank" href="https://www.lvxh.site/files/link">我的链接</a>
+														     <a target="_blank" href="http://192.168.3.132:8081/nexus/#welcome">本地MAVEN</a>
+														      <a target="_blank" href="http://58.240.131.60:8081/nexus/#welcome">公网MAVEN</a>
+														      <a target="_blank" href="https://www.lvxh.site/files/plat/ace-master/index.html">ACE</a>
+														</p>
+														<p class="alert alert-success  my_link">
+															 <a target="_blank" href="https://www.aliyun.com/">阿里云</a>
+														     <a target="_blank" href="https://mp.weixin.qq.com/">微信小程序</a>
+														</p>
+														<p class="alert alert-warning  my_link" >
+															<a target="_blank" href="http://192.168.2.30:8280/cgWar/login/main.action?mobilePhone=13913010001&password=123456">麒麟城管【测试环境】</a>
+															<a target="_blank" href="http://192.168.2.30:8380/cgWar/login/main.action?mobilePhone=13913017145&password=123456">总队城管【测试环境】</a>
+															<a target="_blank" href="http://192.168.2.107:8280/cgWar/login/main.action?mobilePhone=13913017145&password=123456">Lv本地【城管】</a>	
+														</p>
+														<p class="alert alert-warning  my_link" >
+															<a target="_blank" href="http://192.168.2.107:8080/lzbz-war/login/main.action?loginName=root&password=rootroot">LV本地【金湖履职保障】</a>
+															<a target="_blank" href="http://58.240.131.58:5000/zentao/bug-view-160.html">禅道【公司公网】</a>
+															<a target="_blank" href="http://192.168.3.132/files">文件服务器【132】</a>
+															
+															
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-1">
+											<div class="widget-box" id="widget-box-1">
+												<div class="widget-header">
+													<h5 class="widget-title">工作环境</h5>
+
+													<div class="widget-toolbar">														
+
+														<a href="#" data-action="fullscreen" class="orange2">
+															<i class="ace-icon fa fa-expand"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-chevron-up"></i>
+														</a>
+
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info my_link">	
+																													
+																<a target="_blank" href="http://218.2.184.35:8300/cgWar/login/main.action?mobilePhone=13913017145&password=123456">总队城管</a>
+																<a target="_blank" href="http://180.100.207.235:8280/cgWar">浦口城管</a>
+																<a target="_blank" href="http://218.2.184.35:8282/cgWar">秦淮城管</a>
+																<a target="_blank" href="http://218.2.184.36:8280/cgWar/login/main.action?mobilePhone=13913010001&password=123456">麒麟城管</a>
+																<a target="_blank" href="http://218.2.184.36:8280/cgWar/login/main.action?mobilePhone=13913010001&password=123456">麒麟城管</a>
+															    <a target="_blank" href="http://218.2.184.226:8280/cgWar/login/main.action?mobilePhone=li02&password=123456">滨江城管</a>
+															    <a target="_blank" href="http://58.213.148.94:8280/cgWar/login/main.action?mobilePhone=li04&password=123456">江宁城管</a>
+															    
+															    
+														</p>
+														
+														<p class="alert alert-danger  my_link" >
+															<a target="_blank" href="http://221.226.36.66:8280/som-war">雨花环卫</a>
+															<a target="_blank" href="http://47.99.79.40:8280/som-war">无锡环卫</a>
+															<a target="_blank" href="http://36.153.138.107:8380/gcmsWeb/login/main.action?loginName=gly1&password=123456">溧水垃圾分类</a>
+															<a target="_blank" href="http://192.168.2.107:8080/rps-war">青岛铁警</a>
+														</p>
+														<p class="alert alert-warning  my_link" >
+															<a target="_blank" href="http://47.111.253.98:8480/ecs-war">南通法院现网</a>
+															<a target="_blank" href="http://61.132.63.182:8480/ecs-war">互联网开庭测试环境</a>
+														</p>
+														<p class="alert alert-warning  my_link" >
+															<a target="_blank" href="http://221.237.152.251:30041/yjzh-war/login/main.action?loginName=hejia&password=12345678">煤监局应急</a>
+														</p>
+														<p class="alert alert-success  my_link" >
+														     <a target="_blank" href="https://www.lvxh.site/platWeb">新ECS</a>
+														     <a target="_blank" href="http://192.168.2.107:8080/platWeb">ECS【LV本地】</a>
+															 <a target="_blank" href="http://58.240.131.62:8280/ecs-war/login/init.action">现网ECS</a>
+															 <a target="_blank" href="http://192.168.2.150:8280/courtWeb/main/login.action?loginName=13913017145&password=123456">网上开庭【JFF本地】</a>
+															  <a target="_blank" href="http://192.168.2.132:8380/platWeb">ECS04【132新】</a>
+															 
+														</p>
+														<p class="alert alert-success  my_link" >
+														     <a target="_blank" href="https://www.lvxh.site/court/index.html">互联网法庭接口文档</a>
+														     <a target="_blank" href="https://www.lvxh.site/rpsApi/index.html">青岛铁警接口文档</a>
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+<div class="row">
+										<div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-1">
+											<div class="widget-box" id="widget-box-1">
+												<div class="widget-header">
+													<h5 class="widget-title">在线工具</h5>
+
+													<div class="widget-toolbar">														
+
+														<a href="#" data-action="fullscreen" class="orange2">
+															<i class="ace-icon fa fa-expand"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-chevron-up"></i>
+														</a>
+
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info my_link">
+															   
+															   <a target="_blank" href="http://tool.oschina.net/">开源中国在线工具</a>
+															   <a target="_blank" href="http://www.oschina.net/">开源中国</a>
+															    <a target="_blank" href="http://fanyi.baidu.com/">百度翻译</a>
+															  
+													    </p><p class="alert alert-info my_link">
+															  
+															
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-1">
+											<div class="widget-box" id="widget-box-1">
+												<div class="widget-header">
+													<h5 class="widget-title">技术文档</h5>
+
+													<div class="widget-toolbar">														
+
+														<a href="#" data-action="fullscreen" class="orange2">
+															<i class="ace-icon fa fa-expand"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-chevron-up"></i>
+														</a>
+
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info my_link">
+															    <a target="_blank" href=" http://www.cnblogs.com/chenmh/p/5096592.html">分区</a>															
+															 <a target="_blank" href="http://blog.csdn.net/leixiaohua1020/article/details/11845435">视频码流分析工具</a>
+															 <a target="_blank" href="http://blog.sina.com.cn/s/blog_a5f093b401015uzl.html"> MyEclipse10.0 采用插件方式安装 SVN</a>
+															
+														</p>
+														<p class="alert alert-success my_link">
+															 <a  target="_blank" href="https://cnodejs.org/topic/4f16442ccae1f4aa27001101">用NodeJS实现HTTP/HTTPS代理 </a>
+															 <a  target="_blank" href="http://www.runoob.com/nodejs/nodejs-tutorial.html">NodeJS教程</a>
+															 <a  target="_blank" href="https://www.cnblogs.com/zhangq723/archive/2012/07/30/2615353.html">js控制div层背景半透明</a>
+														<a  target="_blank" href="https://www.runoob.com/">菜鸟学习</a>
+														
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								
+		<div class="row">
+										<div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-1">
+											<div class="widget-box" id="widget-box-1">
+												<div class="widget-header">
+													<h5 class="widget-title">软件下载</h5>
+
+													<div class="widget-toolbar">														
+
+														<a href="#" data-action="fullscreen" class="orange2">
+															<i class="ace-icon fa fa-expand"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-chevron-up"></i>
+														</a>
+
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info my_link">
+															   
+															   <a target="_blank" href="http://www.easyicon.net/">图标下载</a>
+															   <a target="_blank" href="http://www.eu.apache.org/dist/">apache下载</a>		
+															   <a target="_blank" href="http://ruanjian.2345.com/list/8_0_1_1.html">软件下载</a>
+															   <a target="_blank" href="http://baoku.360.cn/soft/list/">360软件库</a>
+															   <a target="_blank" href="http://cn.jarfire.org/htmlparser.html">jar包下载</a>
+															   <a target="_blank" href="http://www.carrotchou.blog/6309.html">百度网盘下载神器</a>
+													     </p>
+													     <p class="alert alert-info my_link">															   
+															   <a target="_blank" href="https://www.lvxh.site/soft/ltools.exe">代码生成工具</a>
+														</p>
+														 <p class="alert alert-info my_link">															   
+															   <a target="_blank" href="http://www.51ape.com/">无损音乐</a>
+														</p>
+														
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-xs-12 col-sm-6 widget-container-col" id="widget-container-col-1">
+											<div class="widget-box" id="widget-box-1">
+												<div class="widget-header">
+													<h5 class="widget-title">开源插件</h5>
+
+													<div class="widget-toolbar">														
+
+														<a href="#" data-action="fullscreen" class="orange2">
+															<i class="ace-icon fa fa-expand"></i>
+														</a>
+
+														<a href="#" data-action="reload">
+															<i class="ace-icon fa fa-refresh"></i>
+														</a>
+
+														<a href="#" data-action="collapse">
+															<i class="ace-icon fa fa-chevron-up"></i>
+														</a>
+
+													</div>
+												</div>
+
+												<div class="widget-body">
+													<div class="widget-main">
+														<p class="alert alert-info my_link">
+															    <a target="_blank" href=" http://www.tianditu.gov.cn/">天地图</a>
+																 <a target="_blank" href="http://www.pbccrc.org.cn/">征信中心</a>
+														</p>
+														<p class="alert alert-success">
+															
+														</p>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+										
+								
+								</div>
+							</div>
+						</div>
+						
+
+						
+					</div><!-- /.page-content -->
+				</div>
+			</div><!-- /.main-content -->
+
+			<div class="footer">
+				<div class="footer-inner">
+					<div class="footer-content">
+						<div class="action-buttons" style="display:inline-block;">
+							<a target="_blank" href="http://www.beian.miit.gov.cn" class="bigger-100 white">
+								ICP证：苏ICP备20010437号
+							</a>
+						</div>
+						<div style="width:230px;margin:0 auto;display:inline-block;" >
+				 			<a class="bigger-100 white"  target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32011402010649" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+							    <img src="top.png"/>
+							    <span>苏公网安备 32011402010649号</span>
+							</a>
+				 	   </div>
+					   <div class="bigger-100  white" style="display:inline-block;">
+							&copy; 2019-2020 <a target="_blank" href="https://www.lvxh.site" class="bigger-100  white">lvxh.site</a> 版权所有
+						</div>
+						<div style="display:inline-block;"><img style="width:40px;height:40px;margin-left:15px;" src="codes.png"/><div>
+					</div>
+		           
+				</div>
+			</div>
+		</div><!-- /.main-container -->
+
+		<!-- basic scripts -->
+
+		<!--[if !IE]> -->
+		<script src="assets/js/jquery-2.1.4.min.js"></script>
+
+		<!-- <![endif]-->
+
+		<!--[if IE]>
+<script src="assets/js/jquery-1.11.3.min.js"></script>
+<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="assets/js/bootstrap.min.js"></script>
+
+		<!-- page specific plugin scripts -->
+		<script src="assets/js/jquery-ui.custom.min.js"></script>
+		<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
+
+		<!-- ace scripts -->
+		<script src="assets/js/ace-elements.min.js"></script>
+		<script src="assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			jQuery(function($) {
+			
+				$('#simple-colorpicker-1').ace_colorpicker({pull_right:true}).on('change', function(){
+					var color_class = $(this).find('option:selected').data('class');
+					var new_class = 'widget-box';
+					if(color_class != 'default')  new_class += ' widget-color-'+color_class;
+					$(this).closest('.widget-box').attr('class', new_class);
+				});
+			
+			
+				// scrollables
+				$('.scrollable').each(function () {
+					var $this = $(this);
+					$(this).ace_scroll({
+						size: $this.attr('data-size') || 100,
+						//styleClass: 'scroll-left scroll-margin scroll-thin scroll-dark scroll-light no-track scroll-visible'
+					});
+				});
+				$('.scrollable-horizontal').each(function () {
+					var $this = $(this);
+					$(this).ace_scroll(
+					  {
+						horizontal: true,
+						styleClass: 'scroll-top',//show the scrollbars on top(default is bottom)
+						size: $this.attr('data-size') || 500,
+						mouseWheelLock: true
+					  }
+					).css({'padding-top': 12});
+				});
+				
+				$(window).on('resize.scroll_reset', function() {
+					$('.scrollable-horizontal').ace_scroll('reset');
+				});
+			
+				
+				$('#id-checkbox-vertical').prop('checked', false).on('click', function() {
+					$('#widget-toolbox-1').toggleClass('toolbox-vertical')
+					.find('.btn-group').toggleClass('btn-group-vertical')
+					.filter(':first').toggleClass('hidden')
+					.parent().toggleClass('btn-toolbar')
+				});
+			
+				/**
+				//or use slimScroll plugin
+				$('.slim-scrollable').each(function () {
+					var $this = $(this);
+					$this.slimScroll({
+						height: $this.data('height') || 100,
+						railVisible:true
+					});
+				});
+				*/
+				
+			
+				/**$('.widget-box').on('setting.ace.widget' , function(e) {
+					e.preventDefault();
+				});*/
+			
+				/**
+				$('.widget-box').on('show.ace.widget', function(e) {
+					//e.preventDefault();
+					//this = the widget-box
+				});
+				$('.widget-box').on('reload.ace.widget', function(e) {
+					//this = the widget-box
+				});
+				*/
+			
+				//$('#my-widget-box').widget_box('hide');
+			
+				
+			
+				// widget boxes
+				// widget box drag & drop example
+			    $('.widget-container-col').sortable({
+			        connectWith: '.widget-container-col',
+					items:'> .widget-box',
+					handle: ace.vars['touch'] ? '.widget-title' : false,
+					cancel: '.fullscreen',
+					opacity:0.8,
+					revert:true,
+					forceHelperSize:true,
+					placeholder: 'widget-placeholder',
+					forcePlaceholderSize:true,
+					tolerance:'pointer',
+					start: function(event, ui) {
+						//when an element is moved, it's parent becomes empty with almost zero height.
+						//we set a min-height for it to be large enough so that later we can easily drop elements back onto it
+						ui.item.parent().css({'min-height':ui.item.height()})
+						//ui.sender.css({'min-height':ui.item.height() , 'background-color' : '#F5F5F5'})
+					},
+					update: function(event, ui) {
+						ui.item.parent({'min-height':''})
+						//p.style.removeProperty('background-color');
+			
+						
+						//save widget positions
+						var widget_order = {}
+						$('.widget-container-col').each(function() {
+							var container_id = $(this).attr('id');
+							widget_order[container_id] = []
+							
+							
+							$(this).find('> .widget-box').each(function() {
+								var widget_id = $(this).attr('id');
+								widget_order[container_id].push(widget_id);
+								//now we know each container contains which widgets
+							});
+						});
+						
+						ace.data.set('demo', 'widget-order', widget_order, null, true);
+					}
+			    });
+				
+				
+				///////////////////////
+			
+				//when a widget is shown/hidden/closed, we save its state for later retrieval
+				$(document).on('shown.ace.widget hidden.ace.widget closed.ace.widget', '.widget-box', function(event) {
+					var widgets = ace.data.get('demo', 'widget-state', true);
+					if(widgets == null) widgets = {}
+			
+					var id = $(this).attr('id');
+					widgets[id] = event.type;
+					ace.data.set('demo', 'widget-state', widgets, null, true);
+				});
+			
+			
+				(function() {
+					//restore widget order
+					var container_list = ace.data.get('demo', 'widget-order', true);
+					if(container_list) {
+						for(var container_id in container_list) if(container_list.hasOwnProperty(container_id)) {
+			
+							var widgets_inside_container = container_list[container_id];
+							if(widgets_inside_container.length == 0) continue;
+							
+							for(var i = 0; i < widgets_inside_container.length; i++) {
+								var widget = widgets_inside_container[i];
+								$('#'+widget).appendTo('#'+container_id);
+							}
+			
+						}
+					}
+					
+					
+					//restore widget state
+					var widgets = ace.data.get('demo', 'widget-state', true);
+					if(widgets != null) {
+						for(var id in widgets) if(widgets.hasOwnProperty(id)) {
+							var state = widgets[id];
+							var widget = $('#'+id);
+							if
+							(
+								(state == 'shown' && widget.hasClass('collapsed'))
+								||
+								(state == 'hidden' && !widget.hasClass('collapsed'))
+							) 
+							{
+								widget.widget_box('toggleFast');
+							}
+							else if(state == 'closed') {
+								widget.widget_box('closeFast');
+							}
+						}
+					}
+					
+					
+					$('#main-widget-container').removeClass('invisible');
+					
+					
+					//reset saved positions and states
+					$('#reset-widgets').on('click', function() {
+						ace.data.remove('demo', 'widget-state');
+						ace.data.remove('demo', 'widget-order');
+						document.location.reload();
+					});
+				
+				})();
+			
+			});
+		</script>
+	</body>
+</html>

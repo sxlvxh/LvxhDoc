@@ -1,0 +1,40 @@
+var menu = [{
+		"title": "界面按钮",
+		"list": [{
+				"title": "查询按钮配置",
+				"url": "search-btn.html"
+			}
+		]
+	}, {
+		"title": "界面属性",
+		"list": [{
+				"title": "下拉框参数配置",
+				"url": "select.html"
+			},{
+				"title": "render参数配置",
+				"url": "render.html"
+			},{
+				"title": "校验参数配置",
+				"url": "validation.html"
+			},{
+				"title": "时间配置",
+				"url": "datetime.html"
+			},{
+				"title": "输入框配置",
+				"url": "input.html"
+			},{
+				"title": "树形配置",
+				"url": "tree.html"
+			},{
+				"title": "校验参数配置",
+				"url": "validation.html"
+			},{
+				"title": "图片选择配置",
+				"url": "selectImg.html"
+			},{
+				"title": "分页列表配置",
+				"url": "grid.html"
+			}
+		]
+	}
+];

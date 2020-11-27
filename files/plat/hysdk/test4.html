@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>webSocket</title>
+    <script src='jquery.js'></script>  
+   <script src='adapter.js'></script> 
+   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js" ></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+   <script src='janus.js'></script> 
+ <!--   <script src='hysdk.js'></script>  -->
+   <style>
+  		button{
+  			/* display:none; */
+  		}
+  		.videowarp video{
+  			width: 500px;
+  			height: 350px;
+  		}
+  		.video-row{
+  			float: left;
+  			width: 500px;
+  			height: 400px;
+  		}
+  		.video-row span{
+  			padding:6px;
+  			color: #fff;
+  			background: blue;
+  		}
+   </style>
+  
+        
+   </head>
+   <body>
+   		<div>
+   			<table>
+   				<tr>
+   					<td>websokcet地址：</td>
+   					<td><input id='url' type='text' value="ws://192.168.2.198:12000"/></td>
+   				</tr>
+   				<tr>
+   					<td>流媒体地址：</td>
+   					<td><input id='svrIp' type='text' value="192.168.2.198"/></td>
+   				</tr>
+   				<tr>
+   					<td>流媒体端口：</td>
+   					<td><input id = "svrPort" type='text' value="9001"/></td>
+   				</tr>
+   				<tr>
+   					<td>登录名：</td>
+   					<td><input id='loginName' type='text' value='jff'/></td>
+   				</tr>
+   				<tr>
+   					<td>被叫：</td>
+   					<td><input id='callloginName' type='text' value='jff111'/></td>
+   				</tr>
+   				<tr>
+   					<td><button id='register-btn' '>注册</button></td>
+   					<td><button id='call-btn' onclick='call()'>call</button></td>
+   					<td><button id='stop-btn' onclick='stop()'>stop</button></td>
+   				</tr>
+   			</table>
+   			<div class='videowarp'>
+   				<div class='video-row' id="stream" style="width:400px;height:400px;">
+   					<video id='localVideo' autoplay playsinline muted="muted"></video>
+   					<div>
+   						<span class='localbitrate'>0</span>
+   					</div>
+   				</div>
+   				
+   				<div class='video-row'>
+   					<video id='remoteVideo' autoplay playsinline muted="muted"></video>
+   					<div>
+   						<span class='remotebitrate'>0</span>
+   					</div>
+   				</div>
+   				
+   			</div>
+   		</div>
+   </body>
+    <script type="text/javascript">
+    var server = null;
+    if(window.location.protocol === 'http:')
+    	server = "http://" + "192.168.2.176" + ":8088/janus";
+    else
+    	server = "wss://" + "192.168.2.176" + ":8989";
+    server = "wss://" + "192.168.2.176" + ":8989";
+    var janus = null;
+    var streaming = null;
+    var opaqueId = "streamingtest-"+Janus.randomString(12);
+
+    var bitrateTimer = null;
+    var spinner = null;
+
+    var simulcastStarted = false, svcStarted = false;
+
+    var selectedStream = null;
+
+
+    $(document).ready(function() {
+    	// Initialize the library (all console debuggers enabled)
+    	Janus.init({debug: "all", callback: function() {
+    			janus = new Janus(
+    				{
+    					server: server,
+    					success: function() {
+    						// Attach to Streaming plugin
+    						janus.attach(
+    							{
+    								plugin: "janus.plugin.cmf_agent",
+    								opaqueId: opaqueId,
+    								success: function(pluginHandle) {
+    									streaming = pluginHandle;
+    									var body = { request: "play", uuid: "5425","server_ip":'192.168.2.198',"url":"rtsp://192.168.2.198:554/2337/rtsp://10000079_1:554?BitRate=512;FrameRate=25;IFrame=100;DmgType=2337"};
+    									streaming.send({ message: body });
+    								},
+    								error: function(error) {
+    									Janus.error("  -- Error attaching plugin... ", error);
+    									bootbox.alert("Error attaching plugin... " + error);
+    								},
+    								iceState: function(state) {
+    									Janus.log("ICE state changed to " + state);
+    								},
+    								webrtcState: function(on) {
+    									Janus.log("Janus says our WebRTC PeerConnection is " + (on ? "up" : "down") + " now");
+    								},
+    								onmessage: function(msg, jsep) {
+    									console.log(" ::: Got a message :::", msg);
+    									var result = msg["result"];
+    									if(result) {
+    										if(result["status"]) {
+    											var status = result["status"];
+    											if(status === 'starting')
+    												$('#status').removeClass('hide').text("Starting, please wait...").show();
+    											else if(status === 'started')
+    												$('#status').removeClass('hide').text("Started").show();
+    											else if(status === 'stopped')
+    												stopStream();
+    										} else if(msg["streaming"] === "event") {
+    											// Is simulcast in place?
+    											var substream = result["substream"];
+    											var temporal = result["temporal"];
+    											if((substream !== null && substream !== undefined) || (temporal !== null && temporal !== undefined)) {
+    												if(!simulcastStarted) {
+    													simulcastStarted = true;
+    													addSimulcastButtons(temporal !== null && temporal !== undefined);
+    												}
+    												// We just received notice that there's been a switch, update the buttons
+    												updateSimulcastButtons(substream, temporal);
+    											}
+    											// Is VP9/SVC in place?
+    											var spatial = result["spatial_layer"];
+    											temporal = result["temporal_layer"];
+    											if((spatial !== null && spatial !== undefined) || (temporal !== null && temporal !== undefined)) {
+    												if(!svcStarted) {
+    													svcStarted = true;
+    													addSvcButtons();
+    												}
+    												// We just received notice that there's been a switch, update the buttons
+    												updateSvcButtons(spatial, temporal);
+    											}
+    										}
+    									} else if(msg["error"]) {
+    										bootbox.alert(msg["error"]);
+    										stopStream();
+    										return;
+    									}
+    									if(jsep) {
+    										console.log("Handling SDP as well...", jsep);
+    										var stereo = (jsep.sdp.indexOf("stereo=1") !== -1);
+    										// Offer from the plugin, let's answer
+    										streaming.createAnswer(
+    											{
+    												jsep: jsep,
+    												// We want recvonly audio/video and, if negotiated, datachannels
+    												media: { audioSend: false, videoSend: false, data: true },
+    												customizeSdp: function(jsep) {
+    													if(stereo && jsep.sdp.indexOf("stereo=1") == -1) {
+    														// Make sure that our offer contains stereo too
+    														jsep.sdp = jsep.sdp.replace("useinbandfec=1", "useinbandfec=1;stereo=1");
+    													}
+    												},
+    												success: function(jsep) {
+    													console.log("Got SDP!", jsep);
+    													var body = { request: "start" ,uuid:"5425"};
+    													streaming.send({ message: body, jsep: jsep });
+    												},
+    												error: function(error) {
+    													Janus.error("WebRTC error:", error);
+    													bootbox.alert("WebRTC error... " + error.message);
+    												}
+    											});
+    									}
+    								},
+    								onremotestream: function(stream) {
+    									console.log(" ::: Got a remote stream :::", stream);
+    									Janus.attachMediaStream($('#localVideo').get(0), stream);
+    									var videoTracks = stream.getVideoTracks();
+    									if(!videoTracks || videoTracks.length === 0) {
+    										// No remote video
+    										$('#localVideo').hide();
+    										if($('#stream .no-video-container').length === 0) {
+    											$('#stream').append(
+    												'<div class="no-video-container">' +
+    													'<i class="fa fa-video-camera fa-5 no-video-icon"></i>' +
+    													'<span class="no-video-text">No remote video available</span>' +
+    												'</div>');
+    										}
+    									} else {
+    										$('#stream .no-video-container').remove();
+    										$('#remotevideo').removeClass('hide').show();
+    									}
+    									if(videoTracks && videoTracks.length &&
+    											(Janus.webRTCAdapter.browserDetails.browser === "chrome" ||
+    												Janus.webRTCAdapter.browserDetails.browser === "firefox" ||
+    												Janus.webRTCAdapter.browserDetails.browser === "safari")) {
+    										$('#curbitrate').removeClass('hide').show();
+    										bitrateTimer = setInterval(function() {
+    											// Display updated bitrate, if supported
+    											var bitrate = streaming.getBitrate();
+    											$('#curbitrate').text(bitrate);
+    											// Check if the resolution changed too
+    											//var width = $("#remotevideo").get(0).videoWidth;
+    											//var height = $("#remotevideo").get(0).videoHeight;
+    											/* if(width > 0 && height > 0)
+    												$('#curres').removeClass('hide').text(width+'x'+height).show(); */
+    										}, 1000);
+    									}
+    								},
+    								ondataopen: function(data) {
+    									Janus.log("The DataChannel is available!");
+    									$('#waitingvideo').remove();
+    									$('#stream').append(
+    										'<input class="form-control" type="text" id="datarecv" disabled></input>'
+    									);
+    									if(spinner)
+    										spinner.stop();
+    									spinner = null;
+    								},
+    								ondata: function(data) {
+    									console.log("We got data from the DataChannel!", data);
+    									$('#datarecv').val(data);
+    								},
+    								oncleanup: function() {
+    									Janus.log(" ::: Got a cleanup notification :::");
+    									$('#waitingvideo').remove();
+    									$('#remotevideo').remove();
+    									$('#datarecv').remove();
+    									$('.no-video-container').remove();
+    									$('#bitrate').attr('disabled', true);
+    									$('#bitrateset').html('Bandwidth<span class="caret"></span>');
+    									$('#curbitrate').hide();
+    									if(bitrateTimer)
+    										clearInterval(bitrateTimer);
+    									bitrateTimer = null;
+    									$('#curres').hide();
+    									$('#simulcast').remove();
+    									$('#metadata').empty();
+    									$('#info').addClass('hide').hide();
+    									simulcastStarted = false;
+    								}
+    							});
+    					},
+    					error: function(error) {
+    						Janus.error(error);
+    						bootbox.alert(error, function() {
+    							window.location.reload();
+    						});
+    					},
+    					destroyed: function() {
+    						window.location.reload();
+    					}
+    				});
+    	}});
+    		});
+    </script>
+</html>
+

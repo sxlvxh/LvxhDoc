@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="./api.css">
+<style>
+ body{
+	overflow-x:hidden;
+}
+</style>
+<link rel="stylesheet" href="./api.css">
+</head>
+<body>
+<h3>用户登录接口</h3>
+<section>
+<pre>
+用户登录接口
+</pre>
+</section>
+
+<h4>接口协议</h4>
+<section>
+<pre>
+HTTP+JSON
+</pre>
+</section>
+
+<h4>字符编码</h4>
+<section>
+<pre>
+请求及返回结果都使用UTF-8字符集进行编码。
+</pre>
+</section>
+
+<h4>请求路径 </h4>
+<section>
+<pre>
+ https://192.168.2.132:8380/platWeb/main/appLogin.action  
+</pre>
+</section>
+
+<h4>参数说明</h4>
+<section>
+<table>
+ <tr><td>mobilePhone</td><td>登陆用户的手机号码 </td></tr>
+  <tr><td>password </td><td>用户账号的登陆密码</td></tr>
+</table>
+</section>
+
+<h4>请求参数实例</h4>
+<section>
+<pre>
+{
+	"mobilePhone": "13913017145",
+	"password": "123456"
+}
+</pre>
+</section>
+
+
+<h4>返回参数实例</h4>
+<section>
+<pre>
+{
+    "code": 0,
+    "desc": "成功！",
+    "obj": {
+        "menu_list": [
+            {
+                "id": 1,               
+                "menuCode": "1001",
+                "name": "系统管理",
+                "description": "系统管理(平台)",
+                "menuUrl": "",              
+                "imgUrl": "/userfiles/lvxh/20191127/4152ef9f85ae4542b03c4f1582781283.jpg", 
+                "menuType": 1              
+            }
+        ],
+        "platConfig": {
+            "platEnt": {              
+                "id": 320101,
+                "entCode": "A320101",
+                "entName": "南京市总队",               
+                "shortName": "总队",               
+                "entParams": "{\r\n\t\"intranet\": \"192.168.2.198\",\r\n\t\"intranetPort\": 9001,\r\n\t\"extranet\": \"192.168.2.198\",\r\n\t\"extranetPort\": 9001,\t\r\n}"
+            },
+            "filesServerVisit": "http://192.168.2.111:39290/fileServer/plat/"           
+        },
+        "loing_user": {           
+            "id": 2,            
+            "name": "吕孝怀",
+            "loginName": "lvxh1",           
+            "address": "",
+            "mobilePhone": "13913017146",
+            "email": "",
+            "sex": 1,
+            "entCode": "A320101",          
+            "imgUrl": "/userfiles/lvxh/20191127/4152ef9f85ae4542b03c4f1582781283.jpg",          
+            "userDepCode": "9b3e50737b0043238d1aac3ff4d2d93c",
+            "userCode": "4a5aa5e418f3410194d6856103ad0bc7",
+            "sexName": "男",          
+            "idTypeName": "身份证",
+            "userTypeName": "技术员",
+            "userServiceTypeName": "执行人",
+            "roleNames": "系统管理员",
+            "depName": "开发部"           
+        }
+    }
+}
+</pre>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <title>web播放器</title>
+   <script src='player.min.js'></script> 
+        
+   </head>
+   <body>
+     <div class="panel">
+		 <h3>用户登录</h3>
+		 <div class="login">
+		 <table>
+		  <tr><td>流媒体Websokcet地址：</td><td><input id = "wsserver" value="ws://192.168.2.202:5080"></input></td></tr>
+		  <tr><td>Rtsp地址：</td><td><input width="400px" id = "rtspurl" value="rtsp://192.168.2.198:554/2268/rtsp://192.168.2.230:554/Streaming/Channels/1?transportmode=unicast&profile=Profile_1?BitRate=2048;FrameRate=25;IFrame=25;DmgType=2258"></input></td></tr>
+		  </table>		
+		  <button onclick="player();">播放</button>
+		  <button onclick="closePalyer();">关闭</button>
+		  </div>
+	 </div>
+	  <div class="panel">
+		 <video id="palyer" controls="controls" width="540px" height="270px"></video>
+	  </div>
+	  </div>
+   </body>
+    <script type="text/javascript">
+	var hyPlayerWs;
+	function player(){
+		 var oop = {
+		    	    mediaplayer:document.getElementById("palyer"),
+		    	    wsserver:document.getElementById("wsserver").value,
+		    	    rtspurl:document.getElementById("rtspurl").value,
+		    	    log:true
+		    	  };
+		hyPlayerWs = new HY_PLAYER_WS(oop);
+	}
+	function closePalyer(){	
+		 hyPlayerWs.onClose();
+		 document.getElementById("palyer").src="";
+	}
+    </script>
+</html>
